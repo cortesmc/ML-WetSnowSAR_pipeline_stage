@@ -200,7 +200,7 @@ class Dataset_loader:
 
 
 if __name__ == "__main__":
-    path_dataset = "code_init/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected.h5"
+    path_dataset = "data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected.h5"
     dtst_ld = Dataset_loader(
         path_dataset,
         shuffle=False,
