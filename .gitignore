@@ -1,1 +1,3 @@
-pipeline/data/
+pipeline/data/*
+
+!pipeline/data/__init__.py

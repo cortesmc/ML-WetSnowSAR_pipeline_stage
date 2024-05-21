@@ -1,6 +1,9 @@
 import numpy as np
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import LabelEncoder
+from imblearn.under_sampling import RandomUnderSampler
+from imblearn.over_sampling import RandomOverSampler
+from imblearn.combine import SMOTEENN
 import os
 
 from utils.files_management import load_h5
@@ -36,7 +39,6 @@ def random_shuffle(X, y, rng=-1):
     X = X[idx]
     y = y[idx]
     return X, y
-
 
 def balance_dataset(X, Y, shuffle=False):
     """Balance the dataset by taking the minimum number of samples per class (under-sampling)
@@ -75,6 +77,48 @@ def balance_dataset(X, Y, shuffle=False):
     Y_bal = np.concatenate(Y_bal)
     return X_bal, Y_bal
 
+def balance_dataset_with_imblearn(X, Y, method='under', shuffle=False):
+    """Balance the dataset using specified method (under-sampling, over-sampling, or combined)
+
+    Parameters
+    ----------
+    X : numpy array
+        dataset of images in float32, shape (n_samples, height, width, n_bands)
+
+    Y : numpy array
+        dataset of labels in string, shape (n_samples,)
+
+    method : str, optional
+        Method to balance the dataset, 'under' for under-sampling, 'over' for over-sampling,
+        and 'combine' for a combination of over- and under-sampling, by default 'under'
+
+    shuffle : bool, optional
+        Shuffle the dataset, by default False
+
+    Returns
+    -------
+    numpy array
+        balanced dataset of images in float32, shape (n_samples, height, width, n_bands)
+
+    numpy array
+        balanced dataset of labels in string, shape (n_samples,)
+    """
+    if shuffle:
+        X, Y = random_shuffle(X, Y)
+    
+    if method == 'under':
+        sampler = RandomUnderSampler(random_state=42)
+    elif method == 'over':
+        sampler = RandomOverSampler(random_state=42)
+    elif method == 'combine':
+        sampler = SMOTEENN(random_state=42)
+    else:
+        raise ValueError("Method should be 'under', 'over', or 'combine'")
+
+    X_res, Y_res = sampler.fit_resample(X.reshape(X.shape[0], -1), Y)
+    X_res = X_res.reshape(-1, X.shape[1], X.shape[2], X.shape[3])
+
+    return X_res, Y_res
 
 class BFold:
     """Balanced Fold cross-validator, only valid for binary classification.
