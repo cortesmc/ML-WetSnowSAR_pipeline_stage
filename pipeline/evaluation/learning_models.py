@@ -5,6 +5,7 @@ parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(parent_dir)
 
 from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
 
 from estimators.statistical_descriptor import Nagler_WS
 # from plot.figure_roc import ROC_plot
@@ -20,15 +21,16 @@ from utils.files_management import (
     write_report,
 )
 
-def Nagler_estimation(data_path):
+#def Nagler_estimation(data_path):
+def Nagler_estimation(X_trainU, y_train, X_test, y_test, label_encoder):
     y_est_save = {}
-    X_trainU, y_train, label_encoder = load_train(
+    '''X_trainU, y_train, label_encoder = load_train(
         data_path, -1, balanced=False, shffle=True, encode=True
     )
     X_test, y_test = load_test(
         data_path, -1, balanced=True, shffle=True, encoder=label_encoder
     )
-
+    '''
     pos_class = label_encoder.transform(["wet"])[0]
 
     NGS_VV = Nagler_WS(bands=6)
@@ -70,23 +72,22 @@ if __name__ == "__main__":
         out_dir = pipeline_param["out_dir"]
         seed = pipeline_param["seed"]
         BANDS_MAX = pipeline_param["BANDS_MAX"]
+
+        request = data_param["request"]
+        shuffle_data = data_param["shuffle_data"]
     except KeyError as e:
         print("KeyError: %s undefine" % e)
 
     start_line = 0
-
-    y_nagler = Nagler_estimation(data_path)
-
-    print(y_nagler)
     
     dtst_ld = Dataset_loader(
         data_path,
-        shuffle=False,
+        shuffle=shuffle_data,
         descrp=[
             "date",
             "massif",
             "aquisition",
-            "aquisition",
+            "aquisition2",
             "elevation",
             "slope",
             "orientation",
@@ -94,20 +95,10 @@ if __name__ == "__main__":
             "hsnow",
             "tel",
         ],
+        print_info = True
     )
     print(dtst_ld.infos)
 
-    # Example of request
-    rq1 = "massif == 'VERCORS' and \
-          ((date.dt.month == 3 and date.dt.day== 1) or \
-          (elevation > 3000 and hsnow < 0.25))"
+    x, y = dtst_ld.request_data(request)
 
-    rq2 = "massif == 'ARAVIS' & aquisition == 'ASC' & \
-           elev == 900.0 & slope == 20 & theta == 45 "
-
-    rq3 = "massif == 'ARAVIS' | date.dt.month == 1"
-
-    x, y = dtst_ld.request_data(rq2)
-
-    print(x)
 

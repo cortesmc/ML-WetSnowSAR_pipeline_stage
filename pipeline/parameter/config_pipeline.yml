@@ -1,7 +1,8 @@
 out_dir : "../results/comp_algos"
-data_path : "pipeline/data/dataset/"
-
+data_path : "pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected.h5"
 type : "local"
+
+seed : 42 
 
 BANDS_MAX:
    "a":
