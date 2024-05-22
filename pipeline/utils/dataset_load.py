@@ -126,12 +126,13 @@ class Dataset_loader:
             "date",
             "massif",
             "aquisition",
+            "aquisition2",
             "elevation",
             "slope",
             "orientation",
             "tmin",
             "tel",
-            "hsnow",
+            "hsnow"
         ],
         print_info=True,
     ):
@@ -149,8 +150,13 @@ class Dataset_loader:
         temp = load_info_h5(self.path)
         self.infos = pd.concat([pd.DataFrame(i) for i in temp], axis=1)
         self.infos.columns = self.descrp
+        self.set_label_CROCUS()
         self.infos.date = pd.to_datetime(self.infos.date, format="%Y%m%d")
         self.idx_request = self.infos.index.values
+
+    def set_label_CROCUS (self):
+        self.infos['target'] = np.where((self.infos['tmin'] > 0) & (self.infos['hsnow'] > 0.4), 1, 0)
+
 
     def check_data(self):
         """Check if the dataset and the metadata have the same dimension"""
