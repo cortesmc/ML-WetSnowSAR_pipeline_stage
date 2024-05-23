@@ -11,6 +11,7 @@ from estimators.statistical_descriptor import Nagler_WS
 # from plot.figure_roc import ROC_plot
 from utils.dataset_management import load_train, load_test, parser_pipeline, BFold
 from utils.dataset_load import  save_h5_II, load_data_h5, load_info_h5, shuffle_data, Dataset_loader
+from utils.fold_management import fold_management
 from utils.files_management import (
     load_yaml,
     dump_pkl,
@@ -116,37 +117,6 @@ def prediction_dataset(
             dump_pkl(metrics, os.path.join(output_dir, f"metrics.pkl"))
     return y_est_save
 
-#def Nagler_estimation(data_path):
-def Nagler_estimation(X_trainU, y_train, X_test, y_test, label_encoder):
-    y_est_save = {}
-    '''X_trainU, y_train, label_encoder = load_train(
-        data_path, -1, balanced=False, shffle=True, encode=True
-    )
-    X_test, y_test = load_test(
-        data_path, -1, balanced=True, shffle=True, encoder=label_encoder
-    )
-    '''
-    pos_class = label_encoder.transform(["wet"])[0]
-
-    NGS_VV = Nagler_WS(bands=6)
-    name_pip = "Nagler_VV"
-    prob_test = NGS_VV.predict_proba(X_test)[:, pos_class]
-    prob_train = NGS_VV.predict_proba(X_trainU)[:, pos_class]
-    y_prob = np.concatenate([prob_train, prob_test])
-    y_true = np.concatenate([y_train, y_test])
-
-    y_est_save[name_pip] = {"y_true": y_true, "y_est": y_prob}
-
-    NGS_VH = Nagler_WS(bands=7)
-    name_pip = "Nagler_VH"
-    prob_test = NGS_VH.predict_proba(X_test)[:, pos_class]
-    prob_train = NGS_VH.predict_proba(X_trainU)[:, pos_class]
-    y_prob = np.concatenate([prob_train, prob_test])
-    y_true = np.concatenate([y_train, y_test])
-
-    y_est_save[name_pip] = {"y_true": y_true, "y_est": y_prob}
-
-    return y_est_save
 
 if __name__ == "__main__":
     param_path = "pipeline/parameter/config_pipeline.yml"
@@ -192,8 +162,12 @@ if __name__ == "__main__":
         ],
         print_info = True
     )
-    print(dtst_ld.infos)
 
     x, y = dtst_ld.request_data(request)
 
+    train_idx, test_idx = dtst_ld.split_train_test(test_size = 0.20)
+    
+    fold = fold_management(shuffle=True, random_state=42, test_size=0.2)
+    train_index, test_index = fold.get_n_splits(train_data = x[train_idx], number_groups = 2)
 
+    print(train_index, test_index)

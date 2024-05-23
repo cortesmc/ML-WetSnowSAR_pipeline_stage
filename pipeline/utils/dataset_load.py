@@ -2,6 +2,9 @@ import pandas as pd
 import numpy as np
 import h5py
 
+from imblearn.under_sampling import RandomUnderSampler
+from imblearn.over_sampling import RandomOverSampler
+from imblearn.combine import SMOTEENN
 
 def save_h5_II(img, y, filename, additional_info=True):
     """Save data in hdf5 format with a data part (in float32),
@@ -116,7 +119,6 @@ def shuffle_data(X, y, seed=42):
     np.random.shuffle(idx)
     return X[idx], {k: v[idx] for k, v in y.items()}
 
-
 class Dataset_loader:
     def __init__(
         self,
@@ -150,13 +152,8 @@ class Dataset_loader:
         temp = load_info_h5(self.path)
         self.infos = pd.concat([pd.DataFrame(i) for i in temp], axis=1)
         self.infos.columns = self.descrp
-        self.set_label_CROCUS()
         self.infos.date = pd.to_datetime(self.infos.date, format="%Y%m%d")
         self.idx_request = self.infos.index.values
-
-    def set_label_CROCUS (self):
-        self.infos['target'] = np.where((self.infos['tmin'] > 0) & (self.infos['hsnow'] > 0.4), 1, 0)
-
 
     def check_data(self):
         """Check if the dataset and the metadata have the same dimension"""
@@ -198,6 +195,20 @@ class Dataset_loader:
                 print("Error in request")
         return self.load_data()
 
+    def split_train_test(self, test_size):
+        """
+        Split dataset into training and testing sets and give back the index for both groups.
+        """
+        idx = np.arange(self.X.shape[0])
+        if self.shuffle:
+            np.random.default_rng(self.seed).shuffle(idx)
+
+        test_size = int(len(idx) * test_size)
+        test_idx = idx[:test_size]
+        train_idx = idx[test_size:]
+
+        return train_idx, test_idx
+    
     def __repr__(self):
         return f"Dataset_loader: ({self.path}) with {len(self.idx_request)} samples"
 
