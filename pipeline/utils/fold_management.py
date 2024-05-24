@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.model_selection import KFold
 import itertools
 
-def KFold_methode(x, number_groups=5, seed=None, shuffle=False):
+def KFold_methode(x, train_size=0.8, seed=None, shuffle=False):
     """
     Perform K-Fold cross-validation on the data.
     
@@ -22,8 +22,8 @@ def KFold_methode(x, number_groups=5, seed=None, shuffle=False):
     - generator
         A generator yielding indices for train and test sets for each fold.
     """
-     
-    kf = KFold(n_splits=number_groups, random_state=seed, shuffle=shuffle)        
+    n_splits = 1/(1-train_size)
+    kf = KFold(n_splits=n_splits, random_state=seed, shuffle=shuffle)        
     return kf.split(x)
 
 def fold_massive_methode(dict_massives):
@@ -31,7 +31,7 @@ def fold_massive_methode(dict_massives):
     Generate train and test indices for each massive in a dictionary.
 
     ::warning:: Add logger to save information for each fold for information porposees.
-    ::warning::
+    ::warning:: Add function balance, need of labels for the balance and sampling correction (undersampling / oversampling ).
     Parameters:
     - dict_massives : dict
         A dictionary where keys are massives and values are dictionaries containing 'count' and 'indices' keys.
@@ -40,7 +40,7 @@ def fold_massive_methode(dict_massives):
     - tuple
         A tuple containing train and test indices for each massive.
     """
-
+    print(dict_massives)
     unique_massives = list(dict_massives.keys())
     for i in range(len(unique_massives)):
         test_massive = unique_massives[i]
@@ -49,6 +49,12 @@ def fold_massive_methode(dict_massives):
         for j in range(len(unique_massives)):
             if j != i:
                 train_indices.extend(dict_massives[unique_massives[j]]['indices'])
+        
+        ratio_train = len(train_indices)/(len(train_indices) + len(test_indices))
+        if ratio_train > 0.9 :
+            # train_indices = balance(train_indices)
+            pass
+        
         yield train_indices, test_indices
 
 def combination_methode(dict_massives):
@@ -99,6 +105,7 @@ class fold_management:
         self.shuffle = shuffle
         self.seed = random_state
         self.rng = np.random.default_rng(self.seed)
+        self.train_aprox_size = train_aprox_size
 
     def split(self, x, y):
         massives_count = {}
@@ -110,17 +117,17 @@ class fold_management:
             massives_count[name]['indices'].append(index)
             
         if np.unique(y['metadata'][:, 1]).size == 1:
-            yield KFold_methode(x, number_groups=5, seed=self.seed, shuffle=self.shuffle)
+            return KFold_methode(x, number_groups=5, seed=self.seed, shuffle=self.shuffle)
         
         match self.methode: 
             case "kFold":
-                yield KFold_methode(x, number_groups=5, seed=self.seed, shuffle=self.shuffle)
+                return KFold_methode(x, train_size=self.train_aprox_size, seed=self.seed, shuffle=self.shuffle)
             
             case "mFold":
-                yield fold_massive_methode(massives_count)
+                return fold_massive_methode(massives_count)
 
             case "combinationFold":
-                yield combination_methode(massives_count)
+                return combination_methode(massives_count)
 
             case _:
-                yield None
+                return None

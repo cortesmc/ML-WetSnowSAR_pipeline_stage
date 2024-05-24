@@ -12,6 +12,7 @@ from estimators.statistical_descriptor import Nagler_WS
 from utils.dataset_management import load_train, load_test, parser_pipeline, BFold
 from utils.dataset_load import  save_h5_II, load_data_h5, load_info_h5, shuffle_data, Dataset_loader
 from utils.fold_management import fold_management
+from utils.label_management import label_management
 from utils.files_management import (
     load_yaml,
     dump_pkl,
@@ -137,6 +138,7 @@ if __name__ == "__main__":
         out_dir = pipeline_param["out_dir"]
         seed = pipeline_param["seed"]
         BANDS_MAX = pipeline_param["BANDS_MAX"]
+        methode_fold = pipeline_param["methode_fold"]
 
         request = data_param["request"]
         shuffle_data = data_param["shuffle_data"]
@@ -165,10 +167,19 @@ if __name__ == "__main__":
     )
 
     x, y = dtst_ld.request_data(request)
-
-    train_idx, test_idx = dtst_ld.split_train_test(test_size = 0.20)
     
-    fold = fold_management(shuffle=True, random_state=42, test_size=0.2)
-    train_index, test_index = fold.get_n_splits(train_data = x[train_idx], number_groups = 2)
+    labels_management  = label_management(methode = 'crocus')
+    target = labels_management.transform(y)
+    
+    fold = fold_management(methode=methode_fold, shuffle=shuffle_data, random_state=seed, train_aprox_size=0.8)
+    
+    groupes = fold.split(x, y)
+    for i, (train_index, test_index) in enumerate(groupes):
 
-    print(train_index, test_index)
+        print(f"\n#######################################################\nFold {i}:")
+
+        print(f"  Train: index={train_index}")
+
+        print(f"  Test:  index={test_index}")
+        print(f"\n train massives: {np.unique(y["metadata"][train_index,1])}")
+        print(f"\n test massives: {np.unique(y["metadata"][test_index,1])}")

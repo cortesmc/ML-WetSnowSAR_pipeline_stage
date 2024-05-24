@@ -1,9 +1,7 @@
 orbite: "ASC"
 
-request: rq1 = "(massif == 'VERCORS' or \
-        massif == 'ARAVIS' or \
-        massif == 'BELLEDONNE') and \
-        ((date.dt.month == 3 and date.dt.day== 1) and (tmin > -1))"
+request: "(date.dt.month == 3 and date.dt.day== 1) and \
+        (elevation > 2000)"
 
 shuffle_data: true
 
