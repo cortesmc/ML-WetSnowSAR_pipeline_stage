@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>evaluation.learning_models &#8212; ML-WetSnowSAR_pipeline_stage 0.1.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for evaluation.learning_models</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">parent_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;..&quot;</span><span class="p">))</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parent_dir</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">from</span> <span class="nn">estimators.statistical_descriptor</span> <span class="kn">import</span> <span class="n">Nagler_WS</span>
+<span class="c1"># from plot.figure_roc import ROC_plot</span>
+<span class="kn">from</span> <span class="nn">utils.dataset_management</span> <span class="kn">import</span> <span class="n">load_train</span><span class="p">,</span> <span class="n">load_test</span><span class="p">,</span> <span class="n">parser_pipeline</span><span class="p">,</span> <span class="n">BFold</span>
+<span class="kn">from</span> <span class="nn">utils.dataset_load</span> <span class="kn">import</span>  <span class="n">save_h5_II</span><span class="p">,</span> <span class="n">load_data_h5</span><span class="p">,</span> <span class="n">load_info_h5</span><span class="p">,</span> <span class="n">shuffle_data</span><span class="p">,</span> <span class="n">Dataset_loader</span>
+<span class="kn">from</span> <span class="nn">utils.fold_management</span> <span class="kn">import</span> <span class="n">fold_management</span>
+<span class="kn">from</span> <span class="nn">utils.files_management</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">load_yaml</span><span class="p">,</span>
+    <span class="n">dump_pkl</span><span class="p">,</span>
+    <span class="n">init_logger</span><span class="p">,</span>
+    <span class="n">open_param_set_dir</span><span class="p">,</span>
+    <span class="n">report_prediction</span><span class="p">,</span>
+    <span class="n">report_metric_from_log</span><span class="p">,</span>
+    <span class="n">write_report</span><span class="p">,</span>
+<span class="p">)</span>
+
+<div class="viewcode-block" id="logg_info"><a class="viewcode-back" href="../../evaluation.html#evaluation.learning_models.logg_info">[docs]</a><span class="k">def</span> <span class="nf">logg_info</span><span class="p">(</span><span class="n">log_F</span><span class="p">,</span> <span class="n">X_trainU</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">label_encoder</span><span class="p">,</span> <span class="n">bands_max</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Logg information about the dataset&quot;&quot;&quot;</span>
+    <span class="n">log_F</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;############################################&quot;</span><span class="p">)</span>
+    <span class="n">log_F</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded </span><span class="si">{</span><span class="n">X_trainU</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> train samples and </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> test samples&quot;</span><span class="p">)</span>
+    <span class="n">log_F</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Y_train: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span><span class="w"> </span><span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">log_F</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Y_test: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">log_F</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Classes </span><span class="si">{</span><span class="n">label_encoder</span><span class="o">.</span><span class="n">classes_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">log_F</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Labels </span><span class="si">{</span><span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">label_encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">log_F</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;List of bands </span><span class="si">{</span><span class="n">bands_max</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">log_F</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;############################################&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">log_F</span></div>
+
+<div class="viewcode-block" id="evaluate_methods"><a class="viewcode-back" href="../../evaluation.html#evaluation.learning_models.evaluate_methods">[docs]</a><span class="k">def</span> <span class="nf">evaluate_methods</span><span class="p">(</span><span class="n">log_F</span><span class="p">,</span> <span class="n">data_path</span><span class="p">,</span> <span class="n">bands_max</span><span class="p">,</span> <span class="n">methods_param</span><span class="p">,</span> <span class="n">y_nagler</span><span class="p">):</span>
+    <span class="n">X_trainU</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">label_encoder</span> <span class="o">=</span> <span class="n">load_train</span><span class="p">(</span>
+        <span class="n">data_path</span><span class="p">,</span> <span class="n">bands_max</span><span class="p">,</span> <span class="n">balanced</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">load_test</span><span class="p">(</span>
+        <span class="n">data_path</span><span class="p">,</span> <span class="n">bands_max</span><span class="p">,</span> <span class="n">balanced</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">encoder</span><span class="o">=</span><span class="n">label_encoder</span>
+    <span class="p">)</span>
+
+    <span class="n">log_F</span> <span class="o">=</span> <span class="n">logg_info</span><span class="p">(</span>
+        <span class="n">log_F</span><span class="p">,</span> <span class="n">X_trainU</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">label_encoder</span><span class="p">,</span> <span class="n">bands_max</span>
+    <span class="p">)</span>
+    <span class="n">y_est</span> <span class="o">=</span> <span class="n">prediction_dataset</span><span class="p">(</span>
+        <span class="n">X_trainU</span><span class="p">,</span>
+        <span class="n">y_train</span><span class="p">,</span>
+        <span class="n">X_test</span><span class="p">,</span>
+        <span class="n">y_test</span><span class="p">,</span>
+        <span class="n">label_encoder</span><span class="p">,</span>
+        <span class="n">output_path</span><span class="p">,</span>
+        <span class="n">methods_param</span><span class="p">,</span>
+        <span class="n">log_F</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">y_est</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">y_nagler</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">y_est</span></div>
+
+<div class="viewcode-block" id="prediction_dataset"><a class="viewcode-back" href="../../evaluation.html#evaluation.learning_models.prediction_dataset">[docs]</a><span class="k">def</span> <span class="nf">prediction_dataset</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="p">,</span>
+    <span class="n">y_train</span><span class="p">,</span>
+    <span class="n">X_test</span><span class="p">,</span>
+    <span class="n">Y_test</span><span class="p">,</span>
+    <span class="n">label_encoder</span><span class="p">,</span>
+    <span class="n">output_dir</span><span class="p">,</span>
+    <span class="n">methods_param</span><span class="p">,</span>
+    <span class="n">logg</span><span class="p">,</span>
+    <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">bkf</span> <span class="o">=</span> <span class="n">BFold</span><span class="p">(</span><span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+    <span class="n">kfold</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">y_est_save</span><span class="p">,</span> <span class="n">metrics</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
+    <span class="n">kappa</span><span class="p">,</span> <span class="n">f1sc</span><span class="p">,</span> <span class="n">acc</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="n">pos_class</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="s2">&quot;wet&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">methods_param</span><span class="p">[</span><span class="s2">&quot;pipeline&quot;</span><span class="p">])):</span>
+        <span class="n">name_pip</span> <span class="o">=</span> <span class="n">methods_param</span><span class="p">[</span><span class="s2">&quot;name_pip&quot;</span><span class="p">][</span><span class="n">count</span><span class="p">]</span>
+        <span class="n">logg</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pipeline : </span><span class="si">{</span><span class="n">name_pip</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">y_est_save</span><span class="p">[</span><span class="n">name_pip</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;y_true&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;y_est&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+
+        <span class="k">for</span> <span class="n">train_index</span> <span class="ow">in</span> <span class="n">bkf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
+            <span class="n">logg</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kfold : </span><span class="si">{</span><span class="n">kfold</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">X_train_K</span><span class="p">,</span> <span class="n">y_train_k</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="n">train_index</span><span class="p">]</span>
+            <span class="n">logg</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; y_train_k : </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_train_k</span><span class="p">,</span><span class="w"> </span><span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logg</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; X_train_K : </span><span class="si">{</span><span class="n">X_train_K</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">pipeline</span> <span class="o">=</span> <span class="n">parser_pipeline</span><span class="p">(</span><span class="n">methods_param</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">id_pip</span> <span class="o">=</span> <span class="n">name_pip</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;_kfold_</span><span class="si">{</span><span class="n">kfold</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_K</span><span class="p">,</span> <span class="n">y_train_k</span><span class="p">)</span>
+
+                <span class="n">y_prob</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span> <span class="n">pos_class</span><span class="p">]</span>
+
+                <span class="n">logg</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">ac</span><span class="p">,</span> <span class="n">ka</span> <span class="o">=</span> <span class="n">report_prediction</span><span class="p">(</span>
+                    <span class="n">Y_test</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">label_encoder</span><span class="p">,</span> <span class="n">logg</span>
+                <span class="p">)</span>
+                <span class="n">f1sc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f1</span><span class="p">)</span>
+                <span class="n">acc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ac</span><span class="p">)</span>
+                <span class="n">kappa</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ka</span><span class="p">)</span>
+
+                <span class="n">y_est_save</span><span class="p">[</span><span class="n">name_pip</span><span class="p">][</span><span class="s2">&quot;y_est&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">y_prob</span><span class="p">)</span>
+                <span class="n">y_est_save</span><span class="p">[</span><span class="n">name_pip</span><span class="p">][</span><span class="s2">&quot;y_true&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">Y_test</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logg</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pipeline </span><span class="si">{</span><span class="n">id_pip</span><span class="si">}</span><span class="s2"> failed&quot;</span><span class="p">)</span>
+                <span class="n">logg</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="n">kfold</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">metrics</span><span class="p">[</span><span class="n">name_pip</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;f1&quot;</span><span class="p">:</span> <span class="n">f1sc</span><span class="p">,</span> <span class="s2">&quot;acc&quot;</span><span class="p">:</span> <span class="n">acc</span><span class="p">,</span> <span class="s2">&quot;kappa&quot;</span><span class="p">:</span> <span class="n">kappa</span><span class="p">}</span>
+        <span class="n">logg</span> <span class="o">=</span> <span class="n">report_metric_from_log</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="n">logg</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">save</span><span class="p">:</span>
+            <span class="n">dump_pkl</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name_pip</span><span class="si">}</span><span class="s2">.pkl&quot;</span><span class="p">))</span>
+            <span class="n">dump_pkl</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;metrics.pkl&quot;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">y_est_save</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">param_path</span> <span class="o">=</span> <span class="s2">&quot;pipeline/parameter/config_pipeline.yml&quot;</span>
+    <span class="n">pipeline_param</span> <span class="o">=</span> <span class="n">load_yaml</span><span class="p">(</span><span class="n">param_path</span><span class="p">)</span>
+
+    <span class="k">match</span> <span class="n">pipeline_param</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]:</span>
+        <span class="k">case</span> <span class="s2">&quot;local&quot;</span><span class="p">:</span>
+            <span class="n">local_param_path</span> <span class="o">=</span> <span class="s2">&quot;pipeline/parameter/config_data_local.yml&quot;</span>
+            <span class="n">data_param</span> <span class="o">=</span> <span class="n">load_yaml</span><span class="p">(</span><span class="n">local_param_path</span><span class="p">)</span>
+        <span class="k">case</span> <span class="s2">&quot;global&quot;</span><span class="p">:</span>
+            <span class="n">global_param_path</span> <span class="o">=</span> <span class="s2">&quot;pipeline/parameter/config_data_global.yml&quot;</span>
+            <span class="n">data_param</span> <span class="o">=</span> <span class="n">load_yaml</span><span class="p">(</span><span class="n">global_param_path</span><span class="p">)</span>
+        <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+            <span class="sa">f</span><span class="s2">&quot;no such type : </span><span class="si">{</span><span class="n">pipeline_param</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">data_path</span> <span class="o">=</span> <span class="n">pipeline_param</span><span class="p">[</span><span class="s2">&quot;data_path&quot;</span><span class="p">]</span>
+        <span class="n">out_dir</span> <span class="o">=</span> <span class="n">pipeline_param</span><span class="p">[</span><span class="s2">&quot;out_dir&quot;</span><span class="p">]</span>
+        <span class="n">seed</span> <span class="o">=</span> <span class="n">pipeline_param</span><span class="p">[</span><span class="s2">&quot;seed&quot;</span><span class="p">]</span>
+        <span class="n">BANDS_MAX</span> <span class="o">=</span> <span class="n">pipeline_param</span><span class="p">[</span><span class="s2">&quot;BANDS_MAX&quot;</span><span class="p">]</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">data_param</span><span class="p">[</span><span class="s2">&quot;request&quot;</span><span class="p">]</span>
+        <span class="n">shuffle_data</span> <span class="o">=</span> <span class="n">data_param</span><span class="p">[</span><span class="s2">&quot;shuffle_data&quot;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;KeyError: </span><span class="si">%s</span><span class="s2"> undefine&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+
+    <span class="n">start_line</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="n">dtst_ld</span> <span class="o">=</span> <span class="n">Dataset_loader</span><span class="p">(</span>
+        <span class="n">data_path</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle_data</span><span class="p">,</span>
+        <span class="n">descrp</span><span class="o">=</span><span class="p">[</span>
+            <span class="s2">&quot;date&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;massif&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;aquisition&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;aquisition2&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;elevation&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;slope&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;orientation&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;tmin&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;hsnow&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;tel&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="n">print_info</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">dtst_ld</span><span class="o">.</span><span class="n">request_data</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+    <span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span> <span class="o">=</span> <span class="n">dtst_ld</span><span class="o">.</span><span class="n">split_train_test</span><span class="p">(</span><span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">)</span>
+    
+    <span class="n">fold</span> <span class="o">=</span> <span class="n">fold_management</span><span class="p">(</span><span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+    <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="o">=</span> <span class="n">fold</span><span class="o">.</span><span class="n">get_n_splits</span><span class="p">(</span><span class="n">train_data</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">number_groups</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">ML-WetSnowSAR_pipeline_stage</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pipeline</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, cortesmc.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

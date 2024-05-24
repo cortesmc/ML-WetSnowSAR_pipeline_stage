@@ -1,7 +1,10 @@
-out_dir : "../results/comp_algos"
+out_dir : "pipeline/results"
 data_path : "pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected.h5"
+
 type : "local"
 
+#Methode for the fold: kFold, mFold or combinationFold
+methode_fold : "mFold"
 seed : 42 
 
 BANDS_MAX:

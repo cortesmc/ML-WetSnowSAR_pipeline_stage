@@ -144,7 +144,8 @@ if __name__ == "__main__":
         print("KeyError: %s undefine" % e)
 
     start_line = 0
-    
+    log_F, path_log = init_logger(out_dir)
+
     dtst_ld = Dataset_loader(
         data_path,
         shuffle=shuffle_data,

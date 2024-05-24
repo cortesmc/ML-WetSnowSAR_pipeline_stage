@@ -214,38 +214,3 @@ class Dataset_loader:
 
     def __str__(self):
         return f"Dataset_loader: ({self.path}) with {len(self.idx_request)} samples"
-
-'''
-if __name__ == "__main__":
-    path_dataset = "pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected.h5"
-    dtst_ld = Dataset_loader(
-        path_dataset,
-        shuffle=False,
-        descrp=[
-            "date",
-            "massif",
-            "aquisition",
-            "aquisition",
-            "elevation",
-            "slope",
-            "orientation",
-            "tmin",
-            "hsnow",
-            "tel",
-        ],
-    )
-    print(dtst_ld.infos)
-
-    # Example of request
-    rq1 = "massif == 'VERCORS' and \
-          ((date.dt.month == 3 and date.dt.day== 1) or \
-          (elevation > 3000 and hsnow < 0.25))"
-
-    rq2 = "massif == 'ARAVIS' & aquisition == 'ASC' & \
-           elev == 900.0 & slope == 20 & theta == 45 "
-
-    rq3 = "massif == 'ARAVIS' | date.dt.month == 1"
-
-    x, y = dtst_ld.request_data(rq3)
-    print(x.shape)
-'''
