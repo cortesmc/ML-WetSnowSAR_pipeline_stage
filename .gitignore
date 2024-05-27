@@ -1,3 +1,4 @@
 pipeline/data/*
+results/
 
 !pipeline/data/__init__.py

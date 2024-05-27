@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn.preprocessing import LabelEncoder
 
 def crocus_methode(metadata):
     """
@@ -20,9 +21,9 @@ def crocus_methode(metadata):
     if physics_data is None:
         raise ValueError("The dictionary does not contain a 'physics' key.")
     
-    condition = ((physics_data[:, 0] > 0) & (physics_data[:, 2] >= 40))
+    condition = ((physics_data[:, 0] > 0) & (physics_data[:, 2] >= 0.40))
     
-    labels = np.where(condition, 0, 1)
+    labels = np.where(condition, 1, 0)
         
     return labels
 
@@ -63,6 +64,15 @@ class label_management:
         """
         match self.methode:
             case "crocus":
-                return crocus_methode(metadata)
+                labels = crocus_methode(metadata)
             case _:
-                return None
+                labels = None
+            
+        self.encoder = LabelEncoder()
+        self.encoder.fit(labels)
+        labels_encoded = self.encoder.transform(labels)
+        
+        return labels_encoded
+
+    def get_encoder(self):
+        return self.encoder

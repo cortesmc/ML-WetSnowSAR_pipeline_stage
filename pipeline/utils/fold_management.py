@@ -22,7 +22,10 @@ def KFold_methode(x, train_size=0.8, seed=None, shuffle=False):
     - generator
         A generator yielding indices for train and test sets for each fold.
     """
-    n_splits = 1/(1-train_size)
+    if shuffle == False:
+        seed = None
+
+    n_splits = int(1/(1-train_size))
     kf = KFold(n_splits=n_splits, random_state=seed, shuffle=shuffle)        
     return kf.split(x)
 
@@ -116,8 +119,9 @@ class fold_management:
             massives_count[name]['count'] += 1
             massives_count[name]['indices'].append(index)
             
-        if np.unique(y['metadata'][:, 1]).size == 1:
-            return KFold_methode(x, number_groups=5, seed=self.seed, shuffle=self.shuffle)
+        if ((np.unique(y['metadata'][:, 1]).size == 1) and (self.methode != "kFold")):
+            self.methode = "kFold"
+            return self.split(x=x, y=y)
         
         match self.methode: 
             case "kFold":

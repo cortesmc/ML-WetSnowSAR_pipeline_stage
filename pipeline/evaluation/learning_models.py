@@ -35,77 +35,61 @@ def logg_info(log_F, X_trainU, y_train, X_test, y_test, label_encoder, bands_max
     log_F.info("############################################")
     return log_F
 
-def evaluate_methods(log_F, data_path, bands_max, methods_param, y_nagler):
-    X_trainU, y_train, label_encoder = load_train(
-        data_path, bands_max, balanced=False, shffle=True, encode=True
-    )
-    X_test, y_test = load_test(
-        data_path, bands_max, balanced=True, shffle=True, encoder=label_encoder
-    )
-
-    log_F = logg_info(
-        log_F, X_trainU, y_train, X_test, y_test, label_encoder, bands_max
-    )
-    y_est = prediction_dataset(
-        X_trainU,
-        y_train,
-        X_test,
-        y_test,
-        label_encoder,
-        output_path,
-        methods_param,
-        log_F,
-    )
-    y_est.update(y_nagler)
-
-    return y_est
 
 def prediction_dataset(
-    X_train,
-    y_train,
-    X_test,
-    Y_test,
-    label_encoder,
-    output_dir,
-    methods_param,
+    x,
+    y,
+    # output_dir,
+    pipeline_param,
+    data_param,
     logg,
     save=True,
 ):
-    bkf = BFold(shuffle=False, random_state=42)
+    fold_manager = fold_management(methode=pipeline_param["methode_fold"], 
+                           shuffle=data_param["shuffle_data"], 
+                           random_state=pipeline_param["seed"], 
+                           train_aprox_size=0.8 ## à verifier si on ajoute dans le .yml.
+                           )
 
-    kfold = 0
+    labels_manager  = label_management(methode = pipeline_param["labeling_methode"])
+
+    fold_groupes = fold_manager.split(x, y)
+
     y_est_save, metrics = {}, {}
     kappa, f1sc, acc = [], [], []
-    pos_class = label_encoder.transform(["wet"])[0]
 
-    for count in range(len(methods_param["pipeline"])):
-        name_pip = methods_param["name_pip"][count]
+    targets = labels_manager.transform(y)
+    label_encoder = labels_manager.get_encoder()
+
+    for count in range(len(pipeline_param["pipeline"])):
+        name_pip = pipeline_param["name_pip"][count]
         logg.info(f"Pipeline : {name_pip}")
         y_est_save[name_pip] = {"y_true": [], "y_est": []}
 
-        for train_index in bkf.split(X_train, y_train):
+        for kfold, (train_index, test_index) in enumerate(fold_groupes):
             logg.info(f"Kfold : {kfold}")
-            X_train_K, y_train_k = X_train[train_index], y_train[train_index]
+            X_train_K, y_train_k = x[train_index], targets[train_index]
+            X_test_K, y_test_k = x[test_index], targets[test_index]
             logg.info(f" y_train_k : {np.unique(y_train_k, return_counts=True)}")
             logg.info(f" X_train_K : {X_train_K.shape}")
 
-            pipeline = parser_pipeline(methods_param, count)
+            pipeline = parser_pipeline(pipeline_param, count)
 
             try:
                 id_pip = name_pip + f"_kfold_{kfold}"
                 pipeline.fit(X_train_K, y_train_k)
 
-                y_prob = pipeline.predict_proba(X_test)[:, pos_class]
-
+                y_prob = pipeline.predict_proba(X_test_K)
+                print(y_prob)
                 logg, f1, ac, ka = report_prediction(
-                    Y_test, y_prob, label_encoder, logg
+                    y_test_k, y_prob, label_encoder, logg
                 )
                 f1sc.append(f1)
                 acc.append(ac)
                 kappa.append(ka)
 
                 y_est_save[name_pip]["y_est"].extend(y_prob)
-                y_est_save[name_pip]["y_true"].extend(Y_test)
+                y_est_save[name_pip]["y_true"].extend(y_test_k)
 
             except Exception as e:
                 logg.error(f"Pipeline {id_pip} failed")
@@ -114,8 +98,9 @@ def prediction_dataset(
         metrics[name_pip] = {"f1": f1sc, "acc": acc, "kappa": kappa}
         logg = report_metric_from_log(metrics, logg)
         if save:
-            dump_pkl(pipeline, os.path.join(output_dir, f"{name_pip}.pkl"))
-            dump_pkl(metrics, os.path.join(output_dir, f"metrics.pkl"))
+            pass
+            # dump_pkl(pipeline, os.path.join(output_dir, f"{name_pip}.pkl"))
+            # dump_pkl(metrics, os.path.join(output_dir, f"metrics.pkl"))
     return y_est_save
 
 
@@ -167,19 +152,14 @@ if __name__ == "__main__":
     )
 
     x, y = dtst_ld.request_data(request)
-    
-    labels_management  = label_management(methode = 'crocus')
-    target = labels_management.transform(y)
-    
-    fold = fold_management(methode=methode_fold, shuffle=shuffle_data, random_state=seed, train_aprox_size=0.8)
-    
-    groupes = fold.split(x, y)
-    for i, (train_index, test_index) in enumerate(groupes):
+    log_F.info(f"================== Fitting model {"tmptmptmp"} ==================")
+    log_F, path_log = init_logger(out_dir)
 
-        print(f"\n#######################################################\nFold {i}:")
 
-        print(f"  Train: index={train_index}")
-
-        print(f"  Test:  index={test_index}")
-        print(f"\n train massives: {np.unique(y["metadata"][train_index,1])}")
-        print(f"\n test massives: {np.unique(y["metadata"][test_index,1])}")
+    y_est_save = prediction_dataset(
+                                    x, 
+                                    y, 
+                                    pipeline_param, 
+                                    data_param, 
+                                    log_F, 
+                                    save=True,)
