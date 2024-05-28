@@ -158,8 +158,8 @@ def report_metric_from_log(dic, logg):
 
 
 def report_prediction(y_true, y_pred, le, logg):
-    """Compute the f1 and accuracy score and the confusion matrix from the true and predicted labels and report it in a log file.
-    The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).
+    """Compute the f1 and accuracy score and the confusion matrix from the true and predicted labels and report it in a log file
+    The y_true and y_pred must be categorical (one hot encoded: [[0, 1, 0], [1, 0, 0], [0, 0, 1]]) or binary (0 or 1)
 
     Parameters
     ----------
@@ -172,12 +172,12 @@ def report_prediction(y_true, y_pred, le, logg):
     le : LabelEncoder
         LabelEncoder object
 
-    logg : logging.Logger
+    logg : logging
         Logger
 
     Returns
     -------
-    logging.Logger
+    logging
         Logger
 
     float
@@ -191,40 +191,30 @@ def report_prediction(y_true, y_pred, le, logg):
     """
 
     logg.info("----------- REPORT -----------")
-    try:
-        if y_pred.ndim > 1 and y_pred.shape[1] > 1:
-            y_true = y_true.argmax(axis=1)
-            y_pred = y_pred.argmax(axis=1)
-        else:
-            y_true = y_true.ravel()
-            y_pred = y_pred.ravel()
-            y_pred = np.where(y_pred > 0.5, 1, 0)
+    if y_pred.shape[1] > 1:
+        # y_true = y_true.argmax(axis=1)
+        y_pred = y_pred.argmax(axis=1)
+    else:
+        y_true = y_true.ravel()
+        y_pred = y_pred.ravel()
+        y_pred = np.where(y_pred > 0.5, 1, 0)
 
-        y_true = le.inverse_transform(y_true)
-        y_pred = le.inverse_transform(y_pred)
-        
-        logg.info(f"confusion matrix : ")
-        cfm = pd.DataFrame(
-            100 * confusion_matrix(y_true, y_pred, normalize="true").round(4),
-            columns=le.classes_,
-            index=le.classes_,
-        )
-        logg.info(cfm.to_string())
-        
-        f1 = 100 * f1_score(y_true, y_pred, average="macro").round(5)
-        acc = 100 * accuracy_score(y_true, y_pred).round(5)
-        kappa = 100 * cohen_kappa_score(y_true, y_pred).round(5)
-        
-        logg.info(f"f1 score : {f1}")
-        logg.info(f"accuracy score : {acc}")
-        logg.info(f"kappa score : {kappa}")
-        logg.info("----------- END REPORT -----------")
-    except Exception as e:
-        logg.error(f"Error in report_prediction: {e}")
-        f1, acc, kappa = None, None, None
-
+    y_true = le.inverse_transform(y_true)
+    y_pred = le.inverse_transform(y_pred)
+    logg.info(f"confusion matrix : ")
+    cfm = pd.DataFrame(
+        100 * confusion_matrix(y_true, y_pred, normalize="true").round(4),
+        columns=le.classes_,
+        index=le.classes_,
+    )
+    logg.info(cfm.to_string())
+    f1 = 100 * round(f1_score(y_true, y_pred, average="macro"), 5)
+    acc = 100 * round(accuracy_score(y_true, y_pred), 5)
+    kappa = 100 * round(cohen_kappa_score(y_true, y_pred), 5)
+    logg.info(f"f1 score : {f1}")
+    logg.info(f"accuracy score : {acc}")
+    logg.info("----------- END REPORT -----------")
     return logg, f1, acc, kappa
-
 
 
 def init_logger(path_log):

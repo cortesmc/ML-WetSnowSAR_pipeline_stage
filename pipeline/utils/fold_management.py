@@ -43,7 +43,6 @@ def fold_massive_methode(dict_massives):
     - tuple
         A tuple containing train and test indices for each massive.
     """
-    print(dict_massives)
     unique_massives = list(dict_massives.keys())
     for i in range(len(unique_massives)):
         test_massive = unique_massives[i]

@@ -80,10 +80,12 @@ def prediction_dataset(
                 pipeline.fit(X_train_K, y_train_k)
 
                 y_prob = pipeline.predict_proba(X_test_K)
-                print(y_prob)
+
                 logg, f1, ac, ka = report_prediction(
                     y_test_k, y_prob, label_encoder, logg
                 )
+
+                print(y_test_k)
                 f1sc.append(f1)
                 acc.append(ac)
                 kappa.append(ka)
