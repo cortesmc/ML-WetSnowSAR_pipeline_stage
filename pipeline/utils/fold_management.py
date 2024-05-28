@@ -59,11 +59,9 @@ def fold_massive_methode(dict_massives):
         
         yield train_indices, test_indices
 
-def combination_methode(dict_massives):
+def combination_method(dict_massives, train_size=0.8):
     """
-    Generate combinations of massives based on a given dictionary.
-
-    ::warning:: Add logger to save information for each fold for information porposees.
+    Generate prioritized combinations of massives based on a given dictionary.
 
     Parameters:
     - dict_massives : dict
@@ -71,26 +69,54 @@ def combination_methode(dict_massives):
 
     Yields:
     - tuple
-        A tuple containing train and test indices for each valid combination of massives.
+        A tuple containing train and test indices for each prioritized combination of massives.
     """
+    approximation = 1
 
     total_count = sum(value['count'] for value in dict_massives.values())
 
     massives = list(dict_massives.keys())
+
+    # Generate all possible combinations of massifs (excluding the empty combination)
     all_combinations = []
     for r in range(1, len(massives)):
         combinations_object = itertools.combinations(massives, r)
         combinations_list = list(combinations_object)
         all_combinations.extend(combinations_list)
 
+    # Filter combinations to find valid ones that fall within the desired training size range
     valid_combinations = []
     for combo in all_combinations:
         combo_count = sum(dict_massives[massif]['count'] for massif in combo)
         percentage = (combo_count / total_count) * 100
-        if 75 <= percentage <= 85:
+        if (train_size * 100) - approximation <= percentage <= (train_size * 100) + approximation:
             valid_combinations.append(combo)
 
+    valid_combinations.sort(key=lambda combo: len(massives) - len(combo))
+
+    # Sets to keep track of uncovered massifs for training and testing
+    uncovered_train_massives = set(massives)
+    uncovered_test_massives = set(massives)
+
+    # List to store the selected combinations
+    selected_combinations = []
+    
+    # Greedily select combinations to cover all massifs in both training and test sets
     for combo in valid_combinations:
+        if not uncovered_train_massives and not uncovered_test_massives:
+            break  # Stop if all massifs are covered in both sets
+
+        train_massifs_in_combo = set(combo)
+        test_massifs_in_combo = set(massives) - train_massifs_in_combo
+
+        # Select combination if it covers any remaining uncovered massifs in either set
+        if uncovered_train_massives & train_massifs_in_combo or uncovered_test_massives & test_massifs_in_combo:
+            selected_combinations.append(combo)
+            uncovered_train_massives -= train_massifs_in_combo
+            uncovered_test_massives -= test_massifs_in_combo
+
+    # Generate train and test indices for each selected combination
+    for combo in selected_combinations:
         train_indices = []
         test_indices = []
         for massif in massives:
@@ -102,7 +128,7 @@ def combination_methode(dict_massives):
 
 class fold_management: 
 
-    def __init__(self, methode = "kfold" , shuffle=False, random_state=42, train_aprox_size=0.80):
+    def __init__(self, methode = "kfold" , shuffle=False, random_state=42, train_aprox_size=0.8):
         self.methode = methode
         self.shuffle = shuffle
         self.seed = random_state
@@ -130,7 +156,7 @@ class fold_management:
                 return fold_massive_methode(massives_count)
 
             case "combinationFold":
-                return combination_methode(massives_count)
+                return combination_methode(massives_count, train_size=self.train_aprox_size)
 
             case _:
                 return None
