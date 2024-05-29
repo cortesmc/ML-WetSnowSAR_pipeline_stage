@@ -1,6 +1,6 @@
 orbite: "ASC"
 
-request: "(date.dt.month == 3 and date.dt.day== 1) and ((elevation > 1000) and (elevation < 1850))"
+request: "(date.dt.month == 3 and date.dt.day== 1) and ((elevation > 1000) and (elevation < 1800))"
 
 shuffle_data: true
 

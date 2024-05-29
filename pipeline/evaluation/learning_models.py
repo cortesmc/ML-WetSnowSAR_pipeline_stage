@@ -36,7 +36,6 @@ def prediction_dataset(
 ):
     y_est_save, metrics = {}, {}
     kappa, f1sc, acc = [], [], []
-
     for count in range(len(pipeline_param["pipeline"])):
 
         name_pip = pipeline_param["name_pip"][count]
@@ -47,21 +46,16 @@ def prediction_dataset(
         y_est_save[name_pip] = {"y_true": [], "y_est": []}
 
         for kfold, (train_index, test_index) in enumerate(fold_groupes):
-            logg.info(f"Kfold : {kfold}")
             X_train_K, y_train_k = x[train_index], targets[train_index]
             X_test_K, y_test_k = x[test_index], targets[test_index]
-            logg.info(f" y_train_k : {np.unique(y_train_k, return_counts=True)}")
-            logg.info(f" X_train_K : {X_train_K.shape}")
 
             pipeline = parser_pipeline(pipeline_param, count)
 
             try:
                 id_pip = name_pip + f"_kfold_{kfold}"
                 pipeline.fit(X_train_K, y_train_k)
-
                 y_prob = pipeline.predict_proba(X_test_K)
-                print(y_prob)
-                logg, f1, ac, ka = report_prediction(
+                f1, ac, ka = report_prediction(
                     y_test_k, y_prob, label_encoder, logg
                 )
 
@@ -139,7 +133,8 @@ if __name__ == "__main__":
     fold_manager = fold_management(methode=pipeline_param["methode_fold"], 
                            shuffle=data_param["shuffle_data"], 
                            random_state=pipeline_param["seed"], 
-                           train_aprox_size=0.8 ## à verifier si on ajoute dans le .yml.
+                           train_aprox_size=0.8, ## à verifier si on ajoute dans le .yml.
+                           logg=log_F
                            )
 
     labels_manager  = label_management(methode = pipeline_param["labeling_methode"])
@@ -149,7 +144,7 @@ if __name__ == "__main__":
     targets = labels_manager.transform(y)
     label_encoder = labels_manager.get_encoder()
 
-    fold_manager.log_combinations(log_F, targets, y)
+    # fold_manager.log_combinations(targets, y)
 
     y_est_save = prediction_dataset(x=x,
                                     targets=targets,

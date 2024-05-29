@@ -214,7 +214,7 @@ def report_prediction(y_true, y_pred, le, logg):
     logg.info(f"f1 score : {f1}")
     logg.info(f"accuracy score : {acc}")
     logg.info("----------- END REPORT -----------")
-    return logg, f1, acc, kappa
+    return f1, acc, kappa
 
 
 def init_logger(path_log):
