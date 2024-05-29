@@ -1,5 +1,7 @@
 import sys, os, time
 import numpy as np
+from datetime import datetime
+
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(parent_dir)
@@ -21,17 +23,21 @@ from utils.files_management import (
     report_prediction,
     report_metric_from_log,
     write_report,
+    set_folder,
+    logger_dataset
 )
 
 def prediction_dataset(
     x,
+    metadata,
     targets,
     fold_groupes,
     output_dir,
     pipeline_param,
     data_param,
     label_encoder,
-    logg,
+    logg_results,
+    logg_dataset,
     save=True
 ):
     y_est_save, metrics = {}, {}
@@ -40,9 +46,9 @@ def prediction_dataset(
 
         name_pip = pipeline_param["name_pip"][count]
 
-        log_F.info(f"================== Fitting model {count} ==================")
+        logg_results.info(f"================== Fitting model {count} ==================")
 
-        logg.info(f"Pipeline : {name_pip}")
+        logg_results.info(f"Pipeline : {name_pip}")
         y_est_save[name_pip] = {"y_true": [], "y_est": []}
 
         for kfold, (train_index, test_index) in enumerate(fold_groupes):
@@ -56,7 +62,7 @@ def prediction_dataset(
                 pipeline.fit(X_train_K, y_train_k)
                 y_prob = pipeline.predict_proba(X_test_K)
                 f1, ac, ka = report_prediction(
-                    y_test_k, y_prob, label_encoder, logg
+                    y_test_k, y_prob, label_encoder, logg_results
                 )
 
                 f1sc.append(f1)
@@ -67,25 +73,22 @@ def prediction_dataset(
                 y_est_save[name_pip]["y_true"].extend(y_test_k)
 
             except Exception as e:
-                logg.error(f"Pipeline {id_pip} failed")
-                logg.error(e)
+                logg_results.error(f"Pipeline {id_pip} failed")
+                logg_results.error(e)
             kfold += 1
         metrics[name_pip] = {"f1": f1sc, "acc": acc, "kappa": kappa}
-        logg = report_metric_from_log(metrics, logg)
+        logg_results = report_metric_from_log(metrics, logg_results)
         if save:
             dump_pkl(pipeline, os.path.join(output_dir, f"{name_pip}.pkl"))
             dump_pkl(metrics, os.path.join(output_dir, f"metrics.pkl"))
     return y_est_save
 
-
 if __name__ == "__main__":
-    # Pipeline path variables variables
+    # Pipeline variables de systeme
     out_dir = "pipeline/results/"
     param_path = "pipeline/parameter/config_pipeline.yml"
     local_param_path = "pipeline/parameter/config_data_local.yml"
     global_param_path = "pipeline/parameter/config_data_global.yml"
-
-
 
     pipeline_param = load_yaml(param_path)
 
@@ -102,14 +105,17 @@ if __name__ == "__main__":
         seed = pipeline_param["seed"]
         BANDS_MAX = pipeline_param["BANDS_MAX"]
         methode_fold = pipeline_param["methode_fold"]
-
         request = data_param["request"]
         shuffle_data = data_param["shuffle_data"]
     except KeyError as e:
         print("KeyError: %s undefine" % e)
 
+    out_dir = set_folder(out_dir, pipeline_param)
+    log_dataset, path_log_dataset = init_logger(out_dir, "dataset_info")
+    log_results, path_log_results = init_logger(out_dir+"results", "resultats")
+    
+    print(path_log_dataset)
     start_line = 0
-    log_F, path_log = init_logger(out_dir)
 
     dtst_ld = Dataset_loader(
         data_path,
@@ -130,11 +136,11 @@ if __name__ == "__main__":
     )
 
     x, y = dtst_ld.request_data(request)
+
     fold_manager = fold_management(methode=pipeline_param["methode_fold"], 
                            shuffle=data_param["shuffle_data"], 
                            random_state=pipeline_param["seed"], 
                            train_aprox_size=0.8, ## à verifier si on ajoute dans le .yml.
-                           logg=log_F
                            )
 
     labels_manager  = label_management(methode = pipeline_param["labeling_methode"])
@@ -144,15 +150,17 @@ if __name__ == "__main__":
     targets = labels_manager.transform(y)
     label_encoder = labels_manager.get_encoder()
 
-    # fold_manager.log_combinations(targets, y)
+    log_dataset = logger_dataset(log_dataset, x, y, targets)
 
     y_est_save = prediction_dataset(x=x,
+                                    metadata=y,
                                     targets=targets,
                                     fold_groupes=fold_groupes,
                                     output_dir=out_dir,
                                     pipeline_param=pipeline_param,
                                     data_param=data_param,
                                     label_encoder=label_encoder,
-                                    logg=log_F,
+                                    logg_results=log_results,
+                                    logg_dataset=log_dataset,
                                     save=True
                                     )
