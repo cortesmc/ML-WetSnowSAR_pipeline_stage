@@ -199,3 +199,14 @@ class Dataset_loader:
 
     def __str__(self):
         return f"Dataset_loader: ({self.path}) with {len(self.idx_request)} samples"
+
+if __name__ == "__main__":
+        p_a = "../dataset_/vmerge_v9/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected_V2.h5"
+        dtst_ld = Dataset_loader(p_a,shuffle=False)
+        x, y = dtst_ld.request_data
+        (
+        "((date.dt.month >= 1 and \
+           date.dt.month <= 6 and \
+           date.dt.year == 2021) and \
+           (aquisition== 'ASC') and (elevation > 2500))"
+        )

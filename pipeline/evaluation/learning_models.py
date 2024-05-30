@@ -24,7 +24,8 @@ from utils.files_management import (
     report_metric_from_log,
     write_report,
     set_folder,
-    logger_dataset
+    logger_dataset,
+    logger_fold
 )
 
 def prediction_dataset(
@@ -36,24 +37,29 @@ def prediction_dataset(
     pipeline_param,
     data_param,
     label_encoder,
-    logg_results,
-    logg_dataset,
+    log_results,
+    log_dataset,
     save=True
 ):
     y_est_save, metrics = {}, {}
-    kappa, f1sc, acc = [], [], []
-    for count in range(len(pipeline_param["pipeline"])):
 
+    log_model, path_log_model = init_logger(output_dir + "models", "folds_results")
+
+    for count in range(len(pipeline_param["pipeline"])):
         name_pip = pipeline_param["name_pip"][count]
 
-        logg_results.info(f"================== Fitting model {count} ==================")
+        log_model.info(f"================== Fitting model {name_pip} ==================")
 
-        logg_results.info(f"Pipeline : {name_pip}")
         y_est_save[name_pip] = {"y_true": [], "y_est": []}
+        f1sc, acc, kappa = [], [], []
 
         for kfold, (train_index, test_index) in enumerate(fold_groupes):
+            save_dir = output_dir + f"models/{name_pip}/"
+
             X_train_K, y_train_k = x[train_index], targets[train_index]
             X_test_K, y_test_k = x[test_index], targets[test_index]
+
+            log_model.info(f"__________________ Fold {kfold} with {name_pip} __________________")
 
             pipeline = parser_pipeline(pipeline_param, count)
 
@@ -61,9 +67,7 @@ def prediction_dataset(
                 id_pip = name_pip + f"_kfold_{kfold}"
                 pipeline.fit(X_train_K, y_train_k)
                 y_prob = pipeline.predict_proba(X_test_K)
-                f1, ac, ka = report_prediction(
-                    y_test_k, y_prob, label_encoder, logg_results
-                )
+                log_model, f1, ac, ka = report_prediction(log_model, y_test_k, y_prob, label_encoder)
 
                 f1sc.append(f1)
                 acc.append(ac)
@@ -73,14 +77,17 @@ def prediction_dataset(
                 y_est_save[name_pip]["y_true"].extend(y_test_k)
 
             except Exception as e:
-                logg_results.error(f"Pipeline {id_pip} failed")
-                logg_results.error(e)
-            kfold += 1
+                log_model.error(f"Pipeline {id_pip} failed")
+                log_model.error(e)
+                
+            if save:
+                dump_pkl(pipeline, os.path.join(save_dir, f"{name_pip}_fold{kfold}.pkl"))
+                dump_pkl(metrics, os.path.join(save_dir, f"metrics_fold{kfold}.pkl"))
+
         metrics[name_pip] = {"f1": f1sc, "acc": acc, "kappa": kappa}
-        logg_results = report_metric_from_log(metrics, logg_results)
-        if save:
-            dump_pkl(pipeline, os.path.join(output_dir, f"{name_pip}.pkl"))
-            dump_pkl(metrics, os.path.join(output_dir, f"metrics.pkl"))
+    
+    log_results = report_metric_from_log(log_results, metrics)
+
     return y_est_save
 
 if __name__ == "__main__":
@@ -124,7 +131,6 @@ if __name__ == "__main__":
             "date",
             "massif",
             "aquisition",
-            "aquisition2",
             "elevation",
             "slope",
             "orientation",
@@ -150,7 +156,8 @@ if __name__ == "__main__":
     targets = labels_manager.transform(y)
     label_encoder = labels_manager.get_encoder()
 
-    log_dataset = logger_dataset(log_dataset, x, y, targets)
+    log_dataset = logger_dataset(log_dataset, x, y, targets, pipeline_param)
+    log_dataset = logger_fold(log_dataset, fold_groupes,targets, y)
 
     y_est_save = prediction_dataset(x=x,
                                     metadata=y,
@@ -160,7 +167,7 @@ if __name__ == "__main__":
                                     pipeline_param=pipeline_param,
                                     data_param=data_param,
                                     label_encoder=label_encoder,
-                                    logg_results=log_results,
-                                    logg_dataset=log_dataset,
+                                    log_results=log_results,
+                                    log_dataset=log_dataset,
                                     save=True
                                     )
