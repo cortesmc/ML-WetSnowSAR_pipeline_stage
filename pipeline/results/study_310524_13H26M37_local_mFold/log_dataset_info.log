@@ -1,0 +1,164 @@
+05/31/2024-01:26:37 PM: (files_management.py): INFO: init_logger Line: 268 - Started
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 282 - ================== Study information ==================
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 284 - __________________ Dataset information __________________
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 288 - Number of samples: 9125
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 289 - Dimensions of input: (15, 15, 9)
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 294 - Overall label distribution: 0: 5433 (59.54%), 1: 3692 (40.46%)
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 295 - Massives: ['ARAVIS' 'BAUGES' 'BEAUFORTAIN' 'BELLEDONNE' 'CHARTEUSE'
+ 'GRANDES-ROUSSES' 'HTE-MAURIE' 'HTE-TARENT' 'MAURIENNE' 'MONT-BLANC'
+ 'THABOR' 'VANOISE' 'VERCORS']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 296 - Samples per massif:
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 304 -   ARAVIS: 994 samples (Targets: 0: 630 (63.38%), 1: 364 (36.62%))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 304 -   BAUGES: 857 samples (Targets: 0: 557 (64.99%), 1: 300 (35.01%))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 304 -   BEAUFORTAIN: 1275 samples (Targets: 0: 840 (65.88%), 1: 435 (34.12%))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 304 -   BELLEDONNE: 901 samples (Targets: 0: 431 (47.84%), 1: 470 (52.16%))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 304 -   CHARTEUSE: 809 samples (Targets: 0: 485 (59.95%), 1: 324 (40.05%))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 304 -   GRANDES-ROUSSES: 347 samples (Targets: 0: 185 (53.31%), 1: 162 (46.69%))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 304 -   HTE-MAURIE: 312 samples (Targets: 0: 186 (59.62%), 1: 126 (40.38%))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 304 -   HTE-TARENT: 338 samples (Targets: 0: 133 (39.35%), 1: 205 (60.65%))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 304 -   MAURIENNE: 1084 samples (Targets: 0: 743 (68.54%), 1: 341 (31.46%))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 304 -   MONT-BLANC: 561 samples (Targets: 0: 266 (47.42%), 1: 295 (52.58%))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 304 -   THABOR: 93 samples (Targets: 0: 71 (76.34%), 1: 22 (23.66%))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 304 -   VANOISE: 1357 samples (Targets: 0: 793 (58.44%), 1: 564 (41.56%))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 304 -   VERCORS: 197 samples (Targets: 0: 113 (57.36%), 1: 84 (42.64%))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 306 - __________________ Models information __________________
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 310 - Pipeline configurations:
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 312 -   Pipeline: KNN_direct
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 314 -     - Step: Hist_SAR
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 314 -     - Step: KNeighborsClassifier
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 319 -       - Parameters:
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 321 -         - n_neighbors: 50
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 319 -       - Parameters:
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 321 -         - n_jobs: -1
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 312 -   Pipeline: RandomForest_direct
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 314 -     - Step: Hist_SAR
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 314 -     - Step: RandomForestClassifier
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 319 -       - Parameters:
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 321 -         - n_estimators: 200
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 319 -       - Parameters:
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 321 -         - criterion: entropy
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 319 -       - Parameters:
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 321 -         - n_jobs: -1
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 312 -   Pipeline: MLP_direct
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 314 -     - Step: Hist_SAR
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 314 -     - Step: MLPClassifier
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 319 -       - Parameters:
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 321 -         - alpha: 0.01
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 312 -   Pipeline: SVMrbf_direct
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 314 -     - Step: Hist_SAR
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 314 -     - Step: SVC
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 319 -       - Parameters:
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 321 -         - kernel: rbf
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 319 -       - Parameters:
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 321 -         - probability: 1
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 312 -   Pipeline: LogisticR_direct
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 314 -     - Step: Hist_SAR
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 314 -     - Step: LogisticRegression
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 312 -   Pipeline: AdaBoost_direct
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 314 -     - Step: Hist_SAR
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 314 -     - Step: AdaBoostClassifier
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 319 -       - Parameters:
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 321 -         - n_estimators: 200
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_dataset Line: 322 - __________________ Folds information __________________
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 328 - ------------------Fold : 0 ------------------
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 329 -     - Distribution class train: (array([0, 1]), array([4593, 3257]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 330 -     - Distribution class test: (array([0, 1]), array([840, 435]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 331 -     - Train size: 86.03%
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 332 -     - Massif in train ['ARAVIS' 'BAUGES' 'BELLEDONNE' 'CHARTEUSE' 'GRANDES-ROUSSES' 'HTE-MAURIE'
+ 'HTE-TARENT' 'MAURIENNE' 'MONT-BLANC' 'THABOR' 'VANOISE' 'VERCORS']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 333 -     - Massif in test ['BEAUFORTAIN']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 328 - ------------------Fold : 1 ------------------
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 329 -     - Distribution class train: (array([0, 1]), array([5247, 3566]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 330 -     - Distribution class test: (array([0, 1]), array([186, 126]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 331 -     - Train size: 96.58%
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 332 -     - Massif in train ['ARAVIS' 'BAUGES' 'BEAUFORTAIN' 'BELLEDONNE' 'CHARTEUSE'
+ 'GRANDES-ROUSSES' 'HTE-TARENT' 'MAURIENNE' 'MONT-BLANC' 'THABOR'
+ 'VANOISE' 'VERCORS']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 333 -     - Massif in test ['HTE-MAURIE']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 328 - ------------------Fold : 2 ------------------
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 329 -     - Distribution class train: (array([0, 1]), array([4803, 3328]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 330 -     - Distribution class test: (array([0, 1]), array([630, 364]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 331 -     - Train size: 89.11%
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 332 -     - Massif in train ['BAUGES' 'BEAUFORTAIN' 'BELLEDONNE' 'CHARTEUSE' 'GRANDES-ROUSSES'
+ 'HTE-MAURIE' 'HTE-TARENT' 'MAURIENNE' 'MONT-BLANC' 'THABOR' 'VANOISE'
+ 'VERCORS']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 333 -     - Massif in test ['ARAVIS']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 328 - ------------------Fold : 3 ------------------
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 329 -     - Distribution class train: (array([0, 1]), array([4640, 3128]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 330 -     - Distribution class test: (array([0, 1]), array([793, 564]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 331 -     - Train size: 85.13%
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 332 -     - Massif in train ['ARAVIS' 'BAUGES' 'BEAUFORTAIN' 'BELLEDONNE' 'CHARTEUSE'
+ 'GRANDES-ROUSSES' 'HTE-MAURIE' 'HTE-TARENT' 'MAURIENNE' 'MONT-BLANC'
+ 'THABOR' 'VERCORS']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 333 -     - Massif in test ['VANOISE']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 328 - ------------------Fold : 4 ------------------
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 329 -     - Distribution class train: (array([0, 1]), array([4690, 3351]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 330 -     - Distribution class test: (array([0, 1]), array([743, 341]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 331 -     - Train size: 88.12%
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 332 -     - Massif in train ['ARAVIS' 'BAUGES' 'BEAUFORTAIN' 'BELLEDONNE' 'CHARTEUSE'
+ 'GRANDES-ROUSSES' 'HTE-MAURIE' 'HTE-TARENT' 'MONT-BLANC' 'THABOR'
+ 'VANOISE' 'VERCORS']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 333 -     - Massif in test ['MAURIENNE']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 328 - ------------------Fold : 5 ------------------
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 329 -     - Distribution class train: (array([0, 1]), array([5167, 3397]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 330 -     - Distribution class test: (array([0, 1]), array([266, 295]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 331 -     - Train size: 93.85%
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 332 -     - Massif in train ['ARAVIS' 'BAUGES' 'BEAUFORTAIN' 'BELLEDONNE' 'CHARTEUSE'
+ 'GRANDES-ROUSSES' 'HTE-MAURIE' 'HTE-TARENT' 'MAURIENNE' 'THABOR'
+ 'VANOISE' 'VERCORS']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 333 -     - Massif in test ['MONT-BLANC']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 328 - ------------------Fold : 6 ------------------
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 329 -     - Distribution class train: (array([0, 1]), array([5362, 3670]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 330 -     - Distribution class test: (array([0, 1]), array([71, 22]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 331 -     - Train size: 98.98%
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 332 -     - Massif in train ['ARAVIS' 'BAUGES' 'BEAUFORTAIN' 'BELLEDONNE' 'CHARTEUSE'
+ 'GRANDES-ROUSSES' 'HTE-MAURIE' 'HTE-TARENT' 'MAURIENNE' 'MONT-BLANC'
+ 'VANOISE' 'VERCORS']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 333 -     - Massif in test ['THABOR']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 328 - ------------------Fold : 7 ------------------
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 329 -     - Distribution class train: (array([0, 1]), array([5320, 3608]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 330 -     - Distribution class test: (array([0, 1]), array([113,  84]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 331 -     - Train size: 97.84%
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 332 -     - Massif in train ['ARAVIS' 'BAUGES' 'BEAUFORTAIN' 'BELLEDONNE' 'CHARTEUSE'
+ 'GRANDES-ROUSSES' 'HTE-MAURIE' 'HTE-TARENT' 'MAURIENNE' 'MONT-BLANC'
+ 'THABOR' 'VANOISE']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 333 -     - Massif in test ['VERCORS']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 328 - ------------------Fold : 8 ------------------
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 329 -     - Distribution class train: (array([0, 1]), array([4876, 3392]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 330 -     - Distribution class test: (array([0, 1]), array([557, 300]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 331 -     - Train size: 90.61%
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 332 -     - Massif in train ['ARAVIS' 'BEAUFORTAIN' 'BELLEDONNE' 'CHARTEUSE' 'GRANDES-ROUSSES'
+ 'HTE-MAURIE' 'HTE-TARENT' 'MAURIENNE' 'MONT-BLANC' 'THABOR' 'VANOISE'
+ 'VERCORS']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 333 -     - Massif in test ['BAUGES']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 328 - ------------------Fold : 9 ------------------
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 329 -     - Distribution class train: (array([0, 1]), array([5002, 3222]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 330 -     - Distribution class test: (array([0, 1]), array([431, 470]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 331 -     - Train size: 90.13%
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 332 -     - Massif in train ['ARAVIS' 'BAUGES' 'BEAUFORTAIN' 'CHARTEUSE' 'GRANDES-ROUSSES'
+ 'HTE-MAURIE' 'HTE-TARENT' 'MAURIENNE' 'MONT-BLANC' 'THABOR' 'VANOISE'
+ 'VERCORS']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 333 -     - Massif in test ['BELLEDONNE']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 328 - ------------------Fold : 10 ------------------
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 329 -     - Distribution class train: (array([0, 1]), array([5248, 3530]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 330 -     - Distribution class test: (array([0, 1]), array([185, 162]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 331 -     - Train size: 96.20%
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 332 -     - Massif in train ['ARAVIS' 'BAUGES' 'BEAUFORTAIN' 'BELLEDONNE' 'CHARTEUSE' 'HTE-MAURIE'
+ 'HTE-TARENT' 'MAURIENNE' 'MONT-BLANC' 'THABOR' 'VANOISE' 'VERCORS']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 333 -     - Massif in test ['GRANDES-ROUSSES']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 328 - ------------------Fold : 11 ------------------
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 329 -     - Distribution class train: (array([0, 1]), array([4948, 3368]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 330 -     - Distribution class test: (array([0, 1]), array([485, 324]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 331 -     - Train size: 91.13%
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 332 -     - Massif in train ['ARAVIS' 'BAUGES' 'BEAUFORTAIN' 'BELLEDONNE' 'GRANDES-ROUSSES'
+ 'HTE-MAURIE' 'HTE-TARENT' 'MAURIENNE' 'MONT-BLANC' 'THABOR' 'VANOISE'
+ 'VERCORS']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 333 -     - Massif in test ['CHARTEUSE']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 328 - ------------------Fold : 12 ------------------
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 329 -     - Distribution class train: (array([0, 1]), array([5300, 3487]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 330 -     - Distribution class test: (array([0, 1]), array([133, 205]))
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 331 -     - Train size: 96.30%
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 332 -     - Massif in train ['ARAVIS' 'BAUGES' 'BEAUFORTAIN' 'BELLEDONNE' 'CHARTEUSE'
+ 'GRANDES-ROUSSES' 'HTE-MAURIE' 'MAURIENNE' 'MONT-BLANC' 'THABOR'
+ 'VANOISE' 'VERCORS']
+05/31/2024-01:28:22 PM: (files_management.py): INFO: logger_fold Line: 333 -     - Massif in test ['HTE-TARENT']

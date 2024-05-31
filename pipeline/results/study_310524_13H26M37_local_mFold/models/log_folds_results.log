@@ -1,0 +1,891 @@
+05/31/2024-01:28:22 PM: (files_management.py): INFO: init_logger Line: 268 - Started
+05/31/2024-01:28:22 PM: (learning_models.py): INFO: prediction_dataset Line: 51 - ================== Fitting model KNN_direct ==================
+05/31/2024-01:28:22 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 0 with KNN_direct __________________
+05/31/2024-01:28:25 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:25 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  83.10  16.90
+1  21.15  78.85
+05/31/2024-01:28:25 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 80.105
+05/31/2024-01:28:25 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 81.864
+05/31/2024-01:28:25 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 81.647
+05/31/2024-01:28:25 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 79.538
+05/31/2024-01:28:25 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 80.973
+05/31/2024-01:28:25 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 80.973
+05/31/2024-01:28:25 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 661.5070000000001
+05/31/2024-01:28:25 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 60.275999999999996
+05/31/2024-01:28:25 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 1 with KNN_direct __________________
+05/31/2024-01:28:28 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:28 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  90.32   9.68
+1  37.30  62.70
+05/31/2024-01:28:28 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 77.321
+05/31/2024-01:28:28 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 78.565
+05/31/2024-01:28:28 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 79.167
+05/31/2024-01:28:28 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 79.791
+05/31/2024-01:28:28 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 76.51
+05/31/2024-01:28:28 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 76.51
+05/31/2024-01:28:28 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 750.909
+05/31/2024-01:28:28 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 55.065
+05/31/2024-01:28:28 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 2 with KNN_direct __________________
+05/31/2024-01:28:30 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:30 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  81.11  18.89
+1  25.55  74.45
+05/31/2024-01:28:30 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 77.352
+05/31/2024-01:28:30 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 78.815
+05/31/2024-01:28:30 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 78.672
+05/31/2024-01:28:30 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 77.045
+05/31/2024-01:28:30 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 77.781
+05/31/2024-01:28:30 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 77.781
+05/31/2024-01:28:30 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 768.738
+05/31/2024-01:28:30 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 54.736
+05/31/2024-01:28:30 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 3 with KNN_direct __________________
+05/31/2024-01:28:32 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:32 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  86.63  13.37
+1  25.35  74.65
+05/31/2024-01:28:32 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 80.917
+05/31/2024-01:28:32 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 81.549
+05/31/2024-01:28:32 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 81.651
+05/31/2024-01:28:32 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 81.329
+05/31/2024-01:28:32 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 80.63900000000001
+05/31/2024-01:28:32 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 80.63900000000001
+05/31/2024-01:28:32 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 661.376
+05/31/2024-01:28:32 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 61.864
+05/31/2024-01:28:32 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 4 with KNN_direct __________________
+05/31/2024-01:28:35 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:35 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  89.37  10.63
+1  31.67  68.33
+05/31/2024-01:28:35 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 79.51
+05/31/2024-01:28:35 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 82.531
+05/31/2024-01:28:35 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 82.749
+05/31/2024-01:28:35 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 80.345
+05/31/2024-01:28:35 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 78.848
+05/31/2024-01:28:35 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 78.848
+05/31/2024-01:28:35 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 621.786
+05/31/2024-01:28:35 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 59.055
+05/31/2024-01:28:35 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 5 with KNN_direct __________________
+05/31/2024-01:28:37 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:37 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  93.61   6.39
+1  40.00  60.00
+05/31/2024-01:28:37 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 75.533
+05/31/2024-01:28:37 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 75.37
+05/31/2024-01:28:37 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 75.936
+05/31/2024-01:28:37 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 79.542
+05/31/2024-01:28:37 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 76.805
+05/31/2024-01:28:37 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 76.805
+05/31/2024-01:28:37 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 867.361
+05/31/2024-01:28:37 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 52.627
+05/31/2024-01:28:37 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 6 with KNN_direct __________________
+05/31/2024-01:28:40 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:40 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  84.51  15.49
+1  45.45  54.55
+05/31/2024-01:28:40 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 69.22
+05/31/2024-01:28:40 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 77.59
+05/31/2024-01:28:40 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 77.41900000000001
+05/31/2024-01:28:40 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 68.944
+05/31/2024-01:28:40 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 69.526
+05/31/2024-01:28:40 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 69.526
+05/31/2024-01:28:40 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 813.889
+05/31/2024-01:28:40 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 38.449
+05/31/2024-01:28:40 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 7 with KNN_direct __________________
+05/31/2024-01:28:42 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:42 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  69.91  30.09
+1  22.62  77.38
+05/31/2024-01:28:42 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 72.96000000000001
+05/31/2024-01:28:42 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 73.24300000000001
+05/31/2024-01:28:42 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 73.096
+05/31/2024-01:28:42 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 73.134
+05/31/2024-01:28:42 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 73.646
+05/31/2024-01:28:42 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 73.646
+05/31/2024-01:28:42 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 969.702
+05/31/2024-01:28:42 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 46.233000000000004
+05/31/2024-01:28:42 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 8 with KNN_direct __________________
+05/31/2024-01:28:44 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:44 PM: (files_management.py): INFO: report_prediction Line: 218 -       0     1
+0  91.2   8.8
+1  21.0  79.0
+05/31/2024-01:28:44 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 85.479
+05/31/2024-01:28:44 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 86.856
+05/31/2024-01:28:44 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 86.931
+05/31/2024-01:28:44 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 85.917
+05/31/2024-01:28:44 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 85.101
+05/31/2024-01:28:44 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 85.101
+05/31/2024-01:28:44 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 471.049
+05/31/2024-01:28:44 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 70.967
+05/31/2024-01:28:44 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 9 with KNN_direct __________________
+05/31/2024-01:28:47 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:47 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  91.42   8.58
+1  16.60  83.40
+05/31/2024-01:28:47 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 87.236
+05/31/2024-01:28:47 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 87.235
+05/31/2024-01:28:47 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 87.236
+05/31/2024-01:28:47 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 87.425
+05/31/2024-01:28:47 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 87.41
+05/31/2024-01:28:47 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 87.41
+05/31/2024-01:28:47 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 460.04699999999997
+05/31/2024-01:28:47 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 74.52499999999999
+05/31/2024-01:28:47 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 10 with KNN_direct __________________
+05/31/2024-01:28:49 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:49 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  84.86  15.14
+1  41.36  58.64
+05/31/2024-01:28:49 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 71.72
+05/31/2024-01:28:49 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 72.055
+05/31/2024-01:28:49 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 72.622
+05/31/2024-01:28:49 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 73.663
+05/31/2024-01:28:49 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 71.753
+05/31/2024-01:28:49 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 71.753
+05/31/2024-01:28:49 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 986.7860000000001
+05/31/2024-01:28:49 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 44.168
+05/31/2024-01:28:49 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 11 with KNN_direct __________________
+05/31/2024-01:28:52 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:52 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  89.69  10.31
+1  24.69  75.31
+05/31/2024-01:28:52 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 82.982
+05/31/2024-01:28:52 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 83.782
+05/31/2024-01:28:52 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 83.931
+05/31/2024-01:28:52 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 83.73
+05/31/2024-01:28:52 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 82.5
+05/31/2024-01:28:52 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 82.5
+05/31/2024-01:28:52 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 579.193
+05/31/2024-01:28:52 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 66.014
+05/31/2024-01:28:52 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 12 with KNN_direct __________________
+05/31/2024-01:28:54 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:54 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  87.22  12.78
+1  30.24  69.76
+05/31/2024-01:28:54 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 76.47699999999999
+05/31/2024-01:28:54 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 76.877
+05/31/2024-01:28:54 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 76.627
+05/31/2024-01:28:54 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 77.27199999999999
+05/31/2024-01:28:54 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 78.487
+05/31/2024-01:28:54 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 78.487
+05/31/2024-01:28:54 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 842.44
+05/31/2024-01:28:54 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 53.778999999999996
+05/31/2024-01:28:54 PM: (learning_models.py): INFO: prediction_dataset Line: 51 - ================== Fitting model RandomForest_direct ==================
+05/31/2024-01:28:54 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 0 with RandomForest_direct __________________
+05/31/2024-01:28:55 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:55 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  80.48  19.52
+1  13.10  86.90
+05/31/2024-01:28:56 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 81.66499999999999
+05/31/2024-01:28:56 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 83.026
+05/31/2024-01:28:56 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 82.667
+05/31/2024-01:28:56 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 80.983
+05/31/2024-01:28:56 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 83.686
+05/31/2024-01:28:56 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 83.686
+05/31/2024-01:28:56 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 624.757
+05/31/2024-01:28:56 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 63.601
+05/31/2024-01:28:56 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 1 with RandomForest_direct __________________
+05/31/2024-01:28:57 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:57 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  88.71  11.29
+1  30.95  69.05
+05/31/2024-01:28:57 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 79.487
+05/31/2024-01:28:57 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 80.473
+05/31/2024-01:28:57 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 80.769
+05/31/2024-01:28:57 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 80.719
+05/31/2024-01:28:57 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 78.879
+05/31/2024-01:28:57 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 78.879
+05/31/2024-01:28:57 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 693.147
+05/31/2024-01:28:57 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 59.119
+05/31/2024-01:28:57 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 2 with RandomForest_direct __________________
+05/31/2024-01:28:59 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:28:59 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  77.94  22.06
+1  22.25  77.75
+05/31/2024-01:28:59 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 76.854
+05/31/2024-01:28:59 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 78.14999999999999
+05/31/2024-01:28:59 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 77.86699999999999
+05/31/2024-01:28:59 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 76.44999999999999
+05/31/2024-01:28:59 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 77.842
+05/31/2024-01:28:59 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 77.842
+05/31/2024-01:28:59 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 797.7470000000001
+05/31/2024-01:28:59 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 53.872
+05/31/2024-01:28:59 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 3 with RandomForest_direct __________________
+05/31/2024-01:29:00 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:00 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  84.49  15.51
+1  19.15  80.85
+05/31/2024-01:29:00 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 82.543
+05/31/2024-01:29:00 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 83.00800000000001
+05/31/2024-01:29:00 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 82.977
+05/31/2024-01:29:00 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 82.43700000000001
+05/31/2024-01:29:00 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 82.67
+05/31/2024-01:29:00 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 82.67
+05/31/2024-01:29:00 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 613.5659999999999
+05/31/2024-01:29:00 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 65.09
+05/31/2024-01:29:00 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 4 with RandomForest_direct __________________
+05/31/2024-01:29:02 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:02 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  87.48  12.52
+1  27.27  72.73
+05/31/2024-01:29:02 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 80.105
+05/31/2024-01:29:02 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 82.841
+05/31/2024-01:29:02 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 82.841
+05/31/2024-01:29:02 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 80.105
+05/31/2024-01:29:02 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 80.105
+05/31/2024-01:29:02 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 80.105
+05/31/2024-01:29:02 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 618.461
+05/31/2024-01:29:02 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 60.209999999999994
+05/31/2024-01:29:02 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 5 with RandomForest_direct __________________
+05/31/2024-01:29:03 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:03 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  89.85  10.15
+1  31.19  68.81
+05/31/2024-01:29:03 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 78.7
+05/31/2024-01:29:03 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 78.63
+05/31/2024-01:29:03 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 78.788
+05/31/2024-01:29:03 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 80.233
+05/31/2024-01:29:03 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 79.33200000000001
+05/31/2024-01:29:03 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 79.33200000000001
+05/31/2024-01:29:03 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 764.562
+05/31/2024-01:29:03 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 57.967
+05/31/2024-01:29:03 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 6 with RandomForest_direct __________________
+05/31/2024-01:29:05 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:05 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  80.28  19.72
+1  27.27  72.73
+05/31/2024-01:29:05 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 73.307
+05/31/2024-01:29:05 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 79.507
+05/31/2024-01:29:05 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 78.495
+05/31/2024-01:29:05 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 71.905
+05/31/2024-01:29:05 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 76.504
+05/31/2024-01:29:05 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 76.504
+05/31/2024-01:29:05 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 775.132
+05/31/2024-01:29:05 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 47.099000000000004
+05/31/2024-01:29:05 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 7 with RandomForest_direct __________________
+05/31/2024-01:29:06 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:06 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  67.26  32.74
+1  23.81  76.19
+05/31/2024-01:29:06 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 70.958
+05/31/2024-01:29:06 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 71.219
+05/31/2024-01:29:06 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 71.066
+05/31/2024-01:29:06 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 71.267
+05/31/2024-01:29:06 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 71.724
+05/31/2024-01:29:06 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 71.724
+05/31/2024-01:29:06 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 1042.887
+05/31/2024-01:29:06 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 42.347
+05/31/2024-01:29:06 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 8 with RandomForest_direct __________________
+05/31/2024-01:29:08 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:08 PM: (files_management.py): INFO: report_prediction Line: 218 -       0     1
+0  92.1   7.9
+1  18.0  82.0
+05/31/2024-01:29:08 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 87.335
+05/31/2024-01:29:08 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 88.519
+05/31/2024-01:29:08 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 88.565
+05/31/2024-01:29:08 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 87.652
+05/31/2024-01:29:08 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 87.05000000000001
+05/31/2024-01:29:08 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 87.05000000000001
+05/31/2024-01:29:08 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 412.16799999999995
+05/31/2024-01:29:08 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 74.675
+05/31/2024-01:29:08 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 9 with RandomForest_direct __________________
+05/31/2024-01:29:09 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:09 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  90.95   9.05
+1  14.04  85.96
+05/31/2024-01:29:09 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 88.344
+05/31/2024-01:29:09 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 88.351
+05/31/2024-01:29:09 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 88.346
+05/31/2024-01:29:09 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 88.393
+05/31/2024-01:29:09 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 88.454
+05/31/2024-01:29:09 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 88.454
+05/31/2024-01:29:09 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 420.043
+05/31/2024-01:29:09 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 76.709
+05/31/2024-01:29:09 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 10 with RandomForest_direct __________________
+05/31/2024-01:29:11 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:11 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  82.16  17.84
+1  31.48  68.52
+05/31/2024-01:29:11 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 75.44999999999999
+05/31/2024-01:29:11 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 75.642
+05/31/2024-01:29:11 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 75.793
+05/31/2024-01:29:11 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 75.98
+05/31/2024-01:29:11 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 75.33999999999999
+05/31/2024-01:29:11 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 75.33999999999999
+05/31/2024-01:29:11 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 872.5260000000001
+05/31/2024-01:29:11 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 51.032999999999994
+05/31/2024-01:29:11 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 11 with RandomForest_direct __________________
+05/31/2024-01:29:12 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:12 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  88.87  11.13
+1  19.14  80.86
+05/31/2024-01:29:12 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 85.007
+05/31/2024-01:29:12 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 85.63
+05/31/2024-01:29:12 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 85.661
+05/31/2024-01:29:12 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 85.168
+05/31/2024-01:29:12 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 84.865
+05/31/2024-01:29:12 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 84.865
+05/31/2024-01:29:12 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 516.819
+05/31/2024-01:29:12 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 70.017
+05/31/2024-01:29:13 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 12 with RandomForest_direct __________________
+05/31/2024-01:29:14 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:14 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  87.22  12.78
+1  26.83  73.17
+05/31/2024-01:29:14 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 78.48
+05/31/2024-01:29:14 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 78.94200000000001
+05/31/2024-01:29:14 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 78.69800000000001
+05/31/2024-01:29:14 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 78.828
+05/31/2024-01:29:14 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 80.194
+05/31/2024-01:29:14 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 80.194
+05/31/2024-01:29:14 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 767.7940000000001
+05/31/2024-01:29:14 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 57.504
+05/31/2024-01:29:14 PM: (learning_models.py): INFO: prediction_dataset Line: 51 - ================== Fitting model MLP_direct ==================
+05/31/2024-01:29:14 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 0 with MLP_direct __________________
+05/31/2024-01:29:19 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:19 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  77.02  22.98
+1  19.54  80.46
+05/31/2024-01:29:19 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 76.945
+05/31/2024-01:29:19 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 78.65100000000001
+05/31/2024-01:29:19 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 78.196
+05/31/2024-01:29:19 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 76.422
+05/31/2024-01:29:19 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 78.742
+05/31/2024-01:29:19 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 78.742
+05/31/2024-01:29:19 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 785.893
+05/31/2024-01:29:19 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 54.237
+05/31/2024-01:29:19 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 1 with MLP_direct __________________
+05/31/2024-01:29:22 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:22 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  86.02  13.98
+1  35.71  64.29
+05/31/2024-01:29:22 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 75.685
+05/31/2024-01:29:22 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 76.869
+05/31/2024-01:29:22 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 77.244
+05/31/2024-01:29:22 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 76.875
+05/31/2024-01:29:22 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 75.154
+05/31/2024-01:29:22 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 75.154
+05/31/2024-01:29:22 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 820.2239999999999
+05/31/2024-01:29:22 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 51.561
+05/31/2024-01:29:22 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 2 with MLP_direct __________________
+05/31/2024-01:29:28 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:28 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  81.59  18.41
+1  32.97  67.03
+05/31/2024-01:29:28 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 74.366
+05/31/2024-01:29:28 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 76.23
+05/31/2024-01:29:28 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 76.25800000000001
+05/31/2024-01:29:28 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 74.425
+05/31/2024-01:29:28 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 74.31
+05/31/2024-01:29:28 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 74.31
+05/31/2024-01:29:28 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 855.7650000000001
+05/31/2024-01:29:28 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 48.733
+05/31/2024-01:29:28 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 3 with MLP_direct __________________
+05/31/2024-01:29:33 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:33 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  82.47  17.53
+1  28.37  71.63
+05/31/2024-01:29:33 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 77.19200000000001
+05/31/2024-01:29:33 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 77.901
+05/31/2024-01:29:33 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 77.96600000000001
+05/31/2024-01:29:33 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 77.373
+05/31/2024-01:29:33 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 77.051
+05/31/2024-01:29:33 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 77.051
+05/31/2024-01:29:33 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 794.182
+05/31/2024-01:29:33 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 54.395
+05/31/2024-01:29:33 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 4 with MLP_direct __________________
+05/31/2024-01:29:39 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:39 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  84.79  15.21
+1  33.72  66.28
+05/31/2024-01:29:39 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 75.574
+05/31/2024-01:29:39 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 78.95
+05/31/2024-01:29:39 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 78.967
+05/31/2024-01:29:39 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 75.615
+05/31/2024-01:29:39 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 75.534
+05/31/2024-01:29:39 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 75.534
+05/31/2024-01:29:39 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 758.114
+05/31/2024-01:29:39 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 51.148
+05/31/2024-01:29:39 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 5 with MLP_direct __________________
+05/31/2024-01:29:44 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:44 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  83.83  16.17
+1  27.80  72.20
+05/31/2024-01:29:44 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 77.711
+05/31/2024-01:29:44 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 77.691
+05/31/2024-01:29:44 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 77.718
+05/31/2024-01:29:44 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 78.159
+05/31/2024-01:29:44 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 78.019
+05/31/2024-01:29:44 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 78.019
+05/31/2024-01:29:44 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 803.112
+05/31/2024-01:29:44 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 55.637
+05/31/2024-01:29:44 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 6 with MLP_direct __________________
+05/31/2024-01:29:48 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:48 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  69.01  30.99
+1  22.73  77.27
+05/31/2024-01:29:48 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 67.069
+05/31/2024-01:29:48 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 73.039
+05/31/2024-01:29:48 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 70.968
+05/31/2024-01:29:48 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 67.16499999999999
+05/31/2024-01:29:48 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 73.143
+05/31/2024-01:29:48 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 73.143
+05/31/2024-01:29:48 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 1046.429
+05/31/2024-01:29:48 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 36.543
+05/31/2024-01:29:48 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 7 with MLP_direct __________________
+05/31/2024-01:29:53 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:53 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  70.80  29.20
+1  33.33  66.67
+05/31/2024-01:29:53 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 68.569
+05/31/2024-01:29:53 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 69.133
+05/31/2024-01:29:53 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 69.036
+05/31/2024-01:29:53 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 68.498
+05/31/2024-01:29:53 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 68.732
+05/31/2024-01:29:53 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 68.732
+05/31/2024-01:29:53 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 1116.0729999999999
+05/31/2024-01:29:53 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 37.179
+05/31/2024-01:29:53 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 8 with MLP_direct __________________
+05/31/2024-01:29:57 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:29:57 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  89.95  10.05
+1  23.00  77.00
+05/31/2024-01:29:57 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 83.807
+05/31/2024-01:29:57 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 85.33699999999999
+05/31/2024-01:29:57 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 85.414
+05/31/2024-01:29:57 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 84.191
+05/31/2024-01:29:57 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 83.473
+05/31/2024-01:29:57 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 83.473
+05/31/2024-01:29:57 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 525.724
+05/31/2024-01:29:57 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 67.622
+05/31/2024-01:29:57 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 9 with MLP_direct __________________
+05/31/2024-01:30:01 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:02 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  73.78  26.22
+1   8.94  91.06
+05/31/2024-01:30:02 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 82.537
+05/31/2024-01:30:02 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 82.62899999999999
+05/31/2024-01:30:02 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 82.797
+05/31/2024-01:30:02 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 83.723
+05/31/2024-01:30:02 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 82.423
+05/31/2024-01:30:02 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 82.423
+05/31/2024-01:30:02 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 620.063
+05/31/2024-01:30:02 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 65.292
+05/31/2024-01:30:02 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 10 with MLP_direct __________________
+05/31/2024-01:30:06 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:06 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  85.95  14.05
+1  37.04  62.96
+05/31/2024-01:30:06 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 74.529
+05/31/2024-01:30:06 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 74.806
+05/31/2024-01:30:06 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 75.21600000000001
+05/31/2024-01:30:06 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 76.145
+05/31/2024-01:30:06 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 74.454
+05/31/2024-01:30:06 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 74.454
+05/31/2024-01:30:06 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 893.3009999999999
+05/31/2024-01:30:06 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 49.555
+05/31/2024-01:30:06 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 11 with MLP_direct __________________
+05/31/2024-01:30:11 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:11 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  87.84  12.16
+1  33.64  66.36
+05/31/2024-01:30:11 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 77.718
+05/31/2024-01:30:11 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 78.874
+05/31/2024-01:30:11 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 79.23400000000001
+05/31/2024-01:30:11 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 79.047
+05/31/2024-01:30:11 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 77.09700000000001
+05/31/2024-01:30:11 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 77.09700000000001
+05/31/2024-01:30:11 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 748.496
+05/31/2024-01:30:11 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 55.618
+05/31/2024-01:30:11 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 12 with MLP_direct __________________
+05/31/2024-01:30:17 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:17 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  84.96  15.04
+1  27.80  72.20
+05/31/2024-01:30:17 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 76.972
+05/31/2024-01:30:17 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 77.48
+05/31/2024-01:30:17 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 77.21900000000001
+05/31/2024-01:30:17 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 77.283
+05/31/2024-01:30:17 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 78.579
+05/31/2024-01:30:17 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 78.579
+05/31/2024-01:30:17 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 821.113
+05/31/2024-01:30:17 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 54.495000000000005
+05/31/2024-01:30:17 PM: (learning_models.py): INFO: prediction_dataset Line: 51 - ================== Fitting model SVMrbf_direct ==================
+05/31/2024-01:30:17 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 0 with SVMrbf_direct __________________
+05/31/2024-01:30:18 PM: (learning_models.py): ERROR: prediction_dataset Line: 78 - Pipeline SVMrbf_direct_kfold_0 failed
+05/31/2024-01:30:18 PM: (learning_models.py): ERROR: prediction_dataset Line: 79 - The 'probability' parameter of SVC must be an instance of 'bool' or an instance of 'numpy.bool_'. Got 1 instead.
+05/31/2024-01:30:18 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 1 with SVMrbf_direct __________________
+05/31/2024-01:30:18 PM: (learning_models.py): ERROR: prediction_dataset Line: 78 - Pipeline SVMrbf_direct_kfold_1 failed
+05/31/2024-01:30:18 PM: (learning_models.py): ERROR: prediction_dataset Line: 79 - The 'probability' parameter of SVC must be an instance of 'bool' or an instance of 'numpy.bool_'. Got 1 instead.
+05/31/2024-01:30:18 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 2 with SVMrbf_direct __________________
+05/31/2024-01:30:19 PM: (learning_models.py): ERROR: prediction_dataset Line: 78 - Pipeline SVMrbf_direct_kfold_2 failed
+05/31/2024-01:30:19 PM: (learning_models.py): ERROR: prediction_dataset Line: 79 - The 'probability' parameter of SVC must be an instance of 'bool' or an instance of 'numpy.bool_'. Got 1 instead.
+05/31/2024-01:30:19 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 3 with SVMrbf_direct __________________
+05/31/2024-01:30:19 PM: (learning_models.py): ERROR: prediction_dataset Line: 78 - Pipeline SVMrbf_direct_kfold_3 failed
+05/31/2024-01:30:19 PM: (learning_models.py): ERROR: prediction_dataset Line: 79 - The 'probability' parameter of SVC must be an instance of 'bool' or an instance of 'numpy.bool_'. Got 1 instead.
+05/31/2024-01:30:19 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 4 with SVMrbf_direct __________________
+05/31/2024-01:30:20 PM: (learning_models.py): ERROR: prediction_dataset Line: 78 - Pipeline SVMrbf_direct_kfold_4 failed
+05/31/2024-01:30:20 PM: (learning_models.py): ERROR: prediction_dataset Line: 79 - The 'probability' parameter of SVC must be an instance of 'bool' or an instance of 'numpy.bool_'. Got 1 instead.
+05/31/2024-01:30:20 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 5 with SVMrbf_direct __________________
+05/31/2024-01:30:20 PM: (learning_models.py): ERROR: prediction_dataset Line: 78 - Pipeline SVMrbf_direct_kfold_5 failed
+05/31/2024-01:30:20 PM: (learning_models.py): ERROR: prediction_dataset Line: 79 - The 'probability' parameter of SVC must be an instance of 'bool' or an instance of 'numpy.bool_'. Got 1 instead.
+05/31/2024-01:30:20 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 6 with SVMrbf_direct __________________
+05/31/2024-01:30:21 PM: (learning_models.py): ERROR: prediction_dataset Line: 78 - Pipeline SVMrbf_direct_kfold_6 failed
+05/31/2024-01:30:21 PM: (learning_models.py): ERROR: prediction_dataset Line: 79 - The 'probability' parameter of SVC must be an instance of 'bool' or an instance of 'numpy.bool_'. Got 1 instead.
+05/31/2024-01:30:21 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 7 with SVMrbf_direct __________________
+05/31/2024-01:30:21 PM: (learning_models.py): ERROR: prediction_dataset Line: 78 - Pipeline SVMrbf_direct_kfold_7 failed
+05/31/2024-01:30:21 PM: (learning_models.py): ERROR: prediction_dataset Line: 79 - The 'probability' parameter of SVC must be an instance of 'bool' or an instance of 'numpy.bool_'. Got 1 instead.
+05/31/2024-01:30:21 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 8 with SVMrbf_direct __________________
+05/31/2024-01:30:21 PM: (learning_models.py): ERROR: prediction_dataset Line: 78 - Pipeline SVMrbf_direct_kfold_8 failed
+05/31/2024-01:30:21 PM: (learning_models.py): ERROR: prediction_dataset Line: 79 - The 'probability' parameter of SVC must be an instance of 'bool' or an instance of 'numpy.bool_'. Got 1 instead.
+05/31/2024-01:30:22 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 9 with SVMrbf_direct __________________
+05/31/2024-01:30:22 PM: (learning_models.py): ERROR: prediction_dataset Line: 78 - Pipeline SVMrbf_direct_kfold_9 failed
+05/31/2024-01:30:22 PM: (learning_models.py): ERROR: prediction_dataset Line: 79 - The 'probability' parameter of SVC must be an instance of 'bool' or an instance of 'numpy.bool_'. Got 1 instead.
+05/31/2024-01:30:22 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 10 with SVMrbf_direct __________________
+05/31/2024-01:30:22 PM: (learning_models.py): ERROR: prediction_dataset Line: 78 - Pipeline SVMrbf_direct_kfold_10 failed
+05/31/2024-01:30:22 PM: (learning_models.py): ERROR: prediction_dataset Line: 79 - The 'probability' parameter of SVC must be an instance of 'bool' or an instance of 'numpy.bool_'. Got 1 instead.
+05/31/2024-01:30:23 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 11 with SVMrbf_direct __________________
+05/31/2024-01:30:23 PM: (learning_models.py): ERROR: prediction_dataset Line: 78 - Pipeline SVMrbf_direct_kfold_11 failed
+05/31/2024-01:30:23 PM: (learning_models.py): ERROR: prediction_dataset Line: 79 - The 'probability' parameter of SVC must be an instance of 'bool' or an instance of 'numpy.bool_'. Got 1 instead.
+05/31/2024-01:30:23 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 12 with SVMrbf_direct __________________
+05/31/2024-01:30:23 PM: (learning_models.py): ERROR: prediction_dataset Line: 78 - Pipeline SVMrbf_direct_kfold_12 failed
+05/31/2024-01:30:23 PM: (learning_models.py): ERROR: prediction_dataset Line: 79 - The 'probability' parameter of SVC must be an instance of 'bool' or an instance of 'numpy.bool_'. Got 1 instead.
+05/31/2024-01:30:23 PM: (learning_models.py): INFO: prediction_dataset Line: 51 - ================== Fitting model LogisticR_direct ==================
+05/31/2024-01:30:23 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 0 with LogisticR_direct __________________
+05/31/2024-01:30:24 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:24 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  82.74  17.26
+1  17.01  82.99
+05/31/2024-01:30:24 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 81.55799999999999
+05/31/2024-01:30:24 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 83.09299999999999
+05/31/2024-01:30:24 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 82.824
+05/31/2024-01:30:24 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 80.86
+05/31/2024-01:30:24 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 82.863
+05/31/2024-01:30:24 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 82.863
+05/31/2024-01:30:24 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 619.103
+05/31/2024-01:30:24 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 63.23800000000001
+05/31/2024-01:30:24 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 1 with LogisticR_direct __________________
+05/31/2024-01:30:25 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:25 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  89.78  10.22
+1  34.13  65.87
+05/31/2024-01:30:25 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 78.57499999999999
+05/31/2024-01:30:25 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 79.684
+05/31/2024-01:30:25 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 80.128
+05/31/2024-01:30:25 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 80.448
+05/31/2024-01:30:25 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 77.82900000000001
+05/31/2024-01:30:25 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 77.82900000000001
+05/31/2024-01:30:25 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 716.252
+05/31/2024-01:30:25 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 57.422
+05/31/2024-01:30:25 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 2 with LogisticR_direct __________________
+05/31/2024-01:30:26 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:26 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  78.41  21.59
+1  24.73  75.27
+05/31/2024-01:30:26 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 76.092
+05/31/2024-01:30:26 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 77.508
+05/31/2024-01:30:26 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 77.264
+05/31/2024-01:30:26 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 75.709
+05/31/2024-01:30:26 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 76.844
+05/31/2024-01:30:26 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 76.844
+05/31/2024-01:30:26 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 819.504
+05/31/2024-01:30:26 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 52.292
+05/31/2024-01:30:26 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 3 with LogisticR_direct __________________
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  87.14  12.86
+1  21.81  78.19
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 82.837
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 83.37
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 83.419
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 83.052
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 82.664
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 82.664
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 597.629
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 65.682
+05/31/2024-01:30:27 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 4 with LogisticR_direct __________________
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  89.23  10.77
+1  31.09  68.91
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 79.672
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 82.649
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 82.841
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 80.41
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 79.074
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 79.074
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 618.461
+05/31/2024-01:30:27 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 59.372
+05/31/2024-01:30:27 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 5 with LogisticR_direct __________________
+05/31/2024-01:30:28 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:28 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  92.11   7.89
+1  34.24  65.76
+05/31/2024-01:30:28 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 78.072
+05/31/2024-01:30:28 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 77.969
+05/31/2024-01:30:28 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 78.253
+05/31/2024-01:30:28 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 80.521
+05/31/2024-01:30:28 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 78.934
+05/31/2024-01:30:28 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 78.934
+05/31/2024-01:30:28 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 783.837
+05/31/2024-01:30:28 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 57.025000000000006
+05/31/2024-01:30:28 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 6 with LogisticR_direct __________________
+05/31/2024-01:30:29 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:29 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  84.51  15.49
+1  40.91  59.09
+05/31/2024-01:30:29 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 71.11800000000001
+05/31/2024-01:30:29 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 78.809
+05/31/2024-01:30:29 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 78.495
+05/31/2024-01:30:29 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 70.562
+05/31/2024-01:30:29 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 71.799
+05/31/2024-01:30:29 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 71.799
+05/31/2024-01:30:29 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 775.132
+05/31/2024-01:30:29 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 42.272
+05/31/2024-01:30:29 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 7 with LogisticR_direct __________________
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  66.37  33.63
+1  23.81  76.19
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 70.466
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 70.709
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 70.55799999999999
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 70.846
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 71.281
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 71.281
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 1061.1840000000002
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 41.423
+05/31/2024-01:30:30 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 8 with LogisticR_direct __________________
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  91.02   8.98
+1  24.00  76.00
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 84.077
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 85.631
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 85.764
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 84.78999999999999
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 83.512
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 83.512
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 513.107
+05/31/2024-01:30:30 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 68.17699999999999
+05/31/2024-01:30:30 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 9 with LogisticR_direct __________________
+05/31/2024-01:30:31 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:31 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  92.58   7.42
+1  16.60  83.40
+05/31/2024-01:30:31 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 87.791
+05/31/2024-01:30:31 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 87.787
+05/31/2024-01:30:31 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 87.791
+05/31/2024-01:30:31 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 88.05
+05/31/2024-01:30:31 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 87.99
+05/31/2024-01:30:31 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 87.99
+05/31/2024-01:30:31 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 440.045
+05/31/2024-01:30:31 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 75.645
+05/31/2024-01:30:31 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 10 with LogisticR_direct __________________
+05/31/2024-01:30:32 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:32 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  86.49  13.51
+1  35.19  64.81
+05/31/2024-01:30:32 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 75.76
+05/31/2024-01:30:32 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 76.015
+05/31/2024-01:30:32 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 76.369
+05/31/2024-01:30:32 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 77.251
+05/31/2024-01:30:32 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 75.651
+05/31/2024-01:30:32 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 75.651
+05/31/2024-01:30:32 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 851.752
+05/31/2024-01:30:32 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 51.939
+05/31/2024-01:30:32 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 11 with LogisticR_direct __________________
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  88.04  11.96
+1  22.84  77.16
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 82.863
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 83.609
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 83.684
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 83.199
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 82.601
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 82.601
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 588.1039999999999
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 65.741
+05/31/2024-01:30:33 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 12 with LogisticR_direct __________________
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  87.97  12.03
+1  31.22  68.78
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 76.211
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 76.571
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 76.331
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 77.225
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 78.375
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 78.375
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 853.104
+05/31/2024-01:30:33 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 53.368
+05/31/2024-01:30:33 PM: (learning_models.py): INFO: prediction_dataset Line: 51 - ================== Fitting model AdaBoost_direct ==================
+05/31/2024-01:30:33 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 0 with AdaBoost_direct __________________
+05/31/2024-01:30:38 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:38 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  80.83  19.17
+1  18.16  81.84
+05/31/2024-01:30:38 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 79.886
+05/31/2024-01:30:38 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 81.504
+05/31/2024-01:30:38 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 81.176
+05/31/2024-01:30:38 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 79.218
+05/31/2024-01:30:38 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 81.336
+05/31/2024-01:30:38 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 81.336
+05/31/2024-01:30:38 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 678.469
+05/31/2024-01:30:38 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 59.948
+05/31/2024-01:30:38 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 1 with AdaBoost_direct __________________
+05/31/2024-01:30:43 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:43 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  89.25  10.75
+1  33.33  66.67
+05/31/2024-01:30:43 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 78.654
+05/31/2024-01:30:43 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 79.733
+05/31/2024-01:30:43 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 80.128
+05/31/2024-01:30:43 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 80.28800000000001
+05/31/2024-01:30:43 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 77.957
+05/31/2024-01:30:43 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 77.957
+05/31/2024-01:30:43 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 716.252
+05/31/2024-01:30:43 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 57.534
+05/31/2024-01:30:43 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 2 with AdaBoost_direct __________________
+05/31/2024-01:30:48 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:48 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  77.78  22.22
+1  25.27  74.73
+05/31/2024-01:30:48 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 75.481
+05/31/2024-01:30:48 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 76.92
+05/31/2024-01:30:48 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 76.66
+05/31/2024-01:30:48 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 75.106
+05/31/2024-01:30:48 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 76.252
+05/31/2024-01:30:48 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 76.252
+05/31/2024-01:30:48 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 841.26
+05/31/2024-01:30:48 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 51.080999999999996
+05/31/2024-01:30:48 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 3 with AdaBoost_direct __________________
+05/31/2024-01:30:52 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:52 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  84.87  15.13
+1  22.16  77.84
+05/31/2024-01:30:52 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 81.392
+05/31/2024-01:30:52 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 81.934
+05/31/2024-01:30:52 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 81.94500000000001
+05/31/2024-01:30:52 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 81.434
+05/31/2024-01:30:52 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 81.352
+05/31/2024-01:30:52 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 81.352
+05/31/2024-01:30:52 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 650.751
+05/31/2024-01:30:52 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 62.785000000000004
+05/31/2024-01:30:53 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 4 with AdaBoost_direct __________________
+05/31/2024-01:30:57 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:30:57 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  86.41  13.59
+1  28.15  71.85
+05/31/2024-01:30:57 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 79.011
+05/31/2024-01:30:57 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 81.862
+05/31/2024-01:30:57 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 81.827
+05/31/2024-01:30:57 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 78.901
+05/31/2024-01:30:57 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 79.12700000000001
+05/31/2024-01:30:57 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 79.12700000000001
+05/31/2024-01:30:57 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 655.037
+05/31/2024-01:30:57 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 58.024
+05/31/2024-01:30:57 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 5 with AdaBoost_direct __________________
+05/31/2024-01:31:02 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:31:02 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  86.09  13.91
+1  34.58  65.42
+05/31/2024-01:31:02 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 75.12
+05/31/2024-01:31:02 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 75.03800000000001
+05/31/2024-01:31:02 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 75.223
+05/31/2024-01:31:02 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 76.549
+05/31/2024-01:31:02 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 75.75699999999999
+05/31/2024-01:31:02 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 75.75699999999999
+05/31/2024-01:31:02 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 893.0600000000001
+05/31/2024-01:31:02 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 50.903
+05/31/2024-01:31:02 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 6 with AdaBoost_direct __________________
+05/31/2024-01:31:07 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:31:07 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  81.69  18.31
+1  40.91  59.09
+05/31/2024-01:31:07 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 69.112
+05/31/2024-01:31:07 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 76.98700000000001
+05/31/2024-01:31:07 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 76.344
+05/31/2024-01:31:07 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 68.284
+05/31/2024-01:31:07 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 70.391
+05/31/2024-01:31:07 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 70.391
+05/31/2024-01:31:07 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 852.646
+05/31/2024-01:31:07 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 38.373000000000005
+05/31/2024-01:31:07 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 7 with AdaBoost_direct __________________
+05/31/2024-01:31:12 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:31:12 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  66.37  33.63
+1  23.81  76.19
+05/31/2024-01:31:12 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 70.466
+05/31/2024-01:31:12 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 70.709
+05/31/2024-01:31:12 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 70.55799999999999
+05/31/2024-01:31:12 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 70.846
+05/31/2024-01:31:12 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 71.281
+05/31/2024-01:31:12 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 71.281
+05/31/2024-01:31:12 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 1061.1840000000002
+05/31/2024-01:31:12 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 41.423
+05/31/2024-01:31:12 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 8 with AdaBoost_direct __________________
+05/31/2024-01:31:17 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:31:17 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  91.74   8.26
+1  24.33  75.67
+05/31/2024-01:31:17 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 84.40100000000001
+05/31/2024-01:31:17 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 85.951
+05/31/2024-01:31:17 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 86.114
+05/31/2024-01:31:17 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 85.32499999999999
+05/31/2024-01:31:17 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 83.70400000000001
+05/31/2024-01:31:17 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 83.70400000000001
+05/31/2024-01:31:17 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 500.489
+05/31/2024-01:31:17 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 68.837
+05/31/2024-01:31:17 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 9 with AdaBoost_direct __________________
+05/31/2024-01:31:22 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:31:22 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  89.10  10.90
+1  16.38  83.62
+05/31/2024-01:31:22 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 86.236
+05/31/2024-01:31:22 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 86.24199999999999
+05/31/2024-01:31:22 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 86.238
+05/31/2024-01:31:22 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 86.30799999999999
+05/31/2024-01:31:22 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 86.356
+05/31/2024-01:31:22 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 86.356
+05/31/2024-01:31:22 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 496.04999999999995
+05/31/2024-01:31:22 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 72.503
+05/31/2024-01:31:22 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 10 with AdaBoost_direct __________________
+05/31/2024-01:31:27 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:31:27 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  85.41  14.59
+1  33.95  66.05
+05/31/2024-01:31:27 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 75.847
+05/31/2024-01:31:27 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 76.08200000000001
+05/31/2024-01:31:27 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 76.369
+05/31/2024-01:31:27 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 77.015
+05/31/2024-01:31:27 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 75.727
+05/31/2024-01:31:27 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 75.727
+05/31/2024-01:31:27 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 851.752
+05/31/2024-01:31:27 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 52.014
+05/31/2024-01:31:27 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 11 with AdaBoost_direct __________________
+05/31/2024-01:31:32 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:31:32 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  88.04  11.96
+1  26.85  73.15
+05/31/2024-01:31:32 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 81.03
+05/31/2024-01:31:32 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 81.917
+05/31/2024-01:31:32 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 82.077
+05/31/2024-01:31:32 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 81.706
+05/31/2024-01:31:32 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 80.595
+05/31/2024-01:31:32 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 80.595
+05/31/2024-01:31:32 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 646.023
+05/31/2024-01:31:32 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 62.112
+05/31/2024-01:31:32 PM: (learning_models.py): INFO: prediction_dataset Line: 62 - __________________ Fold 12 with AdaBoost_direct __________________
+05/31/2024-01:31:37 PM: (files_management.py): INFO: report_prediction Line: 212 - confusion matrix : 
+05/31/2024-01:31:37 PM: (files_management.py): INFO: report_prediction Line: 218 -        0      1
+0  87.97  12.03
+1  32.68  67.32
+05/31/2024-01:31:37 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_macro : 75.349
+05/31/2024-01:31:37 PM: (files_management.py): INFO: report_prediction Line: 232 - f1_score_weighted : 75.675
+05/31/2024-01:31:37 PM: (files_management.py): INFO: report_prediction Line: 232 - accuracy_score : 75.444
+05/31/2024-01:31:37 PM: (files_management.py): INFO: report_prediction Line: 232 - precision_score_macro : 76.59899999999999
+05/31/2024-01:31:37 PM: (files_management.py): INFO: report_prediction Line: 232 - recall_score_macro : 77.643
+05/31/2024-01:31:37 PM: (files_management.py): INFO: report_prediction Line: 232 - roc_auc_score : 77.643
+05/31/2024-01:31:37 PM: (files_management.py): INFO: report_prediction Line: 232 - log_loss : 885.096
+05/31/2024-01:31:37 PM: (files_management.py): INFO: report_prediction Line: 232 - kappa_score : 51.79899999999999
