@@ -4,10 +4,8 @@ import pandas as pd
 from yaml import safe_load
 from datetime import datetime
 from sklearn.metrics import (
-    f1_score,
-    accuracy_score,
-    confusion_matrix,
-    cohen_kappa_score,
+    precision_score, recall_score, roc_auc_score, log_loss,
+    f1_score, accuracy_score, confusion_matrix, cohen_kappa_score
 )
 
 
@@ -128,12 +126,12 @@ def write_report(path_log, path_report, begin_line=0):
 
 
 def report_metric_from_log(logg, dic):
-    """Report metric from dictionary containing the f1 and accuracy score in a log file
+    """Report various metrics from a dictionary containing the scores for each model in a log file
 
     Parameters
     ----------
     dic : dict
-        Dictionary containing the f1 and accuracy score for each model
+        Dictionary containing various metrics for each model
 
     logg : logging
         Logger
@@ -142,24 +140,39 @@ def report_metric_from_log(logg, dic):
     -------
     logging
         Logger
-
     """
     logg.info(f"================== Final report ==================")
-    for i in list(dic.keys()):
-        logg.info(f"------------------ Model : {i} ------------------")
-        f1 = dic[i]["f1"]
-        acc = dic[i]["acc"]
-        kap = dic[i]["kappa"]
-        logg.info(f"f1 : {np.mean(f1)} +/- {np.std(f1)}")
-        logg.info(f"acc : {np.mean(acc)} +/- {np.std(acc)}")
-        logg.info(f"kappa : {np.mean(kap)} +/- {np.std(kap)}")
+    for model_name, model_metrics in dic.items():
+        logg.info(f"__________________ Model : {model_name} __________________")
+        
+        # Collecting and reporting all the metrics
+        metrics_to_report = [
+            "f1_score_macro", "f1_score_weighted", "accuracy_score",
+            "precision_score_macro", "recall_score_macro", "roc_auc_score",
+            "log_loss", "kappa_score"
+        ]
+        
+        for metric in metrics_to_report:
+            try:
+                if metric in model_metrics[0]:
+                    values = [fold_metrics[metric] for fold_metrics in model_metrics]
+                    if values:
+                        logg.info(f"{metric} : {np.mean(values)} +/- {np.std(values)}")
+                    else:
+                        logg.warning(f"No values found for metric {metric} in model {model_name}")
+            except IndexError:
+                logg.error(f"No results found for model {model_name}. Skipping metrics.")
+                break
+            except Exception as e:
+                logg.error(f"Error reporting metric {metric} for model {model_name}: {e}")
+     
     logg.info(f"================== End report ==================")
     return logg
 
 
 def report_prediction(logg, y_true, y_pred, le):
-    """Compute the f1 and accuracy score and the confusion matrix from the true and predicted labels and report it in a log file
-    The y_true and y_pred must be categorical (one hot encoded: [[0, 1, 0], [1, 0, 0], [0, 0, 1]]) or binary (0 or 1)
+    """Compute various classification metrics and report them in a log file.
+    The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).
 
     Parameters
     ----------
@@ -180,19 +193,14 @@ def report_prediction(logg, y_true, y_pred, le):
     logging
         Logger
 
-    float
-        f1 score
-
-    float
-        accuracy score
-
-    float
-        kappa score
+    dict
+        Dictionary containing various computed metrics
     """
 
     if y_pred.shape[1] > 1:
-        # y_true = y_true.argmax(axis=1)
         y_pred = y_pred.argmax(axis=1)
+    elif y_true.shape[1] > 1:
+        y_true = y_true.argmax(axis=1)
     else:
         y_true = y_true.ravel()
         y_pred = y_pred.ravel()
@@ -200,6 +208,7 @@ def report_prediction(logg, y_true, y_pred, le):
 
     y_true = le.inverse_transform(y_true)
     y_pred = le.inverse_transform(y_pred)
+    
     logg.info(f"confusion matrix : ")
     cfm = pd.DataFrame(
         100 * confusion_matrix(y_true, y_pred, normalize="true").round(4),
@@ -207,15 +216,22 @@ def report_prediction(logg, y_true, y_pred, le):
         index=le.classes_,
     )
     logg.info(cfm.to_string())
-    f1 = 100 * round(f1_score(y_true, y_pred, average="macro"), 5)
-    acc = 100 * round(accuracy_score(y_true, y_pred), 5)
-    kappa = 100 * round(cohen_kappa_score(y_true, y_pred), 5)
-    logg.info(f"f1 score : {f1}")
-    logg.info(f"accuracy score : {acc}")
-    logg.info(f"kappa : {kappa}")
 
-    return logg, f1, acc, kappa
-
+    metrics = {
+        'f1_score_macro': 100 * round(f1_score(y_true, y_pred, average="macro"), 5),
+        'f1_score_weighted': 100 * round(f1_score(y_true, y_pred, average="weighted"), 5),
+        'accuracy_score': 100 * round(accuracy_score(y_true, y_pred), 5),
+        'precision_score_macro': 100 * round(precision_score(y_true, y_pred, average="macro"), 5),
+        'recall_score_macro': 100 * round(recall_score(y_true, y_pred, average="macro"), 5),
+        'roc_auc_score': 100 * round(roc_auc_score(y_true, y_pred, multi_class="ovr"), 5),
+        'log_loss': 100 * round(log_loss(y_true, y_pred), 5),
+        'kappa_score': 100 * round(cohen_kappa_score(y_true, y_pred), 5)
+    }
+    
+    for metric, value in metrics.items():
+        logg.info(f"{metric} : {value}")
+    
+    return logg, metrics
 
 def init_logger(path_log, name ):
     """Initialize a logger

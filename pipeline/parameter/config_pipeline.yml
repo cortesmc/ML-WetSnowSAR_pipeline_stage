@@ -3,7 +3,7 @@ data_path : "pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_correct
 type : "local"
 
 #Methode for the fold: kFold, mFold or combinationFold
-methode_fold : "mFold"
+methode_fold : "combinationFold"
 seed : 42 
 
 labeling_methode : "crocus"

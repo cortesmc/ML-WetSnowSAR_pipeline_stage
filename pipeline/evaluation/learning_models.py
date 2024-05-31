@@ -51,7 +51,7 @@ def prediction_dataset(
         log_model.info(f"================== Fitting model {name_pip} ==================")
 
         y_est_save[name_pip] = {"y_true": [], "y_est": []}
-        f1sc, acc, kappa = [], [], []
+        fold_metrics = []
 
         for kfold, (train_index, test_index) in enumerate(fold_groupes):
             save_dir = output_dir + f"models/{name_pip}/"
@@ -67,11 +67,9 @@ def prediction_dataset(
                 id_pip = name_pip + f"_kfold_{kfold}"
                 pipeline.fit(X_train_K, y_train_k)
                 y_prob = pipeline.predict_proba(X_test_K)
-                log_model, f1, ac, ka = report_prediction(log_model, y_test_k, y_prob, label_encoder)
+                log_model, fold_metric = report_prediction(log_model, y_test_k, y_prob, label_encoder)
 
-                f1sc.append(f1)
-                acc.append(ac)
-                kappa.append(ka)
+                fold_metrics.append(fold_metric)
 
                 y_est_save[name_pip]["y_est"].extend(y_prob)
                 y_est_save[name_pip]["y_true"].extend(y_test_k)
@@ -82,10 +80,9 @@ def prediction_dataset(
                 
             if save:
                 dump_pkl(pipeline, os.path.join(save_dir, f"{name_pip}_fold{kfold}.pkl"))
-                dump_pkl(metrics, os.path.join(save_dir, f"metrics_fold{kfold}.pkl"))
+                dump_pkl(fold_metric, os.path.join(save_dir, f"metrics_fold{kfold}.pkl"))
 
-        metrics[name_pip] = {"f1": f1sc, "acc": acc, "kappa": kappa}
-    
+        metrics[name_pip] = fold_metrics
     log_results = report_metric_from_log(log_results, metrics)
 
     return y_est_save
