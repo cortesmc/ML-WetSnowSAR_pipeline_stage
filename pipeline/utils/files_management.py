@@ -171,7 +171,8 @@ def report_metric_from_log(logg, dic):
 
 
 def report_prediction(logg, y_true, y_pred, le):
-    """Compute various classification metrics and report them in a log file.
+    """
+    Compute various classification metrics and report them in a log file.
     The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).
 
     Parameters
@@ -196,7 +197,7 @@ def report_prediction(logg, y_true, y_pred, le):
     dict
         Dictionary containing various computed metrics
     """
-
+    
     if y_pred.shape[1] > 1:
         y_pred = y_pred.argmax(axis=1)
     elif y_true.shape[1] > 1:
@@ -204,28 +205,43 @@ def report_prediction(logg, y_true, y_pred, le):
     else:
         y_true = y_true.ravel()
         y_pred = y_pred.ravel()
-        y_pred = np.where(y_pred > 0.5, 1, 0)
-
-    y_true = le.inverse_transform(y_true)
-    y_pred = le.inverse_transform(y_pred)
+        y_pred = np.argmax(y_pred, axis=1)
+        
     
-    logg.info(f"confusion matrix : ")
-    cfm = pd.DataFrame(
-        100 * confusion_matrix(y_true, y_pred, normalize="true").round(4),
-        columns=le.classes_,
-        index=le.classes_,
-    )
-    logg.info(cfm.to_string())
+    y_true_str = le.inverse_transform(y_true)
+    y_pred_str = le.inverse_transform(y_pred)
 
+    all_labels = le.classes_
+    present_labels = np.unique(np.concatenate((y_true_str, y_pred_str)))
+
+    logg.info("confusion matrix : ")
+    cm = confusion_matrix(y_true_str, y_pred_str, labels=all_labels)
+    cm_df = pd.DataFrame(
+        100 * cm.astype(float) / cm.sum(axis=1, keepdims=True),
+        columns=all_labels,
+        index=all_labels
+    ).round(4).fillna(0)
+    logg.info(cm_df.to_string())
+    
+    # Calculate metrics
+    f1_macro = 100 * round(f1_score(y_true, y_pred, average="macro"), 4)
+    f1_weighted = 100 * round(f1_score(y_true, y_pred, average="weighted"), 4)
+    accuracy = 100 * round(accuracy_score(y_true, y_pred), 4)
+    precision_macro = 100 * round(precision_score(y_true, y_pred, average="macro"), 4)
+    recall_macro = 100 * round(recall_score(y_true, y_pred, average="macro"), 4)
+    roc_auc = 100 * round(roc_auc_score(y_true, y_pred, multi_class="ovr"), 4)
+    log_loss_val = 100 * round(log_loss(y_true, y_pred), 4)
+    kappa = 100 * round(cohen_kappa_score(y_true, y_pred), 4)
+    
     metrics = {
-        'f1_score_macro': 100 * round(f1_score(y_true, y_pred, average="macro"), 5),
-        'f1_score_weighted': 100 * round(f1_score(y_true, y_pred, average="weighted"), 5),
-        'accuracy_score': 100 * round(accuracy_score(y_true, y_pred), 5),
-        'precision_score_macro': 100 * round(precision_score(y_true, y_pred, average="macro"), 5),
-        'recall_score_macro': 100 * round(recall_score(y_true, y_pred, average="macro"), 5),
-        'roc_auc_score': 100 * round(roc_auc_score(y_true, y_pred, multi_class="ovr"), 5),
-        'log_loss': 100 * round(log_loss(y_true, y_pred), 5),
-        'kappa_score': 100 * round(cohen_kappa_score(y_true, y_pred), 5)
+        'f1_score_macro': f1_macro,
+        'f1_score_weighted': f1_weighted,
+        'accuracy_score': accuracy,
+        'precision_score_macro': precision_macro,
+        'recall_score_macro': recall_macro,
+        'roc_auc_score': roc_auc,
+        'log_loss': log_loss_val,
+        'kappa_score': kappa
     }
     
     for metric, value in metrics.items():
@@ -302,23 +318,7 @@ def logger_dataset(logg, x, metadata, targets, pipeline_param):
             target_info = ", ".join(f"{target}: {count} ({ratio:.2%})" for target, count, ratio in zip(unique_targets, target_counts, target_ratios))
             
             logg.info(f"  {massive}: {counts[massives == massive][0]} samples (Targets: {target_info})")
-
-        logg.info("__________________ Models information __________________")
-        name_pip = pipeline_param['name_pip']
-        pipelines = pipeline_param['pipeline']
-
-        logg.info("Pipeline configurations:")
-        for idx, pipeline in enumerate(pipelines):
-            logg.info(f"  Pipeline: {name_pip[idx]}")
-            for step in pipeline:
-                logg.info(f"    - Step: {step[0]}")
-                for element in step[1:]:
-                    if isinstance(element, str):
-                        logg.info(f"      - Method: {element}")
-                    elif isinstance(element, dict):
-                        logg.info("      - Parameters:")
-                        for param, value in element.items():
-                            logg.info(f"        - {param}: {value}")
+            
         logg.info("__________________ Folds information __________________")
 
         return logg
@@ -430,7 +430,6 @@ def load_yaml(file_name):
     with open(file_name, "r") as f:
         opt = safe_load(f)
     return opt
-
 
 def extract_zip(chemin_zip, chemin_extraction):
     """Extract a zip file

@@ -43,10 +43,10 @@ def prediction_dataset(
 ):
     y_est_save, metrics = {}, {}
 
-    log_model, path_log_model = init_logger(output_dir + "models", "folds_results")
-
     for count in range(len(pipeline_param["pipeline"])):
         name_pip = pipeline_param["name_pip"][count]
+        save_dir = output_dir + f"models/{name_pip}/"
+        log_model, path_log_model = init_logger(save_dir, f"{name_pip}_results")
 
         log_model.info(f"================== Fitting model {name_pip} ==================")
 
@@ -54,7 +54,6 @@ def prediction_dataset(
         fold_metrics = []
 
         for kfold, (train_index, test_index) in enumerate(fold_groupes):
-            save_dir = output_dir + f"models/{name_pip}/"
 
             X_train_K, y_train_k = x[train_index], targets[train_index]
             X_test_K, y_test_k = x[test_index], targets[test_index]
@@ -67,21 +66,21 @@ def prediction_dataset(
                 id_pip = name_pip + f"_kfold_{kfold}"
                 pipeline.fit(X_train_K, y_train_k)
                 y_prob = pipeline.predict_proba(X_test_K)
+                
                 log_model, fold_metric = report_prediction(log_model, y_test_k, y_prob, label_encoder)
-
                 fold_metrics.append(fold_metric)
 
                 y_est_save[name_pip]["y_est"].extend(y_prob)
                 y_est_save[name_pip]["y_true"].extend(y_test_k)
-
             except Exception as e:
                 log_model.error(f"Pipeline {id_pip} failed")
                 log_model.error(e)
                 
             if save:
                 dump_pkl(pipeline, os.path.join(save_dir, f"{name_pip}_fold{kfold}.pkl"))
-                dump_pkl(fold_metric, os.path.join(save_dir, f"metrics_fold{kfold}.pkl"))
 
+        if save:
+                dump_pkl(fold_metrics, os.path.join(save_dir, f"metrics.pkl"))
         metrics[name_pip] = fold_metrics
     log_results = report_metric_from_log(log_results, metrics)
 
@@ -118,7 +117,6 @@ if __name__ == "__main__":
     log_dataset, path_log_dataset = init_logger(out_dir, "dataset_info")
     log_results, path_log_results = init_logger(out_dir+"results", "resultats")
     
-    print(path_log_dataset)
     start_line = 0
 
     dtst_ld = Dataset_loader(
