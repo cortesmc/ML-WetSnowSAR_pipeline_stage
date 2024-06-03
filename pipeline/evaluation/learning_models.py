@@ -30,15 +30,12 @@ from utils.files_management import (
 
 def prediction_dataset(
     x,
-    metadata,
     targets,
     fold_groupes,
     output_dir,
     pipeline_param,
-    data_param,
-    label_encoder,
+     label_encoder,
     log_results,
-    log_dataset,
     save=True
 ):
     y_est_save, metrics = {}, {}
@@ -88,28 +85,18 @@ def prediction_dataset(
 
 if __name__ == "__main__":
     # Pipeline variables de systeme
-    out_dir = "pipeline/results/"
     param_path = "pipeline/parameter/config_pipeline.yml"
-    local_param_path = "pipeline/parameter/config_data_local.yml"
-    global_param_path = "pipeline/parameter/config_data_global.yml"
-
     pipeline_param = load_yaml(param_path)
 
-    match pipeline_param["type"]:
-        case "local":
-            data_param = load_yaml(local_param_path)
-        case "global":
-            data_param = load_yaml(global_param_path)
-        case _:
-            f"no such type : {pipeline_param["type"]}"
 
     try:
         data_path = pipeline_param["data_path"]
+        out_dir = pipeline_param["out_dir"]
         seed = pipeline_param["seed"]
         BANDS_MAX = pipeline_param["BANDS_MAX"]
         methode_fold = pipeline_param["methode_fold"]
-        request = data_param["request"]
-        shuffle_data = data_param["shuffle_data"]
+        request = pipeline_param["request"]
+        shuffle_data = pipeline_param["shuffle_data"]
     except KeyError as e:
         print("KeyError: %s undefine" % e)
 
@@ -139,12 +126,12 @@ if __name__ == "__main__":
     x, y = dtst_ld.request_data(request)
 
     fold_manager = fold_management(methode=pipeline_param["methode_fold"], 
-                           shuffle=data_param["shuffle_data"], 
+                           shuffle=pipeline_param["shuffle_data"], 
                            random_state=pipeline_param["seed"], 
                            train_aprox_size=0.8, ## à verifier si on ajoute dans le .yml.
                            )
 
-    labels_manager  = label_management(methode = pipeline_param["labeling_methode"])
+    labels_manager  = label_management(methode=pipeline_param["labeling_methode"])
 
     fold_groupes = fold_manager.split(x, y)
 
@@ -155,14 +142,11 @@ if __name__ == "__main__":
     log_dataset = logger_fold(log_dataset, fold_groupes,targets, y)
 
     y_est_save = prediction_dataset(x=x,
-                                    metadata=y,
                                     targets=targets,
                                     fold_groupes=fold_groupes,
                                     output_dir=out_dir,
                                     pipeline_param=pipeline_param,
-                                    data_param=data_param,
                                     label_encoder=label_encoder,
                                     log_results=log_results,
-                                    log_dataset=log_dataset,
                                     save=True
                                     )

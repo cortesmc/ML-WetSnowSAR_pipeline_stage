@@ -144,28 +144,29 @@ def report_metric_from_log(logg, dic):
     logg.info(f"================== Final report ==================")
     for model_name, model_metrics in dic.items():
         logg.info(f"__________________ Model : {model_name} __________________")
-        
-        # Collecting and reporting all the metrics
-        metrics_to_report = [
-            "f1_score_macro", "f1_score_weighted", "accuracy_score",
-            "precision_score_macro", "recall_score_macro", "roc_auc_score",
-            "log_loss", "kappa_score"
-        ]
-        
+    
+        metrics_to_report = ['f1_score_macro', 'f1_score_weighted', 'accuracy_score', 
+                             'precision_score_macro', 'recall_score_macro', 'roc_auc_score', 
+                             'log_loss', 'kappa_score', 'confusion_matrix']
+
         for metric in metrics_to_report:
             try:
                 if metric in model_metrics[0]:
                     values = [fold_metrics[metric] for fold_metrics in model_metrics]
-                    if values:
-                        logg.info(f"{metric} : {np.mean(values)} +/- {np.std(values)}")
-                    else:
-                        logg.warning(f"No values found for metric {metric} in model {model_name}")
+
+                if isinstance(values[0], (int, float)):
+                    logg.info(f"{metric} : {np.mean(values)} +/- {np.std(values)}")
+                elif isinstance(values[0], pd.DataFrame):
+                    mean_conf_matrix = sum(values) / len(values)
+                    logg.info(f"{metric} :\n{mean_conf_matrix}")
+                else:
+                    logg.error(f"No suitable values found for metric {metric} in model {model_name}")
             except IndexError:
                 logg.error(f"No results found for model {model_name}. Skipping metrics.")
                 break
             except Exception as e:
                 logg.error(f"Error reporting metric {metric} for model {model_name}: {e}")
-     
+            
     logg.info(f"================== End report ==================")
     return logg
 
@@ -208,20 +209,18 @@ def report_prediction(logg, y_true, y_pred, le):
         y_pred = np.argmax(y_pred, axis=1)
         
     
-    y_true_str = le.inverse_transform(y_true)
-    y_pred_str = le.inverse_transform(y_pred)
-
+    y_true_transformed = le.inverse_transform(y_true)
+    y_pred_transformed = le.inverse_transform(y_pred)
+   
     all_labels = le.classes_
-    present_labels = np.unique(np.concatenate((y_true_str, y_pred_str)))
 
     logg.info("confusion matrix : ")
-    cm = confusion_matrix(y_true_str, y_pred_str, labels=all_labels)
+    cm = confusion_matrix(y_true_transformed, y_pred_transformed, labels=all_labels)
     cm_df = pd.DataFrame(
         100 * cm.astype(float) / cm.sum(axis=1, keepdims=True),
         columns=all_labels,
         index=all_labels
     ).round(4).fillna(0)
-    logg.info(cm_df.to_string())
     
     # Calculate metrics
     f1_macro = 100 * round(f1_score(y_true, y_pred, average="macro"), 4)
@@ -241,7 +240,8 @@ def report_prediction(logg, y_true, y_pred, le):
         'recall_score_macro': recall_macro,
         'roc_auc_score': roc_auc,
         'log_loss': log_loss_val,
-        'kappa_score': kappa
+        'kappa_score': kappa,
+        'confusion_matrix':cm_df
     }
     
     for metric, value in metrics.items():
@@ -480,7 +480,7 @@ def set_folder(out_dir, pipeline_param):
     folders= ["results", "models", "html"]
     now = datetime.now()
     date = now.strftime("%d%m%y_%HH%MM%S")
-    folder_name = f"study_{date}_{pipeline_param["type"]}_{pipeline_param["methode_fold"]}"
+    folder_name = f"study_{date}_{pipeline_param["labeling_methode"]}_{pipeline_param["methode_fold"]}"
     out_dir = check_and_create_directory(out_dir+folder_name)
     for folder in folders:
         check_and_create_directory(out_dir+f"/{folder}")

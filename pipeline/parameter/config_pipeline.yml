@@ -1,12 +1,21 @@
 data_path : "pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected_V2.h5"
-
-type : "local"
+out_dir : "pipeline/results/"
 
 #Methode for the fold: kFold, mFold or combinationFold
 methode_fold : "mFold"
 seed : 42 
 
 labeling_methode : "crocus"
+
+orbite: "ASC"
+
+request: "(date.dt.month == 3 and date.dt.day== 1) and ((elevation > 1000) and (elevation < 1800))"
+
+shuffle_data: true
+
+channel_transformation: "log10"
+
+data_balancing: "methode"
 
 BANDS_MAX:
    "a":
