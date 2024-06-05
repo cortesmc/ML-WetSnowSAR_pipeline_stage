@@ -23,8 +23,46 @@ def crocus_methode(metadata):
     
     condition = ((physics_data[:, 0] > 0) & (physics_data[:, 2] >= 0.40))
     
-    labels = np.where(condition, "wet", "not_wet")
+    labels = np.where(condition, 1, 0)
         
+    return labels
+
+def crocus_method_three_labels(metadata):
+    """
+    Apply the crocus method to label data based on specific conditions.
+
+    Parameters:
+    - metadata : dict
+        A dictionary containing metadata. Must include a 'physics' key with corresponding data.
+
+    Returns:
+    - labels : ndarray
+        An array of labels where:
+        0 indicates Condition A is met,
+        1 indicates Condition B is met,
+        2 indicates Condition C is met.
+
+    Raises:
+    - ValueError
+        If the 'physics' key is not present in the metadata dictionary.
+    """
+    physics_data = metadata.get('physics', None)
+    if physics_data is None:
+        raise ValueError("The dictionary does not contain a 'physics' key.")
+
+    # Define the conditions for each label
+    condition_a = (physics_data[:, 0] <= -1)
+    condition_b = (physics_data[:, 0] > -1) & (physics_data[:, 2] < 1)
+    condition_c = (physics_data[:, 0] > -1) & (physics_data[:, 2] >= 1)
+
+    # Initialize labels array with default value (e.g., -1 for undefined)
+    labels = np.full(physics_data.shape[0], -1)
+
+    # Apply conditions to set labels
+    labels[condition_a] = 0
+    labels[condition_b] = 1
+    labels[condition_c] = 2
+
     return labels
 
 class label_management:
@@ -64,7 +102,7 @@ class label_management:
         """
         match self.methode:
             case "crocus":
-                labels =crocus_methode(metadata)
+                labels =crocus_method_three_labels(metadata)
             case _:
                 labels = None
             
