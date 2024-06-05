@@ -15,6 +15,7 @@ from utils.dataset_management import load_train, load_test, parser_pipeline, BFo
 from utils.dataset_load import  save_h5_II, load_data_h5, load_info_h5, shuffle_data, Dataset_loader
 from utils.fold_management import fold_management
 from utils.label_management import label_management
+from utils.figures import plot_boxplots,  plot_roc_curves
 from utils.files_management import (
     load_yaml,
     dump_pkl,
@@ -34,7 +35,7 @@ def prediction_dataset(
     fold_groupes,
     output_dir,
     pipeline_param,
-     label_encoder,
+    label_encoder,
     log_results,
     save=True
 ):
@@ -64,7 +65,7 @@ def prediction_dataset(
                 pipeline.fit(X_train_K, y_train_k)
                 y_prob = pipeline.predict_proba(X_test_K)
                 
-                log_model, fold_metric = report_prediction(log_model, y_test_k, y_prob, label_encoder)
+                log_model, fold_metric = report_prediction(log_model, y_test_k, y_prob, label_encoder, kfold)
                 fold_metrics.append(fold_metric)
 
                 y_est_save[name_pip]["y_est"].extend(y_prob)
@@ -79,6 +80,9 @@ def prediction_dataset(
         if save:
                 dump_pkl(fold_metrics, os.path.join(save_dir, f"metrics.pkl"))
         metrics[name_pip] = fold_metrics
+
+    plot_boxplots(metrics, save_dir=output_dir+"results/plots/")
+    plot_roc_curves(metrics, save_dir=output_dir+"results/plots/")
     log_results = report_metric_from_log(log_results, metrics)
 
     return y_est_save

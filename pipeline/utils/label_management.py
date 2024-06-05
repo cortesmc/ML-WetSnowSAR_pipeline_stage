@@ -23,7 +23,7 @@ def crocus_methode(metadata):
     
     condition = ((physics_data[:, 0] > 0) & (physics_data[:, 2] >= 0.40))
     
-    labels = np.where(condition, 1, 0)
+    labels = np.where(condition, "wet", "not_wet")
         
     return labels
 

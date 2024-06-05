@@ -4,7 +4,7 @@ import pandas as pd
 from yaml import safe_load
 from datetime import datetime
 from sklearn.metrics import (
-    precision_score, recall_score, roc_auc_score, log_loss,
+    precision_score, recall_score, roc_auc_score, roc_curve, log_loss,
     f1_score, accuracy_score, confusion_matrix, cohen_kappa_score
 )
 
@@ -171,7 +171,15 @@ def report_metric_from_log(logg, dic):
     return logg
 
 
-def report_prediction(logg, y_true, y_pred, le):
+import numpy as np
+import pandas as pd
+from sklearn.metrics import (
+    confusion_matrix, f1_score, accuracy_score, precision_score, recall_score,
+    roc_auc_score, log_loss, cohen_kappa_score, roc_curve
+)
+import logging
+
+def report_prediction(logg, y_true, y_pred, le, fold):
     """
     Compute various classification metrics and report them in a log file.
     The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).
@@ -200,17 +208,16 @@ def report_prediction(logg, y_true, y_pred, le):
     """
     
     if y_pred.shape[1] > 1:
-        y_pred = y_pred.argmax(axis=1)
+        y_pred_classes = y_pred.argmax(axis=1)
     elif y_true.shape[1] > 1:
         y_true = y_true.argmax(axis=1)
     else:
         y_true = y_true.ravel()
-        y_pred = y_pred.ravel()
-        y_pred = np.argmax(y_pred, axis=1)
+        y_pred_classes = y_pred.ravel()
+        y_pred_classes = np.argmax(y_pred_classes, axis=1)
         
-    
     y_true_transformed = le.inverse_transform(y_true)
-    y_pred_transformed = le.inverse_transform(y_pred)
+    y_pred_transformed = le.inverse_transform(y_pred_classes)
    
     all_labels = le.classes_
 
@@ -223,14 +230,14 @@ def report_prediction(logg, y_true, y_pred, le):
     ).round(4).fillna(0)
     
     # Calculate metrics
-    f1_macro = 100 * round(f1_score(y_true, y_pred, average="macro"), 4)
-    f1_weighted = 100 * round(f1_score(y_true, y_pred, average="weighted"), 4)
-    accuracy = 100 * round(accuracy_score(y_true, y_pred), 4)
-    precision_macro = 100 * round(precision_score(y_true, y_pred, average="macro"), 4)
-    recall_macro = 100 * round(recall_score(y_true, y_pred, average="macro"), 4)
-    roc_auc = 100 * round(roc_auc_score(y_true, y_pred, multi_class="ovr"), 4)
+    f1_macro = 100 * round(f1_score(y_true, y_pred_classes, average="macro"), 4)
+    f1_weighted = 100 * round(f1_score(y_true, y_pred_classes, average="weighted"), 4)
+    accuracy = 100 * round(accuracy_score(y_true, y_pred_classes), 4)
+    precision_macro = 100 * round(precision_score(y_true, y_pred_classes, average="macro"), 4)
+    recall_macro = 100 * round(recall_score(y_true, y_pred_classes, average="macro"), 4)
+    roc_auc = 100 * round(roc_auc_score(y_true, y_pred_classes, multi_class="ovr"), 4)
     log_loss_val = 100 * round(log_loss(y_true, y_pred), 4)
-    kappa = 100 * round(cohen_kappa_score(y_true, y_pred), 4)
+    kappa = 100 * round(cohen_kappa_score(y_true, y_pred_classes), 4)
     
     metrics = {
         'f1_score_macro': f1_macro,
@@ -241,13 +248,17 @@ def report_prediction(logg, y_true, y_pred, le):
         'roc_auc_score': roc_auc,
         'log_loss': log_loss_val,
         'kappa_score': kappa,
-        'confusion_matrix':cm_df
+        'confusion_matrix': cm_df
     }
-    
+
     for metric, value in metrics.items():
         logg.info(f"{metric} : {value}")
     
+    metrics['y_true'] = y_true
+    metrics['y_pred'] = y_pred
+    metrics['fold'] = fold
     return logg, metrics
+
 
 def init_logger(path_log, name ):
     """Initialize a logger
@@ -488,6 +499,8 @@ def set_folder(out_dir, pipeline_param):
     models= pipeline_param["name_pip"]
     for models_folder in models:
         check_and_create_directory(out_dir+f"/models/{models_folder}")
+
+    check_and_create_directory(out_dir+f"/results")
     return out_dir+"/"
 
 
