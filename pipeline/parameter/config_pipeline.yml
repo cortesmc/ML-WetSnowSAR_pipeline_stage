@@ -1,42 +1,42 @@
-data_path : "pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected_V2.h5"
-out_dir : "pipeline/results/"
+data_path: "pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected_V2.h5"
+out_dir: "pipeline/results/"
 
-#Methode for the fold: kFold, mFold or combinationFold
-methode_fold : "mFold"
-seed : 42 
+# Method for the fold: kFold, mFold, or combinationFold
+fold_method: "mFold"
+seed: 42
 
-labeling_methode : "crocus"
+labeling_method: "crocus"
 
-orbite: "ASC"
+orbit: "ASC"
 
-request: "(date.dt.month == 3 and date.dt.day== 1) and ((elevation > 1000) and (elevation < 2000))"
+request: "(date.dt.month == 3 and date.dt.day == 1) and ((elevation > 1000) and (elevation < 1500))"
 
 shuffle_data: true
 
 channel_transformation: "log10"
 
-data_balancing: "methode"
+data_balancing: "method"
 
 BANDS_MAX:
    "a":
      - 0
      - 1
 
-import : 
+import:
     - "from sklearn.svm import SVC"
     - "from sklearn.neighbors import KNeighborsClassifier"
-    - "from sklearn.ensemble import AdaBoostClassifier,RandomForestClassifier"
+    - "from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier"
     - "from sklearn.linear_model import LogisticRegression"
     - "from sklearn.neural_network import MLPClassifier"
     - "from estimators.statistical_descriptor import *"
 
-name_pip: 
+pipeline_names:
     - "KNN_direct"
     - "RandomForest_direct"
     - "MLP_direct"
     - "SVMrbf_direct"
     - "LogisticR_direct"
-    - "AdaBoost_direct"    
+    - "AdaBoost_direct"
 
 pipeline:
 # KNN 
@@ -44,25 +44,25 @@ pipeline:
       - - "KNeighborsClassifier"
         - n_neighbors: 50
         - n_jobs: -1
-# #RandomForestClassifier
+# RandomForestClassifier
     - - - "Hist_SAR"
       - - "RandomForestClassifier"
         - n_estimators: 200
-        - criterion : "entropy"
+        - criterion: "entropy"
         - n_jobs: -1
 # MLPClassifier
     - - - "Hist_SAR"
       - - "MLPClassifier"
         - alpha: 0.01
-#SVC_RBF
+# SVC_RBF
     - - - "Hist_SAR"
       - - "SVC"
         - kernel: "rbf"
         - probability: 1
-#LogisticRegression
+# LogisticRegression
     - - - "Hist_SAR"
       - - "LogisticRegression"
-#AdaBoostClassifier
+# AdaBoostClassifier
     - - - "Hist_SAR"
       - - "AdaBoostClassifier"
         - n_estimators: 200

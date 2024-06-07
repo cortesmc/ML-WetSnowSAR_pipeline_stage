@@ -119,14 +119,14 @@ def combination_method(dict_massives, train_size=0.8, proximity_value=1):
 
     return result
 
-class fold_management: 
+class FoldManagement: 
 
     def __init__(self, 
-                 methode="kFold", 
+                 method="kFold", 
                  shuffle=False, 
                  random_state=42, 
                  train_aprox_size=0.8):
-        self.methode = methode
+        self.methode = method
         self.shuffle = shuffle
         self.seed = random_state
         self.train_aprox_size = train_aprox_size

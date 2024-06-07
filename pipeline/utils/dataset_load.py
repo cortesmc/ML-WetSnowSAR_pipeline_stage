@@ -117,7 +117,7 @@ def shuffle_data(X, y, seed=42):
     return X[idx], {k: v[idx] for k, v in y.items()}
 
 
-class Dataset_loader:
+class DatasetLoader:
     def __init__(
         self,
         path,

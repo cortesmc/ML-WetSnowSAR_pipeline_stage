@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
 
-def crocus_methode(metadata):
+def crocus_method(metadata):
     """
     Apply the crocus method to label data based on specific conditions.
 
@@ -65,12 +65,12 @@ def crocus_method_three_labels(metadata):
 
     return labels
 
-class label_management:
+class LabelManagement:
     """
     A class to manage labeling methods.
 
     Attributes:
-    - methode : str
+    - method : str
         The labeling method to use.
 
     Methods:
@@ -78,15 +78,15 @@ class label_management:
         Apply the selected labeling method to the provided metadata.
     """
 
-    def __init__(self, methode):
+    def __init__(self, method):
         """
         Initialize the label_management class with a specified method.
 
         Parameters:
-        - methode : str
+        - method : str
             The labeling method to use. Currently supports "crocus".
         """
-        self.methode = methode
+        self.method = method
 
     def transform(self, metadata):
         """
@@ -100,9 +100,9 @@ class label_management:
         - labels : ndarray or None
             An array of labels if a supported method is selected; None otherwise.
         """
-        match self.methode:
+        match self.method:
             case "crocus":
-                labels =crocus_method_three_labels(metadata)
+                labels =crocus_method(metadata)
             case _:
                 labels = None
             

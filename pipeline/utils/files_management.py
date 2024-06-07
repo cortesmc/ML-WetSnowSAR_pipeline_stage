@@ -171,14 +171,6 @@ def report_metric_from_log(logg, dic):
     return logg
 
 
-import numpy as np
-import pandas as pd
-from sklearn.metrics import (
-    confusion_matrix, f1_score, accuracy_score, precision_score, recall_score,
-    roc_auc_score, log_loss, cohen_kappa_score, roc_curve
-)
-import logging
-
 def report_prediction(logg, y_true, y_pred, le, fold):
     """
     Compute various classification metrics and report them in a log file.
@@ -340,8 +332,8 @@ def logger_fold(logg, fold_groupes, targets, metadata):
         logg.info(f"    - Distribution class train: {np.unique(targets[train_index], return_counts=True)}")
         logg.info(f"    - Distribution class test: {np.unique(targets[test_index], return_counts=True)}")
         logg.info(f"    - Train size: {len(train_index) / (len(train_index) + len(test_index))*100:.2f}%")
-        logg.info(f"    - Massif in train {np.unique(metadata["metadata"][train_index,1])}")
-        logg.info(f"    - Massif in test {np.unique(metadata["metadata"][test_index,1])}")
+        logg.info(f"    - Massif in train {np.unique(metadata['metadata'][train_index,1])}")
+        logg.info(f"    - Massif in test {np.unique(metadata['metadata'][test_index,1])}")
 
     return logg
 
@@ -491,12 +483,12 @@ def set_folder(out_dir, pipeline_param):
     folders= ["results", "models", "html"]
     now = datetime.now()
     date = now.strftime("%d%m%y_%HH%MM%S")
-    folder_name = f"study_{date}_{pipeline_param["labeling_methode"]}_{pipeline_param["methode_fold"]}"
+    folder_name = f"study_{date}_{pipeline_param['labeling_method']}_{pipeline_param['fold_method']}"
     out_dir = check_and_create_directory(out_dir+folder_name)
     for folder in folders:
         check_and_create_directory(out_dir+f"/{folder}")
 
-    models= pipeline_param["name_pip"]
+    models= pipeline_param["pipeline_names"]
     for models_folder in models:
         check_and_create_directory(out_dir+f"/models/{models_folder}")
 

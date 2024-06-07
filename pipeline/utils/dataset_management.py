@@ -203,7 +203,7 @@ class BFold:
             yield idx_train
 
 
-def parser_pipeline(dict_parameter, idx):
+def parse_pipeline(dict_parameter, idx):
     """Parse a dictionary to create a pipeline of estimators
     The dictionary must have the following structure::
     {
