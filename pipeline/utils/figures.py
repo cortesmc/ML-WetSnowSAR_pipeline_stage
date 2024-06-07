@@ -14,14 +14,14 @@ import numpy as np
 
 def plot_boxplots(metrics_dict, save_dir = None):
     """
-    Create boxplots.
+    Create and save boxplots for each metric by model and by fold.
 
     Parameters
     ----------
     metrics_dict : dict
         Dictionary containing various computed metrics for multiple models.
-    save_dir : str
-        Directory where the plots will be saved.
+    save_dir : str, optional
+        Directory where the plots will be saved. If None, plots are not saved.
     """
     save_dir = save_dir+"boxplot"
     check_and_create_directory(save_dir)
@@ -58,18 +58,19 @@ def plot_boxplots(metrics_dict, save_dir = None):
 
 def plot_roc_curves(models_dict, save_dir=None):
     """
-    Generates separate ROC curves for each model in the dictionary.
+    Generate and save ROC curves for each model in the dictionary.
 
-    Args:
-        models_dict (dict): A dictionary where keys are model names and values are lists of dictionaries containing
-                            'y_true' and 'y_pred' for each fold.
-        title_fontsize (string or int, optional): Matplotlib-style fontsizes for titles. Defaults to "large".
-        text_fontsize (string or int, optional): Matplotlib-style fontsizes for text. Defaults to "medium".
-        cmap (string or :class:`matplotlib.colors.Colormap` instance, optional): Colormap used for plotting. Defaults to 'nipy_spectral'.
-        save_path (string, optional): Path to save the plot. If None, the plot is not saved. Defaults to None.
+    Parameters
+    ----------
+    models_dict : dict
+        A dictionary where keys are model names and values are lists of dictionaries containing
+        'y_true' and 'y_pred' for each fold.
+    save_dir : str, optional
+        Directory where the plots will be saved. If None, plots will not be saved.
 
-    Returns:
-        None
+    Returns
+    -------
+    None
     """
     save_dir = save_dir+"roc_curve"
     check_and_create_directory(save_dir)

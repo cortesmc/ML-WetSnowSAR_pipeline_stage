@@ -67,6 +67,10 @@ def combination_method(dict_massives, train_size=0.8, proximity_value=1):
     Parameters:
     - dict_massives : dict
         A dictionary where keys are massives and values are dictionaries containing 'count' and 'indices' keys.
+    - train_size : float, optional (default=0.8)
+        The proportion of the dataset to include in the train split.
+    - proximity_value : int, optional (default=1)
+        A value to control the proximity to the desired train size.
 
     Returns:
     - list of tuples
@@ -120,6 +124,23 @@ def combination_method(dict_massives, train_size=0.8, proximity_value=1):
     return result
 
 class FoldManagement: 
+    """
+    A class to manage the creation of the folds for trainning.
+
+    Attributes:
+    - method : str
+        The fold method to use.
+    - shuffle : bool
+        Gives the user the choice to shuffle the data output and the fold creation.
+    - random_state : int
+        Seed used for the random creation.
+    - train_aprox_size : float
+        The balance of that between trinning and test datasets.
+
+    Methods:
+    - Split(x, y)
+        Apply the selected labeling method to the provided metadata.
+    """
 
     def __init__(self, 
                  method="kFold", 
@@ -134,6 +155,19 @@ class FoldManagement:
         self.results = None
 
     def split(self, x, y):
+        """
+        Split the data into train and test sets based on the specified folding method.
+
+        Parameters:
+        - x : array-like
+            The data to split.
+        - y : dict
+            The metadata associated with the data.
+
+        Returns:
+        - list of tuples
+            Generator like list.
+        """
         for index, name in enumerate(y['metadata'][:, 1]):
             if name not in self.massives_count:
                 self.massives_count[name] = {'count': 0, 'indices': []}

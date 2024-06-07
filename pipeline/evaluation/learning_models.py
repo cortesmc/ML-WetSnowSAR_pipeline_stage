@@ -11,8 +11,8 @@ from sklearn.model_selection import train_test_split
 
 from estimators.statistical_descriptor import Nagler_WS
 # from plot.figure_roc import ROC_plot
-from utils.dataset_management import load_train, load_test, parse_pipeline, BFold
-from utils.dataset_load import save_h5_II, load_data_h5, load_info_h5, shuffle_data, DatasetLoader
+from utils.dataset_management import parse_pipeline
+from utils.dataset_load import shuffle_data, DatasetLoader
 from utils.fold_management import FoldManagement
 from utils.label_management import LabelManagement
 from utils.figures import plot_boxplots, plot_roc_curves
@@ -20,10 +20,8 @@ from utils.files_management import (
     load_yaml,
     dump_pkl,
     init_logger,
-    open_param_set_dir,
     report_prediction,
     report_metric_from_log,
-    write_report,
     set_folder,
     logger_dataset,
     logger_fold
@@ -39,11 +37,37 @@ def predict_dataset(
     log_results,
     save=True
 ):
+    """
+    Predict the dataset using multiple pipelines and log the results.
+
+    Parameters
+    ----------
+    x : np.ndarray
+        Features for prediction.
+    targets : np.ndarray
+        Target labels.
+    fold_groups : list of tuples
+        Indices for training and testing sets for each fold.
+    output_dir : str
+        Directory to save the output models and logs.
+    pipeline_params : dict
+        Parameters for the pipelines.
+    label_encoder : LabelEncoder
+        Encoder for the labels.
+    log_results : logging.Logger
+        Logger to store results.
+    save : bool, optional
+        Whether to save the models and metrics (default is True).
+
+    Returns
+    -------
+    dict
+        Dictionary containing true labels and predicted probabilities.
+    """
     y_est_save, metrics = {}, {}
 
-    for count in range(len(pipeline_params["pipeline"])):
-        pipeline_name = pipeline_params["pipeline_names"][count]
-        save_dir = output_dir + f"models/{pipeline_name}/"
+    for count, pipeline_name in enumerate(pipeline_params["pipeline_names"]):
+        save_dir = os.path.join(output_dir, f"models/{pipeline_name}/")
         log_model, path_log_model = init_logger(save_dir, f"{pipeline_name}_results")
 
         log_model.info(f"================== Fitting model {pipeline_name} ==================")
@@ -52,7 +76,6 @@ def predict_dataset(
         fold_metrics = []
 
         for kfold, (train_index, test_index) in enumerate(fold_groups):
-
             X_train_k, y_train_k = x[train_index], targets[train_index]
             X_test_k, y_test_k = x[test_index], targets[test_index]
 
@@ -60,11 +83,11 @@ def predict_dataset(
 
             pipeline = parse_pipeline(pipeline_params, count)
 
+            pipeline_id = f"{pipeline_name}_kfold_{kfold}"
             try:
-                pipeline_id = pipeline_name + f"_kfold_{kfold}"
                 pipeline.fit(X_train_k, y_train_k)
                 y_prob = pipeline.predict_proba(X_test_k)
-                
+
                 log_model, fold_metric = report_prediction(log_model, y_test_k, y_prob, label_encoder, kfold)
                 fold_metrics.append(fold_metric)
 
@@ -78,16 +101,22 @@ def predict_dataset(
                 dump_pkl(pipeline, os.path.join(save_dir, f"{pipeline_name}_fold{kfold}.pkl"))
 
         if save:
-            dump_pkl(fold_metrics, os.path.join(save_dir, f"metrics.pkl"))
+            dump_pkl(fold_metrics, os.path.join(save_dir, "metrics.pkl"))
         metrics[pipeline_name] = fold_metrics
 
-    plot_boxplots(metrics, save_dir=output_dir + "results/plots/")
-    plot_roc_curves(metrics, save_dir=output_dir + "results/plots/")
+    results_dir = os.path.join(output_dir, "results/plots/")
+    plot_boxplots(metrics, save_dir=results_dir)
+    plot_roc_curves(metrics, save_dir=results_dir)
     log_results = report_metric_from_log(log_results, metrics)
 
     return y_est_save
 
+
 if __name__ == "__main__":
+    """
+    Main entry point for the script. Loads parameters, sets up logging, 
+    and runs the prediction process.
+    """
     
     param_path = "pipeline/parameter/config_pipeline.yml"
     pipeline_params = load_yaml(param_path)

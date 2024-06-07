@@ -10,21 +10,20 @@ from sklearn.metrics import (
 
 
 def dump_pkl(obj, path):
-    """Dump object in pickle file
+    """
+    Dump object in pickle file.
 
     Parameters
     ----------
     obj : object
         Object to dump, can be a list, a dict, a numpy array, etc.
-
     path : str
-        Path to the pickle file
+        Path to the pickle file.
 
     Returns
     -------
     int
-        1 if the dump is successful
-
+        1 if the dump is successful.
     """
     with open(path, "wb") as f:
         pickle.dump(obj, f)
@@ -32,18 +31,18 @@ def dump_pkl(obj, path):
 
 
 def open_pkl(path):
-    """Open pickle file
+    """
+    Open pickle file.
 
     Parameters
     ----------
     path : str
-        Path to the pickle file to open
+        Path to the pickle file to open.
 
     Returns
     -------
     object
-        Object contained in the pickle file
-
+        Object contained in the pickle file.
     """
     with open(path, "rb") as f:
         obj = pickle.load(f)
@@ -51,18 +50,18 @@ def open_pkl(path):
 
 
 def open_log_file(path_log):
-    """Open log file (.log) to parse it
+    """
+    Open log file (.log) to parse it.
 
     Parameters
     ----------
     path_log : str
-        Path to the log file
+        Path to the log file.
 
     Returns
     -------
     list
-        List of lines in the log file
-
+        List of lines in the log file.
     """
     with open(path_log, "r") as f:
         log = f.readlines()
@@ -70,18 +69,18 @@ def open_log_file(path_log):
 
 
 def clean_log(log):
-    """Clean log file to remove useless information (line number, time, etc.) to make it more readable
+    """
+    Clean log file to remove useless information (line number, time, etc.) to make it more readable.
 
     Parameters
     ----------
     log : list
-        List of lines in the log file
+        List of lines in the log file.
 
     Returns
     -------
     list
-        List of lines in the log file without useless information
-
+        List of lines in the log file without useless information.
     """
     result = []
     for i in range(len(log)):
@@ -96,27 +95,24 @@ def clean_log(log):
 
 
 def write_report(path_log, path_report, begin_line=0):
-    """Write a txt report from a log file (.log)
+    """
+    Write a txt report from a log file (.log).
 
     Parameters
     ----------
     path_log : str
-        Path to the log file
-
+        Path to the log file.
     path_report : str
-        Path to the report file
-
+        Path to the report file.
     begin_line : int, optional
-        Line number to start the report, by default 0
+        Line number to start the report, by default 0.
 
     Returns
     -------
     list
-        List of lines in the log file without useless information
-
+        List of lines in the log file without useless information.
     int
-        Number of lines in the log file
-
+        Number of lines in the log file.
     """
     op = open_log_file(path_log)[begin_line:]
     result = clean_log(op)
@@ -126,20 +122,20 @@ def write_report(path_log, path_report, begin_line=0):
 
 
 def report_metric_from_log(logg, dic):
-    """Report various metrics from a dictionary containing the scores for each model in a log file
+    """
+    Report various metrics from a dictionary containing the scores for each model in a log file.
 
     Parameters
     ----------
+    logg : logging.Logger
+        Logger instance to log the report.
     dic : dict
-        Dictionary containing various metrics for each model
-
-    logg : logging
-        Logger
+        Dictionary containing various metrics for each model.
 
     Returns
     -------
-    logging
-        Logger
+    logging.Logger
+        Logger instance with the reported metrics.
     """
     logg.info(f"================== Final report ==================")
     for model_name, model_metrics in dic.items():
@@ -178,25 +174,23 @@ def report_prediction(logg, y_true, y_pred, le, fold):
 
     Parameters
     ----------
-    y_true : numpy array
-        True labels
-
-    y_pred : numpy array
-        Predicted labels
-
+    y_true : numpy.ndarray
+        True labels.
+    y_pred : numpy.ndarray
+        Predicted labels.
     le : LabelEncoder
-        LabelEncoder object
-
-    logg : logging
-        Logger
+        LabelEncoder object.
+    logg : logging.Logger
+        Logger instance.
+    fold : int
+        Fold number.
 
     Returns
     -------
-    logging
-        Logger
-
+    logging.Logger
+        Logger instance.
     dict
-        Dictionary containing various computed metrics
+        Dictionary containing various computed metrics.
     """
     
     if y_pred.shape[1] > 1:
@@ -253,21 +247,22 @@ def report_prediction(logg, y_true, y_pred, le, fold):
 
 
 def init_logger(path_log, name ):
-    """Initialize a logger
+    """
+    Initialize a logger.
 
     Parameters
     ----------
     path_log : str
-        Path to the log file
+        Path to the log file.
     name : str
-        Name of the logger
+        Name of the logger.
 
     Returns
     -------
     logging.Logger
-        Logger instance
+        Logger instance.
     str
-        Path to the log file
+        Path to the log file.
     """
     datestr = "%m/%d/%Y-%I:%M:%S %p"
     filename = os.path.join(path_log, f"log_{name}.log")
@@ -288,45 +283,75 @@ def init_logger(path_log, name ):
     return logger, filename
 
 def logger_dataset(logg, x, metadata, targets, pipeline_param):
-        """
-        Log information about the combinations of train and test indices generated by combination_method.
+    """
+    Log information about the dataset.
 
-        Parameters:
-        - self.logg : logging.Logger
-            The logger to use for logging the information.
+    Parameters
+    ----------
+    logg : logging.Logger
+        Logger instance.
+    x : numpy.ndarray
+        Input data.
+    metadata : dict
+        Metadata dictionary.
+    targets : numpy.ndarray
+        Target labels.
+    pipeline_param : dict
+        Pipeline parameters.
 
-        Returns:
-        - None
-        """
-        logg.info("================== Study information ==================")
+    Returns
+    -------
+    logging.Logger
+        Logger instance.
+    """
+    logg.info("================== Study information ==================")
 
-        logg.info("__________________ Dataset information __________________")
+    logg.info("__________________ Dataset information __________________")
 
-        massives, counts = np.unique(metadata["metadata"][:, 1], return_counts=True)
+    massives, counts = np.unique(metadata["metadata"][:, 1], return_counts=True)
+
+    logg.info(f"Number of samples: {x.shape[0]}")
+    logg.info(f"Dimensions of input: {x.shape[1:]}")
     
-        logg.info(f"Number of samples: {x.shape[0]}")
-        logg.info(f"Dimensions of input: {x.shape[1:]}")
+    overall_unique_targets, overall_target_counts = np.unique(targets, return_counts=True)
+    overall_target_ratios = overall_target_counts / targets.size
+    overall_target_info = ", ".join(f"{target}: {count} ({ratio:.2%})" for target, count, ratio in zip(overall_unique_targets, overall_target_counts, overall_target_ratios))
+    logg.info(f"Overall label distribution: {overall_target_info}")
+    logg.info(f"Massives: {massives}")
+    logg.info("Samples per massif:")
+
+    for massive in massives:
+        massive_indices = np.where(metadata["metadata"][:, 1] == massive)
+        unique_targets, target_counts = np.unique(targets[massive_indices], return_counts=True)
+        target_ratios = target_counts / target_counts.sum()
+        target_info = ", ".join(f"{target}: {count} ({ratio:.2%})" for target, count, ratio in zip(unique_targets, target_counts, target_ratios))
         
-        overall_unique_targets, overall_target_counts = np.unique(targets, return_counts=True)
-        overall_target_ratios = overall_target_counts / targets.size
-        overall_target_info = ", ".join(f"{target}: {count} ({ratio:.2%})" for target, count, ratio in zip(overall_unique_targets, overall_target_counts, overall_target_ratios))
-        logg.info(f"Overall label distribution: {overall_target_info}")
-        logg.info(f"Massives: {massives}")
-        logg.info("Samples per massif:")
+        logg.info(f"  {massive}: {counts[massives == massive][0]} samples (Targets: {target_info})")
+        
+    logg.info("__________________ Folds information __________________")
 
-        for massive in massives:
-            massive_indices = np.where(metadata["metadata"][:, 1] == massive)
-            unique_targets, target_counts = np.unique(targets[massive_indices], return_counts=True)
-            target_ratios = target_counts / target_counts.sum()
-            target_info = ", ".join(f"{target}: {count} ({ratio:.2%})" for target, count, ratio in zip(unique_targets, target_counts, target_ratios))
-            
-            logg.info(f"  {massive}: {counts[massives == massive][0]} samples (Targets: {target_info})")
-            
-        logg.info("__________________ Folds information __________________")
-
-        return logg
+    return logg
 
 def logger_fold(logg, fold_groupes, targets, metadata):
+    """
+    Log information about each fold in cross-validation.
+
+    Parameters
+    ----------
+    logg : logging.Logger
+        Logger instance.
+    fold_groupes : list of tuples
+        List of (train_index, test_index) tuples for each fold.
+    targets : numpy.ndarray
+        Target labels.
+    metadata : dict
+        Metadata dictionary.
+
+    Returns
+    -------
+    logging.Logger
+        Logger instance.
+    """
     for kfold, (train_index, test_index) in enumerate(fold_groupes):
         logg.info(f"------------------Fold : {kfold} ------------------")
         logg.info(f"    - Distribution class train: {np.unique(targets[train_index], return_counts=True)}")
@@ -339,18 +364,17 @@ def logger_fold(logg, fold_groupes, targets, metadata):
 
 
 def save_h5(img, label, filename):
-    """Save image and label in a hdf5 file
+    """
+    Save image and label in a hdf5 file.
 
     Parameters
     ----------
-    img : numpy array
-        dataset of images in float32
-
-    label : numpy array
-        dataset of labels in string
-
+    img : numpy.ndarray
+        Dataset of images in float32.
+    label : numpy.ndarray
+        Dataset of labels in string.
     filename : str
-        Path to the hdf5 file
+        Path to the hdf5 file.
 
     Returns
     -------
@@ -368,22 +392,20 @@ def save_h5(img, label, filename):
 
 
 def load_h5(filename):
-    """Load image and label from a hdf5 file
+    """
+    Load image and label from a hdf5 file.
 
     Parameters
     ----------
     filename : str
-        Path to the hdf5 file
+        Path to the hdf5 file.
 
     Returns
     -------
-
-    numpy array
-        dataset of images in float32
-
-    numpy array
-        dataset of labels in string
-
+    numpy.ndarray
+        Dataset of images in float32.
+    numpy.ndarray
+        Dataset of labels in string.
     """
     if ".h5" not in filename:
         filename += ".h5"
@@ -394,21 +416,21 @@ def load_h5(filename):
 
 
 def open_param_set_dir(i_path_param, out_dir):
-    """Create a directory to save the results of the model with the parameter file used.
-    The directory is named with the date and time of the execution
+    """
+    Create a directory to save the results of the model with the parameter file used.
+    The directory is named with the date and time of the execution.
 
     Parameters
     ----------
     i_path_param : str
-        Path to the parameter file used
-
+        Path to the parameter file used.
     out_dir : str
-        Path to the output directory
+        Path to the output directory.
 
     Returns
     -------
     str
-        Path to the directory created
+        Path to the directory created.
     """
     now = datetime.now()
     saveto = os.path.join(out_dir, "R_" + now.strftime("%d%m%y_%HH%MM%S"))
@@ -418,37 +440,38 @@ def open_param_set_dir(i_path_param, out_dir):
 
 
 def load_yaml(file_name):
-    """Load a yaml file
+    """
+    Load a yaml file.
 
     Parameters
     ----------
     file_name : str
-        Path to the yaml file
+        Path to the yaml file.
 
     Returns
     -------
     dict
-        Dictionary containing the parameters
+        Dictionary containing the parameters.
     """
     with open(file_name, "r") as f:
         opt = safe_load(f)
     return opt
 
 def extract_zip(chemin_zip, chemin_extraction):
-    """Extract a zip file
+    """
+    Extract a zip file.
 
     Parameters
     ----------
     chemin_zip : str
-        Path to the zip file to extract
-
+        Path to the zip file to extract.
     chemin_extraction : str
-        Path to the directory where the zip file will be extracted
+        Path to the directory where the zip file will be extracted.
 
     Returns
     -------
     int
-        1 if the extraction is successful
+        1 if the extraction is successful.
     """
     with zipfile.ZipFile(chemin_zip, "r") as fichier_zip:
         fichier_zip.extractall(chemin_extraction)
@@ -456,20 +479,20 @@ def extract_zip(chemin_zip, chemin_extraction):
 
 
 def compresser_en_zip(chemin_dossier, chemin_zip):
-    """Compress a directory in a zip file
+    """
+    Compress a directory in a zip file.
 
     Parameters
     ----------
     chemin_dossier : str
-        Path to the directory to compress
-
+        Path to the directory to compress.
     chemin_zip : str
-        Path to the zip file to create
+        Path to the zip file to create.
 
     Returns
     -------
     int
-        1 if the compression is successful
+        1 if the compression is successful.
     """
     with zipfile.ZipFile(chemin_zip, "w", zipfile.ZIP_DEFLATED) as fichier_zip:
         for dossier_actuel, sous_dossiers, fichiers in os.walk(chemin_dossier):
@@ -480,6 +503,21 @@ def compresser_en_zip(chemin_dossier, chemin_zip):
     return 1
 
 def set_folder(out_dir, pipeline_param):
+    """
+    Create and organize folders for the study.
+
+    Parameters
+    ----------
+    out_dir : str
+        Path to the base output directory.
+    pipeline_param : dict
+        Dictionary containing pipeline parameters.
+
+    Returns
+    -------
+    str
+        Path to the organized study folder.
+    """
     folders= ["results", "models", "html"]
     now = datetime.now()
     date = now.strftime("%d%m%y_%HH%MM%S")
@@ -497,6 +535,19 @@ def set_folder(out_dir, pipeline_param):
 
 
 def check_and_create_directory(directory):
+    """
+    Check if a directory exists, and create it if it does not.
+
+    Parameters
+    ----------
+    directory : str
+        Path to the directory.
+        
+    Returns
+    -------
+    str
+        Path to the directory.
+    """
     if not os.path.exists(directory):
         os.makedirs(directory)
     return directory
