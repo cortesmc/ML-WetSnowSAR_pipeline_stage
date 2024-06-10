@@ -207,7 +207,6 @@ def report_prediction(logg, y_true, y_pred, le, fold):
    
     all_labels = le.classes_
 
-    logg.info("confusion matrix : ")
     cm = confusion_matrix(y_true_transformed, y_pred_transformed, labels=all_labels)
     cm_df = pd.DataFrame(
         100 * cm.astype(float) / cm.sum(axis=1, keepdims=True),
@@ -215,7 +214,6 @@ def report_prediction(logg, y_true, y_pred, le, fold):
         index=all_labels
     ).round(4).fillna(0)
     
-    # Calculate metrics
     f1_macro = 100 * round(f1_score(y_true, y_pred_classes, average="macro"), 4)
     f1_weighted = 100 * round(f1_score(y_true, y_pred_classes, average="weighted"), 4)
     accuracy = 100 * round(accuracy_score(y_true, y_pred_classes), 4)
@@ -353,12 +351,21 @@ def logger_fold(logg, fold_groupes, targets, metadata):
         Logger instance.
     """
     for kfold, (train_index, test_index) in enumerate(fold_groupes):
-        logg.info(f"------------------Fold : {kfold} ------------------")
-        logg.info(f"    - Distribution class train: {np.unique(targets[train_index], return_counts=True)}")
-        logg.info(f"    - Distribution class test: {np.unique(targets[test_index], return_counts=True)}")
-        logg.info(f"    - Train size: {len(train_index) / (len(train_index) + len(test_index))*100:.2f}%")
-        logg.info(f"    - Massif in train {np.unique(metadata['metadata'][train_index,1])}")
-        logg.info(f"    - Massif in test {np.unique(metadata['metadata'][test_index,1])}")
+        logg.info(f"------------------ Fold: {kfold} ------------------")
+        
+        train_unique_targets, train_target_counts = np.unique(targets[train_index], return_counts=True)
+        train_target_ratios = train_target_counts / train_target_counts.sum()
+        train_target_info = ", ".join(f"{target}: {count} ({ratio:.2%})" for target, count, ratio in zip(train_unique_targets, train_target_counts, train_target_ratios))
+        
+        test_unique_targets, test_target_counts = np.unique(targets[test_index], return_counts=True)
+        test_target_ratios = test_target_counts / test_target_counts.sum()
+        test_target_info = ", ".join(f"{target}: {count} ({ratio:.2%})" for target, count, ratio in zip(test_unique_targets, test_target_counts, test_target_ratios))
+        
+        logg.info(f"    - Distribution class train: {train_target_info}")
+        logg.info(f"    - Distribution class test: {test_target_info}")
+        logg.info(f"    - Train size: {len(train_index) / (len(train_index) + len(test_index)) * 100:.2f}%")
+        logg.info(f"    - Massif in train: {np.unique(metadata['metadata'][train_index, 1])}")
+        logg.info(f"    - Massif in test: {np.unique(metadata['metadata'][test_index, 1])}")
 
     return logg
 

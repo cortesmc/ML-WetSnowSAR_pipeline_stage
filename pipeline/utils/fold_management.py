@@ -51,11 +51,6 @@ def fold_massive_method(dict_massives):
             if j != i:
                 train_indices.extend(dict_massives[unique_massives[j]]['indices'])
         
-        ratio_train = len(train_indices) / (len(train_indices) + len(test_indices))
-        if ratio_train > 0.9:
-            # train_indices = balance(train_indices)
-            pass
-        
         result.append((train_indices, test_indices))
     
     return result

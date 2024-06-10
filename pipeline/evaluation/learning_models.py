@@ -85,8 +85,17 @@ def predict_dataset(
 
             pipeline_id = f"{pipeline_name}_kfold_{kfold}"
             try:
+                #log_model.info(f"Selected bands for training: {X_train_k[:, :, :, pipeline_params['pipeline'][count]}")
+                
+                start_time = time.time()
                 pipeline.fit(X_train_k, y_train_k)
+                training_time = time.time() - start_time
+                log_model.info(f"Training time : {training_time:.2f} seconds")
+
+                start_time = time.time()
                 y_prob = pipeline.predict_proba(X_test_k)
+                prediction_time = time.time() - start_time
+                log_model.info(f"Prediction time for : {prediction_time:.2f} seconds")
 
                 log_model, fold_metric = report_prediction(log_model, y_test_k, y_prob, label_encoder, kfold)
                 fold_metrics.append(fold_metric)
