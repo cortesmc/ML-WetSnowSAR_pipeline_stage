@@ -166,17 +166,19 @@ if __name__ == "__main__":
 
     x, y = dataset_loader.request_data(request)
 
-    fold_manager = FoldManagement(method=pipeline_params["fold_method"], 
-                                  shuffle=pipeline_params["shuffle_data"], 
-                                  random_state=pipeline_params["seed"], 
-                                  train_aprox_size=0.8)
-
     labels_manager = LabelManagement(method=pipeline_params["labeling_method"])
-
-    fold_groups = fold_manager.split(x, y)
 
     targets = labels_manager.transform(y)
     label_encoder = labels_manager.get_encoder()
+    
+    fold_manager = FoldManagement(targets=targets,
+                                  method=pipeline_params["fold_method"],
+                                  resampling_method=pipeline_params["resampling_method"], 
+                                  shuffle=pipeline_params["shuffle_data"], 
+                                  random_state=pipeline_params["seed"],
+                                  train_aprox_size=0.8)
+    
+    fold_groups = fold_manager.split(x, y)
 
     log_dataset = logger_dataset(log_dataset, x, y, targets, pipeline_params)
     log_dataset = logger_fold(log_dataset, fold_groups, targets, y)

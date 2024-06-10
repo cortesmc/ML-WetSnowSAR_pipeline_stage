@@ -1,5 +1,8 @@
 import numpy as np
 from sklearn.model_selection import KFold
+from sklearn.utils import resample
+from imblearn.over_sampling import SMOTE
+from imblearn.under_sampling import RandomUnderSampler
 import itertools
 
 def KFold_method(x, train_size=0.8, seed=None, shuffle=False):
@@ -118,6 +121,72 @@ def combination_method(dict_massives, train_size=0.8, proximity_value=1):
 
     return result
 
+def balance_classes(results, targets, method='oversample'):
+    """
+    Balance the classes within each fold using the specified method.
+
+    Parameters
+    ----------
+    results : list of tuples
+        A list containing train and test indices for each fold.
+    targets : numpy.ndarray
+        Target labels.
+    method : str, optional (default='oversample')
+        The resampling method to use ('oversample', 'undersample', 'smote').
+
+    Returns
+    -------
+    list of tuples
+        A list containing balanced train and test indices for each fold.
+    """
+    balanced_results = []
+
+    for train_indices, test_indices in results:
+        train_targets = targets[train_indices]
+        
+        if method == 'oversample':
+            unique_classes, class_counts = np.unique(train_targets, return_counts=True)
+            max_class_count = class_counts.max()
+
+            balanced_train_indices = []
+
+            for cls in unique_classes:
+                cls_indices = np.array(train_indices)[train_targets == cls]
+                if len(cls_indices) < max_class_count:
+                    cls_indices = resample(cls_indices, replace=True, n_samples=max_class_count, random_state=42)
+                balanced_train_indices.extend(cls_indices)
+
+            balanced_train_indices = np.array(balanced_train_indices)
+        
+        elif method == 'undersample':
+            unique_classes, class_counts = np.unique(train_targets, return_counts=True)
+            min_class_count = class_counts.min()
+
+            balanced_train_indices = []
+
+            for cls in unique_classes:
+                cls_indices = np.array(train_indices)[train_targets == cls]
+                if len(cls_indices) > min_class_count:
+                    cls_indices = resample(cls_indices, replace=False, n_samples=min_class_count, random_state=42)
+                balanced_train_indices.extend(cls_indices)
+
+            balanced_train_indices = np.array(balanced_train_indices)
+        
+        elif method == 'smote':
+            smote = SMOTE(random_state=42)
+            train_data = np.array(train_indices)
+            balanced_train_indices, _ = smote.fit_resample(train_data.reshape(-1, 1), train_targets)
+            balanced_train_indices = balanced_train_indices.flatten()
+        
+        else:
+            raise ValueError(f"Unknown resampling method: {method}")
+
+        np.random.shuffle(balanced_train_indices)
+        balanced_results.append((balanced_train_indices.tolist(), test_indices))
+
+    return balanced_results
+
+
 class FoldManagement: 
     """
     A class to manage the creation of the folds for trainning.
@@ -137,12 +206,16 @@ class FoldManagement:
         Apply the selected labeling method to the provided metadata.
     """
 
-    def __init__(self, 
-                 method="kFold", 
+    def __init__(self,
+                 targets, 
+                 method="kFold",
+                 resampling_method="undersample", 
                  shuffle=False, 
                  random_state=42, 
                  train_aprox_size=0.8):
-        self.methode = method
+        self.targets = targets
+        self.method = method
+        self.resampling_method = resampling_method
         self.shuffle = shuffle
         self.seed = random_state
         self.train_aprox_size = train_aprox_size
@@ -169,11 +242,11 @@ class FoldManagement:
             self.massives_count[name]['count'] += 1
             self.massives_count[name]['indices'].append(index)
             
-        if ((np.unique(y['metadata'][:, 1]).size == 1) and (self.methode != "kFold")):
-            self.methode = "kFold"
+        if ((np.unique(y['metadata'][:, 1]).size == 1) and (self.method != "kFold")):
+            self.method = "kFold"
             return self.split(x=x, y=y)
         
-        match self.methode: 
+        match self.method: 
             case "kFold":
                 self.results = KFold_method(x, train_size=self.train_aprox_size, seed=self.seed, shuffle=self.shuffle)
 
@@ -182,5 +255,7 @@ class FoldManagement:
 
             case "combinationFold":
                 self.results = combination_method(self.massives_count, train_size=self.train_aprox_size, proximity_value=1)
+
+        self.results = balance_classes(self.results, self.targets, method=self.resampling_method)
 
         return self.results

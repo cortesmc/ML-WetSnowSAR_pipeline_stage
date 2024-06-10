@@ -280,7 +280,7 @@ def init_logger(path_log, name ):
     logger.info("Started")
     return logger, filename
 
-def logger_dataset(logg, x, metadata, targets, pipeline_param):
+def logger_dataset(logg, x, metadata, targets):
     """
     Log information about the dataset.
 
@@ -294,8 +294,6 @@ def logger_dataset(logg, x, metadata, targets, pipeline_param):
         Metadata dictionary.
     targets : numpy.ndarray
         Target labels.
-    pipeline_param : dict
-        Pipeline parameters.
 
     Returns
     -------

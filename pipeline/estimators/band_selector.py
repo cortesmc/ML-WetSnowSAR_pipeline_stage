@@ -9,5 +9,4 @@ class BandSelector(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X):
-        print(X[:, :, :, self.bands].shape)
         return X[:, :, :, self.bands]
