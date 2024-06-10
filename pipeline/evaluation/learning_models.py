@@ -68,7 +68,7 @@ def predict_dataset(
 
     for count, pipeline_name in enumerate(pipeline_params["pipeline_names"]):
         save_dir = os.path.join(output_dir, f"models/{pipeline_name}/")
-        log_model, path_log_model = init_logger(save_dir, f"{pipeline_name}_results")
+        log_model, _ = init_logger(save_dir, f"{pipeline_name}_results")
 
         log_model.info(f"================== Fitting model {pipeline_name} ==================")
 
@@ -85,7 +85,7 @@ def predict_dataset(
 
             pipeline_id = f"{pipeline_name}_kfold_{kfold}"
             try:
-                #log_model.info(f"Selected bands for training: {X_train_k[:, :, :, pipeline_params['pipeline'][count]}")
+                # log_model.info(f"Selected bands for training: {X_train_k[:, :, :, pipeline_params['pipeline'][count]}")
                 
                 start_time = time.time()
                 pipeline.fit(X_train_k, y_train_k)
@@ -133,17 +133,22 @@ if __name__ == "__main__":
     try:
         data_path = pipeline_params["data_path"]
         out_dir = pipeline_params["out_dir"]
-        seed = pipeline_params["seed"]
-        BANDS_MAX = pipeline_params["BANDS_MAX"]
         fold_method = pipeline_params["fold_method"]
+        seed = pipeline_params["seed"]
+        labeling_method = pipeline_params["labeling_method"]
+        resampling_method = pipeline_params["resampling_method"]
+        orbit = pipeline_params["orbit"]
         request = pipeline_params["request"]
         shuffle_data = pipeline_params["shuffle_data"]
+        channel_transformation = pipeline_params["channel_transformation"]
+        BANDS_MAX = pipeline_params["BANDS_MAX"]
+
     except KeyError as e:
         print("KeyError: %s undefined" % e)
 
     out_dir = set_folder(out_dir, pipeline_params)
-    log_dataset, path_log_dataset = init_logger(out_dir, "dataset_info")
-    log_results, path_log_results = init_logger(out_dir + "results", "results")
+    log_dataset, _ = init_logger(out_dir, "dataset_info")
+    log_results, _ = init_logger(out_dir + "results", "results")
     
     start_line = 0
 
@@ -166,21 +171,21 @@ if __name__ == "__main__":
 
     x, y = dataset_loader.request_data(request)
 
-    labels_manager = LabelManagement(method=pipeline_params["labeling_method"])
+    labels_manager = LabelManagement(method=labeling_method)
 
     targets = labels_manager.transform(y)
     label_encoder = labels_manager.get_encoder()
     
     fold_manager = FoldManagement(targets=targets,
-                                  method=pipeline_params["fold_method"],
-                                  resampling_method=pipeline_params["resampling_method"], 
-                                  shuffle=pipeline_params["shuffle_data"], 
-                                  random_state=pipeline_params["seed"],
+                                  method=fold_method,
+                                  resampling_method=resampling_method, 
+                                  shuffle=shuffle_data, 
+                                  random_state=seed,
                                   train_aprox_size=0.8)
     
     fold_groups = fold_manager.split(x, y)
 
-    log_dataset = logger_dataset(log_dataset, x, y, targets, pipeline_params)
+    log_dataset = logger_dataset(log_dataset, x, y, targets)
     log_dataset = logger_fold(log_dataset, fold_groups, targets, y)
 
     y_est_save = predict_dataset(x=x,
