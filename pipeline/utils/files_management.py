@@ -244,7 +244,7 @@ def report_prediction(logg, y_true, y_pred, le, fold):
     return logg, metrics
 
 
-def init_logger(path_log, name ):
+def init_logger(path_log, name):
     """
     Initialize a logger.
 
@@ -268,13 +268,13 @@ def init_logger(path_log, name ):
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
 
-    fh = logging.FileHandler(filename, mode='w')
-    fh.setLevel(logging.INFO)
+    if not logger.hasHandlers():
+        fh = logging.FileHandler(filename, mode='w')
+        fh.setLevel(logging.INFO)
 
-    formatter = logging.Formatter("%(asctime)s: (%(filename)s): %(levelname)s: %(funcName)s Line: %(lineno)d - %(message)s", datefmt=datestr)
-    fh.setFormatter(formatter)
+        formatter = logging.Formatter("%(asctime)s: (%(filename)s): %(levelname)s: %(funcName)s Line: %(lineno)d - %(message)s", datefmt=datestr)
+        fh.setFormatter(formatter)
 
-    if not logger.handlers:  
         logger.addHandler(fh)
 
     logger.info("Started")
@@ -367,6 +367,11 @@ def logger_fold(logg, fold_groupes, targets, metadata):
 
     return logg
 
+def save_metrics(log_model, fold_metric):
+    for metric, value in fold_metric.items():
+        log_model.info(f"{metric} : {value}")
+
+    return log_model
 
 def save_h5(img, label, filename):
     """

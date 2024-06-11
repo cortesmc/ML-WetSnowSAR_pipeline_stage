@@ -2,6 +2,7 @@ import sys, os, time
 import numpy as np
 from datetime import datetime
 from joblib import Parallel, delayed
+import logging
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(parent_dir)
@@ -24,23 +25,28 @@ from utils.files_management import (
     report_metric_from_log,
     set_folder,
     logger_dataset,
-    logger_fold
+    logger_fold,
+    save_metrics
 )
 
-def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_model, label_encoder, kfold, pipeline_name):
+def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_model, label_encoder, kfold, pipeline_name, save_dir):
     pipeline_id = f"{pipeline_name}_kfold_{kfold}"
     try:
         start_time = time.time()
         pipeline.fit(X_train_k, y_train_k)
         training_time = time.time() - start_time
-        log_model.info(f"Training time : {training_time:.2f} seconds")
 
         start_time = time.time()
         y_prob = pipeline.predict_proba(X_test_k)
         prediction_time = time.time() - start_time
-        log_model.info(f"Prediction time for : {prediction_time:.2f} seconds")
 
         log_model, fold_metric = report_prediction(log_model, y_test_k, y_prob, label_encoder, kfold)
+
+        fold_metric["training_time"] = training_time
+        fold_metric["prediction_time"] = prediction_time
+
+        dump_pkl(pipeline, os.path.join(save_dir, f"{pipeline_name}_fold{kfold}.pkl"))
+
         return fold_metric, y_prob, y_test_k
     except Exception as e:
         log_model.error(f"Pipeline {pipeline_id} failed")
@@ -79,16 +85,18 @@ def predict_dataset(
                 log_model,
                 label_encoder,
                 fold,
-                pipeline_name
+                pipeline_name,
+                save_dir
             )
 
-        results = Parallel(n_jobs=8)(
+        results = Parallel(n_jobs=7)(
             delayed(fit_predict_fold_wrap)(kfold, train_index, test_index)
             for kfold, (train_index, test_index) in enumerate(fold_groups)
         )
 
-        for (fold_metric, y_prob, y_test_k) in (results):
+        for (fold_metric, y_prob, y_test_k) in results:
             if fold_metric is not None:
+                log_model = save_metrics(log_model, fold_metric)
                 fold_metrics.append(fold_metric)
                 y_est_save[pipeline_name]["y_est"].extend(y_prob)
                 y_est_save[pipeline_name]["y_true"].extend(y_test_k)
@@ -104,14 +112,7 @@ def predict_dataset(
 
     return y_est_save
 
-
-
 if __name__ == "__main__":
-    """
-    Main entry point for the script. Loads parameters, sets up logging, 
-    and runs the prediction process.
-    """
-    
     param_path = "pipeline/parameter/config_pipeline.yml"
     pipeline_params = load_yaml(param_path)
 
@@ -134,8 +135,6 @@ if __name__ == "__main__":
     out_dir = set_folder(out_dir, pipeline_params)
     log_dataset, _ = init_logger(out_dir, "dataset_info")
     log_results, _ = init_logger(out_dir + "results", "results")
-    
-    start_line = 0
 
     dataset_loader = DatasetLoader(
         data_path,
