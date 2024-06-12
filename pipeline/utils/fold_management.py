@@ -121,7 +121,7 @@ def combination_method(dict_massives, train_size=0.8, proximity_value=1):
 
     return result
 
-def balance_classes(results, targets, method='oversample'):
+def balance_classes(results, targets, method='oversample',seed = 42):
     """
     Balance the classes within each fold using the specified method.
 
@@ -153,7 +153,7 @@ def balance_classes(results, targets, method='oversample'):
             for cls in unique_classes:
                 cls_indices = np.array(train_indices)[train_targets == cls]
                 if len(cls_indices) < max_class_count:
-                    cls_indices = resample(cls_indices, replace=True, n_samples=max_class_count, random_state=42)
+                    cls_indices = resample(cls_indices, replace=True, n_samples=max_class_count, random_state=seed)
                 balanced_train_indices.extend(cls_indices)
 
             balanced_train_indices = np.array(balanced_train_indices)
@@ -167,13 +167,13 @@ def balance_classes(results, targets, method='oversample'):
             for cls in unique_classes:
                 cls_indices = np.array(train_indices)[train_targets == cls]
                 if len(cls_indices) > min_class_count:
-                    cls_indices = resample(cls_indices, replace=False, n_samples=min_class_count, random_state=42)
+                    cls_indices = resample(cls_indices, replace=False, n_samples=min_class_count, random_state=seed)
                 balanced_train_indices.extend(cls_indices)
 
             balanced_train_indices = np.array(balanced_train_indices)
         
         elif method == 'smote':
-            smote = SMOTE(random_state=42)
+            smote = SMOTE(random_state=seed)
             train_data = np.array(train_indices)
             balanced_train_indices, _ = smote.fit_resample(train_data.reshape(-1, 1), train_targets)
             balanced_train_indices = balanced_train_indices.flatten()
@@ -212,6 +212,7 @@ class FoldManagement:
                  resampling_method="undersample", 
                  shuffle=False, 
                  random_state=42, 
+                 balanced  = True,
                  train_aprox_size=0.8):
         self.targets = targets
         self.method = method
@@ -221,6 +222,7 @@ class FoldManagement:
         self.train_aprox_size = train_aprox_size
         self.massives_count = {}
         self.results = None
+        self.balanced = balanced
 
     def split(self, x, y):
         """
@@ -255,7 +257,8 @@ class FoldManagement:
 
             case "combinationFold":
                 self.results = combination_method(self.massives_count, train_size=self.train_aprox_size, proximity_value=1)
-
-        self.results = balance_classes(self.results, self.targets, method=self.resampling_method)
+        
+        if self.balanced:
+            self.results = balance_classes(self.results, self.targets, method=self.resampling_method, seed=self.seed)
 
         return self.results
