@@ -1,0 +1,422 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>estimators package &#8212; wet_snow_detection 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/cloud.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">wet_snow_detection 0.0.1 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">estimators package</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="estimators-package">
+<h1>estimators package<a class="headerlink" href="#estimators-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-estimators.band_selector">
+<span id="estimators-band-selector-module"></span><h2>estimators.band_selector module<a class="headerlink" href="#module-estimators.band_selector" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="estimators.band_selector.BandSelector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">estimators.band_selector.</span></span><span class="sig-name descname"><span class="pre">BandSelector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/band_selector.html#BandSelector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.band_selector.BandSelector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerMixin</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.band_selector.BandSelector.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/band_selector.html#BandSelector.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.band_selector.BandSelector.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.band_selector.BandSelector.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/band_selector.html#BandSelector.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.band_selector.BandSelector.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-estimators.covariance">
+<span id="estimators-covariance-module"></span><h2>estimators.covariance module<a class="headerlink" href="#module-estimators.covariance" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="estimators.covariance.Covariance_MultiScale">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">estimators.covariance.</span></span><span class="sig-name descname"><span class="pre">Covariance_MultiScale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LedoitWolf'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/covariance.html#Covariance_MultiScale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.covariance.Covariance_MultiScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerMixin</span></code></p>
+<p>Classe for the calculation of covariance matrix from a dataset of variable size</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.covariance.Covariance_MultiScale.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/covariance.html#Covariance_MultiScale.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.covariance.Covariance_MultiScale.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.covariance.Covariance_MultiScale.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/covariance.html#Covariance_MultiScale.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.covariance.Covariance_MultiScale.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="estimators.covariance.Vector_CovarianceEuclid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">estimators.covariance.</span></span><span class="sig-name descname"><span class="pre">Vector_CovarianceEuclid</span></span><a class="reference internal" href="_modules/estimators/covariance.html#Vector_CovarianceEuclid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.covariance.Vector_CovarianceEuclid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerMixin</span></code></p>
+<p>Transform a tensor or a list of covariance matrix into a vector array.
+Each vector is the extraction of the triangular matrix of its associated matrix</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.covariance.Vector_CovarianceEuclid.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/covariance.html#Vector_CovarianceEuclid.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.covariance.Vector_CovarianceEuclid.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.covariance.Vector_CovarianceEuclid.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/covariance.html#Vector_CovarianceEuclid.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.covariance.Vector_CovarianceEuclid.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="estimators.covariance.Vector_Euclid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">estimators.covariance.</span></span><span class="sig-name descname"><span class="pre">Vector_Euclid</span></span><a class="reference internal" href="_modules/estimators/covariance.html#Vector_Euclid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.covariance.Vector_Euclid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerMixin</span></code></p>
+<p>Transform a tensor or a list of matrix into a vector array</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.covariance.Vector_Euclid.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/covariance.html#Vector_Euclid.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.covariance.Vector_Euclid.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.covariance.Vector_Euclid.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/covariance.html#Vector_Euclid.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.covariance.Vector_Euclid.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="estimators.covariance.is_pos_def">
+<span class="sig-prename descclassname"><span class="pre">estimators.covariance.</span></span><span class="sig-name descname"><span class="pre">is_pos_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/covariance.html#is_pos_def"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.covariance.is_pos_def" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a matrix is positive definite</p>
+<dl class="simple">
+<dt>x<span class="classifier">float</span></dt><dd><p>matrice</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>bool</dt><dd><p>SPD ou non</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-estimators.statistical_descriptor">
+<span id="estimators-statistical-descriptor-module"></span><h2>estimators.statistical_descriptor module<a class="headerlink" href="#module-estimators.statistical_descriptor" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="estimators.statistical_descriptor.Hist_SAR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">estimators.statistical_descriptor.</span></span><span class="sig-name descname"><span class="pre">Hist_SAR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nbins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#Hist_SAR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.Hist_SAR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ClassifierMixin</span></code></p>
+<p>Tranform a tensor or a list of matrix into a vector array of the
+histogram of each band.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.statistical_descriptor.Hist_SAR.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#Hist_SAR.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.Hist_SAR.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.statistical_descriptor.Hist_SAR.set_score_request">
+<span class="sig-name descname"><span class="pre">set_score_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'$UNCHANGED$'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#estimators.statistical_descriptor.Hist_SAR" title="estimators.statistical_descriptor.Hist_SAR"><span class="pre">Hist_SAR</span></a></span></span><a class="headerlink" href="#estimators.statistical_descriptor.Hist_SAR.set_score_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request metadata passed to the <code class="docutils literal notranslate"><span class="pre">score</span></code> method.</p>
+<p>Note that this method is only relevant if
+<code class="docutils literal notranslate"><span class="pre">enable_metadata_routing=True</span></code> (see <code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.set_config()</span></code>).
+Please see <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<p>The options for each parameter are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: metadata is requested, and passed to <code class="docutils literal notranslate"><span class="pre">score</span></code> if provided. The request is ignored if metadata is not provided.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: metadata is not requested and the meta-estimator will not pass it to <code class="docutils literal notranslate"><span class="pre">score</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: metadata is not requested, and the meta-estimator will raise an error if the user provides it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">str</span></code>: metadata should be passed to the meta-estimator with this given alias instead of the original name.</p></li>
+</ul>
+<p>The default (<code class="docutils literal notranslate"><span class="pre">sklearn.utils.metadata_routing.UNCHANGED</span></code>) retains the
+existing request. This allows you to change the request for some
+parameters and not others.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.3.</span></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is only relevant if this estimator is used as a
+sub-estimator of a meta-estimator, e.g. used inside a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>. Otherwise it has no effect.</p>
+</div>
+<dl class="simple">
+<dt>sample_weight<span class="classifier">str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED</span></dt><dd><p>Metadata routing for <code class="docutils literal notranslate"><span class="pre">sample_weight</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">score</span></code>.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>self<span class="classifier">object</span></dt><dd><p>The updated object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.statistical_descriptor.Hist_SAR.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#Hist_SAR.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.Hist_SAR.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="estimators.statistical_descriptor.Nagler_WS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">estimators.statistical_descriptor.</span></span><span class="sig-name descname"><span class="pre">Nagler_WS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'FPR'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FPR_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#Nagler_WS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.Nagler_WS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ClassifierMixin</span></code></p>
+<p>Compute the wet snow prediction using an learning adaptive threshold of type Nagler
+This is done by simply computing the mean of the ratio VV with a snow free reference</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.statistical_descriptor.Nagler_WS.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#Nagler_WS.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.Nagler_WS.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.statistical_descriptor.Nagler_WS.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#Nagler_WS.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.Nagler_WS.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.statistical_descriptor.Nagler_WS.predict_proba">
+<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#Nagler_WS.predict_proba"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.Nagler_WS.predict_proba" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.statistical_descriptor.Nagler_WS.score">
+<span class="sig-name descname"><span class="pre">score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#Nagler_WS.score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.Nagler_WS.score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the mean accuracy on the given test data and labels.</p>
+<p>In multi-label classification, this is the subset accuracy
+which is a harsh metric since you require for each sample that
+each label set be correctly predicted.</p>
+<dl class="simple">
+<dt>X<span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Test samples.</p>
+</dd>
+<dt>y<span class="classifier">array-like of shape (n_samples,) or (n_samples, n_outputs)</span></dt><dd><p>True labels for <cite>X</cite>.</p>
+</dd>
+<dt>sample_weight<span class="classifier">array-like of shape (n_samples,), default=None</span></dt><dd><p>Sample weights.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>score<span class="classifier">float</span></dt><dd><p>Mean accuracy of <code class="docutils literal notranslate"><span class="pre">self.predict(X)</span></code> w.r.t. <cite>y</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="estimators.statistical_descriptor.Stats_SAR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">estimators.statistical_descriptor.</span></span><span class="sig-name descname"><span class="pre">Stats_SAR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_stats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mean'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#Stats_SAR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.Stats_SAR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerMixin</span></code></p>
+<p>Tranform a tensor or a list of matrix into a vector array of the
+selected moments of each band.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.statistical_descriptor.Stats_SAR.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#Stats_SAR.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.Stats_SAR.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="estimators.statistical_descriptor.Stats_SAR.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#Stats_SAR.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.Stats_SAR.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="estimators.statistical_descriptor.calcul_hist">
+<span class="sig-prename descclassname"><span class="pre">estimators.statistical_descriptor.</span></span><span class="sig-name descname"><span class="pre">calcul_hist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#calcul_hist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.calcul_hist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the histogram of a list of array or a matrix on the first axis</p>
+<dl class="simple">
+<dt>data<span class="classifier">np.array</span></dt><dd><p>data to compute the histogram</p>
+</dd>
+<dt>n_bands<span class="classifier">int</span></dt><dd><p>number of bands</p>
+</dd>
+<dt>bin<span class="classifier">int</span></dt><dd><p>number of bins</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>np.array</dt><dd><p>vector of histogram of each band between 0 and 1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="estimators.statistical_descriptor.moments_features">
+<span class="sig-prename descclassname"><span class="pre">estimators.statistical_descriptor.</span></span><span class="sig-name descname"><span class="pre">moments_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_stats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mean'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#moments_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.moments_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the moments of a list of array or a matrix on the first axis</p>
+<dl class="simple">
+<dt>data<span class="classifier">np.array</span></dt><dd><p>data to compute the moments</p>
+</dd>
+<dt>type_stats<span class="classifier">str, optional</span></dt><dd><p>type of moments to compute. If “std” compute in addition
+the standard deviation, if “skew” compute in addition
+the skewness, if “kurtosis” compute in addition
+the kurtosis, by default “mean”</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>np.array</dt><dd><p>vector of moments</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="estimators.statistical_descriptor.optimal_bins">
+<span class="sig-prename descclassname"><span class="pre">estimators.statistical_descriptor.</span></span><span class="sig-name descname"><span class="pre">optimal_bins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#optimal_bins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.optimal_bins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the optimal number of bins for a histogram
+using the Freedman-Diaconis rule</p>
+<dl class="simple">
+<dt>data<span class="classifier">np.array</span></dt><dd><p>data to compute the optimal number of bins</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>int</dt><dd><p>optimal number of bins</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="estimators-textural-features-module">
+<h2>estimators.textural_features module<a class="headerlink" href="#estimators-textural-features-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-estimators">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-estimators" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">estimators package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-estimators.band_selector">estimators.band_selector module</a></li>
+<li><a class="reference internal" href="#module-estimators.covariance">estimators.covariance module</a></li>
+<li><a class="reference internal" href="#module-estimators.statistical_descriptor">estimators.statistical_descriptor module</a></li>
+<li><a class="reference internal" href="#estimators-textural-features-module">estimators.textural_features module</a></li>
+<li><a class="reference internal" href="#module-estimators">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/estimators.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">wet_snow_detection 0.0.1 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">estimators package</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2024, Andres.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
