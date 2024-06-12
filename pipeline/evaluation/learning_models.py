@@ -96,10 +96,11 @@ def predict_dataset(
 
         for (fold_metric, y_prob, y_test_k) in results:
             if fold_metric is not None:
-                log_model = save_metrics(log_model, fold_metric)
                 fold_metrics.append(fold_metric)
                 y_est_save[pipeline_name]["y_est"].extend(y_prob)
                 y_est_save[pipeline_name]["y_true"].extend(y_test_k)
+        
+        log_model = save_metrics(log_model, fold_metrics, pipeline_name)
 
         if save:
             dump_pkl(fold_metrics, os.path.join(save_dir, "metrics.pkl"))
@@ -108,7 +109,7 @@ def predict_dataset(
     results_dir = os.path.join(output_dir, "results/plots/")
     plot_boxplots(metrics, save_dir=results_dir)
     plot_roc_curves(metrics, save_dir=results_dir)
-    log_results = report_metric_from_log(log_results, metrics)
+    log_results = report_metric_from_log(log_results, metrics, pipeline_params["metrics_to_report"])
 
     return y_est_save
 

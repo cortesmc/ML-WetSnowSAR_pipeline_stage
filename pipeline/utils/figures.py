@@ -31,7 +31,10 @@ def plot_boxplots(metrics_dict, save_dir = None):
             flattened_metrics.append({'model': model_name, **fold_metrics})
     
     metrics_df = pd.DataFrame(flattened_metrics)
-    metrics_df.drop(columns=['confusion_matrix', 'y_true', 'y_pred'], inplace=True)
+    columns_to_drop = ['confusion_matrix', 'y_true', 'y_pred']
+    columns_to_drop = [col for col in columns_to_drop if col in metrics_df.columns]
+    metrics_df.drop(columns=columns_to_drop, inplace=True)
+
     
     # Create and save boxplots for each metric by model
     for column in metrics_df.columns:
