@@ -1,7 +1,8 @@
 import sys, os, time
 import numpy as np
 from datetime import datetime
-
+from joblib import Parallel, delayed
+import logging
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(parent_dir)
@@ -24,8 +25,33 @@ from utils.files_management import (
     report_metric_from_log,
     set_folder,
     logger_dataset,
-    logger_fold
+    logger_fold,
+    save_metrics
 )
+
+def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_model, label_encoder, kfold, pipeline_name, save_dir):
+    pipeline_id = f"{pipeline_name}_kfold_{kfold}"
+    try:
+        start_time = time.time()
+        pipeline.fit(X_train_k, y_train_k)
+        training_time = time.time() - start_time
+
+        start_time = time.time()
+        y_prob = pipeline.predict_proba(X_test_k)
+        prediction_time = time.time() - start_time
+
+        log_model, fold_metric = report_prediction(log_model, y_test_k, y_prob, label_encoder, kfold)
+
+        fold_metric["training_time"] = training_time
+        fold_metric["prediction_time"] = prediction_time
+
+        dump_pkl(pipeline, os.path.join(save_dir, f"{pipeline_name}_fold{kfold}.pkl"))
+
+        return fold_metric, y_prob, y_test_k
+    except Exception as e:
+        log_model.error(f"Pipeline {pipeline_id} failed")
+        log_model.error(e)
+        return None, None, None
 
 def predict_dataset(
     x,
@@ -37,33 +63,6 @@ def predict_dataset(
     log_results,
     save=True
 ):
-    """
-    Predict the dataset using multiple pipelines and log the results.
-
-    Parameters
-    ----------
-    x : np.ndarray
-        Features for prediction.
-    targets : np.ndarray
-        Target labels.
-    fold_groups : list of tuples
-        Indices for training and testing sets for each fold.
-    output_dir : str
-        Directory to save the output models and logs.
-    pipeline_params : dict
-        Parameters for the pipelines.
-    label_encoder : LabelEncoder
-        Encoder for the labels.
-    log_results : logging.Logger
-        Logger to store results.
-    save : bool, optional
-        Whether to save the models and metrics (default is True).
-
-    Returns
-    -------
-    dict
-        Dictionary containing true labels and predicted probabilities.
-    """
     y_est_save, metrics = {}, {}
 
     for count, pipeline_name in enumerate(pipeline_params["pipeline_names"]):
@@ -75,39 +74,33 @@ def predict_dataset(
         y_est_save[pipeline_name] = {"y_true": [], "y_est": []}
         fold_metrics = []
 
-        for kfold, (train_index, test_index) in enumerate(fold_groups):
+        def fit_predict_fold_wrap(fold, train_index, test_index):
             X_train_k, y_train_k = x[train_index], targets[train_index]
             X_test_k, y_test_k = x[test_index], targets[test_index]
 
-            log_model.info(f"__________________ Fold {kfold} with {pipeline_name} __________________")
+            return fit_predict_fold(
+                parse_pipeline(pipeline_params, count),
+                X_train_k, y_train_k,
+                X_test_k, y_test_k,
+                log_model,
+                label_encoder,
+                fold,
+                pipeline_name,
+                save_dir
+            )
 
-            pipeline = parse_pipeline(pipeline_params, count)
+        results = Parallel(n_jobs=7)(
+            delayed(fit_predict_fold_wrap)(kfold, train_index, test_index)
+            for kfold, (train_index, test_index) in enumerate(fold_groups)
+        )
 
-            pipeline_id = f"{pipeline_name}_kfold_{kfold}"
-            try:
-                # log_model.info(f"Selected bands for training: {X_train_k[:, :, :, pipeline_params['pipeline'][count]}")
-                
-                start_time = time.time()
-                pipeline.fit(X_train_k, y_train_k)
-                training_time = time.time() - start_time
-                log_model.info(f"Training time : {training_time:.2f} seconds")
-
-                start_time = time.time()
-                y_prob = pipeline.predict_proba(X_test_k)
-                prediction_time = time.time() - start_time
-                log_model.info(f"Prediction time for : {prediction_time:.2f} seconds")
-
-                log_model, fold_metric = report_prediction(log_model, y_test_k, y_prob, label_encoder, kfold)
+        for (fold_metric, y_prob, y_test_k) in results:
+            if fold_metric is not None:
                 fold_metrics.append(fold_metric)
-
                 y_est_save[pipeline_name]["y_est"].extend(y_prob)
                 y_est_save[pipeline_name]["y_true"].extend(y_test_k)
-            except Exception as e:
-                log_model.error(f"Pipeline {pipeline_id} failed")
-                log_model.error(e)
-                
-            if save:
-                dump_pkl(pipeline, os.path.join(save_dir, f"{pipeline_name}_fold{kfold}.pkl"))
+        
+        log_model = save_metrics(log_model, fold_metrics, pipeline_name)
 
         if save:
             dump_pkl(fold_metrics, os.path.join(save_dir, "metrics.pkl"))
@@ -116,17 +109,11 @@ def predict_dataset(
     results_dir = os.path.join(output_dir, "results/plots/")
     plot_boxplots(metrics, save_dir=results_dir)
     plot_roc_curves(metrics, save_dir=results_dir)
-    log_results = report_metric_from_log(log_results, metrics)
+    log_results = report_metric_from_log(log_results, metrics, pipeline_params["metrics_to_report"])
 
     return y_est_save
 
-
 if __name__ == "__main__":
-    """
-    Main entry point for the script. Loads parameters, sets up logging, 
-    and runs the prediction process.
-    """
-    
     param_path = "pipeline/parameter/config_pipeline.yml"
     pipeline_params = load_yaml(param_path)
 
@@ -149,8 +136,6 @@ if __name__ == "__main__":
     out_dir = set_folder(out_dir, pipeline_params)
     log_dataset, _ = init_logger(out_dir, "dataset_info")
     log_results, _ = init_logger(out_dir + "results", "results")
-    
-    start_line = 0
 
     dataset_loader = DatasetLoader(
         data_path,

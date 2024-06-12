@@ -81,3 +81,15 @@ pipeline:
       - - "Hist_SAR"
       - - "AdaBoostClassifier"
         - n_estimators: 200
+
+
+metrics_to_report : 
+    #- 'f1_score_macro'
+    - 'f1_score_weighted'
+    - 'accuracy_score'
+    #- 'precision_score_macro'
+    - 'recall_score_macro'
+    #- 'roc_auc_score'
+    #- 'log_loss'
+    #- 'kappa_score'
+    - 'confusion_matrix'

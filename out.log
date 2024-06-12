@@ -1,0 +1,99 @@
+2024-06-11 16:22:51,309 INFO     Training time : 10.92 seconds
+2024-06-11 16:22:54,745 INFO     Prediction time : 3.44 seconds
+2024-06-11 16:22:54,763 INFO     f1_score_macro : 82.28999999999999
+2024-06-11 16:22:54,763 INFO     f1_score_weighted : 83.82
+2024-06-11 16:22:54,763 INFO     accuracy_score : 83.78
+2024-06-11 16:22:54,763 INFO     precision_score_macro : 82.15
+2024-06-11 16:22:54,763 INFO     recall_score_macro : 82.43
+2024-06-11 16:22:54,763 INFO     roc_auc_score : 82.43
+2024-06-11 16:22:54,763 INFO     log_loss : 39.78
+2024-06-11 16:22:54,764 INFO     kappa_score : 64.58
+2024-06-11 16:22:54,768 INFO     confusion_matrix :          0        1
+0  86.9707  13.0293
+1  22.102024-06-11 12024-06-11 16:23:19,323 I2024-06-11 16:23:20,279 IN2024-06-11 12024-06-11 16:23:22,344 I2024-06-11 16:23:23,422 INFO     Prediction time : 3.14 seconds
+2024-06-11 16:23:23,438 INFO     f1_score_macro : 81.96
+2024-06-11 16:23:23,438 INFO     f1_score_weighted : 83.37
+2024-06-11 16:23:23,438 INFO     accuracy_score : 83.2
+2024-06-11 16:23:23,438 INFO     precision_score_macro : 81.45
+2024-06-11 16:23:23,439 INFO     recall_score_macro : 82.71
+2024-06-11 16:23:23,439 INFO     roc_auc_score : 82.71
+2024-06-11 16:23:23,439 INFO     log_loss : 37.24
+2024-06-11 16:23:23,439 INFO     kappa_score : 63.959999999999994
+2024-06-11 16:23:23,442 INFO     confusion_matrix :          0        1
+2024-06-11 16:2024-06-11 16:23:42,685 IN22024-06-11 16:23:45,530 INFO     Tr2024-06-11 16:23:46,364 INF22024-06-11 16:23:48,638 INFO     Prediction time : 3.11 seconds
+2024-06-11 16:23:48,650 INFO     f1_score_macro : 76.72
+2024-06-11 16:23:48,650 INFO     f1_score_weighted : 78.07
+2024-06-11 16:23:48,650 INFO     accuracy_score : 77.60000000000001
+2024-06-11 16:23:48,650 INFO     precision_score_macro : 76.44999999999999
+2024-06-11 16:23:48,650 INFO     recall_score_macro : 78.77
+2024-06-11 16:23:48,651 INFO     roc_auc_score : 78.77
+2024-06-11 16:23:48,651 INFO     log_loss : 83.41
+2024-06-11 16:23:48,651 INFO     kappa_score : 53.94
+2024-06-11 16:23:48,653 INFO     confusion_matrix :         2024-06-11 16:23:52,491 ERROR    Pipeline SVMrbf_direct_kfold_1 failed
+2024-06-11 16:23:52,491 ERROR    The 'probability' parameter of SVC must be an instance of 'bool' or an instance of 'numpy.bool_'. Got 1 instead.
+2024-06-11 16:23:53,900 INFO     Training time : 0.89 seconds
+2024-06-11 16:23:56,898 INFO     Prediction time : 3.00 seconds
+2024-06-11 16:23:56,916 INFO     f1_score_macro : 80.93
+2024-06-11 16:23:56,916 INFO     f1_score_weighted : 81.56
+2024-06-11 16:23:56,916 INFO     accuracy_score : 81.43
+2024-06-11 16:23:56,916 INFO     precision_score_macro : 80.64
+2024-06-11 16:23:56,916 INFO     recall_score_macro : 81.53
+2024-06-11 16:23:56,916 INFO     roc_auc_score : 81.53
+2024-06-11 16:23:56,916 INFO     log_loss : 41.949999999999996
+2024-06-11 16:23:56,916 INFO     kappa_score : 61.92999999999999
+2024-06-11 16:23:56,922 INFO     confusion_matrix :          0        1
+0  81.0127  18.9873
+1  17.9452  82.0548
+2024-06-11 16:24:07,629 INFO     Training time : 7.73 seconds
+2024-06-11 16:24:10,561 INFO     Prediction time : 2.93 seconds
+2024-06-11 16:24:10,579 INFO     f1_score_macro : 78.56
+2024-06-11 16:24:10,579 INFO     f1_score_weighted : 79.92
+2024-06-11 16:24:10,579 INFO     accuracy_score : 79.63
+2024-06-11 16:24:10,579 INFO     precision_score_macro : 78.07
+2024-06-11 16:24:10,580 INFO     recall_score_macro : 79.67
+2024-06-11 16:24:10,580 INFO     roc_auc_score : 79.67
+2024-06-11 16:24:10,580 INFO     log_loss : 68.47
+2024-06-11 16:24:10,580 INFO     kappa_score : 57.28
+2024-06-11 16:24:10,584 INFO     confusion_matrix :          0        1
+0  79.5282  20.4718
+1  20.1807  79.8193
+00000001
+2024-06-11 16:24:10,402 INFO     recall_score_macro : 78.36
+2024-06-11 16:24:10,402 INFO     roc_auc_2024-06-11 16:24:10,797 INFO     Prediction time : 3.19 seconds
+2024-06-11 16:24:10,811 INFO     f1_score_macro : 79.49000000000001
+2024-06-11 16:24:10,811 INFO     f1_score_weighted : 80.12
+2024-06-11 16:24:10,811 INFO     accuracy_score : 79.96
+2024-06-11 16:24:10,811 INFO     precision_score_macro : 79.24
+2024-06-11 16:24:10,811 INFO     recall_score_macro : 80.24
+2024-06-11 16:24:10,811 INFO     roc_auc_score : 80.24
+2024-06-11 16:24:10,811 INFO     log_loss : 68.60000000000001
+2024-06-11 16:24:10,811 INFO     kappa_score : 59.11
+2024-06-11 16:24:10,814 INFO     confusion_matrix :          0        1
+0  78.8427  21.1573
+1  18.352024-06-11 16:24:13,422 INFO     Training time : 4.02 seconds
+2024-06-11 16:24:15,879 INFO     Prediction time : 2.46 seconds
+2024-06-11 16:24:15,895 INFO     f1_score_macro : 80.85
+2024-06-11 16:24:15,896 INFO     f1_score_weighted : 81.03
+2024-06-11 16:24:15,896 INFO     accuracy_score : 80.97999999999999
+2024-06-11 16:24:15,896 INFO     precision_score_macro : 80.76
+2024-06-11 16:24:15,896 INFO     recall_score_macro : 81.08
+2024-06-11 16:24:15,896 INFO     roc_auc_score : 81.08
+2024-06-11 16:24:15,896 INFO     log_loss : 68.58999999999999
+2024-06-11 16:24:15,896 INFO     kappa_score : 61.73
+2024-06-11 16:24:15,899 INFO     confusion_matrix :          0        1
+0  80.2407  19.7593
+1  18.0784  81.9216
+_matrix :          0        1
+0  84.6092024-06-11 16:24:13,954 INFO     Training time : 3.93 seconds
+2024-06-11 16:24:16,318 INFO     Prediction time : 2.36 seconds
+2024-06-11 16:24:16,328 INFO     f1_score_macro : 80.94
+2024-06-11 16:24:16,329 INFO     f1_score_weighted : 81.5
+2024-06-11 16:24:16,329 INFO     accuracy_score : 81.38
+2024-06-11 16:24:16,329 INFO     precision_score_macro : 80.69
+2024-06-11 16:24:16,329 INFO     recall_score_macro : 81.46
+2024-06-11 16:24:16,329 INFO     roc_auc_score : 81.46
+2024-06-11 16:24:16,329 INFO     log_loss : 68.67999999999999
+2024-06-11 16:24:16,329 INFO     kappa_score : 61.95
+2024-06-11 16:24:16,332 INFO     confusion_matrix :          0        1
+0  81.0476  18.9524
+1  18.1180  81.8820

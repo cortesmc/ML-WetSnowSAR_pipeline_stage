@@ -121,7 +121,7 @@ def write_report(path_log, path_report, begin_line=0):
     return result, len(op)
 
 
-def report_metric_from_log(logg, dic):
+def report_metric_from_log(logg, dic, metrics_to_report=["f1_score_weighted"]):
     """
     Report various metrics from a dictionary containing the scores for each model in a log file.
 
@@ -140,10 +140,6 @@ def report_metric_from_log(logg, dic):
     logg.info(f"================== Final report ==================")
     for model_name, model_metrics in dic.items():
         logg.info(f"__________________ Model : {model_name} __________________")
-    
-        metrics_to_report = ['f1_score_macro', 'f1_score_weighted', 'accuracy_score', 
-                             'precision_score_macro', 'recall_score_macro', 'roc_auc_score', 
-                             'log_loss', 'kappa_score', 'confusion_matrix']
 
         for metric in metrics_to_report:
             try:
@@ -244,7 +240,7 @@ def report_prediction(logg, y_true, y_pred, le, fold):
     return logg, metrics
 
 
-def init_logger(path_log, name ):
+def init_logger(path_log, name):
     """
     Initialize a logger.
 
@@ -268,13 +264,13 @@ def init_logger(path_log, name ):
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
 
-    fh = logging.FileHandler(filename, mode='w')
-    fh.setLevel(logging.INFO)
+    if not logger.hasHandlers():
+        fh = logging.FileHandler(filename, mode='w')
+        fh.setLevel(logging.INFO)
 
-    formatter = logging.Formatter("%(asctime)s: (%(filename)s): %(levelname)s: %(funcName)s Line: %(lineno)d - %(message)s", datefmt=datestr)
-    fh.setFormatter(formatter)
+        formatter = logging.Formatter("%(asctime)s: (%(filename)s): %(levelname)s: %(funcName)s Line: %(lineno)d - %(message)s", datefmt=datestr)
+        fh.setFormatter(formatter)
 
-    if not logger.handlers:  
         logger.addHandler(fh)
 
     logger.info("Started")
@@ -366,6 +362,23 @@ def logger_fold(logg, fold_groupes, targets, metadata):
         logg.info(f"    - Massif in test: {np.unique(metadata['metadata'][test_index, 1])}")
 
     return logg
+
+def save_metrics(log_model, fold_metric, model_name):
+    for metrics in fold_metric:
+        log_model.info(f"__________________ Fold {str(metrics['fold'])} with {model_name} __________________")
+        for metric, value in metrics.items():
+            if metric in ["fold", "y_pred", "y_true"]:
+                continue
+
+            if isinstance(value, float):
+                value_str = f"{value:.2f}"
+            elif isinstance(value, np.ndarray):
+                value_str = "\n" + str(value)
+            else:
+                value_str = str(value)
+            log_model.info(f" {metric} : {value_str}")
+
+    return log_model
 
 
 def save_h5(img, label, filename):
