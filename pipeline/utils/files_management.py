@@ -148,6 +148,9 @@ def report_metric_from_log(logg, dic, metrics_to_report=["f1_score_weighted"]):
 
                 if isinstance(values[0], (int, float)):
                     logg.info(f"{metric} : {np.mean(values)} +/- {np.std(values)}")
+                elif isinstance(values[0], list):  # Handle list case for multiclass F1 score
+                    values_flat = np.array(values).mean(axis=0)
+                    logg.info(f"{metric} : {values_flat}")
                 elif isinstance(values[0], pd.DataFrame):
                     mean_conf_matrix = sum(values) / len(values)
                     logg.info(f"{metric} :\n{mean_conf_matrix}")
@@ -161,7 +164,6 @@ def report_metric_from_log(logg, dic, metrics_to_report=["f1_score_weighted"]):
             
     logg.info(f"================== End report ==================")
     return logg
-
 
 def report_prediction(logg, y_true, y_pred, le, fold):
     """
@@ -212,6 +214,7 @@ def report_prediction(logg, y_true, y_pred, le, fold):
     
     f1_macro = 100 * round(f1_score(y_true, y_pred_classes, average="macro"), 4)
     f1_weighted = 100 * round(f1_score(y_true, y_pred_classes, average="weighted"), 4)
+    f1_multiclass = 100 * np.round(f1_score(y_true, y_pred_classes, average=None), 4)    
     accuracy = 100 * round(accuracy_score(y_true, y_pred_classes), 4)
     precision_macro = 100 * round(precision_score(y_true, y_pred_classes, average="macro"), 4)
     recall_macro = 100 * round(recall_score(y_true, y_pred_classes, average="macro"), 4)
@@ -222,6 +225,7 @@ def report_prediction(logg, y_true, y_pred, le, fold):
     metrics = {
         'f1_score_macro': f1_macro,
         'f1_score_weighted': f1_weighted,
+        'f1_score_multiclass': f1_multiclass,
         'accuracy_score': accuracy,
         'precision_score_macro': precision_macro,
         'recall_score_macro': recall_macro,

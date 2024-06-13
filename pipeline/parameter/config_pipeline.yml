@@ -1,29 +1,40 @@
+# Path to the dataset file
 data_path: "pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected_V2.h5"
+
+# Directory to save the output results
 out_dir: "pipeline/results/"
 
 # Method for the fold: kFold, mFold, or combinationFold
 fold_method: "combinationFold"
 
+# Random seed for reproducibility
 seed: 42
 
-# Method for the labeling method: crocus
+# Method for labeling: crocus
 labeling_method: "crocus"
 
-# Method for the resampling method: oversample, undersample, or smote
+# Method for resampling: oversample, undersample, or smote
 resampling_method: "undersample"
-orbit: "ASC"
 
-request: "(date.dt.month == 3 and date.dt.day == 1) and ((elevation > 1000) and (elevation < 2000))"
+# Filter request based on date and elevation criteria
+request: "(date.dt.month == 3 and date.dt.day == 1) and ((elevation > 1000) and (elevation < 1500))"
 
+# Shuffle the data before processing
 shuffle_data: true
 
+# Balance the data
+balance_data: true
+
+# Transformation applied to the data channels (Not implemented)
 channel_transformation: "log10"
 
+# Maximum bands configuration (Not used for the moment)
 BANDS_MAX:
    "a":
      - 0
      - 1
 
+# Import necessary libraries and modules
 import:
     - "from sklearn.svm import SVC"
     - "from sklearn.neighbors import KNeighborsClassifier"
@@ -33,6 +44,7 @@ import:
     - "from estimators.statistical_descriptor import *"
     - "from estimators.band_selector import *"
 
+# Names of the pipelines to be used
 pipeline_names:
     - "KNN_direct"
     - "RandomForest_direct"
@@ -41,15 +53,16 @@ pipeline_names:
     - "LogisticR_direct"
     - "AdaBoost_direct"
 
+# Configuration for each pipeline
 pipeline:
-# KNN 
+    # KNeighborsClassifier pipeline
     - - - BandSelector
         - bands: [0,1,2,3,4,5,6,7,8]
       - - "Hist_SAR"
       - - "KNeighborsClassifier"
         - n_neighbors: 50
         - n_jobs: -1
-# RandomForestClassifier
+    # RandomForestClassifier pipeline
     - - - BandSelector
         - bands: [0,1,2,3,4,5,6,7,8]
       - - "Hist_SAR"
@@ -57,35 +70,36 @@ pipeline:
         - n_estimators: 200
         - criterion: "entropy"
         - n_jobs: -1
-# MLPClassifier
+    # MLPClassifier pipeline
     - - - BandSelector
         - bands: [0,1,2,3,4,5,6,7,8]
       - - "Hist_SAR"
       - - "MLPClassifier"
         - alpha: 0.01
-# SVC_RBF
+    # SVC with RBF kernel pipeline
     - - - BandSelector
         - bands: [0,1,2,3,4,5,6,7,8]
       - - "Hist_SAR"
       - - "SVC"
         - kernel: "rbf"
         - probability: 1
-# LogisticRegression
+    # LogisticRegression pipeline
     - - - BandSelector
         - bands: [0,1,2,3,4,5,6,7,8]
       - - "Hist_SAR"
       - - "LogisticRegression"
-# AdaBoostClassifier
+    # AdaBoostClassifier pipeline
     - - - BandSelector
         - bands: [0,1,2,3,4,5,6,7,8]
       - - "Hist_SAR"
       - - "AdaBoostClassifier"
         - n_estimators: 200
 
-
-metrics_to_report : 
+# Metrics to include in the final report
+metrics_to_report:
     #- 'f1_score_macro'
     - 'f1_score_weighted'
+    - 'f1_score_multiclass'
     - 'accuracy_score'
     #- 'precision_score_macro'
     - 'recall_score_macro'

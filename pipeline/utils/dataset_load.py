@@ -134,11 +134,12 @@ class DatasetLoader:
             "hsnow",
         ],
         print_info=True,
+        seed=42
     ):
         self.path = path
         self.descrp = descrp
         self.shuffle = shuffle
-        self.seed = 42
+        self.seed = seed
         self.X = None
         self.y = {}
         self.print_info = print_info

@@ -1,9 +1,9 @@
 import numpy as np
 from sklearn.model_selection import KFold
-from sklearn.utils import resample
-from imblearn.over_sampling import SMOTE
+from imblearn.over_sampling import RandomOverSampler, SMOTE
 from imblearn.under_sampling import RandomUnderSampler
 import itertools
+import random
 
 def KFold_method(x, train_size=0.8, seed=None, shuffle=False):
     """
@@ -58,25 +58,38 @@ def fold_massive_method(dict_massives):
     
     return result
 
-def combination_method(dict_massives, train_size=0.8, proximity_value=1):
+def combination_method(dict_massives, train_size=0.8, proximity_value=1, shuffle=False, seed=None):
     """
     Generate prioritized combinations of massives based on a given dictionary.
 
     Parameters:
     - dict_massives : dict
         A dictionary where keys are massives and values are dictionaries containing 'count' and 'indices' keys.
+        Example: {
+            'massif1': {'count': 10, 'indices': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
+            'massif2': {'count': 5, 'indices': [10, 11, 12, 13, 14]},
+            ...
+        }
     - train_size : float, optional (default=0.8)
         The proportion of the dataset to include in the train split.
     - proximity_value : int, optional (default=1)
         A value to control the proximity to the desired train size.
+    - shuffle : bool, optional (default=False)
+        Whether to shuffle the selection of combinations.
+    - seed : int, optional (default=None)
+        Seed for random number generator (used if shuffle is True).
 
     Returns:
     - list of tuples
         A list containing train and test indices for each prioritized combination of massives.
     """
+    if shuffle:
+        random.seed(seed)
+
     total_count = sum(value['count'] for value in dict_massives.values())
     massives = list(dict_massives.keys())
-
+    sorted(massives)
+    
     all_combinations = []
     for r in range(1, len(massives)):
         combinations_object = itertools.combinations(massives, r)
@@ -89,8 +102,10 @@ def combination_method(dict_massives, train_size=0.8, proximity_value=1):
         percentage = (combo_count / total_count) * 100
         if (train_size * 100) - proximity_value <= percentage <= (train_size * 100) + proximity_value:
             valid_combinations.append(combo)
+    sorted(valid_combinations)
 
-    valid_combinations.sort(key=lambda combo: len(massives) - len(combo))
+    if shuffle:
+        random.shuffle(valid_combinations)
 
     uncovered_train_massives = set(massives)
     uncovered_test_massives = set(massives)
@@ -117,11 +132,12 @@ def combination_method(dict_massives, train_size=0.8, proximity_value=1):
                 train_indices.extend(dict_massives[massif]['indices'])
             else:
                 test_indices.extend(dict_massives[massif]['indices'])
+
         result.append((train_indices, test_indices))
 
     return result
 
-def balance_classes(results, targets, method='oversample',seed = 42):
+def balance_classes(results, targets, method='oversample', seed=42):
     """
     Balance the classes within each fold using the specified method.
 
@@ -133,6 +149,8 @@ def balance_classes(results, targets, method='oversample',seed = 42):
         Target labels.
     method : str, optional (default='oversample')
         The resampling method to use ('oversample', 'undersample', 'smote').
+    seed : int, optional (default=42)
+        Seed for random number generator.
 
     Returns
     -------
@@ -145,47 +163,26 @@ def balance_classes(results, targets, method='oversample',seed = 42):
         train_targets = targets[train_indices]
         
         if method == 'oversample':
-            unique_classes, class_counts = np.unique(train_targets, return_counts=True)
-            max_class_count = class_counts.max()
-
-            balanced_train_indices = []
-
-            for cls in unique_classes:
-                cls_indices = np.array(train_indices)[train_targets == cls]
-                if len(cls_indices) < max_class_count:
-                    cls_indices = resample(cls_indices, replace=True, n_samples=max_class_count, random_state=seed)
-                balanced_train_indices.extend(cls_indices)
-
-            balanced_train_indices = np.array(balanced_train_indices)
+            sampler = RandomOverSampler(random_state=seed)
+            balanced_train_indices, _ = sampler.fit_resample(np.array(train_indices).reshape(-1, 1), train_targets)
+            balanced_train_indices = balanced_train_indices.flatten()
         
         elif method == 'undersample':
-            unique_classes, class_counts = np.unique(train_targets, return_counts=True)
-            min_class_count = class_counts.min()
-
-            balanced_train_indices = []
-
-            for cls in unique_classes:
-                cls_indices = np.array(train_indices)[train_targets == cls]
-                if len(cls_indices) > min_class_count:
-                    cls_indices = resample(cls_indices, replace=False, n_samples=min_class_count, random_state=seed)
-                balanced_train_indices.extend(cls_indices)
-
-            balanced_train_indices = np.array(balanced_train_indices)
+            sampler = RandomUnderSampler(random_state=seed)
+            balanced_train_indices, _ = sampler.fit_resample(np.array(train_indices).reshape(-1, 1), train_targets)
+            balanced_train_indices = balanced_train_indices.flatten()
         
         elif method == 'smote':
-            smote = SMOTE(random_state=seed)
-            train_data = np.array(train_indices)
-            balanced_train_indices, _ = smote.fit_resample(train_data.reshape(-1, 1), train_targets)
+            sampler = SMOTE(random_state=seed)
+            balanced_train_indices, _ = sampler.fit_resample(np.array(train_indices).reshape(-1, 1), train_targets)
             balanced_train_indices = balanced_train_indices.flatten()
         
         else:
             raise ValueError(f"Unknown resampling method: {method}")
 
-        np.random.shuffle(balanced_train_indices)
         balanced_results.append((balanced_train_indices.tolist(), test_indices))
 
     return balanced_results
-
 
 class FoldManagement: 
     """
@@ -206,14 +203,7 @@ class FoldManagement:
         Apply the selected labeling method to the provided metadata.
     """
 
-    def __init__(self,
-                 targets, 
-                 method="kFold",
-                 resampling_method="undersample", 
-                 shuffle=False, 
-                 random_state=42, 
-                 balanced  = True,
-                 train_aprox_size=0.8):
+    def __init__(self, targets, method="kFold", resampling_method="undersample", shuffle=False, random_state=42, balanced=True, train_aprox_size=0.8):
         self.targets = targets
         self.method = method
         self.resampling_method = resampling_method
@@ -228,6 +218,9 @@ class FoldManagement:
         """
         Split the data into train and test sets based on the specified folding method.
 
+        .. warning::
+        The method combinationFold takes the variable: "proximity_value"; which is a value to control the proximity of the distribution of the folds.
+        
         Parameters:
         - x : array-like
             The data to split.
@@ -256,9 +249,9 @@ class FoldManagement:
                 self.results = fold_massive_method(self.massives_count)
 
             case "combinationFold":
-                self.results = combination_method(self.massives_count, train_size=self.train_aprox_size, proximity_value=1)
+                self.results = combination_method(self.massives_count, train_size=self.train_aprox_size, proximity_value=1, shuffle=self.shuffle, seed=self.seed)
         
         if self.balanced:
-            self.results = balance_classes(self.results, self.targets, method=self.resampling_method, seed=self.seed)
+            self.results = balance_classes(self.results, self.targets, method="undersample", seed=self.seed)
 
         return self.results

@@ -124,7 +124,8 @@ if __name__ == "__main__":
         seed = pipeline_params["seed"]
         labeling_method = pipeline_params["labeling_method"]
         resampling_method = pipeline_params["resampling_method"]
-        orbit = pipeline_params["orbit"]
+        balance_data = pipeline_params["balance_data"]
+        # orbit = pipeline_params["orbit"]
         request = pipeline_params["request"]
         shuffle_data = pipeline_params["shuffle_data"]
         channel_transformation = pipeline_params["channel_transformation"]
@@ -151,7 +152,8 @@ if __name__ == "__main__":
             "hsnow",
             "tel"
         ],
-        print_info=True
+        print_info=True,
+        seed=seed
     )
 
     x, y = dataset_loader.request_data(request)
@@ -166,6 +168,7 @@ if __name__ == "__main__":
                                   resampling_method=resampling_method, 
                                   shuffle=shuffle_data, 
                                   random_state=seed,
+                                  balanced=balance_data,
                                   train_aprox_size=0.8)
     
     fold_groups = fold_manager.split(x, y)
@@ -173,7 +176,7 @@ if __name__ == "__main__":
     log_dataset = logger_dataset(log_dataset, x, y, targets)
     log_dataset = logger_fold(log_dataset, fold_groups, targets, y)
 
-    y_est_save = predict_dataset(x=x,
+    """y_est_save = predict_dataset(x=x,
                                  targets=targets,
                                  fold_groups=fold_groups,
                                  output_dir=out_dir,
@@ -181,5 +184,5 @@ if __name__ == "__main__":
                                  label_encoder=label_encoder,
                                  log_results=log_results,
                                  save=True)
-    
+    """
     print("================== End of the study ==================")
