@@ -1,0 +1,50 @@
+06/14/2024-10:44:37 AM: (files_management.py): INFO: init_logger Line: 280 - Started
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 140 - ================== Final report ==================
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 142 - __________________ Model : KNN_direct __________________
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - f1_score_weighted : 80.54769230769232 +/- 4.5750227470576235
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - accuracy_score : 80.39846153846153 +/- 4.645334874330865
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - recall_score_macro : 80.0476923076923 +/- 4.857405375532137
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - kappa_score : 58.78923076923077 +/- 10.275340504587044
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 156 - confusion_matrix :
+           not_wet        wet
+not_wet  82.663915  17.336085
+wet      22.568138  77.431862
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 142 - __________________ Model : RandomForest_direct __________________
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - f1_score_weighted : 81.15307692307692 +/- 4.910487026786314
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - accuracy_score : 80.91076923076925 +/- 4.9977925304593
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - recall_score_macro : 81.32076923076923 +/- 4.772039495514007
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - kappa_score : 60.4923076923077 +/- 10.324713558214174
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 156 - confusion_matrix :
+           not_wet        wet
+not_wet  80.340185  19.659815
+wet      17.695354  82.304646
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 142 - __________________ Model : MLP_direct __________________
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - f1_score_weighted : 78.17076923076924 +/- 3.445039826806653
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - accuracy_score : 77.84846153846155 +/- 3.734911895065976
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - recall_score_macro : 78.33923076923075 +/- 3.428353409523545
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - kappa_score : 54.44538461538462 +/- 8.065014297650176
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 156 - confusion_matrix :
+           not_wet        wet
+not_wet  79.037946  20.962054
+wet      22.358738  77.641262
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 142 - __________________ Model : SVMrbf_direct __________________
+06/14/2024-10:48:27 : (files_management.py): ERROR: report_metric_from_log Line: 160 - No results found for model SVMrbf_direct. Skipping metrics.
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 142 - __________________ Model : LogisticR_direct __________________
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - f1_score_weighted : 81.11461538461539 +/- 4.827977145100159
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - accuracy_score : 80.96153846153847 +/- 4.793241790678343
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - recall_score_macro : 81.07 +/- 4.56275220588492
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - kappa_score : 60.385384615384616 +/- 9.119585529873953
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 156 - confusion_matrix :
+           not_wet        wet
+not_wet  81.917154  18.082846
+wet      19.777977  80.222023
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 142 - __________________ Model : AdaBoost_direct __________________
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - f1_score_weighted : 79.76846153846154 +/- 4.453988439337431
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - accuracy_score : 79.52076923076925 +/- 4.533299802637336
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - recall_score_macro : 79.90846153846154 +/- 4.084173668713539
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 150 - kappa_score : 57.71230769230768 +/- 8.906429962367424
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 156 - confusion_matrix :
+           not_wet        wet
+not_wet  80.105508  19.894492
+wet      20.288523  79.711477
+06/14/2024-10:48:27 : (files_management.py): INFO: report_metric_from_log Line: 165 - ================== End report ==================

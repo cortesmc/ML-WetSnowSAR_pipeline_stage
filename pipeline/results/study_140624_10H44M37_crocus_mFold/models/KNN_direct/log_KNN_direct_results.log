@@ -1,0 +1,210 @@
+06/14/2024-10:46:24 AM: (files_management.py): INFO: init_logger Line: 280 - Started
+06/14/2024-10:46:24 AM: (learning_models.py): INFO: predict_dataset Line: 72 - ================== Fitting model KNN_direct ==================
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 0 with KNN_direct __________________
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 77.64
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 78.79
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[81.96 73.32]
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 78.47
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 77.27
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 78.96
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 78.96
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 54.39
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 55.53
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          not_wet      wet
+not_wet  77.1429  22.8571
+wet      19.2308  80.7692
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 12.23
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 1.59
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 1 with KNN_direct __________________
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 82.31
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 82.74
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[84.89 79.72]
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 82.68
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 82.13
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 82.57
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 82.57
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 59.37
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 64.63
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          not_wet      wet
+not_wet  83.2282  16.7718
+wet      18.0851  81.9149
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 11.03
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 2.31
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 2 with KNN_direct __________________
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 79.02
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 79.53
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[76.67 81.38]
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 79.29
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 79.17
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 80.55
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 80.55
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 80.74
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 58.48
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          not_wet      wet
+not_wet  86.4662  13.5338
+wet      25.3659  74.6341
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 12.26
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 0.58
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 3 with KNN_direct __________________
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 89.21
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 89.23
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[88.73 89.69]
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 89.23
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 89.22
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 89.21
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 89.21
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 32.05
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 78.43
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          not_wet      wet
+not_wet  88.6311  11.3689
+wet      10.2128  89.7872
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 11.64
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 1.43
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 4 with KNN_direct __________________
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 84.46
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 85.68
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[88.54 80.38]
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 85.53
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 83.87
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 85.33
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 85.33
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 31.64
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 68.97
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          not_wet      wet
+not_wet  85.9964  14.0036
+wet      15.3333  84.6667
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 12.10
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 1.39
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 5 with KNN_direct __________________
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 78.89
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 78.83
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[80.13 77.65]
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 78.97
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 80.27
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 79.48
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 79.48
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 40.95
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 58.30
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          not_wet      wet
+not_wet  89.4737  10.5263
+wet      30.5085  69.4915
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 12.11
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 1.01
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 6 with KNN_direct __________________
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 80.05
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 81.50
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[84.62 75.48]
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 81.10
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 79.45
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 82.11
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 82.11
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 39.85
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 60.43
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          not_wet      wet
+not_wet  78.9286  21.0714
+wet      14.7126  85.2874
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 11.92
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 2.19
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 7 with KNN_direct __________________
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 75.76
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 75.94
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[78.55 72.96]
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 76.08
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 76.24
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 75.65
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 75.65
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 79.74
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 51.63
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          not_wet      wet
+not_wet  82.1622  17.8378
+wet      30.8642  69.1358
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 13.82
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 0.66
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 8 with KNN_direct __________________
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 80.38
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 83.01
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[87.46 73.3 ]
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 82.93
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 80.14
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 80.65
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 80.65
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 47.80
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 60.77
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          not_wet      wet
+not_wet  86.8102  13.1898
+wet      25.5132  74.4868
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 12.96
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 1.95
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 9 with KNN_direct __________________
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 79.62
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 80.55
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[84.46 74.79]
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 80.77
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 80.48
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 79.13
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 79.13
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 52.48
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 59.33
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          not_wet      wet
+not_wet  87.6344  12.3656
+wet      29.3651  70.6349
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 13.70
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 0.61
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 10 with KNN_direct __________________
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 83.76
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 84.35
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[86.73 80.79]
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 84.30
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 83.58
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 83.99
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 83.99
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 46.57
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 67.52
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          not_wet      wet
+not_wet  85.5670  14.4330
+wet      17.5926  82.4074
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 13.14
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 1.44
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 11 with KNN_direct __________________
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 68.93
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 76.32
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[82.96 54.9 ]
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 75.27
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 67.89
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 71.25
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 71.25
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 47.47
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 38.30
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          not_wet      wet
+not_wet  78.8732  21.1268
+wet      36.3636  63.6364
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 14.11
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 0.17
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 12 with KNN_direct __________________
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 70.54
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 70.65
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[71.29 69.79]
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 70.56
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 71.47
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 71.74
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 71.74
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 57.77
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 41.94
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          not_wet      wet
+not_wet  63.7168  36.2832
+wet      20.2381  79.7619
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 14.19
+06/14/2024-10:46:54 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 0.31

@@ -1,0 +1,75 @@
+06/14/2024-10:18:55 AM: (files_management.py): INFO: init_logger Line: 280 - Started
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 140 - ================== Final report ==================
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 142 - __________________ Model : KNN_direct __________________
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - f1_score_macro : 80.6175 +/- 2.6049268223886872
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - f1_score_weighted : 81.23125 +/- 2.2025691674723866
+06/14/2024-10:22:13 : (files_management.py): ERROR: report_metric_from_log Line: 158 - No suitable values found for metric f1_score_multiclass in model KNN_direct
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - accuracy_score : 81.21625 +/- 2.2632605765797282
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - precision_score_macro : 80.72 +/- 2.7286122846604655
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - recall_score_macro : 80.75999999999999 +/- 2.5046606556577666
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - roc_auc_score : 80.75999999999999 +/- 2.5046606556577666
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - log_loss : 49.69624999999999 +/- 8.705554171762987
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - kappa_score : 61.293749999999996 +/- 5.193989164168519
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 156 - confusion_matrix :
+           0          1
+0  84.227837  15.772163
+1  22.707850  77.292150
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 142 - __________________ Model : RandomForest_direct __________________
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - f1_score_macro : 81.72874999999999 +/- 3.0515505792137874
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - f1_score_weighted : 82.20875 +/- 2.740640607139142
+06/14/2024-10:22:13 : (files_management.py): ERROR: report_metric_from_log Line: 158 - No suitable values found for metric f1_score_multiclass in model RandomForest_direct
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - accuracy_score : 82.1075 +/- 2.8377312681083815
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - precision_score_macro : 81.6375 +/- 3.0831791628123097
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - recall_score_macro : 82.22625000000001 +/- 2.62629938078278
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - roc_auc_score : 82.22625000000001 +/- 2.62629938078278
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - log_loss : 40.15125 +/- 4.1752527992326405
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - kappa_score : 63.56375 +/- 5.9823342799863655
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 156 - confusion_matrix :
+           0          1
+0  81.811437  18.188562
+1  17.362275  82.637725
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 142 - __________________ Model : MLP_direct __________________
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - f1_score_macro : 77.85499999999999 +/- 3.510676572969945
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - f1_score_weighted : 78.44500000000001 +/- 3.161150898011675
+06/14/2024-10:22:13 : (files_management.py): ERROR: report_metric_from_log Line: 158 - No suitable values found for metric f1_score_multiclass in model MLP_direct
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - accuracy_score : 78.36250000000001 +/- 3.293333227901483
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - precision_score_macro : 77.97500000000001 +/- 3.53173116190913
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - recall_score_macro : 78.25875 +/- 3.0537617682949647
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - roc_auc_score : 78.25875 +/- 3.0537617682949647
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - log_loss : 78.04875 +/- 23.33698054456703
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - kappa_score : 55.87625 +/- 6.849041789732342
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 156 - confusion_matrix :
+           0          1
+0  79.379913  20.620088
+1  22.860575  77.139425
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 142 - __________________ Model : SVMrbf_direct __________________
+06/14/2024-10:22:13 : (files_management.py): ERROR: report_metric_from_log Line: 160 - No results found for model SVMrbf_direct. Skipping metrics.
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 142 - __________________ Model : LogisticR_direct __________________
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - f1_score_macro : 81.13 +/- 2.6674613399260374
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - f1_score_weighted : 81.69375 +/- 2.308278240918975
+06/14/2024-10:22:13 : (files_management.py): ERROR: report_metric_from_log Line: 158 - No suitable values found for metric f1_score_multiclass in model LogisticR_direct
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - accuracy_score : 81.6425 +/- 2.380277032196043
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - precision_score_macro : 81.125 +/- 2.7547459047977534
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - recall_score_macro : 81.37875 +/- 2.466077033975215
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - roc_auc_score : 81.37875 +/- 2.466077033975215
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - log_loss : 41.71125 +/- 5.717207442230865
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - kappa_score : 62.32125 +/- 5.289388994723304
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 156 - confusion_matrix :
+           0          1
+0  83.433113  16.566887
+1  20.672975  79.327025
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 142 - __________________ Model : AdaBoost_direct __________________
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - f1_score_macro : 79.73249999999999 +/- 2.6747838697734063
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - f1_score_weighted : 80.3225 +/- 2.2692661258653666
+06/14/2024-10:22:13 : (files_management.py): ERROR: report_metric_from_log Line: 158 - No suitable values found for metric f1_score_multiclass in model AdaBoost_direct
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - accuracy_score : 80.25625000000001 +/- 2.3555675404241776
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - precision_score_macro : 79.7125 +/- 2.738661853898725
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - recall_score_macro : 80.01625 +/- 2.42280280615241
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - roc_auc_score : 80.01625 +/- 2.42280280615241
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - log_loss : 68.63125 +/- 0.06372548548265379
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 150 - kappa_score : 59.54 +/- 5.283185592045771
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 156 - confusion_matrix :
+           0          1
+0  81.714500  18.285500
+1  21.679475  78.320525
+06/14/2024-10:22:13 : (files_management.py): INFO: report_metric_from_log Line: 165 - ================== End report ==================

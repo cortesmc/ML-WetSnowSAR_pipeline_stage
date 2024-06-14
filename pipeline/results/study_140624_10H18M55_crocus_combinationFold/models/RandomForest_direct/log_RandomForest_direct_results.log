@@ -1,0 +1,130 @@
+06/14/2024-10:20:58 AM: (files_management.py): INFO: init_logger Line: 280 - Started
+06/14/2024-10:20:58 AM: (learning_models.py): INFO: predict_dataset Line: 72 - ================== Fitting model RandomForest_direct ==================
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 0 with RandomForest_direct __________________
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 85.07
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 85.08
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[84.73 85.41]
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 85.07
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 85.06
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 85.07
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 85.07
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 34.99
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 70.13
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          0        1
+0  84.9206  15.0794
+1  14.7789  85.2211
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 12.20
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 3.32
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 1 with RandomForest_direct __________________
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 79.57
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 81.05
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[84.88 74.26]
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 80.95
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 79.30
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 79.91
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 79.91
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 40.75
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 59.16
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          0        1
+0  83.6625  16.3375
+1  23.8474  76.1526
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 14.31
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 3.21
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 2 with RandomForest_direct __________________
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 76.51
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 77.14
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[79.6  73.43]
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 76.92
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 76.41
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 77.47
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 77.47
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 48.12
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 53.28
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          0        1
+0  74.7756  25.2244
+1  19.8370  80.1630
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 13.33
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 3.45
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 3 with RandomForest_direct __________________
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 85.62
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 85.68
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[84.79 86.45]
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 85.67
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 85.57
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 85.74
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 85.74
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 36.89
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 71.25
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          0        1
+0  86.6265  13.3735
+1  15.1546  84.8454
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 12.30
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 3.05
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 4 with RandomForest_direct __________________
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 83.22
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 83.51
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[85.36 81.08]
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 83.49
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 83.15
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 83.30
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 83.30
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 37.94
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 66.44
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          0        1
+0  84.7222  15.2778
+1  18.1226  81.8774
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 13.91
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 3.28
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 5 with RandomForest_direct __________________
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 83.70
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 84.00
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[85.77 81.64]
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 83.97
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 83.59
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 83.86
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 83.86
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 36.51
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 67.41
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          0        1
+0  84.6230  15.3770
+1  16.9089  83.0911
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 12.50
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 3.20
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 6 with RandomForest_direct __________________
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 78.54
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 79.44
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[81.93 75.16]
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 79.08
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 78.48
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 80.54
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 80.54
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 44.40
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 57.58
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          0        1
+0  75.0207  24.9793
+1  13.9403  86.0597
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 14.29
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 3.44
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 372 - __________________ Fold 7 with RandomForest_direct __________________
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_macro : 81.60
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_weighted : 81.77
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  f1_score_multiclass : 
+[83.01 80.19]
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  accuracy_score : 81.71
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  precision_score_macro : 81.54
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  recall_score_macro : 81.92
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  roc_auc_score : 81.92
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  log_loss : 41.61
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  kappa_score : 63.26
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  confusion_matrix :          0        1
+0  80.1404  19.8596
+1  16.3085  83.6915
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  training_time : 8.87
+06/14/2024-10:21:25 AM: (files_management.py): INFO: save_metrics Line: 383 -  prediction_time : 2.27

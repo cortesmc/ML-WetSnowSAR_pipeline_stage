@@ -51,9 +51,9 @@ def crocus_method_three_labels(metadata):
         raise ValueError("The dictionary does not contain a 'physics' key.")
 
     # Define the conditions for each label
-    condition_a = (physics_data[:, 0] <= -1)
-    condition_b = (physics_data[:, 0] > -1) & (physics_data[:, 2] < 1)
-    condition_c = (physics_data[:, 0] > -1) & (physics_data[:, 2] >= 1)
+    condition_a = (physics_data[:, 0] <= -5)
+    condition_b = (physics_data[:, 0] > -5) & (physics_data[:, 2] < 1)
+    condition_c = (physics_data[:, 0] > 1)
 
     # Initialize labels array with default value (e.g., -1 for undefined)
     labels = np.full(physics_data.shape[0], -1)

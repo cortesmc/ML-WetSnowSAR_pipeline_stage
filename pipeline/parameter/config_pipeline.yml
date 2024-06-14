@@ -14,10 +14,10 @@ seed: 42
 labeling_method: "crocus"
 
 # Method for resampling: oversample, undersample, or smote
-resampling_method: "undersample"
+resampling_method: "smote"
 
 # Filter request based on date and elevation criteria
-request: "(date.dt.month == 3 and date.dt.day == 1) and ((elevation > 1000) and (elevation < 1500))"
+request: "(date.dt.month == 3 and date.dt.day == 1) and ((elevation > 1000) and (elevation < 2000))"
 
 # Shuffle the data before processing
 shuffle_data: true
@@ -99,11 +99,11 @@ pipeline:
 metrics_to_report:
     #- 'f1_score_macro'
     - 'f1_score_weighted'
-    - 'f1_score_multiclass'
+    #- 'f1_score_multiclass'
     - 'accuracy_score'
     #- 'precision_score_macro'
     - 'recall_score_macro'
     #- 'roc_auc_score'
     #- 'log_loss'
-    #- 'kappa_score'
+    - 'kappa_score'
     - 'confusion_matrix'
