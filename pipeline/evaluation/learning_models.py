@@ -176,7 +176,7 @@ if __name__ == "__main__":
     log_dataset = logger_dataset(log_dataset, x, y, targets)
     log_dataset = logger_fold(log_dataset, fold_groups, targets, y)
 
-    """y_est_save = predict_dataset(x=x,
+    y_est_save = predict_dataset(x=x,
                                  targets=targets,
                                  fold_groups=fold_groups,
                                  output_dir=out_dir,
@@ -184,5 +184,5 @@ if __name__ == "__main__":
                                  label_encoder=label_encoder,
                                  log_results=log_results,
                                  save=True)
-    """
+    
     print("================== End of the study ==================")
