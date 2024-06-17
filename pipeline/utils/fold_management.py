@@ -83,15 +83,15 @@ def combination_method(dict_massives, train_size=0.8, proximity_value=1, shuffle
     - list of tuples
         A list containing train and test indices for each prioritized combination of massives.
     """
-    if shuffle:
+    if shuffle and seed is not None:
         random.seed(seed)
 
     total_count = sum(value['count'] for value in dict_massives.values())
     massives = list(dict_massives.keys())
-    sorted(massives)
-    
+    massives.sort()
+
     all_combinations = []
-    for r in range(1, len(massives)):
+    for r in range(1, len(massives) + 1):
         combinations_object = itertools.combinations(massives, r)
         combinations_list = list(combinations_object)
         all_combinations.extend(combinations_list)
@@ -102,7 +102,8 @@ def combination_method(dict_massives, train_size=0.8, proximity_value=1, shuffle
         percentage = (combo_count / total_count) * 100
         if (train_size * 100) - proximity_value <= percentage <= (train_size * 100) + proximity_value:
             valid_combinations.append(combo)
-    sorted(valid_combinations)
+    
+    valid_combinations.sort()
 
     if shuffle:
         random.shuffle(valid_combinations)
@@ -203,16 +204,14 @@ class FoldManagement:
         Apply the selected labeling method to the provided metadata.
     """
 
-    def __init__(self, targets, method="kFold", resampling_method="undersample", shuffle=False, random_state=42, balanced=True, train_aprox_size=0.8):
-        self.targets = targets
+    def __init__(self, method="kFold", resampling_method="undersample", shuffle=False, seed=42, train_aprox_size=0.8):
         self.method = method
         self.resampling_method = resampling_method
         self.shuffle = shuffle
-        self.seed = random_state
+        self.seed = seed
         self.train_aprox_size = train_aprox_size
         self.massives_count = {}
         self.results = None
-        self.balanced = balanced
 
     def split(self, x, y):
         """
@@ -251,7 +250,5 @@ class FoldManagement:
             case "combinationFold":
                 self.results = combination_method(self.massives_count, train_size=self.train_aprox_size, proximity_value=1, shuffle=self.shuffle, seed=self.seed)
         
-        if self.balanced:
-            self.results = balance_classes(self.results, self.targets, method="undersample", seed=self.seed)
 
         return self.results

@@ -14,7 +14,7 @@ from estimators.statistical_descriptor import Nagler_WS
 # from plot.figure_roc import ROC_plot
 from utils.dataset_management import parse_pipeline
 from utils.dataset_load import shuffle_data, DatasetLoader
-from utils.fold_management import FoldManagement
+from utils.fold_management import FoldManagement, balance_classes
 from utils.label_management import LabelManagement
 from utils.figures import plot_boxplots, plot_roc_curves
 from utils.files_management import (
@@ -167,12 +167,15 @@ if __name__ == "__main__":
                                   method=fold_method,
                                   resampling_method=resampling_method, 
                                   shuffle=shuffle_data, 
-                                  random_state=seed,
+                                  seed=seed,
                                   balanced=balance_data,
                                   train_aprox_size=0.8)
     
     fold_groups = fold_manager.split(x, y)
 
+    if balance_data:
+        fold_groups = balance_classes(fold_groups, targets, method=labeling_method, seed=seed)
+    
     log_dataset = logger_dataset(log_dataset, x, y, targets)
     log_dataset = logger_fold(log_dataset, fold_groups, targets, y)
 

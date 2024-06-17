@@ -8,22 +8,22 @@ out_dir: "pipeline/results/"
 fold_method: "combinationFold"
 
 # Random seed for reproducibility
-seed: 42
+seed: 100150
 
 # Method for labeling: crocus
 labeling_method: "crocus"
 
 # Method for resampling: oversample, undersample, or smote
-resampling_method: "smote"
+resampling_method: "undersample"
 
 # Filter request based on date and elevation criteria
-request: "(date.dt.month == 3 and date.dt.day == 1) and ((elevation > 1000) and (elevation < 2000))"
+request: "(date.dt.month == 3 and date.dt.day == 1) and ((elevation > 1000) and (elevation < 1500))"
 
 # Shuffle the data before processing
 shuffle_data: true
 
 # Balance the data
-balance_data: true
+balance_data: false
 
 # Transformation applied to the data channels (Not implemented)
 channel_transformation: "log10"
@@ -56,14 +56,14 @@ pipeline_names:
 # Configuration for each pipeline
 pipeline:
     # KNeighborsClassifier pipeline
-    - - - BandSelector
+    - - - "BandSelector"
         - bands: [0,1,2,3,4,5,6,7,8]
       - - "Hist_SAR"
       - - "KNeighborsClassifier"
         - n_neighbors: 50
         - n_jobs: -1
     # RandomForestClassifier pipeline
-    - - - BandSelector
+    - - - "BandSelector"
         - bands: [0,1,2,3,4,5,6,7,8]
       - - "Hist_SAR"
       - - "RandomForestClassifier"
@@ -71,25 +71,25 @@ pipeline:
         - criterion: "entropy"
         - n_jobs: -1
     # MLPClassifier pipeline
-    - - - BandSelector
+    - - - "BandSelector"
         - bands: [0,1,2,3,4,5,6,7,8]
       - - "Hist_SAR"
       - - "MLPClassifier"
         - alpha: 0.01
     # SVC with RBF kernel pipeline
-    - - - BandSelector
+    - - - "BandSelector"
         - bands: [0,1,2,3,4,5,6,7,8]
       - - "Hist_SAR"
       - - "SVC"
         - kernel: "rbf"
         - probability: 1
     # LogisticRegression pipeline
-    - - - BandSelector
+    - - - "BandSelector"
         - bands: [0,1,2,3,4,5,6,7,8]
       - - "Hist_SAR"
       - - "LogisticRegression"
     # AdaBoostClassifier pipeline
-    - - - BandSelector
+    - - - "BandSelector"
         - bands: [0,1,2,3,4,5,6,7,8]
       - - "Hist_SAR"
       - - "AdaBoostClassifier"
