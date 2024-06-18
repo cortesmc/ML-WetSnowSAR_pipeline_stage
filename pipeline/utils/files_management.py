@@ -189,17 +189,21 @@ def report_prediction(logg, y_true, y_pred, le, fold):
         Logger instance.
     dict
         Dictionary containing various computed metrics.
-    """
-    if y_true.ndim > 1 and y_true.shape[1] == 2:
-        y_true = y_true.argmax(axis=1)
+    """    
+    if y_pred.ndim > 1:
+        if y_pred.shape[1] > 1:
+            y_pred_classes = y_pred.argmax(axis=1)
+        else:
+            y_pred_classes = (y_pred[:, 0] >= 0.5).astype(int)
     else:
-        y_true = y_true.ravel()
+        y_pred_classes = (y_pred >= 0.5).astype(int)
     
-    y_pred_classes = y_pred.argmax(axis=1)
     y_true_transformed = le.inverse_transform(y_true)
     y_pred_transformed = le.inverse_transform(y_pred_classes)
 
     all_labels = le.classes_
+    print(f"pred {y_pred.shape[1]}")
+    print(f"true {y_true.shape[1]}")
 
     cm = confusion_matrix(y_true_transformed, y_pred_transformed, labels=all_labels)
     cm_df = pd.DataFrame(
@@ -215,9 +219,11 @@ def report_prediction(logg, y_true, y_pred, le, fold):
     precision_macro = 100 * round(precision_score(y_true_transformed, y_pred_transformed, average="macro"), 4)
     recall_macro = 100 * round(recall_score(y_true_transformed, y_pred_transformed, average="macro"), 4)
 
-    if y_pred.shape[1] > 1:
+    if y_pred.shape[1] > 2:
+        print("|||||||||||||||||||||")
         roc_auc = 100 * round(roc_auc_score(y_true, y_pred, multi_class="ovr"), 4)
     else:
+        print("#####################")
         roc_auc = 100 * round(roc_auc_score(y_true, y_pred_classes), 4)
     
     log_loss_val = 100 * round(log_loss(y_true, y_pred), 4)

@@ -11,7 +11,7 @@ fold_method: "combinationFold"
 seed: 100150
 
 # Method for labeling: crocus, 3labels
-labeling_method: "3labels"
+labeling_method: "crocus"
 
 # Method for resampling: oversample, undersample, or smote
 resampling_method: "undersample"
