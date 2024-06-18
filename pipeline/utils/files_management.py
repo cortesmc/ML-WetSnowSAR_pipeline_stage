@@ -148,7 +148,7 @@ def report_metric_from_log(logg, dic, metrics_to_report=["f1_score_weighted"]):
 
                 if isinstance(values[0], (int, float)):
                     logg.info(f"{metric} : {np.mean(values)} +/- {np.std(values)}")
-                elif isinstance(values[0], list):  # Handle list case for multiclass F1 score
+                elif isinstance(values[0], list):
                     values_flat = np.array(values).mean(axis=0)
                     logg.info(f"{metric} : {values_flat}")
                 elif isinstance(values[0], pd.DataFrame):
@@ -175,7 +175,7 @@ def report_prediction(logg, y_true, y_pred, le, fold):
     y_true : numpy.ndarray
         True labels.
     y_pred : numpy.ndarray
-        Predicted labels.
+        Predicted probabilities.
     le : LabelEncoder
         LabelEncoder object.
     logg : logging.Logger
@@ -190,19 +190,15 @@ def report_prediction(logg, y_true, y_pred, le, fold):
     dict
         Dictionary containing various computed metrics.
     """
-    
-    if y_pred.shape[1] > 1:
-        y_pred_classes = y_pred.argmax(axis=1)
-    elif y_true.shape[1] > 1:
+    if y_true.ndim > 1 and y_true.shape[1] == 2:
         y_true = y_true.argmax(axis=1)
     else:
         y_true = y_true.ravel()
-        y_pred_classes = y_pred.ravel()
-        y_pred_classes = np.argmax(y_pred_classes, axis=1)
-        
+    
+    y_pred_classes = y_pred.argmax(axis=1)
     y_true_transformed = le.inverse_transform(y_true)
     y_pred_transformed = le.inverse_transform(y_pred_classes)
-   
+
     all_labels = le.classes_
 
     cm = confusion_matrix(y_true_transformed, y_pred_transformed, labels=all_labels)
@@ -211,17 +207,22 @@ def report_prediction(logg, y_true, y_pred, le, fold):
         columns=all_labels,
         index=all_labels
     ).round(4).fillna(0)
+
+    f1_macro = 100 * round(f1_score(y_true_transformed, y_pred_transformed, average="macro"), 4)
+    f1_weighted = 100 * round(f1_score(y_true_transformed, y_pred_transformed, average="weighted"), 4)
+    f1_multiclass = 100 * np.round(f1_score(y_true_transformed, y_pred_transformed, average=None), 4)
+    accuracy = 100 * round(accuracy_score(y_true_transformed, y_pred_transformed), 4)
+    precision_macro = 100 * round(precision_score(y_true_transformed, y_pred_transformed, average="macro"), 4)
+    recall_macro = 100 * round(recall_score(y_true_transformed, y_pred_transformed, average="macro"), 4)
+
+    if y_pred.shape[1] > 1:
+        roc_auc = 100 * round(roc_auc_score(y_true, y_pred, multi_class="ovr"), 4)
+    else:
+        roc_auc = 100 * round(roc_auc_score(y_true, y_pred_classes), 4)
     
-    f1_macro = 100 * round(f1_score(y_true, y_pred_classes, average="macro"), 4)
-    f1_weighted = 100 * round(f1_score(y_true, y_pred_classes, average="weighted"), 4)
-    f1_multiclass = 100 * np.round(f1_score(y_true, y_pred_classes, average=None), 4)    
-    accuracy = 100 * round(accuracy_score(y_true, y_pred_classes), 4)
-    precision_macro = 100 * round(precision_score(y_true, y_pred_classes, average="macro"), 4)
-    recall_macro = 100 * round(recall_score(y_true, y_pred_classes, average="macro"), 4)
-    roc_auc = 100 * round(roc_auc_score(y_true, y_pred_classes, multi_class="ovr"), 4)
     log_loss_val = 100 * round(log_loss(y_true, y_pred), 4)
-    kappa = 100 * round(cohen_kappa_score(y_true, y_pred_classes), 4)
-    
+    kappa = 100 * round(cohen_kappa_score(y_true_transformed, y_pred_transformed), 4)
+
     metrics = {
         'f1_score_macro': f1_macro,
         'f1_score_weighted': f1_weighted,
@@ -237,11 +238,13 @@ def report_prediction(logg, y_true, y_pred, le, fold):
 
     for metric, value in metrics.items():
         logg.info(f"{metric} : {value}")
-    
-    metrics['y_true'] = y_true
+
+    metrics['y_true'] = y_true_transformed
     metrics['y_pred'] = y_pred
     metrics['fold'] = fold
+
     return logg, metrics
+
 
 
 def init_logger(path_log, name):
