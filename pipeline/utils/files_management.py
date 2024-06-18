@@ -203,7 +203,6 @@ def report_prediction(logg, y_true, y_pred, le, fold):
 
     all_labels = le.classes_
     print(f"pred {y_pred.shape[1]}")
-    print(f"true {y_true.shape[1]}")
 
     cm = confusion_matrix(y_true_transformed, y_pred_transformed, labels=all_labels)
     cm_df = pd.DataFrame(
