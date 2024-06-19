@@ -25,9 +25,6 @@ shuffle_data: true
 # Balance the data
 balance_data: false
 
-# Transformation applied to the data channels (Not implemented)
-channel_transformation: "log10"
-
 # Maximum bands configuration (Not used for the moment)
 BANDS_MAX:
    "a":
@@ -42,7 +39,7 @@ import:
     - "from sklearn.linear_model import LogisticRegression"
     - "from sklearn.neural_network import MLPClassifier"
     - "from estimators.statistical_descriptor import *"
-    - "from estimators.band_selector import *"
+    - "from estimators.band_transform import *"
 
 # Names of the pipelines to be used
 pipeline_names:
@@ -58,6 +55,9 @@ pipeline:
     # KNeighborsClassifier pipeline
     - - - "BandSelector"
         - bands: [0,1,2,3,4,5,6,7,8]
+      - - "BandTransformer"
+        - bands : [0,1,2,3]
+        - transformations : [] 
       - - "Hist_SAR"
       - - "KNeighborsClassifier"
         - n_neighbors: 50
@@ -65,6 +65,9 @@ pipeline:
     # RandomForestClassifier pipeline
     - - - "BandSelector"
         - bands: [0,1,2,3,4,5,6,7,8]
+      - - "BandTransformer"
+        - bands : [0,1,2,3]
+        - transformations : [] 
       - - "Hist_SAR"
       - - "RandomForestClassifier"
         - n_estimators: 200
@@ -73,12 +76,18 @@ pipeline:
     # MLPClassifier pipeline
     - - - "BandSelector"
         - bands: [0,1,2,3,4,5,6,7,8]
+      - - "BandTransformer"
+        - bands : [0,1,2,3]
+        - transformations : [] 
       - - "Hist_SAR"
       - - "MLPClassifier"
         - alpha: 0.01
     # SVC with RBF kernel pipeline
     - - - "BandSelector"
         - bands: [0,1,2,3,4,5,6,7,8]
+      - - "BandTransformer"
+        - bands : [0,1,2,3]
+        - transformations : [] 
       - - "Hist_SAR"
       - - "SVC"
         - kernel: "rbf"
@@ -86,11 +95,17 @@ pipeline:
     # LogisticRegression pipeline
     - - - "BandSelector"
         - bands: [0,1,2,3,4,5,6,7,8]
+      - - "BandTransformer"
+        - bands : [0,1,2,3]
+        - transformations : [] 
       - - "Hist_SAR"
       - - "LogisticRegression"
     # AdaBoostClassifier pipeline
     - - - "BandSelector"
         - bands: [0,1,2,3,4,5,6,7,8]
+      - - "BandTransformer"
+        - bands : [0,1,2,3]
+        - transformations : [] 
       - - "Hist_SAR"
       - - "AdaBoostClassifier"
         - n_estimators: 200

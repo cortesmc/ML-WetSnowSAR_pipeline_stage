@@ -120,7 +120,6 @@ if __name__ == "__main__":
         # orbit = pipeline_params["orbit"]
         request = pipeline_params["request"]
         shuffle_data = pipeline_params["shuffle_data"]
-        channel_transformation = pipeline_params["channel_transformation"]
         BANDS_MAX = pipeline_params["BANDS_MAX"]
         metrics_to_report = pipeline_params["metrics_to_report"]
 
