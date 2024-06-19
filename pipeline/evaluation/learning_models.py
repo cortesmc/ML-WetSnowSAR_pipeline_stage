@@ -107,6 +107,7 @@ def log_error_details(pipeline_id, error_message, error_log_path):
 
 if __name__ == "__main__":
     param_path = "pipeline/parameter/config_pipeline.yml"
+    
     pipeline_params = load_yaml(param_path)
 
     try:
@@ -184,7 +185,7 @@ if __name__ == "__main__":
         
         results_dir = os.path.join(out_dir, "results/plots/")
         metrics_to_plot = ["f1_score_macro", "f1_score_weighted", "f1_score_multiclass", "kappa_score", "training_time", "prediction_time"]
-        plot_boxplots(metrics, metrics_to_plot=metrics_to_plot, save_dir=results_dir, fold_key=fold_key, labels_massives=fold_method=="mFold")
+        plot_boxplots(metrics, metrics_to_plot=metrics_to_plot, save_dir=results_dir, fold_key=fold_key, labels_massives=(fold_method=="mFold"))
         plot_roc_curves(metrics, save_dir=results_dir)
 
         log_results = report_metric_from_log(log_results, metrics, metrics_to_report)

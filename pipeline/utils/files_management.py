@@ -29,7 +29,6 @@ def dump_pkl(obj, path):
         pickle.dump(obj, f)
     return 1
 
-
 def open_pkl(path):
     """
     Open pickle file.
