@@ -172,7 +172,7 @@ if __name__ == "__main__":
             fold_groups = balance_classes(fold_groups, targets, method=labeling_method, seed=seed)
         
         log_dataset = logger_dataset(log_dataset, x, y, label_encoder.inverse_transform(targets))
-        log_dataset = logger_fold(log_dataset, fold_groups, label_encoder.inverse_transform(targets), y)
+        log_dataset, fold_key = logger_fold(log_dataset, fold_groups, label_encoder.inverse_transform(targets), y)
 
         metrics, y_est_save = predict_dataset(x=x,
                                     targets=targets,
@@ -185,10 +185,10 @@ if __name__ == "__main__":
         
         results_dir = os.path.join(out_dir, "results/plots/")
         metrics_to_plot = ["f1_score_macro", "f1_score_weighted", "f1_score_multiclass", "kappa_score", "training_time", "prediction_time"]
-        plot_boxplots(metrics, metrics_to_plot=metrics_to_plot, save_dir=results_dir)
+        plot_boxplots(metrics, metrics_to_plot=metrics_to_plot, save_dir=results_dir, fold_key=fold_key, labels_massives=fold_method=="mFold")
         plot_roc_curves(metrics, save_dir=results_dir)
-        log_results = report_metric_from_log(log_results, metrics, metrics_to_report)
 
+        log_results = report_metric_from_log(log_results, metrics, metrics_to_report)
         save_yaml(out_dir, "config_data.yaml", pipeline_params)
 
         print("================== End of the study ==================")

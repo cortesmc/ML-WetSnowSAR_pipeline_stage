@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def plot_boxplots(metrics_dict, metrics_to_plot =[], save_dir = None):
+def plot_boxplots(metrics_dict, metrics_to_plot =[], save_dir = None, fold_key={}, labels_massives=False):
     """
     Create and save boxplots for each metric by model and by fold.
 
@@ -47,12 +47,17 @@ def plot_boxplots(metrics_dict, metrics_to_plot =[], save_dir = None):
             plt.savefig(os.path.join(save_dir, f'boxplot_{column}_by_model.png'))
             plt.close()
 
+    if labels_massives:
+        metrics_df['fold'] = metrics_df['fold'].map(lambda x: fold_key[x]['test'][0])
+
     # Create and save boxplots for each metric by fold
     for column in metrics_df.columns:
         if column in metrics_to_plot:
             plt.figure(figsize=(10, 6))
             sns.boxplot(data=metrics_df, x='fold', y=column)
-            plt.title(f'Boxplot of {column} by Fold')
+            plt.title(f'Boxplot of {column} by {"Massif" if labels_massives else "Fold"}')
+            if labels_massives:
+                plt.xticks(rotation=45)
             plt.tight_layout()
             plt.savefig(os.path.join(save_dir, f'boxplot_{column}_by_fold.png'))
             plt.close()

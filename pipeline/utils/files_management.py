@@ -350,9 +350,10 @@ def logger_fold(logg, fold_groupes, targets, metadata):
 
     Returns
     -------
-    logging.Logger
-        Logger instance.
+    logging.Logger, dict
+        Logger instance and dictionary containing massif information for each fold.
     """
+    fold_key = {}
     for kfold, (train_index, test_index) in enumerate(fold_groupes):
         logg.info(f"------------------ Fold: {kfold} ------------------")
         
@@ -364,13 +365,18 @@ def logger_fold(logg, fold_groupes, targets, metadata):
         test_target_ratios = test_target_counts / test_target_counts.sum()
         test_target_info = ", ".join(f"{target}: {count} ({ratio:.2%})" for target, count, ratio in zip(test_unique_targets, test_target_counts, test_target_ratios))
         
+        massif_train = metadata['metadata'][train_index, 1]
+        massif_test = metadata['metadata'][test_index, 1]
+
         logg.info(f"    - Distribution class train: {train_target_info}")
         logg.info(f"    - Distribution class test: {test_target_info}")
         logg.info(f"    - Train size: {len(train_index) / (len(train_index) + len(test_index)) * 100:.2f}%")
-        logg.info(f"    - Massif in train: {np.unique(metadata['metadata'][train_index, 1])}")
-        logg.info(f"    - Massif in test: {np.unique(metadata['metadata'][test_index, 1])}")
+        logg.info(f"    - Massif in train: {np.unique(massif_train)}")
+        logg.info(f"    - Massif in test: {np.unique(massif_test)}")
 
-    return logg
+        fold_key[kfold] = {"train": massif_train, "test": massif_test}
+
+    return logg, fold_key
 
 def save_metrics(log_model, fold_metric, model_name):
     for metrics in fold_metric:
