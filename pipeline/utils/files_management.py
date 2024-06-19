@@ -1,4 +1,4 @@
-import re, os, h5py, logging, pickle, shutil, zipfile
+import re, os, h5py, logging, pickle, shutil, zipfile, yaml
 import numpy as np
 import pandas as pd
 from yaml import safe_load
@@ -148,8 +148,8 @@ def report_metric_from_log(logg, dic, metrics_to_report=["f1_score_weighted"]):
 
                 if isinstance(values[0], (int, float)):
                     logg.info(f"{metric} : {np.mean(values)} +/- {np.std(values)}")
-                elif isinstance(values[0], list):
-                    values_flat = np.array(values).mean(axis=0)
+                elif isinstance(values[0], np.ndarray):
+                    values_flat = np.mean(values, axis=0)
                     logg.info(f"{metric} : {values_flat}")
                 elif isinstance(values[0], pd.DataFrame):
                     mean_conf_matrix = sum(values) / len(values)
@@ -202,7 +202,6 @@ def report_prediction(logg, y_true, y_pred, le, fold):
     y_pred_transformed = le.inverse_transform(y_pred_classes)
 
     all_labels = le.classes_
-    print(f"pred {y_pred.shape[1]}")
 
     cm = confusion_matrix(y_true_transformed, y_pred_transformed, labels=all_labels)
     cm_df = pd.DataFrame(
@@ -219,10 +218,8 @@ def report_prediction(logg, y_true, y_pred, le, fold):
     recall_macro = 100 * round(recall_score(y_true_transformed, y_pred_transformed, average="macro"), 4)
 
     if y_pred.shape[1] > 2:
-        print("|||||||||||||||||||||")
         roc_auc = 100 * round(roc_auc_score(y_true, y_pred, multi_class="ovr"), 4)
     else:
-        print("#####################")
         roc_auc = 100 * round(roc_auc_score(y_true, y_pred_classes), 4)
     
     log_loss_val = 100 * round(log_loss(y_true, y_pred), 4)
@@ -581,3 +578,8 @@ def check_and_create_directory(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
     return directory
+
+def save_yaml(directory, name, data):
+
+    with open(directory+"/"+name, 'w') as outfile:
+        yaml.dump(data, outfile, default_flow_style=False)

@@ -17,17 +17,7 @@ from utils.dataset_load import shuffle_data, DatasetLoader
 from utils.fold_management import FoldManagement, balance_classes
 from utils.label_management import LabelManagement
 from utils.figures import plot_boxplots, plot_roc_curves
-from utils.files_management import (
-    load_yaml,
-    dump_pkl,
-    init_logger,
-    report_prediction,
-    report_metric_from_log,
-    set_folder,
-    logger_dataset,
-    logger_fold,
-    save_metrics
-)
+from utils.files_management import *
 
 def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_model, label_encoder, kfold, pipeline_name, save_dir, error_log_path):
     pipeline_id = f"{pipeline_name}_kfold_{kfold}"
@@ -194,9 +184,12 @@ if __name__ == "__main__":
                                     save=True)
         
         results_dir = os.path.join(out_dir, "results/plots/")
-        plot_boxplots(metrics, save_dir=results_dir)
+        metrics_to_plot = ["f1_score_macro", "f1_score_weighted", "f1_score_multiclass", "kappa_score", "training_time", "prediction_time"]
+        plot_boxplots(metrics, metrics_to_plot=metrics_to_plot, save_dir=results_dir)
         plot_roc_curves(metrics, save_dir=results_dir)
         log_results = report_metric_from_log(log_results, metrics, metrics_to_report)
+
+        save_yaml(out_dir, "config_data.yaml", pipeline_params)
 
         print("================== End of the study ==================")
 
