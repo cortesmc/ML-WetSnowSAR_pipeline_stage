@@ -10,8 +10,8 @@ fold_method: "combinationFold"
 # Random seed for reproducibility
 seed: 100150
 
-# Method for labeling: crocus
-labeling_method: "crocus"
+# Method for labeling: crocus, 3labels
+labeling_method: "3labels"
 
 # Method for resampling: oversample, undersample, or smote
 resampling_method: "undersample"
@@ -61,7 +61,7 @@ pipeline:
       - - "Hist_SAR"
       - - "KNeighborsClassifier"
         - n_neighbors: 50
-        - n_jobs: -1
+  #        - n_jobs: -1
     # RandomForestClassifier pipeline
     - - - "BandSelector"
         - bands: [0,1,2,3,4,5,6,7,8]
@@ -69,7 +69,7 @@ pipeline:
       - - "RandomForestClassifier"
         - n_estimators: 200
         - criterion: "entropy"
-        - n_jobs: -1
+  #        - n_jobs: -1
     # MLPClassifier pipeline
     - - - "BandSelector"
         - bands: [0,1,2,3,4,5,6,7,8]
@@ -82,7 +82,7 @@ pipeline:
       - - "Hist_SAR"
       - - "SVC"
         - kernel: "rbf"
-        - probability: 1
+        - probability: true
     # LogisticRegression pipeline
     - - - "BandSelector"
         - bands: [0,1,2,3,4,5,6,7,8]
@@ -97,13 +97,13 @@ pipeline:
 
 # Metrics to include in the final report
 metrics_to_report:
-    #- 'f1_score_macro'
+    - 'f1_score_macro'
     - 'f1_score_weighted'
-    #- 'f1_score_multiclass'
+    - 'f1_score_multiclass'
     - 'accuracy_score'
-    #- 'precision_score_macro'
+    - 'precision_score_macro'
     - 'recall_score_macro'
-    #- 'roc_auc_score'
-    #- 'log_loss'
+    - 'roc_auc_score'
+    - 'log_loss'
     - 'kappa_score'
     - 'confusion_matrix'

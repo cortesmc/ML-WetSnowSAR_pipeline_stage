@@ -29,7 +29,7 @@ from utils.files_management import (
     save_metrics
 )
 
-def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_model, label_encoder, kfold, pipeline_name, save_dir):
+def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_model, label_encoder, kfold, pipeline_name, save_dir, error_log_path):
     pipeline_id = f"{pipeline_name}_kfold_{kfold}"
     try:
         start_time = time.time()
@@ -46,24 +46,18 @@ def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_mod
         fold_metric["prediction_time"] = prediction_time
 
         dump_pkl(pipeline, os.path.join(save_dir, f"{pipeline_name}_fold{kfold}.pkl"))
-
+        
         return fold_metric, y_prob, y_test_k
     except Exception as e:
-        log_model.error(f"Pipeline {pipeline_id} failed")
-        log_model.error(e)
+        error_message = f"Pipeline {pipeline_id} failed with error: {str(e)}"
+        log_model.error(error_message)
+        log_error_details(pipeline_id, str(e), error_log_path)
         return None, None, None
 
-def predict_dataset(
-    x,
-    targets,
-    fold_groups,
-    output_dir,
-    pipeline_params,
-    label_encoder,
-    log_results,
-    save=True
-):
-    y_est_save, metrics = {}, {}
+
+def predict_dataset(x, targets, fold_groups, output_dir, pipeline_params, label_encoder, error_log_path, save=True):
+    y_est_save = {}
+    metrics = {}
 
     for count, pipeline_name in enumerate(pipeline_params["pipeline_names"]):
         save_dir = os.path.join(output_dir, f"models/{pipeline_name}/")
@@ -74,44 +68,52 @@ def predict_dataset(
         y_est_save[pipeline_name] = {"y_true": [], "y_est": []}
         fold_metrics = []
 
-        def fit_predict_fold_wrap(fold, train_index, test_index):
-            X_train_k, y_train_k = x[train_index], targets[train_index]
-            X_test_k, y_test_k = x[test_index], targets[test_index]
+        try:
+            def fit_predict_fold_wrap(fold, train_index, test_index):
+                X_train_k, y_train_k = x[train_index], targets[train_index]
+                X_test_k, y_test_k = x[test_index], targets[test_index]
 
-            return fit_predict_fold(
-                parse_pipeline(pipeline_params, count),
-                X_train_k, y_train_k,
-                X_test_k, y_test_k,
-                log_model,
-                label_encoder,
-                fold,
-                pipeline_name,
-                save_dir
+                return fit_predict_fold(
+                    parse_pipeline(pipeline_params, count),
+                    X_train_k, y_train_k,
+                    X_test_k, y_test_k,
+                    log_model, 
+                    label_encoder,
+                    fold,
+                    pipeline_name,
+                    save_dir,
+                    error_log_path
+                )
+
+            results = Parallel(n_jobs=7)(
+                delayed(fit_predict_fold_wrap)(kfold, train_index, test_index)
+                for kfold, (train_index, test_index) in enumerate(fold_groups)
             )
 
-        results = Parallel(n_jobs=7)(
-            delayed(fit_predict_fold_wrap)(kfold, train_index, test_index)
-            for kfold, (train_index, test_index) in enumerate(fold_groups)
-        )
+            for fold_metric, y_prob, y_test_k in results:
+                if fold_metric is not None:
+                    fold_metrics.append(fold_metric)
+                    y_est_save[pipeline_name]["y_est"].extend(y_prob)
+                    y_est_save[pipeline_name]["y_true"].extend(y_test_k)
 
-        for (fold_metric, y_prob, y_test_k) in results:
-            if fold_metric is not None:
-                fold_metrics.append(fold_metric)
-                y_est_save[pipeline_name]["y_est"].extend(y_prob)
-                y_est_save[pipeline_name]["y_true"].extend(y_test_k)
+            log_model = save_metrics(log_model, fold_metrics, pipeline_name)
+
+            if save:
+                dump_pkl(fold_metrics, os.path.join(save_dir, "metrics.pkl"))        
         
-        log_model = save_metrics(log_model, fold_metrics, pipeline_name)
+            metrics[pipeline_name] = fold_metrics
 
-        if save:
-            dump_pkl(fold_metrics, os.path.join(save_dir, "metrics.pkl"))
-        metrics[pipeline_name] = fold_metrics
+        except Exception as e:
+            error_message = f"Error occurred during model fitting and prediction for pipeline {pipeline_name}: {str(e)}"
+            log_model.error(error_message)
+            log_error_details(pipeline_name, str(e), error_log_path)
 
-    results_dir = os.path.join(output_dir, "results/plots/")
-    plot_boxplots(metrics, save_dir=results_dir)
-    plot_roc_curves(metrics, save_dir=results_dir)
-    log_results = report_metric_from_log(log_results, metrics, pipeline_params["metrics_to_report"])
+    return metrics, y_est_save
 
-    return y_est_save
+
+def log_error_details(pipeline_id, error_message, error_log_path):
+    with open(error_log_path, "a") as log_file:
+        log_file.write(f"{pipeline_id}: {error_message}\n")
 
 if __name__ == "__main__":
     param_path = "pipeline/parameter/config_pipeline.yml"
@@ -130,62 +132,76 @@ if __name__ == "__main__":
         shuffle_data = pipeline_params["shuffle_data"]
         channel_transformation = pipeline_params["channel_transformation"]
         BANDS_MAX = pipeline_params["BANDS_MAX"]
+        metrics_to_report = pipeline_params["metrics_to_report"]
 
     except KeyError as e:
         print("KeyError: %s undefined" % e)
+        sys.exit(1)
 
-    out_dir = set_folder(out_dir, pipeline_params)
-    log_dataset, _ = init_logger(out_dir, "dataset_info")
-    log_results, _ = init_logger(out_dir + "results", "results")
+    try:
+        out_dir = set_folder(out_dir, pipeline_params)
 
-    dataset_loader = DatasetLoader(
-        data_path,
-        shuffle=shuffle_data,
-        descrp=[
-            "date",
-            "massif",
-            "acquisition",
-            "elevation",
-            "slope",
-            "orientation",
-            "tmin",
-            "hsnow",
-            "tel"
-        ],
-        print_info=True,
-        seed=seed
-    )
+        log_dataset, _ = init_logger(out_dir, "dataset_info")
+        log_results, _ = init_logger(out_dir + "results", "results")
+        log_errors, error_log_path = init_logger(out_dir + "results", "errors")
 
-    x, y = dataset_loader.request_data(request)
+        dataset_loader = DatasetLoader(
+            data_path,
+            shuffle=shuffle_data,
+            descrp=[
+                "date",
+                "massif",
+                "acquisition",
+                "elevation",
+                "slope",
+                "orientation",
+                "tmin",
+                "hsnow",
+                "tel"
+            ],
+            print_info=True,
+            seed=seed
+        )
+        
+        x, y = dataset_loader.request_data(request)
+        
+        labels_manager = LabelManagement(method=labeling_method)
 
-    labels_manager = LabelManagement(method=labeling_method)
+        targets = labels_manager.transform(y)
+        label_encoder = labels_manager.get_encoder()
+        
+        fold_manager = FoldManagement(method=fold_method,
+                                      resampling_method=resampling_method, 
+                                      shuffle=shuffle_data, 
+                                      seed=seed,
+                                      train_aprox_size=0.8)
+        
+        fold_groups = fold_manager.split(x, y)
 
-    targets = labels_manager.transform(y)
-    label_encoder = labels_manager.get_encoder()
-    
-    fold_manager = FoldManagement(targets=targets,
-                                  method=fold_method,
-                                  resampling_method=resampling_method, 
-                                  shuffle=shuffle_data, 
-                                  seed=seed,
-                                  balanced=balance_data,
-                                  train_aprox_size=0.8)
-    
-    fold_groups = fold_manager.split(x, y)
+        if balance_data:
+            fold_groups = balance_classes(fold_groups, targets, method=labeling_method, seed=seed)
+        
+        log_dataset = logger_dataset(log_dataset, x, y, label_encoder.inverse_transform(targets))
+        log_dataset = logger_fold(log_dataset, fold_groups, label_encoder.inverse_transform(targets), y)
 
-    if balance_data:
-        fold_groups = balance_classes(fold_groups, targets, method=labeling_method, seed=seed)
-    
-    log_dataset = logger_dataset(log_dataset, x, y, targets)
-    log_dataset = logger_fold(log_dataset, fold_groups, targets, y)
+        metrics, y_est_save = predict_dataset(x=x,
+                                    targets=targets,
+                                    fold_groups=fold_groups,
+                                    output_dir=out_dir,
+                                    pipeline_params=pipeline_params,
+                                    label_encoder=label_encoder,
+                                    error_log_path=error_log_path,
+                                    save=True)
+        
+        results_dir = os.path.join(out_dir, "results/plots/")
+        plot_boxplots(metrics, save_dir=results_dir)
+        plot_roc_curves(metrics, save_dir=results_dir)
+        log_results = report_metric_from_log(log_results, metrics, metrics_to_report)
 
-    y_est_save = predict_dataset(x=x,
-                                 targets=targets,
-                                 fold_groups=fold_groups,
-                                 output_dir=out_dir,
-                                 pipeline_params=pipeline_params,
-                                 label_encoder=label_encoder,
-                                 log_results=log_results,
-                                 save=True)
-    
-    print("================== End of the study ==================")
+        print("================== End of the study ==================")
+
+    except Exception as e:
+        error_message = f"An unexpected error occurred: {str(e)}"
+        print(error_message)
+        log_errors.error(error_message)
+        sys.exit(1)

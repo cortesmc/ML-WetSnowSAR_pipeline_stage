@@ -18,12 +18,12 @@ def crocus_method(metadata):
         If the 'physics' key is not present in the metadata dictionary.
     """
     physics_data = metadata.get('physics', None)
-    if physics_data is None:
+    if (physics_data is None):
         raise ValueError("The dictionary does not contain a 'physics' key.")
     
     condition = ((physics_data[:, 0] > 0) & (physics_data[:, 2] >= 0.40))
     
-    labels = np.where(condition, 1, 0)
+    labels = np.where(condition, "wet", "not_wet")
         
     return labels
 
@@ -38,9 +38,9 @@ def crocus_method_three_labels(metadata):
     Returns:
     - labels : ndarray
         An array of labels where:
-        0 indicates Condition A is met,
-        1 indicates Condition B is met,
-        2 indicates Condition C is met.
+        1 indicates Condition A is met,
+        2 indicates Condition B is met,
+        3 indicates Condition C is met.
 
     Raises:
     - ValueError
@@ -50,20 +50,19 @@ def crocus_method_three_labels(metadata):
     if physics_data is None:
         raise ValueError("The dictionary does not contain a 'physics' key.")
 
-    # Define the conditions for each label
     condition_a = (physics_data[:, 0] <= -5)
     condition_b = (physics_data[:, 0] > -5) & (physics_data[:, 2] < 1)
-    condition_c = (physics_data[:, 0] > 1)
 
-    # Initialize labels array with default value (e.g., -1 for undefined)
-    labels = np.full(physics_data.shape[0], -1)
+    labels = np.full(physics_data.shape[0], '', dtype=object)
 
-    # Apply conditions to set labels
-    labels[condition_a] = 0
-    labels[condition_b] = 1
-    labels[condition_c] = 2
+    labels[condition_a] = "wet"
+    labels[condition_b] = "kinda_wet"
+
+    unspecified_conditions = ~(condition_a | condition_b )
+    labels[unspecified_conditions] = "not_wet" 
 
     return labels
+
 
 class LabelManagement:
     """
@@ -87,6 +86,7 @@ class LabelManagement:
             The labeling method to use. Currently supports "crocus".
         """
         self.method = method
+        self.encoder = LabelEncoder()
 
     def transform(self, metadata):
         """
@@ -97,19 +97,24 @@ class LabelManagement:
             A dictionary containing metadata.
 
         Returns:
-        - labels : ndarray or None
-            An array of labels if a supported method is selected; None otherwise.
+        - labels_encoded : ndarray
+            An array of encoded labels.
         """
         match self.method:
             case "crocus":
-                labels =crocus_method(metadata)
+                labels = crocus_method(metadata)
+            case "3labels":
+                labels = crocus_method_three_labels(metadata)
             case _:
-                labels = None
-            
-        self.encoder = LabelEncoder()
+                labels = np.array([])
+        
+        if "" in labels:
+            print("Warning: Empty string found in labels. Replacing with 'Unknown'.")
+            labels[labels == ""] = "Unknown"
+        
+        labels = labels.astype(str)
         self.encoder.fit(labels)
         labels_encoded = self.encoder.transform(labels)
-        
         return labels_encoded
 
     def get_encoder(self):
