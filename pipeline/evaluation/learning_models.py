@@ -3,6 +3,7 @@ import numpy as np
 from datetime import datetime
 from joblib import Parallel, delayed
 import logging
+import argparse
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(parent_dir)
@@ -106,8 +107,14 @@ def log_error_details(pipeline_id, error_message, error_log_path):
         log_file.write(f"{pipeline_id}: {error_message}\n")
 
 if __name__ == "__main__":
-    param_path = "pipeline/parameter/config_pipeline.yml"
+
+    parser = argparse.ArgumentParser(description='Pipeline for validating and benchmarking machine learning models for wet snow characterization through imaging.')
+    parser.add_argument('config_path', type=str, help='Path to the config_pipeline.yml file')
+    args = parser.parse_args()
     
+    #param_path = "pipeline/parameter/config_pipeline.yml"
+    param_path = args.config_path
+
     pipeline_params = load_yaml(param_path)
 
     try:

@@ -36,7 +36,9 @@
     
 
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="parameter package" href="parameter.html" />
+    <link rel="prev" title="estimators package" href="estimators.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head><body>
     <div class="relbar-top">
@@ -50,8 +52,15 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="parameter.html" title="parameter package"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="estimators.html" title="estimators package"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="index.html">wet_snow_detection 0.0.1 documentation</a> &#187;</li>
 
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">pipeline</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evaluation package</a></li> 
       </ul>
     </div>
@@ -72,12 +81,17 @@
 <span id="evaluation-learning-models-module"></span><h2>evaluation.learning_models module<a class="headerlink" href="#module-evaluation.learning_models" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="evaluation.learning_models.fit_predict_fold">
-<span class="sig-prename descclassname"><span class="pre">evaluation.learning_models.</span></span><span class="sig-name descname"><span class="pre">fit_predict_fold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_train_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kfold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evaluation/learning_models.html#fit_predict_fold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evaluation.learning_models.fit_predict_fold" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">evaluation.learning_models.</span></span><span class="sig-name descname"><span class="pre">fit_predict_fold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_train_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kfold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_log_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evaluation/learning_models.html#fit_predict_fold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evaluation.learning_models.fit_predict_fold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="evaluation.learning_models.log_error_details">
+<span class="sig-prename descclassname"><span class="pre">evaluation.learning_models.</span></span><span class="sig-name descname"><span class="pre">log_error_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_log_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evaluation/learning_models.html#log_error_details"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evaluation.learning_models.log_error_details" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="evaluation.learning_models.predict_dataset">
-<span class="sig-prename descclassname"><span class="pre">evaluation.learning_models.</span></span><span class="sig-name descname"><span class="pre">predict_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fold_groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_results</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evaluation/learning_models.html#predict_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evaluation.learning_models.predict_dataset" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">evaluation.learning_models.</span></span><span class="sig-name descname"><span class="pre">predict_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fold_groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_log_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evaluation/learning_models.html#predict_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evaluation.learning_models.predict_dataset" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </section>
@@ -103,6 +117,16 @@
 </li>
 </ul>
 
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="estimators.html"
+                          title="Previous page">&larr; estimators package</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="parameter.html"
+                          title="Next page">&rarr; parameter package</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -153,8 +177,15 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="parameter.html" title="parameter package"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="estimators.html" title="estimators package"
+             >previous</a> &nbsp; &nbsp;</li>
     <li><a href="index.html">wet_snow_detection 0.0.1 documentation</a> &#187;</li>
 
+          <li class="nav-item nav-item-1"><a href="modules.html" >pipeline</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">evaluation package</a></li> 
       </ul>
     </div>

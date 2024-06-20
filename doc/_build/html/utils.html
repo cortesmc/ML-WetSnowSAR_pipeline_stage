@@ -36,7 +36,8 @@
     
 
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="parameter package" href="parameter.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head><body>
     <div class="relbar-top">
@@ -50,8 +51,12 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="parameter.html" title="parameter package"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="index.html">wet_snow_detection 0.0.1 documentation</a> &#187;</li>
 
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">pipeline</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">utils package</a></li> 
       </ul>
     </div>
@@ -72,7 +77,7 @@
 <span id="utils-dataset-load-module"></span><h2>utils.dataset_load module<a class="headerlink" href="#module-utils.dataset_load" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="utils.dataset_load.DatasetLoader">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.dataset_load.</span></span><span class="sig-name descname"><span class="pre">DatasetLoader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descrp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['date',</span> <span class="pre">'massif',</span> <span class="pre">'aquisition',</span> <span class="pre">'elevation',</span> <span class="pre">'slope',</span> <span class="pre">'orientation',</span> <span class="pre">'tmin',</span> <span class="pre">'tel',</span> <span class="pre">'hsnow']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/dataset_load.html#DatasetLoader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.dataset_load.DatasetLoader" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.dataset_load.</span></span><span class="sig-name descname"><span class="pre">DatasetLoader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descrp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['date',</span> <span class="pre">'massif',</span> <span class="pre">'aquisition',</span> <span class="pre">'elevation',</span> <span class="pre">'slope',</span> <span class="pre">'orientation',</span> <span class="pre">'tmin',</span> <span class="pre">'tel',</span> <span class="pre">'hsnow']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/dataset_load.html#DatasetLoader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.dataset_load.DatasetLoader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="utils.dataset_load.DatasetLoader.check_data">
@@ -381,7 +386,7 @@ analysis</p>
 <span id="utils-figures-module"></span><h2>utils.figures module<a class="headerlink" href="#module-utils.figures" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.figures.plot_boxplots">
-<span class="sig-prename descclassname"><span class="pre">utils.figures.</span></span><span class="sig-name descname"><span class="pre">plot_boxplots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metrics_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/figures.html#plot_boxplots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.figures.plot_boxplots" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">utils.figures.</span></span><span class="sig-name descname"><span class="pre">plot_boxplots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metrics_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics_to_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fold_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels_massives</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/figures.html#plot_boxplots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.figures.plot_boxplots" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create and save boxplots for each metric by model and by fold.</p>
 <dl class="simple">
 <dt>metrics_dict<span class="classifier">dict</span></dt><dd><p>Dictionary containing various computed metrics for multiple models.</p>
@@ -567,7 +572,7 @@ analysis</p>
 </dd>
 </dl>
 <dl class="simple">
-<dt>logging.Logger</dt><dd><p>Logger instance.</p>
+<dt>logging.Logger, dict</dt><dd><p>Logger instance and dictionary containing massif information for each fold.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -641,7 +646,7 @@ The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).<
 <dl class="simple">
 <dt>y_true<span class="classifier">numpy.ndarray</span></dt><dd><p>True labels.</p>
 </dd>
-<dt>y_pred<span class="classifier">numpy.ndarray</span></dt><dd><p>Predicted labels.</p>
+<dt>y_pred<span class="classifier">numpy.ndarray</span></dt><dd><p>Predicted probabilities.</p>
 </dd>
 <dt>le<span class="classifier">LabelEncoder</span></dt><dd><p>LabelEncoder object.</p>
 </dd>
@@ -676,6 +681,11 @@ The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).<
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.files_management.save_metrics">
 <span class="sig-prename descclassname"><span class="pre">utils.files_management.</span></span><span class="sig-name descname"><span class="pre">save_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fold_metric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/files_management.html#save_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.files_management.save_metrics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.files_management.save_yaml">
+<span class="sig-prename descclassname"><span class="pre">utils.files_management.</span></span><span class="sig-name descname"><span class="pre">save_yaml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/files_management.html#save_yaml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.files_management.save_yaml" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -719,7 +729,7 @@ The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).<
 <span id="utils-fold-management-module"></span><h2>utils.fold_management module<a class="headerlink" href="#module-utils.fold_management" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="utils.fold_management.FoldManagement">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.fold_management.</span></span><span class="sig-name descname"><span class="pre">FoldManagement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kFold'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resampling_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'undersample'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balanced</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_aprox_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/fold_management.html#FoldManagement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.fold_management.FoldManagement" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.fold_management.</span></span><span class="sig-name descname"><span class="pre">FoldManagement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kFold'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resampling_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'undersample'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_aprox_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/fold_management.html#FoldManagement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.fold_management.FoldManagement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A class to manage the creation of the folds for trainning.</p>
 <p>Attributes:
@@ -753,6 +763,7 @@ The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).<
 <dt class="sig sig-object py" id="utils.fold_management.FoldManagement.split">
 <span class="sig-name descname"><span class="pre">split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/fold_management.html#FoldManagement.split"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.fold_management.FoldManagement.split" title="Permalink to this definition">¶</a></dt>
 <dd><p>Split the data into train and test sets based on the specified folding method.</p>
+<p>The method combinationFold takes the variable: “proximity_value”; which is a value to control the proximity of the distribution of the folds.</p>
 <p>Parameters:
 - x : array-like</p>
 <blockquote>
@@ -818,6 +829,8 @@ The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).<
 </dd>
 <dt>method<span class="classifier">str, optional (default=’oversample’)</span></dt><dd><p>The resampling method to use (‘oversample’, ‘undersample’, ‘smote’).</p>
 </dd>
+<dt>seed<span class="classifier">int, optional (default=42)</span></dt><dd><p>Seed for random number generator.</p>
+</dd>
 </dl>
 <dl class="simple">
 <dt>list of tuples</dt><dd><p>A list containing balanced train and test indices for each fold.</p>
@@ -827,12 +840,19 @@ The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).<
 
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.fold_management.combination_method">
-<span class="sig-prename descclassname"><span class="pre">utils.fold_management.</span></span><span class="sig-name descname"><span class="pre">combination_method</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_massives</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proximity_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/fold_management.html#combination_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.fold_management.combination_method" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">utils.fold_management.</span></span><span class="sig-name descname"><span class="pre">combination_method</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_massives</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proximity_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/fold_management.html#combination_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.fold_management.combination_method" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate prioritized combinations of massives based on a given dictionary.</p>
 <p>Parameters:
 - dict_massives : dict</p>
 <blockquote>
-<div><p>A dictionary where keys are massives and values are dictionaries containing ‘count’ and ‘indices’ keys.</p>
+<div><p>A dictionary where keys are massives and values are dictionaries containing ‘count’ and ‘indices’ keys.
+Example: {</p>
+<blockquote>
+<div><p>‘massif1’: {‘count’: 10, ‘indices’: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
+‘massif2’: {‘count’: 5, ‘indices’: [10, 11, 12, 13, 14]},
+…</p>
+</div></blockquote>
+<p>}</p>
 </div></blockquote>
 <ul class="simple">
 <li><dl class="simple">
@@ -842,6 +862,16 @@ The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).<
 </li>
 <li><dl class="simple">
 <dt>proximity_value<span class="classifier">int, optional (default=1)</span></dt><dd><p>A value to control the proximity to the desired train size.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>shuffle<span class="classifier">bool, optional (default=False)</span></dt><dd><p>Whether to shuffle the selection of combinations.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>seed<span class="classifier">int, optional (default=None)</span></dt><dd><p>Seed for random number generator (used if shuffle is True).</p>
 </dd>
 </dl>
 </li>
@@ -1165,9 +1195,9 @@ and replace by np.nan, it should be the minimum value of the image</p>
 <div><p>A dictionary containing metadata.</p>
 </div></blockquote>
 <p>Returns:
-- labels : ndarray or None</p>
+- labels_encoded : ndarray</p>
 <blockquote>
-<div><p>An array of labels if a supported method is selected; None otherwise.</p>
+<div><p>An array of encoded labels.</p>
 </div></blockquote>
 </dd></dl>
 
@@ -1207,9 +1237,9 @@ and replace by np.nan, it should be the minimum value of the image</p>
 - labels : ndarray</p>
 <blockquote>
 <div><p>An array of labels where:
-0 indicates Condition A is met,
-1 indicates Condition B is met,
-2 indicates Condition C is met.</p>
+1 indicates Condition A is met,
+2 indicates Condition B is met,
+3 indicates Condition C is met.</p>
 </div></blockquote>
 <p>Raises:
 - ValueError</p>
@@ -1309,6 +1339,11 @@ and replace by np.nan, it should be the minimum value of the image</p>
 </ul>
 
   </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="parameter.html"
+                          title="Previous page">&larr; parameter package</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -1358,8 +1393,12 @@ and replace by np.nan, it should be the minimum value of the image</p>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="parameter.html" title="parameter package"
+             >previous</a> &nbsp; &nbsp;</li>
     <li><a href="index.html">wet_snow_detection 0.0.1 documentation</a> &#187;</li>
 
+          <li class="nav-item nav-item-1"><a href="modules.html" >pipeline</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">utils package</a></li> 
       </ul>
     </div>
