@@ -109,7 +109,7 @@ def log_error_details(pipeline_id, error_message, error_log_path):
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Pipeline for validating and benchmarking machine learning models for wet snow characterization through imaging.')
-    parser.add_argument('config_path', type=str, help='Path to the config_pipeline.yml file')
+    parser.add_argument('--parameters_file', type=str, help='Path to the config_pipeline.yml file')
     args = parser.parse_args()
     
     #param_path = "pipeline/parameter/config_pipeline.yml"
