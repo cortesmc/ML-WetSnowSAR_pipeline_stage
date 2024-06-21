@@ -110,16 +110,19 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Pipeline for validating and benchmarking machine learning models for wet snow characterization through imaging.')
     parser.add_argument('--parameters_file', type=str, help='Path to the config_pipeline.yml file')
+    parser.add_argument('--storage_path', type=str, help='Path to the results demanded by qanat', required=True)
+
     args = parser.parse_args()
     
     #param_path = "pipeline/parameter/config_pipeline.yml"
-    param_path = args.config_path
+    param_path = args.parameters_file
 
     pipeline_params = load_yaml(param_path)
 
     try:
         data_path = pipeline_params["data_path"]
-        out_dir = pipeline_params["out_dir"]
+        # out_dir = pipeline_params["out_dir"]
+        out_dir = args.storage_path
         fold_method = pipeline_params["fold_method"]
         seed = pipeline_params["seed"]
         labeling_method = pipeline_params["labeling_method"]
@@ -196,7 +199,7 @@ if __name__ == "__main__":
         plot_roc_curves(metrics, save_dir=results_dir)
 
         log_results = report_metric_from_log(log_results, metrics, metrics_to_report)
-        save_yaml(out_dir, "config_data.yaml", pipeline_params)
+        # save_yaml(out_dir, "config_data.yaml", pipeline_params)
 
         print("================== End of the study ==================")
 
