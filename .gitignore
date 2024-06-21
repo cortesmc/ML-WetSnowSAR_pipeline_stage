@@ -1,5 +1,4 @@
 pipeline/data/*
-results/
 .cache/
 
 !pipeline/data/__init__.py
