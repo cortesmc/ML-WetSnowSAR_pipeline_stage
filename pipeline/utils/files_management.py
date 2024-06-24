@@ -554,7 +554,7 @@ def set_folder(out_dir, pipeline_param):
     now = datetime.now()
     date = now.strftime("%d%m%y_%HH%MM%S")
     folder_name = f"study_{date}_{pipeline_param['labeling_method']}_{pipeline_param['fold_method']}"
-    out_dir = check_and_create_directory(out_dir+folder_name)
+    # out_dir = check_and_create_directory(out_dir+folder_name)
     for folder in folders:
         check_and_create_directory(out_dir+f"/{folder}")
 
