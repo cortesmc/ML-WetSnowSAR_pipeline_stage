@@ -534,7 +534,7 @@ def compresser_en_zip(chemin_dossier, chemin_zip):
                 fichier_zip.write(chemin_complet, chemin_rel)
     return 1
 
-def set_folder(out_dir, pipeline_param):
+def set_folder(out_dir, args):
     """
     Create and organize folders for the study.
 
@@ -542,8 +542,8 @@ def set_folder(out_dir, pipeline_param):
     ----------
     out_dir : str
         Path to the base output directory.
-    pipeline_param : dict
-        Dictionary containing pipeline parameters.
+     args.
+     dict       Dictionary containing pipeline parameters.
 
     Returns
     -------
@@ -553,12 +553,12 @@ def set_folder(out_dir, pipeline_param):
     folders= ["results", "models", "html"]
     now = datetime.now()
     date = now.strftime("%d%m%y_%HH%MM%S")
-    folder_name = f"study_{date}_{pipeline_param['labeling_method']}_{pipeline_param['fold_method']}"
+    folder_name = f"study_{date}_{args.labeling_method}_{args.fold_method}"
     # out_dir = check_and_create_directory(out_dir+folder_name)
     for folder in folders:
         check_and_create_directory(out_dir+f"/{folder}")
 
-    models= pipeline_param["pipeline_names"]
+    models= args.pipeline_names
     for models_folder in models:
         check_and_create_directory(out_dir+f"/models/{models_folder}")
 

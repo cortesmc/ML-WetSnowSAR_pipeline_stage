@@ -46,11 +46,11 @@ def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_mod
         return None, None, None
 
 
-def predict_dataset(x, targets, fold_groups, output_dir, pipeline_params, label_encoder, error_log_path, save=True):
+def predict_dataset(x, targets, fold_groups, output_dir, args, label_encoder, error_log_path, save=True):
     y_est_save = {}
     metrics = {}
 
-    for count, pipeline_name in enumerate(pipeline_params["pipeline_names"]):
+    for count, pipeline_name in enumerate(args.pipeline_names):
         save_dir = os.path.join(output_dir, f"models/{pipeline_name}/")
         log_model, _ = init_logger(save_dir, f"{pipeline_name}_results")
 
@@ -65,7 +65,7 @@ def predict_dataset(x, targets, fold_groups, output_dir, pipeline_params, label_
                 X_test_k, y_test_k = x[test_index], targets[test_index]
 
                 return fit_predict_fold(
-                    parse_pipeline(pipeline_params, count),
+                    parse_pipeline(args.pipeline, count),
                     X_train_k, y_train_k,
                     X_test_k, y_test_k,
                     log_model, 
@@ -112,39 +112,44 @@ if __name__ == "__main__":
     parser.add_argument('--parameters_file', type=str, help='Path to the config_pipeline.yml file')
     parser.add_argument('--seed', type=int, help='Seed for different distributions')
     parser.add_argument('--storage_path', type=str, help='Path to the results demanded by qanat', required=True)
+    parser.add_argument('--data_path', type=str, help='Path to the dataset file')
+    parser.add_argument('--fold_method', type=str, help='Method for the fold: kFold, mFold, or combinationFold')
+    parser.add_argument('--labeling_method', type=str, help='Method for labeling: crocus, 3labels')
+    parser.add_argument('--resampling_method', type=str, help='Method for resampling: oversample, undersample, or smote')
+    parser.add_argument('--request', type=str, help='Filter request based on date and elevation criteria')
+    parser.add_argument('--shuffle_data', type=bool, help='Shuffle the data before processing')
+    parser.add_argument('--balance_data', type=bool, help='Balance the data')
+    parser.add_argument('--import_list', type=str, nargs='+', help='List of import statements')
+    parser.add_argument('--pipeline_names', type=str, nargs='+', help='Names of the pipelines to be used')
+    parser.add_argument('--pipeline', type=str, nargs='+', help='Configuration for each pipeline')
+    parser.add_argument('--metrics_to_report', type=str, nargs='+', help='Metrics to include in the final report')
 
     args = parser.parse_args()
-    
-    #param_path = "pipeline/parameter/config_pipeline.yml"
-    param_path = args.parameters_file
 
-    pipeline_params = load_yaml(param_path)
+    # args = load_yaml(param_path)
 
     try:
-        data_path = pipeline_params["data_path"]
-        # out_dir = pipeline_params["out_dir"]
-        out_dir = args.storage_path
-        fold_method = pipeline_params["fold_method"]
-        # seed = pipeline_params["seed"]
+        data_path = args.data_path
+        storage_path = args.storage_path
+        fold_method = args.fold_method
         seed = args.seed
-        labeling_method = pipeline_params["labeling_method"]
-        resampling_method = pipeline_params["resampling_method"]
-        balance_data = pipeline_params["balance_data"]
-        request = pipeline_params["request"]
-        shuffle_data = pipeline_params["shuffle_data"]
-        BANDS_MAX = pipeline_params["BANDS_MAX"]
-        metrics_to_report = pipeline_params["metrics_to_report"]
+        labeling_method = args.labeling_method
+        resampling_method = args.resampling_method
+        balance_data = args.balance_data
+        request = args.request
+        shuffle_data = args.shuffle_data
+        metrics_to_report = args.metrics_to_report
 
     except KeyError as e:
         print("KeyError: %s undefined" % e)
         sys.exit(1)
 
     try:
-        out_dir = set_folder(out_dir, pipeline_params)
+        storage_path = set_folder(storage_path, args=args)
 
-        log_dataset, _ = init_logger(out_dir, "dataset_info")
-        log_results, _ = init_logger(out_dir + "results", "results")
-        log_errors, error_log_path = init_logger(out_dir + "results", "errors")
+        log_dataset, _ = init_logger(storage_path, "dataset_info")
+        log_results, _ = init_logger(storage_path + "results", "results")
+        log_errors, error_log_path = init_logger(storage_path + "results", "errors")
 
         dataset_loader = DatasetLoader(
             data_path,
@@ -188,19 +193,18 @@ if __name__ == "__main__":
         metrics, y_est_save = predict_dataset(x=x,
                                     targets=targets,
                                     fold_groups=fold_groups,
-                                    output_dir=out_dir,
-                                    pipeline_params=pipeline_params,
+                                    output_dir=storage_path,
+                                    args=args,
                                     label_encoder=label_encoder,
                                     error_log_path=error_log_path,
                                     save=True)
         
-        results_dir = os.path.join(out_dir, "results/plots/")
+        results_dir = os.path.join(storage_path, "results/plots/")
         metrics_to_plot = ["f1_score_macro", "f1_score_weighted", "f1_score_multiclass", "kappa_score", "training_time", "prediction_time"]
         plot_boxplots(metrics, metrics_to_plot=metrics_to_plot, save_dir=results_dir, fold_key=fold_key, labels_massives=(fold_method=="mFold"))
         plot_roc_curves(metrics, save_dir=results_dir)
 
         log_results = report_metric_from_log(log_results, metrics, metrics_to_report)
-        # save_yaml(out_dir, "config_data.yaml", pipeline_params)
 
         print("================== End of the study ==================")
 

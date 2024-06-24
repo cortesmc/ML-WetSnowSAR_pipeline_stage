@@ -1,9 +1,97 @@
 fixed_args:
     options:
-        '--parameters_file': "./parameter/config_pipeline.yml"
+        data_path: "/home/listic/Bureau/cortes_stage/ML-WetSnowSAR_pipeline_stage/pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected_V2.h5"
+        out_dir: "../results/"
+        fold_method: "combinationFold"
+        labeling_method: "3labels"
+        resampling_method: "undersample"
+        request: "(date.dt.month == 3 and date.dt.day == 1) and ((elevation > 1000) and (elevation < 2000))"
+        shuffle_data: true
+        balance_data: false
+        BANDS_MAX:
+           "a":
+             - 0
+             - 1
+        import:
+            - "from sklearn.svm import SVC"
+            - "from sklearn.neighbors import KNeighborsClassifier"
+            - "from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier"
+            - "from sklearn.linear_model import LogisticRegression"
+            - "from sklearn.neural_network import MLPClassifier"
+            - "from estimators.statistical_descriptor import *"
+            - "from estimators.band_transform import *"
+        pipeline_names:
+            - "KNN_direct"
+            - "RandomForest_direct"
+            - "MLP_direct"
+            - "SVMrbf_direct"
+            - "LogisticR_direct"
+            - "AdaBoost_direct"
+        pipeline:
+            - - - "BandSelector"
+                - bands: [0,1,2,3,4,5,6,7,8]
+              - - "BandTransformer"
+                - bands : [0,1,2,3]
+                - transformations : [] 
+              - - "Hist_SAR"
+              - - "KNeighborsClassifier"
+                - n_neighbors: 50
+          #        - n_jobs: -1
+            - - - "BandSelector"
+                - bands: [0,1,2,3,4,5,6,7,8]
+              - - "BandTransformer"
+                - bands : [0,1,2,3]
+                - transformations : [] 
+              - - "Hist_SAR"
+              - - "RandomForestClassifier"
+                - n_estimators: 200
+                - criterion: "entropy"
+          #        - n_jobs: -1
+            - - - "BandSelector"
+                - bands: [0,1,2,3,4,5,6,7,8]
+              - - "BandTransformer"
+                - bands : [0,1,2,3]
+                - transformations : [] 
+              - - "Hist_SAR"
+              - - "MLPClassifier"
+                - alpha: 0.01
+            - - - "BandSelector"
+                - bands: [0,1,2,3,4,5,6,7,8]
+              - - "BandTransformer"
+                - bands : [0,1,2,3]
+                - transformations : [] 
+              - - "Hist_SAR"
+              - - "SVC"
+                - kernel: "rbf"
+                - probability: true
+            - - - "BandSelector"
+                - bands: [0,1,2,3,4,5,6,7,8]
+              - - "BandTransformer"
+                - bands : [0,1,2,3]
+                - transformations : [] 
+              - - "Hist_SAR"
+              - - "LogisticRegression"
+            - - - "BandSelector"
+                - bands: [0,1,2,3,4,5,6,7,8]
+              - - "BandTransformer"
+                - bands : [0,1,2,3]
+                - transformations : [] 
+              - - "Hist_SAR"
+              - - "AdaBoostClassifier"
+                - n_estimators: 200
+        metrics_to_report:
+            - 'f1_score_macro'
+            - 'f1_score_weighted'
+            - 'f1_score_multiclass'
+            - 'accuracy_score'
+            - 'precision_score_macro'
+            - 'recall_score_macro'
+            - 'roc_auc_score'
+            - 'log_loss'
+            - 'kappa_score'
+            - 'confusion_matrix'
 
 varying_args:
-    range:
-        options:
-            '--seed': [5, 51, 10]
-
+    groups:
+        - options:
+            seed: 100150
