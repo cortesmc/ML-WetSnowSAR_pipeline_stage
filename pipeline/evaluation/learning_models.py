@@ -76,7 +76,7 @@ def predict_dataset(x, targets, fold_groups, output_dir, pipeline_params, label_
                     error_log_path
                 )
 
-            results = Parallel(n_jobs=7)(
+            results = Parallel(n_jobs=-1)(
                 delayed(fit_predict_fold_wrap)(kfold, train_index, test_index)
                 for kfold, (train_index, test_index) in enumerate(fold_groups)
             )
