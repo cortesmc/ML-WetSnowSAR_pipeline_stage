@@ -1,0 +1,9 @@
+fixed_args:
+    options:
+        '--parameters_file': "./parameter/config_pipeline.yml"
+
+varying_args:
+    range:
+        options:
+            '--seed': [5, 51, 10]
+

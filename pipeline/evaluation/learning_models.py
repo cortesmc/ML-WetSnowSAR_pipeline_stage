@@ -110,6 +110,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Pipeline for validating and benchmarking machine learning models for wet snow characterization through imaging.')
     parser.add_argument('--parameters_file', type=str, help='Path to the config_pipeline.yml file')
+    parser.add_argument('--seed', type=int, help='Seed for different distributions')
     parser.add_argument('--storage_path', type=str, help='Path to the results demanded by qanat', required=True)
 
     args = parser.parse_args()
@@ -124,11 +125,11 @@ if __name__ == "__main__":
         # out_dir = pipeline_params["out_dir"]
         out_dir = args.storage_path
         fold_method = pipeline_params["fold_method"]
-        seed = pipeline_params["seed"]
+        # seed = pipeline_params["seed"]
+        seed = args.seed
         labeling_method = pipeline_params["labeling_method"]
         resampling_method = pipeline_params["resampling_method"]
         balance_data = pipeline_params["balance_data"]
-        # orbit = pipeline_params["orbit"]
         request = pipeline_params["request"]
         shuffle_data = pipeline_params["shuffle_data"]
         BANDS_MAX = pipeline_params["BANDS_MAX"]

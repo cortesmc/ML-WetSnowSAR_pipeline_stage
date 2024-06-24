@@ -5,27 +5,29 @@ Projet de thésard Matthieu Gallet.
 
 Notion du projet : [Stage LISTIC 2024](https://www.notion.so/Stage-LISTIC-2024-58c77ade8f224b1688b7884a6151fe54?pvs=4)
 
-## how to set an experiment with Qanat
+## how to deploy an experiment with Qanat
 
-1. We need qanat installed:
-to install: [Qanat installation](https://ammarmian.github.io/qanat/installation.html)     
+1. Install Qanat:
+Follow the installation instructions: Qanat installation: [Qanat installation](https://ammarmian.github.io/qanat/installation.html)     
 
-2. On the folder pipeline, open the terminal. And init qanat: 
+2. Open the terminal in the pipeline folder and initialize Qanat by running:
 ```
 qanat init .
 ```
 
-3. we need to initialize the results folder: 
+3. Initialize the Results Folder:
+You will see the following prompt:
 ```
 [14:21:20] INFO     Initializing Qanat repertory.                     init.py:27
 Where do you want to store the results? (./results): ./results
 ```
 
-4. Once qanat has been initalized on the pipeline folder, we can create a new experiment:
+4. Create a New Experiment:
+Once Qanat is initialized in the pipeline folder, create a new experiment:
 ```
 qanat experiment new
 ```
-And using the folowing informations, the importants values to use are the same path and executable feel free to chose the rest of variables: 
+Use the following information. The important values to use are the same path and executable. Feel free to choose the rest of the variables:
 ```
 Name: pipeline
 Description: pipeline
@@ -37,7 +39,8 @@ Datasets: []
 Do you want to add this experiment? [y/n]: y
 ```
 
-5.Once the experiment is created we can set our parameter_file.yml with all the values and deploy the experiment:
+5. Run the Experiment:
+Once the experiment is created, set your parameter_file.yml with all the values and deploy the experiment:
 ```
 qanat experiment run pipeline --parameters_file "./parameter/config_pipeline.yml"
 ```

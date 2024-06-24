@@ -8,7 +8,7 @@ out_dir: "../results/"
 fold_method: "combinationFold"
 
 # Random seed for reproducibility
-seed: 100150
+# seed: 100150
 
 # Method for labeling: crocus, 3labels
 labeling_method: "3labels"
