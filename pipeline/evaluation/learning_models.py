@@ -12,7 +12,6 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 
 from estimators.statistical_descriptor import Nagler_WS
-# from plot.figure_roc import ROC_plot
 from utils.dataset_management import parse_pipeline
 from utils.dataset_load import shuffle_data, DatasetLoader
 from utils.fold_management import FoldManagement, balance_classes
@@ -49,7 +48,6 @@ def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_mod
 def predict_dataset(x, targets, fold_groups, output_dir, args, label_encoder, error_log_path, save=True):
     y_est_save = {}
     metrics = {}
-
     for count, pipeline_name in enumerate(args.pipeline_names):
         save_dir = os.path.join(output_dir, f"models/{pipeline_name}/")
         log_model, _ = init_logger(save_dir, f"{pipeline_name}_results")
@@ -65,7 +63,7 @@ def predict_dataset(x, targets, fold_groups, output_dir, args, label_encoder, er
                 X_test_k, y_test_k = x[test_index], targets[test_index]
 
                 return fit_predict_fold(
-                    parse_pipeline(args.pipeline, count),
+                    parse_pipeline(args, count),
                     X_train_k, y_train_k,
                     X_test_k, y_test_k,
                     log_model, 
@@ -109,25 +107,22 @@ def log_error_details(pipeline_id, error_message, error_log_path):
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Pipeline for validating and benchmarking machine learning models for wet snow characterization through imaging.')
-    parser.add_argument('--parameters_file', type=str, help='Path to the config_pipeline.yml file')
-    parser.add_argument('--seed', type=int, help='Seed for different distributions')
-    parser.add_argument('--storage_path', type=str, help='Path to the results demanded by qanat', required=True)
-    parser.add_argument('--data_path', type=str, help='Path to the dataset file')
-    parser.add_argument('--fold_method', type=str, help='Method for the fold: kFold, mFold, or combinationFold')
-    parser.add_argument('--labeling_method', type=str, help='Method for labeling: crocus, 3labels')
-    parser.add_argument('--resampling_method', type=str, help='Method for resampling: oversample, undersample, or smote')
-    parser.add_argument('--request', type=str, help='Filter request based on date and elevation criteria')
-    parser.add_argument('--shuffle_data', type=bool, help='Shuffle the data before processing')
-    parser.add_argument('--balance_data', type=bool, help='Balance the data')
-    parser.add_argument('--import_list', type=str, nargs='+', help='List of import statements')
-    parser.add_argument('--pipeline_names', type=str, nargs='+', help='Names of the pipelines to be used')
-    parser.add_argument('--pipeline', type=str, nargs='+', help='Configuration for each pipeline')
-    parser.add_argument('--metrics_to_report', type=str, nargs='+', help='Metrics to include in the final report')
-
+    
+    parser.add_argument('--data_path', type=str, required=True, help='Path to the dataset')
+    parser.add_argument('--storage_path', type=str, required=True, help='Path to store the results')
+    parser.add_argument('--fold_method', type=str, required=True, help='Method to fold the data')
+    parser.add_argument('--labeling_method', type=str, required=True, help='Method to label the data')
+    parser.add_argument('--resampling_method', type=str, required=True, help='Method to resample the data')
+    parser.add_argument('--request', type=str, required=True, help='Request string to filter data')
+    parser.add_argument('--shuffle_data', type=bool, required=True, help='Shuffle data or not')
+    parser.add_argument('--balance_data', type=bool, required=True, help='Balance data or not')
+    parser.add_argument('--import_list', type=str, nargs='+', action='extend', required=True, help='List of imports')
+    parser.add_argument('--pipeline_names', type=str, nargs='+', action='extend', required=True, help='Names of the pipelines')
+    parser.add_argument('--pipeline', type=str, nargs='+', action='extend', required=True, help='Pipeline configurations')
+    parser.add_argument('--metrics_to_report', type=str, nargs='+', action='extend',required=True, help='List of metrics to report')
+    parser.add_argument('--seed', type=int, required=True, help='Random seed')
     args = parser.parse_args()
-
-    # args = load_yaml(param_path)
-
+    
     try:
         data_path = args.data_path
         storage_path = args.storage_path
@@ -143,7 +138,7 @@ if __name__ == "__main__":
     except KeyError as e:
         print("KeyError: %s undefined" % e)
         sys.exit(1)
-
+ 
     try:
         storage_path = set_folder(storage_path, args=args)
 
@@ -168,25 +163,24 @@ if __name__ == "__main__":
             print_info=True,
             seed=seed
         )
-        
+      
         x, y = dataset_loader.request_data(request)
-        
+      
         labels_manager = LabelManagement(method=labeling_method)
 
         targets = labels_manager.transform(y)
         label_encoder = labels_manager.get_encoder()
-        
+      
         fold_manager = FoldManagement(method=fold_method,
-                                      resampling_method=resampling_method, 
                                       shuffle=shuffle_data, 
                                       seed=seed,
                                       train_aprox_size=0.8)
-        
+      
         fold_groups = fold_manager.split(x, y)
 
         if balance_data:
-            fold_groups = balance_classes(fold_groups, targets, method=labeling_method, seed=seed)
-        
+            fold_groups = balance_classes(fold_groups, targets, method=resampling_method, seed=seed)
+        print(args.import_list)
         log_dataset = logger_dataset(log_dataset, x, y, label_encoder.inverse_transform(targets))
         log_dataset, fold_key = logger_fold(log_dataset, fold_groups, label_encoder.inverse_transform(targets), y)
 
@@ -198,7 +192,7 @@ if __name__ == "__main__":
                                     label_encoder=label_encoder,
                                     error_log_path=error_log_path,
                                     save=True)
-        
+      
         results_dir = os.path.join(storage_path, "results/plots/")
         metrics_to_plot = ["f1_score_macro", "f1_score_weighted", "f1_score_multiclass", "kappa_score", "training_time", "prediction_time"]
         plot_boxplots(metrics, metrics_to_plot=metrics_to_plot, save_dir=results_dir, fold_key=fold_key, labels_massives=(fold_method=="mFold"))

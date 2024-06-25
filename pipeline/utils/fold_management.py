@@ -204,9 +204,8 @@ class FoldManagement:
         Apply the selected labeling method to the provided metadata.
     """
 
-    def __init__(self, method="kFold", resampling_method="undersample", shuffle=False, seed=42, train_aprox_size=0.8):
+    def __init__(self, method="kFold", shuffle=False, seed=42, train_aprox_size=0.8):
         self.method = method
-        self.resampling_method = resampling_method
         self.shuffle = shuffle
         self.seed = seed
         self.train_aprox_size = train_aprox_size

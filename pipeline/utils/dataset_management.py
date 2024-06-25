@@ -4,7 +4,7 @@ from sklearn.preprocessing import LabelEncoder
 from imblearn.under_sampling import RandomUnderSampler
 from imblearn.over_sampling import RandomOverSampler
 from imblearn.combine import SMOTEENN
-import os
+import os, ast
 
 from utils.files_management import load_h5
 
@@ -203,7 +203,7 @@ class BFold:
             yield idx_train
 
 
-def parse_pipeline(dict_parameter, idx):
+def parse_pipeline(args, idx):
     """Parse a dictionary to create a pipeline of estimators
     The dictionary must have the following structure::
     {
@@ -223,7 +223,7 @@ def parse_pipeline(dict_parameter, idx):
 
     Parameters
     ----------
-    dict_parameter : dict
+    args : dict
         Dictionary containing the pipeline
 
     idx : int
@@ -235,10 +235,9 @@ def parse_pipeline(dict_parameter, idx):
     sklearn.pipeline.Pipeline
         Pipeline of estimators
     """
-
-    for import_lib in dict_parameter["import"]:
+    for import_lib in ast.literal_eval(args.import_list) :
         exec(import_lib)
-    pipe = dict_parameter["pipeline"][idx]
+    pipe = ast.literal_eval(args.pipeline)[idx]
 
     step = []
     for i in range(len(pipe)):

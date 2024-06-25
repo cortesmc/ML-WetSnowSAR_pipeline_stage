@@ -45,4 +45,4 @@ Once the experiment is created, set your parameter_file.yml with all the values 
 qanat experiment run pipeline --parameters_file "./parameter/config_pipeline.yml"
 ```
 For testing the groups: 
-qanat experiment run pipeline --param_file "./parameter/config_param.yml" dry_run
+qanat experiment run pipeline --param_file "./parameter/config_param.yml" --dry_run
