@@ -62,5 +62,5 @@ qanat experiment run <experiment_name> --param_file "./parameter/config_param.ym
 
 ## Pipeline Structure
 
-![Pipeline Structure](./md_suivi/docs/Stage_pipeline - Copy of PL_structure.svg)
-<img src="./md_suivi/docs/Stage_pipeline - Copy of PL_structure.svg">
+![Pipeline Structure](./md_suivi/docs/PL_structure.svg)
+<img src="./md_suivi/docs/PL_structure.svg">
