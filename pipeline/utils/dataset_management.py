@@ -235,12 +235,12 @@ def parse_pipeline(args, idx):
     sklearn.pipeline.Pipeline
         Pipeline of estimators
     """
-    for import_lib in ast.literal_eval(args.import_list) :
+    for import_lib in args.import_list :
         exec(import_lib)
-    pipe = ast.literal_eval(args.pipeline)[idx]
-
+    pipe = ast.literal_eval(args.pipeline[idx])
+    print(pipe)
     step = []
-    for i in range(len(pipe)):
+    for i in range(1,len(pipe)):
         name_methode = pipe[i][0]
         estim = locals()[name_methode]()
 

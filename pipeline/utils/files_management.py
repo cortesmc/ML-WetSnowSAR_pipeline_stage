@@ -553,17 +553,24 @@ def set_folder(out_dir, args):
     str
         Path to the organized study folder.
     """
+    pattern = re.compile(r"\[\['(.*?)_direct'\]")
+    pipeline_names = []
+    for item in args.pipeline:
+        match = pattern.search(item)
+        if match:
+            pipeline_names.append(match.group(1) + "_direct")
+
     folders = ["results", "models", "html"]
 
     for folder in folders:
         check_and_create_directory(os.path.join(out_dir, folder))
 
-    for models_folder in args.pipeline_names:
+    for models_folder in pipeline_names:
         check_and_create_directory(os.path.join(out_dir, "models", models_folder))
 
     check_and_create_directory(os.path.join(out_dir, "results"))
 
-    return os.path.join(out_dir, "")
+    return os.path.join(out_dir, ""), pipeline_names
 
 
 def check_and_create_directory(directory):
