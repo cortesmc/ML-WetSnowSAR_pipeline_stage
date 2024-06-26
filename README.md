@@ -40,9 +40,12 @@ Do you want to add this experiment? [y/n]: y
 ```
 
 5. Run the Experiment:
-Once the experiment is created, set your parameter_file.yml with all the values and deploy the experiment:
+Once the experiment is created, set your parameter_file.yml with all the values and deploy the experiment:         
+For testing the groups:
 ```
-qanat experiment run pipeline --parameters_file "./parameter/config_pipeline.yml"
-```
-For testing the groups: 
 qanat experiment run pipeline --param_file "./parameter/config_param.yml" --dry_run
+```
+For running the exp: 
+```
+qanat experiment run pipeline --param_file "./parameter/config_param.yml" 
+```
