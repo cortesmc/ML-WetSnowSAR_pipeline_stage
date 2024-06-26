@@ -51,11 +51,11 @@ qanat experiment new -f ./parameter/qanat_experiment.yml
 ```
 5. Run the Experiment:
 Once the experiment is created, set your parameter_file.yml with all the values and deploy the experiment:         
-For testing the groups:
+* For testing the groups:
 ```
 qanat experiment run <experiment_name> --param_file "./parameter/config_param.yml" --dry_run
 ```
-For running the experiment:
+* For running the experiment:
 ```
 qanat experiment run <experiment_name> --param_file "./parameter/config_param.yml"
 ``` 
