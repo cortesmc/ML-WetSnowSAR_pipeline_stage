@@ -2,7 +2,7 @@
 data_path: "/home/listic/Bureau/cortes_stage/ML-WetSnowSAR_pipeline_stage/pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected_V2.h5"
 
 # Directory to save the output results
-out_dir: "../results/"
+storage_path: "../results/"
 
 # Method for the fold: kFold, mFold, or combinationFold
 fold_method: "combinationFold"
@@ -24,13 +24,7 @@ shuffle_data: true
 
 # Balance the data
 balance_data: false
-
-# Maximum bands configuration (Not used for the moment)
-BANDS_MAX:
-   "a":
-     - 0
-     - 1
-
+  
 # Import necessary libraries and modules
 import:
     - "from sklearn.svm import SVC"

@@ -12,7 +12,6 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 
 from estimators.statistical_descriptor import Nagler_WS
-# from plot.figure_roc import ROC_plot
 from utils.dataset_management import parse_pipeline
 from utils.dataset_load import shuffle_data, DatasetLoader
 from utils.fold_management import FoldManagement, balance_classes
@@ -46,11 +45,10 @@ def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_mod
         return None, None, None
 
 
-def predict_dataset(x, targets, fold_groups, output_dir, pipeline_params, label_encoder, error_log_path, save=True):
+def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, label_encoder, error_log_path, save=True):
     y_est_save = {}
     metrics = {}
-
-    for count, pipeline_name in enumerate(pipeline_params["pipeline_names"]):
+    for count, pipeline_name in enumerate(pipeline_names):
         save_dir = os.path.join(output_dir, f"models/{pipeline_name}/")
         log_model, _ = init_logger(save_dir, f"{pipeline_name}_results")
 
@@ -65,7 +63,7 @@ def predict_dataset(x, targets, fold_groups, output_dir, pipeline_params, label_
                 X_test_k, y_test_k = x[test_index], targets[test_index]
 
                 return fit_predict_fold(
-                    parse_pipeline(pipeline_params, count),
+                    parse_pipeline(args, count),
                     X_train_k, y_train_k,
                     X_test_k, y_test_k,
                     log_model, 
@@ -109,103 +107,111 @@ def log_error_details(pipeline_id, error_message, error_log_path):
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Pipeline for validating and benchmarking machine learning models for wet snow characterization through imaging.')
-    parser.add_argument('--parameters_file', type=str, help='Path to the config_pipeline.yml file')
-    parser.add_argument('--seed', type=int, help='Seed for different distributions')
-    parser.add_argument('--storage_path', type=str, help='Path to the results demanded by qanat', required=True)
-
+    
+    parser.add_argument('--data_path', type=str, required=True, help='Path to the dataset')
+    parser.add_argument('--storage_path', type=str, required=True, help='Path to store the results')
+    parser.add_argument('--fold_method', type=str, required=True, help='Method to fold the data')
+    parser.add_argument('--labeling_method', type=str, required=True, help='Method to label the data')
+    parser.add_argument('--resampling_method', type=str, required=True, help='Method to resample the data')
+    parser.add_argument('--request', type=str, required=True, help='Request string to filter data')
+    parser.add_argument('--shuffle_data', type=str, choices=['true', 'True', 'false', 'False'], required=True, help='Shuffle data or not')
+    parser.add_argument('--balance_data', type=str, choices=['true', 'True', 'false', 'False'], required=True, help='Balance data or not')    
+    parser.add_argument('--import_list', type=str, nargs='+', action='extend', required=True, help='List of imports')
+    parser.add_argument('--pipeline', type=str, nargs='+', action='extend', required=True, help='Pipeline configurations')
+    parser.add_argument('--metrics_to_report', type=str, nargs='+', action='extend',required=True, help='List of metrics to report')
+    parser.add_argument('--seed', type=int, required=True, help='Random seed')
     args = parser.parse_args()
     
-    #param_path = "pipeline/parameter/config_pipeline.yml"
-    param_path = args.parameters_file
-
-    pipeline_params = load_yaml(param_path)
-
     try:
-        data_path = pipeline_params["data_path"]
-        # out_dir = pipeline_params["out_dir"]
-        out_dir = args.storage_path
-        fold_method = pipeline_params["fold_method"]
-        # seed = pipeline_params["seed"]
+        data_path = args.data_path
+        storage_path = args.storage_path
+        fold_method = args.fold_method
         seed = args.seed
-        labeling_method = pipeline_params["labeling_method"]
-        resampling_method = pipeline_params["resampling_method"]
-        balance_data = pipeline_params["balance_data"]
-        request = pipeline_params["request"]
-        shuffle_data = pipeline_params["shuffle_data"]
-        BANDS_MAX = pipeline_params["BANDS_MAX"]
-        metrics_to_report = pipeline_params["metrics_to_report"]
+        labeling_method = args.labeling_method
+        resampling_method = args.resampling_method
+        balance_data = args.balance_data.lower() == 'true'
+        request = args.request
+        shuffle_data = args.shuffle_data.lower() == 'true'
+        metrics_to_report = args.metrics_to_report
 
     except KeyError as e:
         print("KeyError: %s undefined" % e)
         sys.exit(1)
+    
+    if balance_data :
+        print("1") 
+    if shuffle_data :
+        print("2")
+    
 
-    try:
-        out_dir = set_folder(out_dir, pipeline_params)
+    # try:
+    #     storage_path, pipeline_names = set_folder(storage_path, args=args)
 
-        log_dataset, _ = init_logger(out_dir, "dataset_info")
-        log_results, _ = init_logger(out_dir + "results", "results")
-        log_errors, error_log_path = init_logger(out_dir + "results", "errors")
+    #     log_dataset, _ = init_logger(storage_path, "dataset_info")
+    #     log_results, _ = init_logger(storage_path + "results", "results")
+    #     log_errors, error_log_path = init_logger(storage_path + "results", "errors")
 
-        dataset_loader = DatasetLoader(
-            data_path,
-            shuffle=shuffle_data,
-            descrp=[
-                "date",
-                "massif",
-                "acquisition",
-                "elevation",
-                "slope",
-                "orientation",
-                "tmin",
-                "hsnow",
-                "tel"
-            ],
-            print_info=True,
-            seed=seed
-        )
-        
-        x, y = dataset_loader.request_data(request)
-        
-        labels_manager = LabelManagement(method=labeling_method)
+    #     dataset_loader = DatasetLoader(
+    #         data_path,
+    #         shuffle=shuffle_data,
+    #         descrp=[
+    #             "date",
+    #             "massif",
+    #             "acquisition",
+    #             "elevation",
+    #             "slope",
+    #             "orientation",
+    #             "tmin",
+    #             "hsnow",
+    #             "tel"
+    #         ],
+    #         print_info=True,
+    #         seed=seed
+    #     )
+    
+    #     x, y = dataset_loader.request_data(request)
+    
+    #     labels_manager = LabelManagement(method=labeling_method)
 
-        targets = labels_manager.transform(y)
-        label_encoder = labels_manager.get_encoder()
-        
-        fold_manager = FoldManagement(method=fold_method,
-                                      resampling_method=resampling_method, 
-                                      shuffle=shuffle_data, 
-                                      seed=seed,
-                                      train_aprox_size=0.8)
-        
-        fold_groups = fold_manager.split(x, y)
+    #     targets = labels_manager.transform(y)
+    #     label_encoder = labels_manager.get_encoder()
+    
+    #     fold_manager = FoldManagement(method=fold_method,
+    #                                   shuffle=shuffle_data, 
+    #                                   seed=seed,
+    #                                   train_aprox_size=0.8)
+    
+    #     fold_groups = fold_manager.split(x, y)
 
-        if balance_data:
-            fold_groups = balance_classes(fold_groups, targets, method=labeling_method, seed=seed)
-        
-        log_dataset = logger_dataset(log_dataset, x, y, label_encoder.inverse_transform(targets))
-        log_dataset, fold_key = logger_fold(log_dataset, fold_groups, label_encoder.inverse_transform(targets), y)
+    #     if balance_data:
+    #         fold_groups = balance_classes(fold_groups, targets, method=resampling_method, seed=seed)
 
-        metrics, y_est_save = predict_dataset(x=x,
-                                    targets=targets,
-                                    fold_groups=fold_groups,
-                                    output_dir=out_dir,
-                                    pipeline_params=pipeline_params,
-                                    label_encoder=label_encoder,
-                                    error_log_path=error_log_path,
-                                    save=True)
-        
-        results_dir = os.path.join(out_dir, "results/plots/")
-        metrics_to_plot = ["f1_score_macro", "f1_score_weighted", "f1_score_multiclass", "kappa_score", "training_time", "prediction_time"]
-        plot_boxplots(metrics, metrics_to_plot=metrics_to_plot, save_dir=results_dir, fold_key=fold_key, labels_massives=(fold_method=="mFold"))
-        plot_roc_curves(metrics, save_dir=results_dir)
+    #     log_dataset = logger_dataset(log_dataset, x, y, label_encoder.inverse_transform(targets))
+    #     log_dataset, fold_key = logger_fold(log_dataset, fold_groups, label_encoder.inverse_transform(targets), y)
 
-        log_results = report_metric_from_log(log_results, metrics, metrics_to_report)
-        # save_yaml(out_dir, "config_data.yaml", pipeline_params)
+    #     metrics, y_est_save = predict_dataset(x=x,
+    #                                 targets=targets,
+    #                                 fold_groups=fold_groups,
+    #                                 pipeline_names=pipeline_names,
+    #                                 output_dir=storage_path,
+    #                                 args=args,
+    #                                 label_encoder=label_encoder,
+    #                                 error_log_path=error_log_path,
+    #                                 save=True)
+    
+    #     results_dir = os.path.join(storage_path, "results/plots/")
 
-        print("================== End of the study ==================")
+    #     metrics_to_plot = ["f1_score_macro", "f1_score_weighted", "f1_score_multiclass", "kappa_score", "training_time", "prediction_time"]
+      
+    #     plot_boxplots(metrics, metrics_to_plot=metrics_to_plot, save_dir=results_dir, fold_key=fold_key, labels_massives=(fold_method=="mFold"))
+    #     plot_roc_curves(metrics, save_dir=results_dir)
 
-    except Exception as e:
-        error_message = f"An unexpected error occurred: {str(e)}"
-        print(error_message)
-        log_errors.error(error_message)
-        sys.exit(1)
+    #     log_results = report_metric_from_log(log_results, metrics, metrics_to_report)
+
+    #     print("================== End of the study ==================")
+
+    # except Exception as e:
+    #     error_message = f"An unexpected error occurred: {str(e)}"
+    #     print(error_message)
+    #     log_errors.error(error_message)
+    #     sys.exit(1)

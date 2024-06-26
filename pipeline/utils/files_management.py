@@ -1,6 +1,7 @@
 import re, os, h5py, logging, pickle, shutil, zipfile, yaml
 import numpy as np
 import pandas as pd
+import ast
 from yaml import safe_load
 from datetime import datetime
 from sklearn.metrics import (
@@ -272,14 +273,16 @@ def init_logger(path_log, name):
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
 
-    if not logger.hasHandlers():
-        fh = logging.FileHandler(filename, mode='w')
-        fh.setLevel(logging.INFO)
+    if logger.hasHandlers():
+        logger.handlers.clear()
 
-        formatter = logging.Formatter("%(asctime)s: (%(filename)s): %(levelname)s: %(funcName)s Line: %(lineno)d - %(message)s", datefmt=datestr)
-        fh.setFormatter(formatter)
+    fh = logging.FileHandler(filename, mode='w')
+    fh.setLevel(logging.INFO)
 
-        logger.addHandler(fh)
+    formatter = logging.Formatter("%(asctime)s: (%(filename)s): %(levelname)s: %(funcName)s Line: %(lineno)d - %(message)s", datefmt=datestr)
+    fh.setFormatter(formatter)
+
+    logger.addHandler(fh)
 
     logger.info("Started")
     return logger, filename
@@ -534,7 +537,7 @@ def compresser_en_zip(chemin_dossier, chemin_zip):
                 fichier_zip.write(chemin_complet, chemin_rel)
     return 1
 
-def set_folder(out_dir, pipeline_param):
+def set_folder(out_dir, args):
     """
     Create and organize folders for the study.
 
@@ -542,7 +545,7 @@ def set_folder(out_dir, pipeline_param):
     ----------
     out_dir : str
         Path to the base output directory.
-    pipeline_param : dict
+    args : dict
         Dictionary containing pipeline parameters.
 
     Returns
@@ -550,20 +553,24 @@ def set_folder(out_dir, pipeline_param):
     str
         Path to the organized study folder.
     """
-    folders= ["results", "models", "html"]
-    now = datetime.now()
-    date = now.strftime("%d%m%y_%HH%MM%S")
-    folder_name = f"study_{date}_{pipeline_param['labeling_method']}_{pipeline_param['fold_method']}"
-    # out_dir = check_and_create_directory(out_dir+folder_name)
+    pattern = re.compile(r"\[\['(.*?)_direct'\]")
+    pipeline_names = []
+    for item in args.pipeline:
+        match = pattern.search(item)
+        if match:
+            pipeline_names.append(match.group(1) + "_direct")
+
+    folders = ["results", "models", "html"]
+
     for folder in folders:
-        check_and_create_directory(out_dir+f"/{folder}")
+        check_and_create_directory(os.path.join(out_dir, folder))
 
-    models= pipeline_param["pipeline_names"]
-    for models_folder in models:
-        check_and_create_directory(out_dir+f"/models/{models_folder}")
+    for models_folder in pipeline_names:
+        check_and_create_directory(os.path.join(out_dir, "models", models_folder))
 
-    check_and_create_directory(out_dir+f"/results")
-    return out_dir+"/"
+    check_and_create_directory(os.path.join(out_dir, "results"))
+
+    return os.path.join(out_dir, ""), pipeline_names
 
 
 def check_and_create_directory(directory):
