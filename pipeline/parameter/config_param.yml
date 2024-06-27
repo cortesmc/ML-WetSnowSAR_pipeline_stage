@@ -4,8 +4,8 @@ fixed_args:
         # Path to the dataset file
         "--data_path": "/home/listic/Bureau/cortes_stage/ML-WetSnowSAR_pipeline_stage/pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected_V2.h5"
         
-        # Method for the fold: kFold, mFold, or combinationFold
-        "--fold_method": "combinationFold"
+        # Method for the fold: simpleSplit, kFold, mFold, or combinationFold
+        "--fold_method": "simpleSplit"
         
         # Method for labeling: crocus, 3labels
         "--labeling_method": "3labels"

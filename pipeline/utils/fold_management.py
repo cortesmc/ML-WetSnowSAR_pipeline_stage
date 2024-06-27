@@ -5,6 +5,37 @@ from imblearn.under_sampling import RandomUnderSampler
 import itertools
 import random
 
+def simple_split(x, train_size=0.8, seed=None, shuffle=False):
+    """
+    Perform a simple split of the data into training and testing sets.
+
+    Parameters:
+    - x : array-like
+        The data to split.
+    - train_size : float, optional (default=0.8)
+        The proportion of the dataset to include in the training split.
+    - seed : int or None, optional (default=None)
+        Seed used by the random number generator for reproducibility.
+    - shuffle : bool, optional (default=False)
+        Whether to shuffle the data before splitting.
+
+    Returns:
+    - tuple
+        A tuple containing train and test indices.
+    """
+    n_samples = len(x)
+    if shuffle:
+        rng = np.random.default_rng(seed)
+        indices = rng.permutation(n_samples)
+    else:
+        indices = np.arange(n_samples)
+
+    train_size = int(train_size * n_samples)
+    train_indices = indices[:train_size]
+    test_indices = indices[train_size:]
+
+    return [(train_indices, test_indices)]
+
 def KFold_method(x, train_size=0.8, seed=None, shuffle=False):
     """
     Perform K-Fold cross-validation on the data.
@@ -201,6 +232,8 @@ class FoldManagement:
 
             case "combinationFold":
                 self.results = combination_method(self.massives_count, train_size=self.train_aprox_size, proximity_value=1, shuffle=self.shuffle, seed=self.seed)
-        
+
+            case "simpleSplit":
+                self.results = simple_split(x, train_size=self.train_aprox_size, seed=self.seed, shuffle=self.shuffle)
 
         return self.results
