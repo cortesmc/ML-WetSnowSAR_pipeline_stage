@@ -14,8 +14,9 @@ from sklearn.model_selection import train_test_split
 from estimators.statistical_descriptor import Nagler_WS
 from utils.dataset_management import parse_pipeline
 from utils.dataset_load import shuffle_data, DatasetLoader
-from utils.fold_management import FoldManagement, balance_classes
+from utils.fold_management import FoldManagement
 from utils.label_management import LabelManagement
+from utils.balance_management import BalanceManagement
 from utils.figures import plot_boxplots, plot_roc_curves
 from utils.files_management import *
 
@@ -112,7 +113,7 @@ if __name__ == "__main__":
     parser.add_argument('--storage_path', type=str, required=True, help='Path to store the results')
     parser.add_argument('--fold_method', type=str, required=True, help='Method to fold the data')
     parser.add_argument('--labeling_method', type=str, required=True, help='Method to label the data')
-    parser.add_argument('--resampling_method', type=str, required=True, help='Method to resample the data')
+    parser.add_argument('--balancing_method', type=str, required=True, help='Method to resample the data')
     parser.add_argument('--request', type=str, required=True, help='Request string to filter data')
     parser.add_argument('--shuffle_data', type=str, choices=['true', 'True', 'false', 'False'], required=True, help='Shuffle data or not')
     parser.add_argument('--balance_data', type=str, choices=['true', 'True', 'false', 'False'], required=True, help='Balance data or not')    
@@ -128,7 +129,7 @@ if __name__ == "__main__":
         fold_method = args.fold_method
         seed = args.seed
         labeling_method = args.labeling_method
-        resampling_method = args.resampling_method
+        balancing_method = args.balancing_method
         balance_data = args.balance_data.lower() == 'true'
         request = args.request
         shuffle_data = args.shuffle_data.lower() == 'true'
@@ -166,19 +167,15 @@ if __name__ == "__main__":
         x, y = dataset_loader.request_data(request)
 
         labels_manager = LabelManagement(method=labeling_method)
-
         targets = labels_manager.transform(y)
         label_encoder = labels_manager.get_encoder()
 
-        fold_manager = FoldManagement(method=fold_method,
-                                    shuffle=shuffle_data, 
-                                    seed=seed,
-                                    train_aprox_size=0.8)
-
+        fold_manager = FoldManagement(method=fold_method, shuffle=shuffle_data, seed=seed, train_aprox_size=0.8)
         fold_groups = fold_manager.split(x, y)
 
         if balance_data:
-            fold_groups = balance_classes(fold_groups, targets, method=resampling_method, seed=seed)
+            balance_manager = BalanceManagement(method=balancing_method, seed=seed)
+            fold_groups = balance_manager.transform(folds=fold_groups, targets=targets)
 
         log_dataset = logger_dataset(log_dataset, x, y, label_encoder.inverse_transform(targets))
         log_dataset, fold_key = logger_fold(log_dataset, fold_groups, label_encoder.inverse_transform(targets), y)

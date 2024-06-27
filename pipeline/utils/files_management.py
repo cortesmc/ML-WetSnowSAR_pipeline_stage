@@ -335,7 +335,7 @@ def logger_dataset(logg, x, metadata, targets):
 
     return logg
 
-def logger_fold(logg, fold_groupes, targets, metadata):
+def logger_fold(logg, fold_groups, targets, metadata):
     """
     Log information about each fold in cross-validation.
 
@@ -343,7 +343,7 @@ def logger_fold(logg, fold_groupes, targets, metadata):
     ----------
     logg : logging.Logger
         Logger instance.
-    fold_groupes : list of tuples
+    fold_groups : list of tuples
         List of (train_index, test_index) tuples for each fold.
     targets : numpy.ndarray
         Target labels.
@@ -356,7 +356,7 @@ def logger_fold(logg, fold_groupes, targets, metadata):
         Logger instance and dictionary containing massif information for each fold.
     """
     fold_key = {}
-    for kfold, (train_index, test_index) in enumerate(fold_groupes):
+    for kfold, (train_index, test_index) in enumerate(fold_groups):
         logg.info(f"------------------ Fold: {kfold} ------------------")
         
         train_unique_targets, train_target_counts = np.unique(targets[train_index], return_counts=True)

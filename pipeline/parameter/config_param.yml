@@ -10,8 +10,9 @@ fixed_args:
         # Method for labeling: crocus, 3labels
         "--labeling_method": "3labels"
         
-        # Method for resampling: oversample, undersample, or smote
-        "--resampling_method": "undersample"
+        # Method for resampling: bFold (can create more than 1000 folds, use with caution :D), oversample, undersample, or smote
+        
+        "--balancing_method": "undersample"
         
         # Filter request based on date and elevation criteria
         "--request": "(date.dt.month == 3 and date.dt.day == 1) and ((elevation > 1000) and (elevation < 2000))"
@@ -117,6 +118,6 @@ varying_args:
             # Random seed for reproducibility
             "--seed": 100150
 
-        - options:
-            # Random seed for reproducibility
-            "--seed": 42
+        # - options:
+        #     # Random seed for reproducibility
+        #     "--seed": 42

@@ -138,53 +138,6 @@ def combination_method(dict_massives, train_size=0.8, proximity_value=1, shuffle
 
     return result
 
-def balance_classes(results, targets, method='oversample', seed=42):
-    """
-    Balance the classes within each fold using the specified method.
-
-    Parameters
-    ----------
-    results : list of tuples
-        A list containing train and test indices for each fold.
-    targets : numpy.ndarray
-        Target labels.
-    method : str, optional (default='oversample')
-        The resampling method to use ('oversample', 'undersample', 'smote').
-    seed : int, optional (default=42)
-        Seed for random number generator.
-
-    Returns
-    -------
-    list of tuples
-        A list containing balanced train and test indices for each fold.
-    """
-    balanced_results = []
-
-    for train_indices, test_indices in results:
-        train_targets = targets[train_indices]
-        
-        if method == 'oversample':
-            sampler = RandomOverSampler(random_state=seed)
-            balanced_train_indices, _ = sampler.fit_resample(np.array(train_indices).reshape(-1, 1), train_targets)
-            balanced_train_indices = balanced_train_indices.flatten()
-        
-        elif method == 'undersample':
-            sampler = RandomUnderSampler(random_state=seed)
-            balanced_train_indices, _ = sampler.fit_resample(np.array(train_indices).reshape(-1, 1), train_targets)
-            balanced_train_indices = balanced_train_indices.flatten()
-        
-        elif method == 'smote':
-            sampler = SMOTE(random_state=seed)
-            balanced_train_indices, _ = sampler.fit_resample(np.array(train_indices).reshape(-1, 1), train_targets)
-            balanced_train_indices = balanced_train_indices.flatten()
-        
-        else:
-            raise ValueError(f"Unknown resampling method: {method}")
-
-        balanced_results.append((balanced_train_indices.tolist(), test_indices))
-
-    return balanced_results
-
 class FoldManagement: 
     """
     A class to manage the creation of the folds for trainning.
