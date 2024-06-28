@@ -5,7 +5,7 @@ fixed_args:
         "--data_path": "/home/listic/Bureau/cortes_stage/ML-WetSnowSAR_pipeline_stage/pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected_V2.h5"
         
         # Method for the fold: simpleSplit, kFold, mFold, or combinationFold
-        "--fold_method": "simpleSplit"
+        "--fold_method": "mFold"
         
         # Method for labeling: crocus, 3labels
         "--labeling_method": "3labels"
@@ -118,6 +118,6 @@ varying_args:
             # Random seed for reproducibility
             "--seed": 100150
 
-        # - options:
+        - options:
         #     # Random seed for reproducibility
-        #     "--seed": 42
+            "--seed": 42

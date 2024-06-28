@@ -1,4 +1,4 @@
-import re, os, h5py, logging, pickle, shutil, zipfile, yaml
+import re, os, h5py, logging, pickle, shutil, zipfile, yaml, joblib
 import numpy as np
 import pandas as pd
 import ast
@@ -29,6 +29,41 @@ def dump_pkl(obj, path):
     with open(path, "wb") as f:
         pickle.dump(obj, f)
     return 1
+
+def dump_h5(obj, path):
+    """
+    Dump object in HDF5 file using joblib.
+
+    Parameters
+    ----------
+    obj : object
+        Object to dump, can be a list, a dict, a numpy array, etc.
+    path : str
+        Path to the HDF5 file.
+
+    Returns
+    -------
+    int
+        1 if the dump is successful.
+    """
+    joblib.dump(obj, path, compress=('zlib', 3))
+    return 1
+
+def load_h5(path):
+    """
+    Load object from an HDF5 file using joblib.
+
+    Parameters
+    ----------
+    path : str
+        Path to the HDF5 file.
+
+    Returns
+    -------
+    object
+        The object that was loaded from the file.
+    """
+    return joblib.load(path)
 
 def open_pkl(path):
     """

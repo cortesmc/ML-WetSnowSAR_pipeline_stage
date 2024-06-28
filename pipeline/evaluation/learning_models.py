@@ -1,9 +1,7 @@
-import sys, os, time
+import sys, os, time, logging, argparse
 import numpy as np
 from datetime import datetime
 from joblib import Parallel, delayed
-import logging
-import argparse
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(parent_dir)
@@ -17,7 +15,7 @@ from utils.dataset_load import shuffle_data, DatasetLoader
 from utils.fold_management import FoldManagement
 from utils.label_management import LabelManagement
 from utils.balance_management import BalanceManagement
-from utils.figures import plot_boxplots, plot_roc_curves
+from utils.figures import *
 from utils.files_management import *
 
 def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_model, label_encoder, kfold, pipeline_name, save_dir, error_log_path):
@@ -36,7 +34,7 @@ def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_mod
         fold_metric["training_time"] = training_time
         fold_metric["prediction_time"] = prediction_time
 
-        dump_pkl(pipeline, os.path.join(save_dir, f"{pipeline_name}_fold{kfold}.pkl"))
+        dump_h5(pipeline, os.path.join(save_dir, f"{pipeline_name}_fold{kfold}.h5"))
         
         return fold_metric, y_prob, y_test_k
     except Exception as e:
@@ -89,7 +87,7 @@ def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, l
             log_model = save_metrics(log_model, fold_metrics, pipeline_name)
 
             if save:
-                dump_pkl(fold_metrics, os.path.join(save_dir, "metrics.pkl"))        
+                dump_h5(fold_metrics, os.path.join(save_dir, "metrics.h5"))        
         
             metrics[pipeline_name] = fold_metrics
 
@@ -190,12 +188,14 @@ if __name__ == "__main__":
                                     error_log_path=error_log_path,
                                     save=True)
 
-        results_dir = os.path.join(storage_path, "results/plots/")
+        dump_h5(fold_key, os.path.join(os.path.join(storage_path, "results/"), "fold_key.h5"))     
+
+        results_dir_figures = os.path.join(storage_path, "results/plots/")
 
         metrics_to_plot = ["f1_score_macro", "f1_score_weighted", "f1_score_multiclass", "kappa_score", "training_time", "prediction_time"]
     
-        plot_boxplots(metrics, metrics_to_plot=metrics_to_plot, save_dir=results_dir, fold_key=fold_key, labels_massives=(fold_method=="mFold"))
-        plot_roc_curves(metrics, save_dir=results_dir)
+        plot_boxplots(metrics, metrics_to_plot=metrics_to_plot, save_dir=results_dir_figures, fold_key=fold_key, labels_massives=(fold_method=="mFold"))
+        plot_roc_curves(metrics, save_dir=results_dir_figures)
 
         log_results = report_metric_from_log(log_results, metrics, metrics_to_report)
 
