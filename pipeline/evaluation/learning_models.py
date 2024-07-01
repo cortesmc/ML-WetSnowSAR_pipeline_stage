@@ -35,7 +35,7 @@ def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_mod
         fold_metric["prediction_time"] = prediction_time
 
         dump_h5(pipeline, os.path.join(save_dir, f"{pipeline_name}_fold{kfold}.h5"))
-        
+
         return fold_metric, y_prob, y_test_k
     except Exception as e:
         error_message = f"Pipeline {pipeline_id} failed with error: {str(e)}"
@@ -73,7 +73,7 @@ def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, l
                     error_log_path
                 )
 
-            results = Parallel(n_jobs=-1)(
+            results = Parallel(n_jobs=1)(
                 delayed(fit_predict_fold_wrap)(kfold, train_index, test_index)
                 for kfold, (train_index, test_index) in enumerate(fold_groups)
             )

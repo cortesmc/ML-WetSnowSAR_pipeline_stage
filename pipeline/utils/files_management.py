@@ -30,40 +30,15 @@ def dump_pkl(obj, path):
         pickle.dump(obj, f)
     return 1
 
-def dump_h5(obj, path):
-    """
-    Dump object in HDF5 file using joblib.
+def dump_h5(obj, filename):
+    with h5py.File(filename, 'w') as h5file:
+        pickled_obj = pickle.dumps(obj)
+        h5file.create_dataset('data', data=np.void(pickled_obj))
 
-    Parameters
-    ----------
-    obj : object
-        Object to dump, can be a list, a dict, a numpy array, etc.
-    path : str
-        Path to the HDF5 file.
-
-    Returns
-    -------
-    int
-        1 if the dump is successful.
-    """
-    joblib.dump(obj, path, compress=('zlib', 3))
-    return 1
-
-def load_h5(path):
-    """
-    Load object from an HDF5 file using joblib.
-
-    Parameters
-    ----------
-    path : str
-        Path to the HDF5 file.
-
-    Returns
-    -------
-    object
-        The object that was loaded from the file.
-    """
-    return joblib.load(path)
+def load_h5(filename):
+    with h5py.File(filename, 'r') as h5file:
+        pickled_obj = h5file['data'][()]
+        return pickle.loads(pickled_obj)
 
 def open_pkl(path):
     """
@@ -461,28 +436,28 @@ def save_h5(img, label, filename):
         )
 
 
-def load_h5(filename):
-    """
-    Load image and label from a hdf5 file.
+# def load_h5(filename):
+#     """
+#     Load image and label from a hdf5 file.
 
-    Parameters
-    ----------
-    filename : str
-        Path to the hdf5 file.
+#     Parameters
+#     ----------
+#     filename : str
+#         Path to the hdf5 file.
 
-    Returns
-    -------
-    numpy.ndarray
-        Dataset of images in float32.
-    numpy.ndarray
-        Dataset of labels in string.
-    """
-    if ".h5" not in filename:
-        filename += ".h5"
-    with h5py.File(filename, "r") as hf:
-        data = np.array(hf["img"][:]).astype(np.float32)
-        meta = np.array(hf["label"][:]).astype(str)
-    return data, meta
+#     Returns
+#     -------
+#     numpy.ndarray
+#         Dataset of images in float32.
+#     numpy.ndarray
+#         Dataset of labels in string.
+#     """
+#     if ".h5" not in filename:
+#         filename += ".h5"
+#     with h5py.File(filename, "r") as hf:
+#         data = np.array(hf["img"][:]).astype(np.float32)
+#         meta = np.array(hf["label"][:]).astype(str)
+#     return data, meta
 
 
 def open_param_set_dir(i_path_param, out_dir):

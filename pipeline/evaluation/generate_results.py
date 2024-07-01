@@ -14,37 +14,46 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     storage_path = args.storage_path
-    
-    all_items = os.listdir(storage_path)
-
     yaml_file_path = None
-    groups = []
+    folders = []
+    if os.path.isdir(os.path.join(storage_path, 'group_0')):
+        all_items = os.listdir(storage_path)
+        for item in all_items:
+            item_path = os.path.join(storage_path, item)
+            if os.path.isfile(item_path) and item.endswith('.yaml'):
+                yaml_file_path = item_path
+            elif item.endswith('results'):
+                continue
+            else:
+                folders.append("./"+item_path)
+    else:
+        yaml_file_path = storage_path + "/info.yaml"
+        folders = [storage_path]
 
-    for item in all_items:
-        item_path = os.path.join(storage_path, item)
-        if os.path.isfile(item_path) and item.endswith('.yaml'):
-            yaml_file_path = item_path
-        else:
-            groups.append(item_path)
-
+    print(folders[0]+"/results/fold_key.h5")
     methods_param = load_yaml(yaml_file_path)
-    print(groups[0]+"/results/fold_key.h5")
-    fold_key = load_h5(groups[0]+"/results/fold_key.h5")
-
+    fold_key = load_h5(folders[0]+"/results/fold_key.h5")
+    
     metrics = {}
-    for inx, group in enumerate(groups):
-        models = [methods_param["groups_of_parameters"][inx]["--pipeline"][i][0][0] for i in range(len(x["groups_of_parameters"][0]["--pipeline"]))] 
-
+    
+    for idx, folder in enumerate(sorted(folders)):
+        models = [methods_param["groups_of_parameters"][idx]["--pipeline"][i][0][0] for i in range(len(methods_param["groups_of_parameters"][idx]["--pipeline"]))] 
         for model in models:
-            metrics[model] = load_h5(group+"/models/"+model+"/metrics.h5")
+            try:
+                if model not in metrics:
+                    metrics[model] = []
+                metrics[model] = metrics[model] + load_h5(folder+"/models/"+model+"/metrics.h5")
+            except Exception as e:
+                continue
 
-    log_results, _ = init_logger(os.path.join(storage_path, "results"), "results")
+    check_and_create_directory(storage_path+"/results_final")
+    log_results, _ = init_logger(os.path.join(storage_path, "results_final"), "results")
 
-    results_dir = os.path.join(os.path.dirname(storage_path), "results/plots/")
+    results_dir_figures = os.path.join(storage_path, "results_final/plots/")
 
     metrics_to_plot = ["f1_score_macro", "f1_score_weighted", "f1_score_multiclass", "kappa_score", "training_time", "prediction_time"]
 
-    plot_boxplots(metrics, metrics_to_plot=metrics_to_plot, save_dir=results_dir, fold_key=fold_key, labels_massives=(methods_param["groups_of_parameters"][0]["--fold_method"]=="mFold"))
-    plot_roc_curves(metrics, save_dir=results_dir)
+    plot_boxplots(metrics, metrics_to_plot=metrics_to_plot, save_dir=results_dir_figures, fold_key=fold_key, labels_massives=(methods_param["groups_of_parameters"][0]["--fold_method"]=="mFold"))
+    plot_roc_curves(metrics, save_dir=results_dir_figures)
 
     log_results = report_metric_from_log(log_results, metrics, methods_param["groups_of_parameters"][0]["--metrics_to_report"])
