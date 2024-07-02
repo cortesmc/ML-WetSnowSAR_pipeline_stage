@@ -73,7 +73,7 @@ def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, l
                     error_log_path
                 )
 
-            results = Parallel(n_jobs=-1)(
+            results = Parallel(n_jobs=1)(
                 delayed(fit_predict_fold_wrap)(kfold, train_index, test_index)
                 for kfold, (train_index, test_index) in enumerate(fold_groups)
             )
@@ -200,7 +200,6 @@ if __name__ == "__main__":
         log_results = report_metric_from_log(log_results, metrics, metrics_to_report)
 
         print("================== End of the study ==================")
-
     except Exception as e:
         error_message = f"An unexpected error occurred: {str(e)}"
         print(error_message)
