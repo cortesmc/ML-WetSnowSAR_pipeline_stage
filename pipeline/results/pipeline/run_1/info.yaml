@@ -1,0 +1,184 @@
+commands:
+- 'python evaluation/learning_models.py --data_path /home/listic/Bureau/cortes_stage/ML-WetSnowSAR_pipeline_stage/pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected_V2.h5
+  --fold_method combinationFold --labeling_method crocus --balancing_method undersample
+  --request (date.dt.month == 3 and date.dt.day == 1) and ((elevation > 1000) and
+  (elevation < 2000)) --shuffle_data True --balance_data False --import_list from
+  sklearn.svm import SVC --import_list from sklearn.neighbors import KNeighborsClassifier
+  --import_list from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier
+  --import_list from sklearn.linear_model import LogisticRegression --import_list
+  from sklearn.neural_network import MLPClassifier --import_list from estimators.statistical_descriptor
+  import * --import_list from estimators.band_transform import * --metrics_to_report
+  f1_score_macro --metrics_to_report f1_score_weighted --metrics_to_report f1_score_multiclass
+  --metrics_to_report accuracy_score --metrics_to_report precision_score_macro --metrics_to_report
+  recall_score_macro --metrics_to_report roc_auc_score --metrics_to_report log_loss
+  --metrics_to_report kappa_score --metrics_to_report confusion_matrix --seed 100150
+  --pipeline [[''KNN_direct''], [''BandSelector'', {''bands'': [0, 1, 2, 3, 4, 5,
+  6, 7, 8]}], [''BandTransformer'', {''bands'': [0, 1, 2, 3]}, {''transformations'':
+  []}], [''Hist_SAR''], [''KNeighborsClassifier'', {''n_neighbors'': 50}]] --storage_path
+  /home/listic/Bureau/cortes_stage/ML-WetSnowSAR_pipeline_stage/pipeline/results/pipeline/run_1/group_0'
+- 'python evaluation/learning_models.py --data_path /home/listic/Bureau/cortes_stage/ML-WetSnowSAR_pipeline_stage/pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected_V2.h5
+  --fold_method combinationFold --labeling_method crocus --balancing_method undersample
+  --request (date.dt.month == 3 and date.dt.day == 1) and ((elevation > 1000) and
+  (elevation < 2000)) --shuffle_data True --balance_data False --import_list from
+  sklearn.svm import SVC --import_list from sklearn.neighbors import KNeighborsClassifier
+  --import_list from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier
+  --import_list from sklearn.linear_model import LogisticRegression --import_list
+  from sklearn.neural_network import MLPClassifier --import_list from estimators.statistical_descriptor
+  import * --import_list from estimators.band_transform import * --metrics_to_report
+  f1_score_macro --metrics_to_report f1_score_weighted --metrics_to_report f1_score_multiclass
+  --metrics_to_report accuracy_score --metrics_to_report precision_score_macro --metrics_to_report
+  recall_score_macro --metrics_to_report roc_auc_score --metrics_to_report log_loss
+  --metrics_to_report kappa_score --metrics_to_report confusion_matrix --seed 100150
+  --pipeline [[''LogisticR_direct''], [''BandSelector'', {''bands'': [0, 1, 2, 3,
+  4, 5, 6, 7, 8]}], [''BandTransformer'', {''bands'': [0, 1, 2, 3]}, {''transformations'':
+  []}], [''Hist_SAR''], [''LogisticRegression'']] --pipeline [[''AdaBoost_direct''],
+  [''BandSelector'', {''bands'': [0, 1, 2, 3, 4, 5, 6, 7, 8]}], [''BandTransformer'',
+  {''bands'': [0, 1, 2, 3]}, {''transformations'': []}], [''Hist_SAR''], [''AdaBoostClassifier'',
+  {''n_estimators'': 200}]] --storage_path /home/listic/Bureau/cortes_stage/ML-WetSnowSAR_pipeline_stage/pipeline/results/pipeline/run_1/group_1'
+commit_sha: afde6c7be57ff8081066955a61160030ad939213
+end_time:
+- 2024-07-02 13:43:47.101674
+- 2024-07-02 13:46:13.976614
+executable: evaluation/learning_models.py
+executable_command: python
+experiment_id: 1
+groups_of_parameters:
+- --balance_data: false
+  --balancing_method: undersample
+  --data_path: /home/listic/Bureau/cortes_stage/ML-WetSnowSAR_pipeline_stage/pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected_V2.h5
+  --fold_method: combinationFold
+  --import_list:
+  - from sklearn.svm import SVC
+  - from sklearn.neighbors import KNeighborsClassifier
+  - from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier
+  - from sklearn.linear_model import LogisticRegression
+  - from sklearn.neural_network import MLPClassifier
+  - from estimators.statistical_descriptor import *
+  - from estimators.band_transform import *
+  --labeling_method: crocus
+  --metrics_to_report:
+  - f1_score_macro
+  - f1_score_weighted
+  - f1_score_multiclass
+  - accuracy_score
+  - precision_score_macro
+  - recall_score_macro
+  - roc_auc_score
+  - log_loss
+  - kappa_score
+  - confusion_matrix
+  --pipeline:
+  - - - KNN_direct
+    - - BandSelector
+      - bands:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+    - - BandTransformer
+      - bands:
+        - 0
+        - 1
+        - 2
+        - 3
+      - transformations: []
+    - - Hist_SAR
+    - - KNeighborsClassifier
+      - n_neighbors: 50
+  --request: (date.dt.month == 3 and date.dt.day == 1) and ((elevation > 1000) and
+    (elevation < 2000))
+  --seed: 100150
+  --shuffle_data: true
+- --balance_data: false
+  --balancing_method: undersample
+  --data_path: /home/listic/Bureau/cortes_stage/ML-WetSnowSAR_pipeline_stage/pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected_V2.h5
+  --fold_method: combinationFold
+  --import_list:
+  - from sklearn.svm import SVC
+  - from sklearn.neighbors import KNeighborsClassifier
+  - from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier
+  - from sklearn.linear_model import LogisticRegression
+  - from sklearn.neural_network import MLPClassifier
+  - from estimators.statistical_descriptor import *
+  - from estimators.band_transform import *
+  --labeling_method: crocus
+  --metrics_to_report:
+  - f1_score_macro
+  - f1_score_weighted
+  - f1_score_multiclass
+  - accuracy_score
+  - precision_score_macro
+  - recall_score_macro
+  - roc_auc_score
+  - log_loss
+  - kappa_score
+  - confusion_matrix
+  --pipeline:
+  - - - LogisticR_direct
+    - - BandSelector
+      - bands:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+    - - BandTransformer
+      - bands:
+        - 0
+        - 1
+        - 2
+        - 3
+      - transformations: []
+    - - Hist_SAR
+    - - LogisticRegression
+  - - - AdaBoost_direct
+    - - BandSelector
+      - bands:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+    - - BandTransformer
+      - bands:
+        - 0
+        - 1
+        - 2
+        - 3
+      - transformations: []
+    - - Hist_SAR
+    - - AdaBoostClassifier
+      - n_estimators: 200
+  --request: (date.dt.month == 3 and date.dt.day == 1) and ((elevation > 1000) and
+    (elevation < 2000))
+  --seed: 100150
+  --shuffle_data: true
+main_pid: 142855
+pids:
+- '142887'
+- '143126'
+repertories:
+- results/pipeline/run_1/group_0
+- results/pipeline/run_1/group_1
+run_id: 1
+start_time:
+- 2024-07-02 13:41:46.318941
+- 2024-07-02 13:43:47.139367
+status:
+- finished
+- finished
+storage_path: results/pipeline/run_1
+working_directory: /home/listic/Bureau/cortes_stage/ML-WetSnowSAR_pipeline_stage/pipeline

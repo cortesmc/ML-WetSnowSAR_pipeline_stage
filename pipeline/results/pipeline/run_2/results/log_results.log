@@ -1,0 +1,45 @@
+07/02/2024-01:48:58 PM: (files_management.py): INFO: init_logger Line: 297 - Started
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 150 - ================== Final report ==================
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 152 - __________________ Model : KNN_direct __________________
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - f1_score_macro : 79.18285714285715 +/- 1.238382750499492
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - f1_score_weighted : 79.81857142857143 +/- 1.3604351044681926
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 163 - f1_score_multiclass : [83.10285714 75.26714286]
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - accuracy_score : 80.0257142857143 +/- 1.3173876438169694
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - precision_score_macro : 80.09428571428573 +/- 1.0572046313997383
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - recall_score_macro : 78.89142857142858 +/- 1.2891905386318798
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - roc_auc_score : 78.89142857142858 +/- 1.2891905386318798
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - log_loss : 60.91857142857142 +/- 9.629102359249174
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - kappa_score : 58.52428571428572 +/- 2.415715552926927
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 166 - confusion_matrix :
+           0          1
+0  87.303600  12.696400
+1  29.521443  70.478557
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 152 - __________________ Model : LogisticR_direct __________________
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - f1_score_macro : 79.90857142857143 +/- 1.3098792591187123
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - f1_score_weighted : 80.49428571428572 +/- 1.4162410725262142
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 163 - f1_score_multiclass : [83.47285714 76.34571429]
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - accuracy_score : 80.64714285714285 +/- 1.4005581977576407
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - precision_score_macro : 80.60285714285715 +/- 1.2562269390715117
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - recall_score_macro : 79.65857142857143 +/- 1.3878084323486302
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - roc_auc_score : 79.65857142857143 +/- 1.3878084323486302
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - log_loss : 43.19142857142857 +/- 2.879897957375913
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - kappa_score : 59.925714285714285 +/- 2.5990759739506166
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 166 - confusion_matrix :
+           0          1
+0  86.928200  13.071800
+1  27.607871  72.392129
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 152 - __________________ Model : AdaBoost_direct __________________
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - f1_score_macro : 79.02 +/- 1.854284613691068
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - f1_score_weighted : 79.58 +/- 2.007934261872138
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 163 - f1_score_multiclass : [82.50142857 75.53857143]
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - accuracy_score : 79.69000000000001 +/- 1.96094729294652
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - precision_score_macro : 79.47857142857143 +/- 1.7059344198702224
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - recall_score_macro : 78.88857142857144 +/- 1.9033311292980781
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - roc_auc_score : 78.88857142857144 +/- 1.9033311292980781
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - log_loss : 68.67142857142856 +/- 0.03562846832382738
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 160 - kappa_score : 58.12714285714286 +/- 3.658784787665024
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 166 - confusion_matrix :
+           0          1
+0  85.139000  14.861000
+1  27.359629  72.640371
+07/02/2024-01:51:29 : (files_management.py): INFO: report_metric_from_log Line: 175 - ================== End report ==================

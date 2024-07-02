@@ -3,4 +3,4 @@ pipeline/data/*
 pipeline/.cache/
 data/
 pipeline/evaluation/container_ML.sif
-!pipeline/data/__init__.py
+!pipeline/data/__init__.txt

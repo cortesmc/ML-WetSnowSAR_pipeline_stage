@@ -1,0 +1,114 @@
+07/02/2024-01:55:59 PM: (files_management.py): INFO: init_logger Line: 297 - Started
+07/02/2024-01:55:59 PM: (learning_models.py): INFO: predict_dataset Line: 54 - ================== Fitting model LogisticR_direct ==================
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 395 - __________________ Fold 0 with LogisticR_direct __________________
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_macro : 79.55
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_weighted : 80.18
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_multiclass : 
+[83.59 75.51]
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  accuracy_score : 80.35
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  precision_score_macro : 80.21
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  recall_score_macro : 79.19
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  roc_auc_score : 79.19
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  log_loss : 43.31
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  kappa_score : 59.17
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  confusion_matrix :          0        1
+0  86.5911  13.4089
+1  28.2018  71.7982
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  training_time : 11.67
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  prediction_time : 1.82
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 395 - __________________ Fold 1 with LogisticR_direct __________________
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_macro : 77.75
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_weighted : 78.00
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_multiclass : 
+[80.65 74.85]
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  accuracy_score : 78.13
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  precision_score_macro : 78.23
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  recall_score_macro : 77.58
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  roc_auc_score : 77.58
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  log_loss : 48.85
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  kappa_score : 55.59
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  confusion_matrix :          0        1
+0  83.8678  16.1322
+1  28.7037  71.2963
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  training_time : 11.72
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  prediction_time : 2.27
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 395 - __________________ Fold 2 with LogisticR_direct __________________
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_macro : 81.65
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_weighted : 81.65
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_multiclass : 
+[82.74 80.57]
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  accuracy_score : 81.72
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  precision_score_macro : 82.24
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  recall_score_macro : 81.75
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  roc_auc_score : 81.75
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  log_loss : 41.46
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  kappa_score : 63.46
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  confusion_matrix :          0        1
+0  88.1029  11.8971
+1  24.6023  75.3977
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  training_time : 11.94
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  prediction_time : 2.17
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 395 - __________________ Fold 3 with LogisticR_direct __________________
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_macro : 78.99
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_weighted : 79.11
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_multiclass : 
+[81.61 76.38]
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  accuracy_score : 79.32
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  precision_score_macro : 80.07
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  recall_score_macro : 78.91
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  roc_auc_score : 78.91
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  log_loss : 45.41
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  kappa_score : 58.24
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  confusion_matrix :          0        1
+0  87.6630  12.3370
+1  29.8458  70.1542
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  training_time : 11.61
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  prediction_time : 2.10
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 395 - __________________ Fold 4 with LogisticR_direct __________________
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_macro : 81.74
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_weighted : 82.51
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_multiclass : 
+[85.78 77.7 ]
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  accuracy_score : 82.63
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  precision_score_macro : 82.26
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  recall_score_macro : 81.38
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  roc_auc_score : 81.38
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  log_loss : 40.45
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  kappa_score : 63.51
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  confusion_matrix :          0        1
+0  87.9048  12.0952
+1  25.1404  74.8596
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  training_time : 12.02
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  prediction_time : 1.89
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 395 - __________________ Fold 5 with LogisticR_direct __________________
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_macro : 79.05
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_weighted : 80.55
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_multiclass : 
+[85.27 72.84]
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  accuracy_score : 80.90
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  precision_score_macro : 80.45
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  recall_score_macro : 78.29
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  roc_auc_score : 78.29
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  log_loss : 42.92
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  kappa_score : 58.25
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  confusion_matrix :          0        1
+0  89.1439  10.8561
+1  32.5648  67.4352
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  training_time : 11.98
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  prediction_time : 2.13
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 395 - __________________ Fold 6 with LogisticR_direct __________________
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_macro : 80.78
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_weighted : 81.62
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  f1_score_multiclass : 
+[84.85 76.71]
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  accuracy_score : 81.64
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  precision_score_macro : 80.88
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  recall_score_macro : 80.69
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  roc_auc_score : 80.69
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  log_loss : 39.97
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  kappa_score : 61.57
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  confusion_matrix :          0        1
+0  85.3526  14.6474
+1  23.9726  76.0274
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  training_time : 11.98
+07/02/2024-01:56:14 PM: (files_management.py): INFO: save_metrics Line: 406 -  prediction_time : 2.12

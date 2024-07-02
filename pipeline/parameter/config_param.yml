@@ -128,13 +128,8 @@ varying_args:
                 - - "Hist_SAR"
                 - - "KNeighborsClassifier"
                   - n_neighbors: 50
-            #        - n_jobs: -1       
-
-        - options:
-            # Random seed for reproducibility
-            "--seed": 100150
-            "--pipeline":
-            #   # LogisticRegression pipeline
+            #        - n_jobs: -1   
+            # LogisticRegression pipeline
               - - - "LogisticR_direct"
                 - - "BandSelector"
                   - bands: [0,1,2,3,4,5,6,7,8]
@@ -152,4 +147,10 @@ varying_args:
                   - transformations : [] 
                 - - "Hist_SAR"
                 - - "AdaBoostClassifier"
-                  - n_estimators: 200   
+                  - n_estimators: 200       
+
+        # - options:
+        #     # Random seed for reproducibility
+        #     "--seed": 100150
+        #     "--pipeline":
+              
