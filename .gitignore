@@ -2,4 +2,5 @@ pipeline/data/*
 .cache/
 pipeline/.cache/
 data/
+pipeline/evaluation/container_ML.sif
 !pipeline/data/__init__.py
