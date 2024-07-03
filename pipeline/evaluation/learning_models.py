@@ -137,6 +137,8 @@ if __name__ == "__main__":
         print("KeyError: %s undefined" % e)
         sys.exit(1)
 
+    rng = np.random.RandomState(seed=seed)
+    print(rng)
     try:
         storage_path, pipeline_names = set_folder(storage_path, args=args)
 
@@ -159,22 +161,22 @@ if __name__ == "__main__":
                 "tel"
             ],
             print_info=True,
-            seed=seed
+            seed=rng
         )
 
         x, y = dataset_loader.request_data(request)
-
+        
         labels_manager = LabelManagement(method=labeling_method)
         targets = labels_manager.transform(y)
         label_encoder = labels_manager.get_encoder()
-
-        fold_manager = FoldManagement(method=fold_method, shuffle=shuffle_data, seed=seed, train_aprox_size=0.8)
+        
+        fold_manager = FoldManagement(method=fold_method, shuffle=shuffle_data, rng=rng, train_aprox_size=0.8)
         fold_groups = fold_manager.split(x, y)
-
+        
         if balance_data:
-            balance_manager = BalanceManagement(method=balancing_method, seed=seed)
+            balance_manager = BalanceManagement(method=balancing_method, rng=rng)
             fold_groups = balance_manager.transform(folds=fold_groups, targets=targets)
-
+        
         log_dataset = logger_dataset(log_dataset, x, y, label_encoder.inverse_transform(targets))
         log_dataset, fold_key = logger_fold(log_dataset, fold_groups, label_encoder.inverse_transform(targets), y)
 

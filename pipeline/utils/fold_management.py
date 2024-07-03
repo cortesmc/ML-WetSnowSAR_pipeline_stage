@@ -5,7 +5,7 @@ from imblearn.under_sampling import RandomUnderSampler
 import itertools
 import random
 
-def simple_split(x, train_size=0.8, seed=None, shuffle=False):
+def simple_split(x, train_size=0.8, rng=None, shuffle=False):
     """
     Perform a simple split of the data into training and testing sets.
 
@@ -14,8 +14,8 @@ def simple_split(x, train_size=0.8, seed=None, shuffle=False):
         The data to split.
     - train_size : float, optional (default=0.8)
         The proportion of the dataset to include in the training split.
-    - seed : int or None, optional (default=None)
-        Seed used by the random number generator for reproducibility.
+    - rng : int or None, optional (default=None)
+        rng used by the random number generator for reproducibility.
     - shuffle : bool, optional (default=False)
         Whether to shuffle the data before splitting.
 
@@ -25,7 +25,6 @@ def simple_split(x, train_size=0.8, seed=None, shuffle=False):
     """
     n_samples = len(x)
     if shuffle:
-        rng = np.random.default_rng(seed)
         indices = rng.permutation(n_samples)
     else:
         indices = np.arange(n_samples)
@@ -36,7 +35,7 @@ def simple_split(x, train_size=0.8, seed=None, shuffle=False):
 
     return [(train_indices, test_indices)]
 
-def KFold_method(x, train_size=0.8, seed=None, shuffle=False):
+def KFold_method(x, train_size=0.8, rng=None, shuffle=False):
     """
     Perform K-Fold cross-validation on the data.
     
@@ -45,8 +44,8 @@ def KFold_method(x, train_size=0.8, seed=None, shuffle=False):
         The data to split into K folds.
     - train_size : float, optional (default=0.8)
         The proportion of the dataset to include in the train split.
-    - seed : int or None, optional (default=None)
-        Seed used by the random number generator for reproducibility. If None, a random seed will be selected.
+    - rng : int or None, optional (default=None)
+        rng used by the random number generator for reproducibility. If None, a random rng will be selected.
     - shuffle : bool, optional (default=False)
         Whether to shuffle the data before splitting into folds.
 
@@ -55,10 +54,10 @@ def KFold_method(x, train_size=0.8, seed=None, shuffle=False):
         A list containing train and test indices for each fold.
     """
     if shuffle == False:
-        seed = None
+        rng = None
 
     n_splits = int(1/(1-train_size))
-    kf = KFold(n_splits=n_splits, random_state=seed, shuffle=shuffle)
+    kf = KFold(n_splits=n_splits, random_state=rng, shuffle=shuffle)
     
     return list(kf.split(x))
 
@@ -89,7 +88,7 @@ def fold_massive_method(dict_massives):
     
     return result
 
-def combination_method(dict_massives, train_size=0.8, proximity_value=1, shuffle=False, seed=None):
+def combination_method(dict_massives, train_size=0.8, proximity_value=1, shuffle=False, rng=None):
     """
     Generate prioritized combinations of massives based on a given dictionary.
 
@@ -107,15 +106,15 @@ def combination_method(dict_massives, train_size=0.8, proximity_value=1, shuffle
         A value to control the proximity to the desired train size.
     - shuffle : bool, optional (default=False)
         Whether to shuffle the selection of combinations.
-    - seed : int, optional (default=None)
-        Seed for random number generator (used if shuffle is True).
+    - rng : int, optional (default=None)
+        rng for random number generator (used if shuffle is True).
 
     Returns:
     - list of tuples
         A list containing train and test indices for each prioritized combination of massives.
     """
-    if shuffle and seed is not None:
-        random.seed(seed)
+    if rng is None:
+        rng = np.random.RandomState()
 
     total_count = sum(value['count'] for value in dict_massives.values())
     massives = list(dict_massives.keys())
@@ -137,7 +136,7 @@ def combination_method(dict_massives, train_size=0.8, proximity_value=1, shuffle
     valid_combinations.sort()
 
     if shuffle:
-        random.shuffle(valid_combinations)
+        rng.shuffle(valid_combinations)
 
     uncovered_train_massives = set(massives)
     uncovered_test_massives = set(massives)
@@ -178,8 +177,8 @@ class FoldManagement:
         The fold method to use.
     - shuffle : bool
         Gives the user the choice to shuffle the data output and the fold creation.
-    - random_state : int
-        Seed used for the random creation.
+    - rng : int
+        rng used for the random creation.
     - train_aprox_size : float
         The balance of that between trinning and test datasets.
 
@@ -188,10 +187,10 @@ class FoldManagement:
         Apply the selected labeling method to the provided metadata.
     """
 
-    def __init__(self, method="kFold", shuffle=False, seed=42, train_aprox_size=0.8):
+    def __init__(self, method="kFold", shuffle=False, rng=None, train_aprox_size=0.8):
         self.method = method
         self.shuffle = shuffle
-        self.seed = seed
+        self.rng = rng
         self.train_aprox_size = train_aprox_size
         self.massives_count = {}
         self.results = None
@@ -225,15 +224,15 @@ class FoldManagement:
         
         match self.method: 
             case "kFold":
-                self.results = KFold_method(x, train_size=self.train_aprox_size, seed=self.seed, shuffle=self.shuffle)
+                self.results = KFold_method(x, train_size=self.train_aprox_size, rng=self.rng, shuffle=self.shuffle)
 
             case "mFold":
                 self.results = fold_massive_method(self.massives_count)
 
             case "combinationFold":
-                self.results = combination_method(self.massives_count, train_size=self.train_aprox_size, proximity_value=1, shuffle=self.shuffle, seed=self.seed)
+                self.results = combination_method(self.massives_count, train_size=self.train_aprox_size, proximity_value=1, shuffle=self.shuffle, rng=self.rng)
 
             case "simpleSplit":
-                self.results = simple_split(x, train_size=self.train_aprox_size, seed=self.seed, shuffle=self.shuffle)
+                self.results = simple_split(x, train_size=self.train_aprox_size, rng=self.rng, shuffle=self.shuffle)
 
         return self.results
