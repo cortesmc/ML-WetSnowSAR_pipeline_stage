@@ -4,6 +4,7 @@ from sklearn.preprocessing import LabelEncoder
 from imblearn.under_sampling import RandomUnderSampler
 from imblearn.over_sampling import RandomOverSampler
 from imblearn.combine import SMOTEENN
+from inspect import signature
 import os, ast
 
 from utils.files_management import load_h5
@@ -202,8 +203,7 @@ class BFold:
             self.rng.shuffle(idx_train)
             yield idx_train
 
-
-def parse_pipeline(args, idx):
+def parse_pipeline(args, idx, rng=None):
     """Parse a dictionary to create a pipeline of estimators
     The dictionary must have the following structure::
     {
@@ -223,37 +223,37 @@ def parse_pipeline(args, idx):
 
     Parameters
     ----------
-    args : dict
-        Dictionary containing the pipeline
+    args : Namespace
+        Namespace object containing the pipeline
 
     idx : int
         Index of the pipeline to use in case of multiple pipelines
-        analysis
+
+    rng : int, optional
+        Random state to set for estimators that support it.
 
     Returns
     -------
     sklearn.pipeline.Pipeline
         Pipeline of estimators
     """
-    for import_lib in args.import_list :
-        exec(import_lib)
-    pipe = ast.literal_eval(args.pipeline[idx])
-    print(pipe)
-    step = []
-    for i in range(1,len(pipe)):
-        name_methode = pipe[i][0]
-        estim = locals()[name_methode]()
+    for import_lib in args.import_list:
+        exec(import_lib, globals())
+    
+    pipe = ast.literal_eval(str(args.pipeline[idx]))
+    steps = []
 
-        if len(pipe[i]) > 1:
-            [
-                [
-                    setattr(estim, param, pipe[i][g][param])
-                    for param in pipe[i][g].keys()
-                ]
-                for g in range(1, len(pipe[i]))
-            ]
-        step.append((name_methode, estim))
-    return Pipeline(step, verbose=True, memory=".cache")
+    for step in pipe[1:]:
+        name_method = step[0]
+        params = step[1] if len(step) > 1 else {}
+        estimator = globals()[name_method](**params)
+
+        # Set random_state if it is a parameter for the estimator and rng is provided
+        if rng is not None and 'random_state' in signature(estimator.__init__).parameters:
+            setattr(estimator, 'random_state', rng)
+
+        steps.append((name_method, estimator))
+    return Pipeline(steps, verbose=True, memory=".cache")
 
 
 def load_train(i_path, bands_max, balanced, shffle=True, encode=True):

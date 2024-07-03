@@ -44,7 +44,7 @@ def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_mod
         return None, None, None
 
 
-def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, label_encoder, error_log_path, save=True):
+def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, label_encoder, error_log_path, rng, save=True):
     y_est_save = {}
     metrics = {}
     for count, pipeline_name in enumerate(pipeline_names):
@@ -57,12 +57,12 @@ def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, l
         fold_metrics = []
 
         try:
-            def fit_predict_fold_wrap(fold, train_index, test_index):
+            def fit_predict_fold_wrap(fold, train_index, test_index, rng):
                 X_train_k, y_train_k = x[train_index], targets[train_index]
                 X_test_k, y_test_k = x[test_index], targets[test_index]
 
                 return fit_predict_fold(
-                    parse_pipeline(args, count),
+                    parse_pipeline(args=args, idx=count, rng=rng),
                     X_train_k, y_train_k,
                     X_test_k, y_test_k,
                     log_model, 
@@ -74,7 +74,7 @@ def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, l
                 )
 
             results = Parallel(n_jobs=-1)(
-                delayed(fit_predict_fold_wrap)(kfold, train_index, test_index)
+                delayed(fit_predict_fold_wrap)(kfold, train_index, test_index, rng)
                 for kfold, (train_index, test_index) in enumerate(fold_groups)
             )
 
@@ -188,6 +188,7 @@ if __name__ == "__main__":
                                     args=args,
                                     label_encoder=label_encoder,
                                     error_log_path=error_log_path,
+                                    rng=rng,
                                     save=True)
 
         dump_h5(fold_key, os.path.join(os.path.join(storage_path, "results/"), "fold_key.h5"))     
