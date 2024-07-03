@@ -1,4 +1,5 @@
 import sys, os, time, logging, argparse
+from tqdm import tqdm
 import numpy as np
 from datetime import datetime
 from joblib import Parallel, delayed
@@ -47,7 +48,9 @@ def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_mod
 def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, label_encoder, error_log_path, rng, save=True):
     y_est_save = {}
     metrics = {}
-    for count, pipeline_name in enumerate(pipeline_names):
+    f_tqdm = open(os.path.join(args.storage_path, 'progress.txt'), 'w')
+    f_tqdm.write('tqdm\n')
+    for count, pipeline_name in enumerate(tqdm(pipeline_names, file=f_tqdm)):
         save_dir = os.path.join(output_dir, f"models/{pipeline_name}/")
         log_model, _ = init_logger(save_dir, f"{pipeline_name}_results")
 
@@ -55,7 +58,7 @@ def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, l
 
         y_est_save[pipeline_name] = {"y_true": [], "y_est": []}
         fold_metrics = []
-
+        
         try:
             def fit_predict_fold_wrap(fold, train_index, test_index, rng):
                 X_train_k, y_train_k = x[train_index], targets[train_index]
@@ -73,7 +76,7 @@ def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, l
                     error_log_path
                 )
 
-            results = Parallel(n_jobs=-1)(
+            results = Parallel(n_jobs=1)(
                 delayed(fit_predict_fold_wrap)(kfold, train_index, test_index, rng)
                 for kfold, (train_index, test_index) in enumerate(fold_groups)
             )

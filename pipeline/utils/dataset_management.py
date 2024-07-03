@@ -248,8 +248,7 @@ def parse_pipeline(args, idx, rng=None):
         params = step[1] if len(step) > 1 else {}
         estimator = globals()[name_method](**params)
 
-        # Set random_state if it is a parameter for the estimator and rng is provided
-        if rng is not None and 'random_state' in signature(estimator.__init__).parameters:
+        if 'random_state' in signature(estimator.__init__).parameters:
             setattr(estimator, 'random_state', rng)
 
         steps.append((name_method, estimator))
