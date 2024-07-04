@@ -35,7 +35,7 @@ def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_mod
         fold_metric["training_time"] = training_time
         fold_metric["prediction_time"] = prediction_time
 
-        save_sklearn_model(pipeline, os.path.join(save_dir, f"{pipeline_name}_fold{kfold}.joblib"))
+        joblib.dump(pipeline, os.path.join(save_dir, f"{pipeline_name}_fold{kfold}.joblib"))
 
         return fold_metric, y_prob, y_test_k
     except Exception as e:
@@ -138,7 +138,6 @@ if __name__ == "__main__":
 
     except KeyError as e:
         print("KeyError: %s undefined" % e)
-        sys.exit(1)
 
     rng = np.random.RandomState(seed=seed)
     np.random.seed(seed=seed)
@@ -210,4 +209,3 @@ if __name__ == "__main__":
         error_message = f"An unexpected error occurred: {str(e)}"
         print(error_message)
         log_errors.error(error_message)
-        sys.exit(1)

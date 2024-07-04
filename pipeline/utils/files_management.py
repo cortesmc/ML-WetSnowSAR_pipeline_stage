@@ -1,4 +1,4 @@
-import re, os, h5py, logging, pickle, shutil, zipfile, yaml, joblib
+import re, os, h5py, logging, pickle, shutil, zipfile, yaml, joblib, json
 import numpy as np
 import pandas as pd
 import ast
@@ -30,33 +30,32 @@ def dump_pkl(obj, path):
         pickle.dump(obj, f)
     return 1
 
-
-def dump_h5(data, filename):
-    with h5py.File(filename, 'w') as f:
-        for key, value in data.items():
+import json
+def dump_h5(data, file_path):
+    data_dict = {}
+    data_dict["data"] = data
+    with h5py.File(file_path + '.h5', 'w') as f:
+        for key, value in data_dict.items():
             if isinstance(value, np.ndarray):
                 f.create_dataset(key, data=value)
+            elif isinstance(value, (list, dict)):
+                f.attrs[key] = json.dumps(value)
             else:
                 f.attrs[key] = str(value)
-    
-def load_h5(filename):
-    data_dict = {}
-    with h5py.File(filename, 'r') as f:
-        for key in f.keys():
-            print(f[key])
-            if isinstance(f[key], h5py.Dataset):
-                data_dict[key] = np.array(f[key])
-            else:
-                data_dict[key] = ast.literal_eval(f.attrs[key])
-    return data_dict
-        
-    
-def save_sklearn_model(model, filename):
-    joblib.dump(model, filename)
 
-def load_sklearn_model(filename):
-    return joblib.load(filename)
     
+def load_h5(file_path):
+    data_dict = {}
+    with h5py.File(file_path, 'r') as f:
+        for key in f.keys():
+            data_dict[key] = np.array(f[key])
+        for key in f.attrs:
+            try:
+                data_dict[key] = json.loads(f.attrs[key])
+            except json.JSONDecodeError:
+                data_dict[key] = f.attrs[key]
+    return data_dict["data"]
+
 def open_pkl(path):
     """
     Open pickle file.
@@ -73,8 +72,7 @@ def open_pkl(path):
     """
     with open(path, "rb") as f:
         obj = pickle.load(f)
-    return obj
-#
+    return obj  
 
 def open_log_file(path_log):
     """
