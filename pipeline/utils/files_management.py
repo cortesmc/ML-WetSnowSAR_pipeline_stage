@@ -32,12 +32,24 @@ def dump_pkl(obj, path):
 
 
 def dump_h5(data, filename):
-    with h5py.File(filename, 'w') as h5file:
-        h5file.create_dataset('data', data=data)
+    with h5py.File(filename, 'w') as f:
+        for key, value in data.items():
+            if isinstance(value, np.ndarray):
+                f.create_dataset(key, data=value)
+            else:
+                f.attrs[key] = str(value)
     
 def load_h5(filename):
-    with h5py.File(filename, 'r') as h5file:
-        return list(h5file['data'])
+    data_dict = {}
+    with h5py.File(filename, 'r') as f:
+        for key in f.keys():
+            print(f[key])
+            if isinstance(f[key], h5py.Dataset):
+                data_dict[key] = np.array(f[key])
+            else:
+                data_dict[key] = ast.literal_eval(f.attrs[key])
+    return data_dict
+        
     
 def save_sklearn_model(model, filename):
     joblib.dump(model, filename)

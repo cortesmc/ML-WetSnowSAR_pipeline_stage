@@ -22,7 +22,6 @@ from utils.files_management import *
 def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_model, label_encoder, kfold, pipeline_name, save_dir, error_log_path):
     pipeline_id = f"{pipeline_name}_kfold_{kfold}"
     try:
-        np.random.seed(42)
         start_time = time.time()
         pipeline.fit(X_train_k, y_train_k)
         training_time = time.time() - start_time
@@ -51,7 +50,6 @@ def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, l
     metrics = {}
     f_tqdm = open(os.path.join(args.storage_path, 'progress.txt'), 'w')
     f_tqdm.write('tqdm\n')
-    np.random.seed(42)
     for count, pipeline_name in enumerate(tqdm(pipeline_names, file=f_tqdm)):
         save_dir = os.path.join(output_dir, f"models/{pipeline_name}/")
         log_model, _ = init_logger(save_dir, f"{pipeline_name}_results")
@@ -143,7 +141,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     rng = np.random.RandomState(seed=seed)
-    np.random.seed(42)
+    np.random.seed(seed=seed)
     try:
         storage_path, pipeline_names = set_folder(storage_path, args=args)
 
