@@ -1,4 +1,4 @@
-import re, os, h5py, logging, pickle, shutil, zipfile, yaml
+import re, os, h5py, logging, pickle, shutil, zipfile, yaml, joblib
 import numpy as np
 import pandas as pd
 import ast
@@ -30,16 +30,21 @@ def dump_pkl(obj, path):
         pickle.dump(obj, f)
     return 1
 
-def dump_h5(obj, filename):
-    with h5py.File(filename, 'w') as h5file:
-        pickled_obj = pickle.dumps(obj)
-        h5file.create_dataset('data', data=np.void(pickled_obj))
 
+def dump_h5(data, filename):
+    with h5py.File(filename, 'w') as h5file:
+        h5file.create_dataset('data', data=data)
+    
 def load_h5(filename):
     with h5py.File(filename, 'r') as h5file:
-        pickled_obj = h5file['data'][()]
-        return pickle.loads(pickled_obj)
+        return list(h5file['data'])
+    
+def save_sklearn_model(model, filename):
+    joblib.dump(model, filename)
 
+def load_sklearn_model(filename):
+    return joblib.load(filename)
+    
 def open_pkl(path):
     """
     Open pickle file.
@@ -57,7 +62,7 @@ def open_pkl(path):
     with open(path, "rb") as f:
         obj = pickle.load(f)
     return obj
-
+#
 
 def open_log_file(path_log):
     """
@@ -430,7 +435,7 @@ def save_h5(img, label, filename):
     with h5py.File(filename, "w") as hf:
         hf.create_dataset(
             "img", np.shape(img), h5py.h5t.IEEE_F32BE, compression="gzip", data=img
-        )  # IEEE_F32BE is big endian float32
+        )
         hf.create_dataset(
             "label", np.shape(label), compression="gzip", data=label.astype("S")
         )
