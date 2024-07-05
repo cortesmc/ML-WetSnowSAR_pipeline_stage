@@ -90,7 +90,7 @@ def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, l
             log_model = save_metrics(log_model, fold_metrics, pipeline_name)
 
             if save:
-                dump_h5(fold_metrics, os.path.join(save_dir, "metrics.h5"))        
+                dump_pkl(fold_metrics, os.path.join(save_dir, "metrics.h5"))        
         
             metrics[pipeline_name] = fold_metrics
 
@@ -193,7 +193,7 @@ if __name__ == "__main__":
                                     rng=rng,
                                     save=True)
 
-        dump_h5(fold_key, os.path.join(os.path.join(storage_path, "results/"), "fold_key.h5"))     
+        dump_pkl(fold_key, os.path.join(os.path.join(storage_path, "results/"), "fold_key.h5"))     
 
         results_dir_figures = os.path.join(storage_path, "results/plots/")
 

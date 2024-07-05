@@ -30,11 +30,10 @@ def dump_pkl(obj, path):
         pickle.dump(obj, f)
     return 1
 
-import json
 def dump_h5(data, file_path):
     data_dict = {}
     data_dict["data"] = data
-    with h5py.File(file_path + '.h5', 'w') as f:
+    with h5py.File(file_path, 'w') as f:
         for key, value in data_dict.items():
             if isinstance(value, np.ndarray):
                 f.create_dataset(key, data=value)
