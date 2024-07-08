@@ -400,7 +400,7 @@ def logger_fold(logg, fold_groups, targets, metadata):
         logg.info(f"    - Massif in train: {np.unique(massif_train)}")
         logg.info(f"    - Massif in test: {np.unique(massif_test)}")
 
-        fold_key[kfold] = {"train": massif_train, "test": massif_test}
+        fold_key[kfold] = {"train": np.unique(massif_train), "test": np.unique(massif_test)}
 
     return logg, fold_key
 

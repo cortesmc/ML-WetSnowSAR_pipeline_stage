@@ -5,7 +5,7 @@ fixed_args:
         "--data_path": "/home/listic/Bureau/cortes_stage/ML-WetSnowSAR_pipeline_stage/pipeline/data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected_V2.h5"
         
         # Method for the fold: simpleSplit, kFold, mFold, or combinationFold
-        "--fold_method": "combinationFold"
+        "--fold_method": "mFold"
         
         # Method for labeling: crocus, 3labels
         "--labeling_method": "crocus"
@@ -116,7 +116,7 @@ varying_args:
     groups:
         - options:
             # Random seed for reproducibility
-            "--seed": 100150
+            "--seed": 50
             # "--pipeline":
             # # KNeighborsClassifier pipeline
             #   - - - "KNN_direct"
@@ -132,4 +132,4 @@ varying_args:
                  
         - options:
             # Random seed for reproducibility
-            "--seed": 100150
+            "--seed": 42

@@ -9,7 +9,7 @@ class BandSelector(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X):
-        return X[:, :, :, self.bands]
+        return X[:, :, self.bands]
 
 class BandTransformer(BaseEstimator, TransformerMixin):
     def __init__(self, bands=[], transformations=None):
@@ -28,11 +28,11 @@ class BandTransformer(BaseEstimator, TransformerMixin):
             for transformation in self.transformations:
                 match transformation:
                     case 'log':
-                        X_transformed[:, :, :, band] = np.log(X_transformed[:, :, :, band])
+                        X_transformed[:, :, band]  = np.log(X_transformed[:, :, band] )
                     case 'exp':
-                        X_transformed[:, :, :, band] = np.exp(X_transformed[:, :, :, band])
+                        X_transformed[:, :, band]  = np.exp(X_transformed[:, :, band] )
                     case 'ln':
-                        X_transformed[:, :, :, band] = np.log1p(X_transformed[:, :, :, band])
+                        X_transformed[:, :, band]  = np.log1p(X_transformed[:, :, band] )
                     case _:
                         raise ValueError(f"Transformation '{transformation}' is not supported.")
         
