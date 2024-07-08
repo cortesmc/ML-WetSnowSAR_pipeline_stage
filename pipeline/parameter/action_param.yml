@@ -1,0 +1,17 @@
+data_path : "/home/listic/Bureau/cortes_stage/ML-WetSnowSAR_pipeline_stage/pipeline/data/validation/Acs_GR_jan2jun21" 
+# data_path : "/home/listic/Bureau/cortes_stage/ML-WetSnowSAR_pipeline_stage/pipeline/data/validation/DESC_Gr_jan2jun21"
+
+massif_test : 
+  - "GRANDES-ROUSSES"
+
+results_type : "deterministic" # "probabilistic"
+
+dates : 
+  -01/01/2024
+
+models :
+  - "KNN_direct"
+  - "RandomForest_direct"
+  # - "MLP_direct"
+  # - "LogisticR_direct"
+
