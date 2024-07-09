@@ -90,13 +90,18 @@ if __name__ == "__main__":
     
     print(model)
 
-    # Create a sample 3D tensor
-    tensor_3d = np.random.rand(100, 100, 9)
+    image_3d = np.random.rand(150, 150, 9)
 
-    print(tensor_3d.shape)
-    transformer_custom = SlidingWindowTransformer(window_size=2, estimator=model, padding=False, use_predict_proba=True)
+    # Initialize the transformer with your model and appropriate parameters
+    transformer = SlidingWindowTransformer(
+        estimator=model,
+        window_size=15,
+        padding=False,
+        use_predict_proba=True  # Use predict_proba to get probabilistic values
+    )
 
+    # Transform the 3D image to get a 2D output
+    result_2d = transformer.transform(image_3d)
 
-    # Transform 3D tensor
-    result_custom_3d = transformer_custom.transform(tensor_3d)
-    print(result_custom_3d)
+    # Print the shape of the result to ensure it is 2D
+    print(result_2d.shape)

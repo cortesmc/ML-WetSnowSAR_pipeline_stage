@@ -4,13 +4,13 @@ import psutil
 from dask import delayed, compute
 from sklearn.base import BaseEstimator, TransformerMixin
 from skimage.util import view_as_windows
-
+import joblib  # For loading the trained model
 
 class SlidingWindowTransformer(BaseEstimator, TransformerMixin):
     def __init__(
         self,
         estimator=None,
-        window_size=3,
+        window_size=15,
         padding=True,
         use_predict_proba=False,
         custom_func=None,
@@ -22,19 +22,14 @@ class SlidingWindowTransformer(BaseEstimator, TransformerMixin):
         self.custom_func = custom_func
 
     def transform_block(self, block):
-        if block.ndim == 2:
-            pad_width = (
-                (self.window_size // 2, self.window_size // 2),
-                (self.window_size // 2, self.window_size // 2),
-            )
-        elif block.ndim == 3:
+        if block.ndim == 3:
             pad_width = (
                 (self.window_size // 2, self.window_size // 2),
                 (self.window_size // 2, self.window_size // 2),
                 (0, 0),
             )
         else:
-            raise ValueError("Input block must be either 2D or 3D")
+            raise ValueError("Input block must be 3D")
 
         if self.padding:
             padded_block = np.pad(block, pad_width, mode="reflect")
@@ -43,54 +38,38 @@ class SlidingWindowTransformer(BaseEstimator, TransformerMixin):
                 return np.zeros(block.shape)
             padded_block = block
 
-        if block.ndim == 2:
-            windows = view_as_windows(
-                padded_block, (self.window_size, self.window_size)
-            )
-            windows = windows.reshape(-1, self.window_size * self.window_size)
-        else:  # 3D case
-            print((self.window_size, self.window_size, block.shape[2]))
+        windows = view_as_windows(
+            padded_block, (self.window_size, self.window_size, block.shape[2])
+        )
+        print(windows.shape)  # Prints the shape (136, 136, 1, 15, 15, 9)
 
-            windows = view_as_windows(
-                padded_block, (self.window_size, self.window_size, block.shape[2])
-            )
-            windows = windows.reshape(-1, self.window_size * self.window_size * block.shape[2])
+        # Change the shape to (15, 15, 9, 18496)
+        windows = np.moveaxis(windows, [0, 1, 2, 3, 4, 5], [3, 4, 5, 0, 1, 2])
+        windows = windows.reshape(self.window_size, self.window_size, block.shape[2], -1)
+        print(windows.shape)  # Prints the shape (15, 15, 9, 18496)
+
+        # Reshape to match the model's expected input shape
+        num_windows = windows.shape[-1]
+        windows = windows.reshape(self.window_size, self.window_size, block.shape[2], num_windows)
+        windows = np.moveaxis(windows, -1, 0)  # Move num_windows to the first dimension
+        print(windows.shape)  # Should print (18496, 15, 15, 9)
 
         if self.estimator is not None:
             if self.use_predict_proba:
-                print(windows.shape)
                 predictions = self.estimator.predict_proba(windows)[:, 1]  # Assume binary classification for simplicity
             else:
                 predictions = self.estimator.predict(windows)
         elif self.custom_func is not None:
             predictions = np.array([self.custom_func(window) for window in windows])
         else:
-            raise ValueError(
-                "Either an estimator or a custom function must be provided"
-            )
+            raise ValueError("Either an estimator or a custom function must be provided")
 
-        if self.padding:
-            output_shape = block.shape
-        else:
-            if block.ndim == 2:
-                output_shape = (
-                    block.shape[0] - self.window_size + 1,
-                    block.shape[1] - self.window_size + 1,
-                )
-            else:
-                output_shape = (
-                    block.shape[0] - self.window_size + 1,
-                    block.shape[1] - self.window_size + 1,
-                    block.shape[2],
-                )
+        output_shape = (
+            block.shape[0] - self.window_size + 1,
+            block.shape[1] - self.window_size + 1,
+        )
 
-        if self.padding:
-            output_block = predictions.reshape(output_shape)
-        else:
-            if block.ndim == 2:
-                output_block = predictions.reshape(output_shape)
-            else:
-                output_block = predictions.reshape((output_shape[0], output_shape[1], -1))
+        output_block = predictions.reshape(output_shape)
 
         return output_block
 
@@ -103,10 +82,7 @@ class SlidingWindowTransformer(BaseEstimator, TransformerMixin):
         num_cpus = psutil.cpu_count()
 
         element_size = X.dtype.itemsize
-        if X.ndim == 2:
-            element_size *= 1  # Each element is a single value
-        elif X.ndim == 3:
-            element_size *= X.shape[2]  # Each element is a vector of length X.shape[2]
+        element_size *= X.shape[2]  # Each element is a vector of length X.shape[2]
 
         # Estimate chunk size to fit in memory
         chunk_memory_size = available_memory / (num_cpus * 2)
@@ -116,10 +92,7 @@ class SlidingWindowTransformer(BaseEstimator, TransformerMixin):
         # Ensure the chunk size is at least as large as the window size
         chunk_side_length = max(chunk_side_length, self.window_size)
 
-        if X.ndim == 2:
-            chunks = (chunk_side_length, chunk_side_length)
-        else:  # 3D case
-            chunks = (chunk_side_length, chunk_side_length, X.shape[2])
+        chunks = (chunk_side_length, chunk_side_length, X.shape[2])
 
         return chunks
 
@@ -129,15 +102,10 @@ class SlidingWindowTransformer(BaseEstimator, TransformerMixin):
 
         # Use Dask to parallelize over blocks
         dask_image = da.from_array(X, chunks=chunks)
-        if X.ndim == 3:
-            processed_blocks = dask_image.map_blocks(
-                self.transform_block, drop_axis=[-1], dtype=X.dtype
-            )
+        processed_blocks = dask_image.map_blocks(
+            self.transform_block, dtype=X.dtype
+        )
 
-        else:
-            processed_blocks = dask_image.map_blocks(
-                self.transform_block, dtype=X.dtype
-            )
         result = processed_blocks.compute()
         return result
 
