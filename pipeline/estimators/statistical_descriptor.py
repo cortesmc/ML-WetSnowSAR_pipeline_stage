@@ -138,7 +138,6 @@ class Hist_SAR(BaseEstimator, ClassifierMixin):
         self._size_data = X.shape
         self.n_bands = X.shape[-1]
         X_t = X.reshape(self._size_data[0], self._size_data[1] * self._size_data[2], self.n_bands)
-        # X_t = X.reshape(self._size_data[0], self._size_data[1] , self.n_bands)
         if self.nbins == -1:
             self.nbins = optimal_bins(X_t)
 

@@ -95,10 +95,8 @@ if __name__ == "__main__":
 
     image_3d = dataset.ReadAsArray()
 
-    image_3d = image_3d
     image_3d = np.transpose(image_3d, (1, 2, 0))
-    image_3d.shape
+    image_3d = image_3d[1000:2000,1000:2000,:]
     transformer = SlidingWindowTransformer(estimator=model, window_size=15, padding=False, use_predict_proba=True)
     result_2d = transformer.transform(image_3d)
     print(result_2d.shape)
-
