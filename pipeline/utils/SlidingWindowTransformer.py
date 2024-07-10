@@ -2,11 +2,11 @@ import numpy as np
 import dask.array as da
 import psutil
 from dask import delayed, compute
+from dask.diagnostics import ProgressBar
 from sklearn.base import BaseEstimator, TransformerMixin
 from skimage.util import view_as_windows
-import joblib  
 
-class SlidingWindowTransformer(BaseEstimator, TransformerMixin):
+class SlidingWindowTransformer_v2(BaseEstimator, TransformerMixin):
     def __init__(
         self,
         estimator=None,
@@ -22,15 +22,14 @@ class SlidingWindowTransformer(BaseEstimator, TransformerMixin):
         self.custom_func = custom_func
 
     def transform_block(self, block):
-        if block.ndim == 3:
-            pad_width = (
-                (self.window_size // 2, self.window_size // 2),
-                (self.window_size // 2, self.window_size // 2),
-                (0, 0),
-            )
-        else:
+        if block.ndim != 3:
             raise ValueError("Input block must be 3D")
 
+        pad_width = (
+            (self.window_size // 2, self.window_size // 2),
+            (self.window_size // 2, self.window_size // 2),
+            (0, 0),
+        )
         if self.padding:
             padded_block = np.pad(block, pad_width, mode="reflect")
         else:
@@ -42,40 +41,37 @@ class SlidingWindowTransformer(BaseEstimator, TransformerMixin):
             padded_block, (self.window_size, self.window_size, block.shape[2])
         )
         windows_shape = windows.shape
-        windows = windows.reshape(-1, self.window_size, self.window_size, block.shape[2])
-        print(windows.shape)
-        if self.estimator is not None:
-            if self.use_predict_proba:
-                predictions = self.estimator.predict_proba(windows)[:,1]
-                print(predictions.shape)
-                print(windows_shape[:2])
-            else:
-                predictions = self.estimator.predict(windows)
-        elif self.custom_func is not None:
-            predictions = np.array([self.custom_func(window) for window in windows])
-        else:
-            raise ValueError("Either an estimator or a custom function must be provided")
-        
-        predictions = predictions.reshape(windows_shape[:2])
+        predictions = np.zeros(windows_shape[:2])
+
+        for i in range(windows_shape[0]):
+            for j in range(windows_shape[1]):
+                window = windows[i, j, 0]
+                window = np.array(window)[np.newaxis, :]
+                if self.estimator is not None:
+                    if self.use_predict_proba:
+                        print(window.shape)
+                        predictions[i, j] = self.estimator.predict_proba(window)[:, 1]
+                    else:
+                        predictions[i, j] = self.estimator.predict(window)
+                elif self.custom_func is not None:
+                    predictions[i, j] = self.custom_func(window)
+                else:
+                    raise ValueError("Either an estimator or a custom function must be provided")
+
         return predictions
 
     def fit(self, X, y=None):
-        # No fitting process required for transformer
         return self
 
     def calculate_optimal_chunks(self, X):
         available_memory = psutil.virtual_memory().available
         num_cpus = psutil.cpu_count()
 
-        element_size = X.dtype.itemsize
-        element_size *= X.shape[2]  # Each element is a vector of length X.shape[2]
-
-        # Estimate chunk size to fit in memory
+        element_size = X.dtype.itemsize * X.shape[2]
         chunk_memory_size = available_memory / (num_cpus * 2)
         chunk_elements = chunk_memory_size // element_size
         chunk_side_length = int(np.sqrt(chunk_elements))
 
-        # Ensure the chunk size is at least as large as the window size
         chunk_side_length = max(chunk_side_length, self.window_size)
 
         chunks = (chunk_side_length, chunk_side_length, X.shape[2])
@@ -83,15 +79,15 @@ class SlidingWindowTransformer(BaseEstimator, TransformerMixin):
         return chunks
 
     def transform(self, X):
-        # Calculate optimal chunks
         chunks = self.calculate_optimal_chunks(X)
-        print(f"chunks : {chunks}")
+        print(f"Chunks: {chunks}")
 
-        # Use Dask to parallelize over blocks
         dask_image = da.from_array(X, chunks=chunks)
         processed_blocks = dask_image.map_blocks(
             self.transform_block, dtype=np.float64
         )
 
-        result = processed_blocks.compute()
+        with ProgressBar():
+            result = processed_blocks.compute()
+
         return result

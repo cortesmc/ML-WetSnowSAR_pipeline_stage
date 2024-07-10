@@ -194,6 +194,7 @@ if __name__ == "__main__":
                                     save=True)
 
         dump_pkl(fold_key, os.path.join(os.path.join(storage_path, "results/"), "fold_key.pkl"))     
+        dump_pkl(y_est_save, os.path.join(os.path.join(storage_path, "results/"), "results_y_est.pkl"))     
 
         results_dir_figures = os.path.join(storage_path, "results/plots/")
 

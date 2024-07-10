@@ -1,5 +1,6 @@
 import sys, os, argparse
 import numpy as np 
+from osgeo import gdal 
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(parent_dir)
@@ -90,18 +91,14 @@ if __name__ == "__main__":
     
     print(model)
 
-    image_3d = np.random.rand(150, 150, 9)
+    dataset = gdal.Open('/home/listic/Bureau/cortes_stage/ML-WetSnowSAR_pipeline_stage/pipeline/data/validation/Acs_GR_jan2jun21/GRANDES-ROUSSES_20210112.tif')
 
-    # Initialize the transformer with your model and appropriate parameters
-    transformer = SlidingWindowTransformer(
-        estimator=model,
-        window_size=15,
-        padding=False,
-        use_predict_proba=True  # Use predict_proba to get probabilistic values
-    )
+    image_3d = dataset.ReadAsArray()
 
-    # Transform the 3D image to get a 2D output
+    image_3d = image_3d
+    image_3d = np.transpose(image_3d, (1, 2, 0))
+    image_3d.shape
+    transformer = SlidingWindowTransformer(estimator=model, window_size=15, padding=False, use_predict_proba=True)
     result_2d = transformer.transform(image_3d)
-
-    # Print the shape of the result to ensure it is 2D
     print(result_2d.shape)
+
