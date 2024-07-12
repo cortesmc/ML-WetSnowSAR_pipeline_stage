@@ -31,7 +31,7 @@ if __name__ == "__main__":
         folders = [storage_path]
 
     methods_param = load_yaml(yaml_file_path)
-    fold_key = open_pkl(folders[0]+"/results/fold_key.h5")
+    fold_key = open_pkl(folders[0]+"/results/fold_key.pkl")
     
     metrics = {}
     
@@ -41,7 +41,7 @@ if __name__ == "__main__":
             try:
                 if model not in metrics:
                     metrics[model] = []
-                metrics[model] = metrics[model] + open_pkl(folder+"/models/"+model+"/metrics.h5")
+                metrics[model] = metrics[model] + open_pkl(folder+"/models/"+model+"/metrics.pkl")
             except Exception as e:
                 continue
 

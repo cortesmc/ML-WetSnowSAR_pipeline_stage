@@ -2,11 +2,11 @@ import numpy as np
 import dask.array as da
 import psutil
 from dask import delayed, compute
-from dask.diagnostics import ProgressBar
 from sklearn.base import BaseEstimator, TransformerMixin
 from skimage.util import view_as_windows
+import joblib  
 
-class SlidingWindowTransformer_v2(BaseEstimator, TransformerMixin):
+class SlidingWindowTransformer(BaseEstimator, TransformerMixin):
     def __init__(
         self,
         estimator=None,
@@ -22,14 +22,15 @@ class SlidingWindowTransformer_v2(BaseEstimator, TransformerMixin):
         self.custom_func = custom_func
 
     def transform_block(self, block):
-        if block.ndim != 3:
+        if block.ndim == 3:
+            pad_width = (
+                (self.window_size // 2, self.window_size // 2),
+                (self.window_size // 2, self.window_size // 2),
+                (0, 0),
+            )
+        else:
             raise ValueError("Input block must be 3D")
 
-        pad_width = (
-            (self.window_size // 2, self.window_size // 2),
-            (self.window_size // 2, self.window_size // 2),
-            (0, 0),
-        )
         if self.padding:
             padded_block = np.pad(block, pad_width, mode="reflect")
         else:
@@ -41,34 +42,32 @@ class SlidingWindowTransformer_v2(BaseEstimator, TransformerMixin):
             padded_block, (self.window_size, self.window_size, block.shape[2])
         )
         windows_shape = windows.shape
-        predictions = np.zeros(windows_shape[:2])
-
-        for i in range(windows_shape[0]):
-            for j in range(windows_shape[1]):
-                window = windows[i, j, 0]
-                window = np.array(window)[np.newaxis, :]
-                if self.estimator is not None:
-                    if self.use_predict_proba:
-                        print(window.shape)
-                        predictions[i, j] = self.estimator.predict_proba(window)[:, 1]
-                    else:
-                        predictions[i, j] = self.estimator.predict(window)
-                elif self.custom_func is not None:
-                    predictions[i, j] = self.custom_func(window)
-                else:
-                    raise ValueError("Either an estimator or a custom function must be provided")
-
+        windows = windows.reshape(-1, self.window_size, self.window_size, block.shape[2])
+        if self.estimator is not None:
+            if self.use_predict_proba:
+                predictions = self.estimator.predict_proba(windows)[:,1]
+                print(predictions.shape)
+            else:
+                predictions = self.estimator.predict(windows)
+        elif self.custom_func is not None:
+            predictions = np.array([self.custom_func(window) for window in windows])
+        else:
+            raise ValueError("Either an estimator or a custom function must be provided")
+        predictions = predictions.reshape((windows_shape[0],windows_shape[1],1))
         return predictions
 
     def fit(self, X, y=None):
+        # No fitting process required for transformer
         return self
 
     def calculate_optimal_chunks(self, X):
         available_memory = psutil.virtual_memory().available
         num_cpus = psutil.cpu_count()
 
-        element_size = X.dtype.itemsize * X.shape[2]
-        chunk_memory_size = available_memory / (num_cpus * 2)
+        element_size = X.dtype.itemsize
+        element_size = element_size* 15*15*9 
+
+        chunk_memory_size = available_memory / (num_cpus)
         chunk_elements = chunk_memory_size // element_size
         chunk_side_length = int(np.sqrt(chunk_elements))
 
@@ -80,14 +79,12 @@ class SlidingWindowTransformer_v2(BaseEstimator, TransformerMixin):
 
     def transform(self, X):
         chunks = self.calculate_optimal_chunks(X)
-        print(f"Chunks: {chunks}")
-
+        chunks = (225,225,9)
+        print(f"chunks : {chunks}")
         dask_image = da.from_array(X, chunks=chunks)
         processed_blocks = dask_image.map_blocks(
-            self.transform_block, dtype=np.float64
+            self.transform_block,  dtype=np.float64, enforce_ndim=False
         )
 
-        with ProgressBar():
-            result = processed_blocks.compute()
-
+        result = processed_blocks.compute()
         return result
