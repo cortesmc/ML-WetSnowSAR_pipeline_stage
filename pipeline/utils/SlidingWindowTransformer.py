@@ -67,11 +67,12 @@ class SlidingWindowTransformer(BaseEstimator, TransformerMixin):
         element_size = X.dtype.itemsize
         element_size = element_size* 15*15*9 
 
-        chunk_memory_size = available_memory / (num_cpus)
+        chunk_memory_size = available_memory / (num_cpus*2)
         chunk_elements = chunk_memory_size // element_size
         chunk_side_length = int(np.sqrt(chunk_elements))
 
         chunk_side_length = max(chunk_side_length, self.window_size)
+        chunk_side_length = int(chunk_side_length/self.window_size)*self.window_size
 
         chunks = (chunk_side_length, chunk_side_length, X.shape[2])
 
