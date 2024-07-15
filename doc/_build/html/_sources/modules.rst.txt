@@ -6,5 +6,4 @@ pipeline
 
    estimators
    evaluation
-   parameter
    utils

@@ -1,72 +1,77 @@
-
-
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>utils.files_management &mdash; Stage Wet Snow Benchmarking 0.5 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>utils.files_management &#8212; wet_snow_detection 0.0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/cloud.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
-    
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-
-    
-    
-     
-        <script src="../../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script src="../../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script src="../../_static/cloud.js"></script>
-    
-
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head><body>
-    <div class="relbar-top">
-        
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> &nbsp; &nbsp;</li>
-    <li><a href="../../index.html">wet_snow_detection 0.0.1 documentation</a> &#187;</li>
+</head>
 
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">utils.files_management</a></li> 
-      </ul>
-    </div>
-    </div>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Stage Wet Snow Benchmarking
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Stage Wet Snow Benchmarking</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">utils.files_management</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <h1>Source code for utils.files_management</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">h5py</span><span class="o">,</span> <span class="nn">logging</span><span class="o">,</span> <span class="nn">pickle</span><span class="o">,</span> <span class="nn">shutil</span><span class="o">,</span> <span class="nn">zipfile</span><span class="o">,</span> <span class="nn">yaml</span>
+<span></span><span class="kn">import</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">h5py</span><span class="o">,</span> <span class="nn">logging</span><span class="o">,</span> <span class="nn">pickle</span><span class="o">,</span> <span class="nn">shutil</span><span class="o">,</span> <span class="nn">zipfile</span><span class="o">,</span> <span class="nn">yaml</span><span class="o">,</span> <span class="nn">joblib</span><span class="o">,</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">ast</span>
 <span class="kn">from</span> <span class="nn">yaml</span> <span class="kn">import</span> <span class="n">safe_load</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="p">(</span>
@@ -95,6 +100,31 @@
         <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="mi">1</span></div>
 
+<div class="viewcode-block" id="dump_h5"><a class="viewcode-back" href="../../utils.html#utils.files_management.dump_h5">[docs]</a><span class="k">def</span> <span class="nf">dump_h5</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+    <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">data_dict</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="load_h5"><a class="viewcode-back" href="../../utils.html#utils.files_management.load_h5">[docs]</a><span class="k">def</span> <span class="nf">load_h5</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">data_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">data_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+            <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">:</span>
+                <span class="n">data_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">data_dict</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span></div>
+
 <div class="viewcode-block" id="open_pkl"><a class="viewcode-back" href="../../utils.html#utils.files_management.open_pkl">[docs]</a><span class="k">def</span> <span class="nf">open_pkl</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Open pickle file.</span>
@@ -111,8 +141,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">obj</span></div>
-
+    <span class="k">return</span> <span class="n">obj</span>  </div>
 
 <div class="viewcode-block" id="open_log_file"><a class="viewcode-back" href="../../utils.html#utils.files_management.open_log_file">[docs]</a><span class="k">def</span> <span class="nf">open_log_file</span><span class="p">(</span><span class="n">path_log</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -338,14 +367,16 @@
     <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">logger</span><span class="o">.</span><span class="n">hasHandlers</span><span class="p">():</span>
-        <span class="n">fh</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
-        <span class="n">fh</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">logger</span><span class="o">.</span><span class="n">hasHandlers</span><span class="p">():</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
-        <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2">: (</span><span class="si">%(filename)s</span><span class="s2">): </span><span class="si">%(levelname)s</span><span class="s2">: </span><span class="si">%(funcName)s</span><span class="s2"> Line: </span><span class="si">%(lineno)d</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="n">datestr</span><span class="p">)</span>
-        <span class="n">fh</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+    <span class="n">fh</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
 
-        <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+    <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2">: (</span><span class="si">%(filename)s</span><span class="s2">): </span><span class="si">%(levelname)s</span><span class="s2">: </span><span class="si">%(funcName)s</span><span class="s2"> Line: </span><span class="si">%(lineno)d</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="n">datestr</span><span class="p">)</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
 
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Started&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">logger</span><span class="p">,</span> <span class="n">filename</span></div>
@@ -398,7 +429,7 @@
 
     <span class="k">return</span> <span class="n">logg</span></div>
 
-<div class="viewcode-block" id="logger_fold"><a class="viewcode-back" href="../../utils.html#utils.files_management.logger_fold">[docs]</a><span class="k">def</span> <span class="nf">logger_fold</span><span class="p">(</span><span class="n">logg</span><span class="p">,</span> <span class="n">fold_groupes</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+<div class="viewcode-block" id="logger_fold"><a class="viewcode-back" href="../../utils.html#utils.files_management.logger_fold">[docs]</a><span class="k">def</span> <span class="nf">logger_fold</span><span class="p">(</span><span class="n">logg</span><span class="p">,</span> <span class="n">fold_groups</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Log information about each fold in cross-validation.</span>
 
@@ -406,7 +437,7 @@
 <span class="sd">    ----------</span>
 <span class="sd">    logg : logging.Logger</span>
 <span class="sd">        Logger instance.</span>
-<span class="sd">    fold_groupes : list of tuples</span>
+<span class="sd">    fold_groups : list of tuples</span>
 <span class="sd">        List of (train_index, test_index) tuples for each fold.</span>
 <span class="sd">    targets : numpy.ndarray</span>
 <span class="sd">        Target labels.</span>
@@ -419,7 +450,7 @@
 <span class="sd">        Logger instance and dictionary containing massif information for each fold.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">fold_key</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">kfold</span><span class="p">,</span> <span class="p">(</span><span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fold_groupes</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">kfold</span><span class="p">,</span> <span class="p">(</span><span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fold_groups</span><span class="p">):</span>
         <span class="n">logg</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;------------------ Fold: </span><span class="si">{</span><span class="n">kfold</span><span class="si">}</span><span class="s2"> ------------------&quot;</span><span class="p">)</span>
         
         <span class="n">train_unique_targets</span><span class="p">,</span> <span class="n">train_target_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">targets</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -439,7 +470,7 @@
         <span class="n">logg</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    - Massif in train: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">massif_train</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">logg</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    - Massif in test: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">massif_test</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="n">fold_key</span><span class="p">[</span><span class="n">kfold</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">massif_train</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">massif_test</span><span class="p">}</span>
+        <span class="n">fold_key</span><span class="p">[</span><span class="n">kfold</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">massif_train</span><span class="p">),</span> <span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">massif_test</span><span class="p">)}</span>
 
     <span class="k">return</span> <span class="n">logg</span><span class="p">,</span> <span class="n">fold_key</span></div>
 
@@ -483,34 +514,34 @@
     <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf</span><span class="p">:</span>
         <span class="n">hf</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
             <span class="s2">&quot;img&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">img</span><span class="p">),</span> <span class="n">h5py</span><span class="o">.</span><span class="n">h5t</span><span class="o">.</span><span class="n">IEEE_F32BE</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">img</span>
-        <span class="p">)</span>  <span class="c1"># IEEE_F32BE is big endian float32</span>
+        <span class="p">)</span>
         <span class="n">hf</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
             <span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">label</span><span class="p">),</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">label</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">)</span>
         <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="load_h5"><a class="viewcode-back" href="../../utils.html#utils.files_management.load_h5">[docs]</a><span class="k">def</span> <span class="nf">load_h5</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Load image and label from a hdf5 file.</span>
+<span class="c1"># def load_h5(filename):</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     Load image and label from a hdf5 file.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    filename : str</span>
-<span class="sd">        Path to the hdf5 file.</span>
+<span class="c1">#     Parameters</span>
+<span class="c1">#     ----------</span>
+<span class="c1">#     filename : str</span>
+<span class="c1">#         Path to the hdf5 file.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    numpy.ndarray</span>
-<span class="sd">        Dataset of images in float32.</span>
-<span class="sd">    numpy.ndarray</span>
-<span class="sd">        Dataset of labels in string.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="s2">&quot;.h5&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">filename</span><span class="p">:</span>
-        <span class="n">filename</span> <span class="o">+=</span> <span class="s2">&quot;.h5&quot;</span>
-    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">hf</span><span class="p">[</span><span class="s2">&quot;img&quot;</span><span class="p">][:])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-        <span class="n">meta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">hf</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">][:])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">meta</span></div>
+<span class="c1">#     Returns</span>
+<span class="c1">#     -------</span>
+<span class="c1">#     numpy.ndarray</span>
+<span class="c1">#         Dataset of images in float32.</span>
+<span class="c1">#     numpy.ndarray</span>
+<span class="c1">#         Dataset of labels in string.</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     if &quot;.h5&quot; not in filename:</span>
+<span class="c1">#         filename += &quot;.h5&quot;</span>
+<span class="c1">#     with h5py.File(filename, &quot;r&quot;) as hf:</span>
+<span class="c1">#         data = np.array(hf[&quot;img&quot;][:]).astype(np.float32)</span>
+<span class="c1">#         meta = np.array(hf[&quot;label&quot;][:]).astype(str)</span>
+<span class="c1">#     return data, meta</span>
 
 
 <div class="viewcode-block" id="open_param_set_dir"><a class="viewcode-back" href="../../utils.html#utils.files_management.open_param_set_dir">[docs]</a><span class="k">def</span> <span class="nf">open_param_set_dir</span><span class="p">(</span><span class="n">i_path_param</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">):</span>
@@ -600,7 +631,7 @@
                 <span class="n">fichier_zip</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chemin_complet</span><span class="p">,</span> <span class="n">chemin_rel</span><span class="p">)</span>
     <span class="k">return</span> <span class="mi">1</span></div>
 
-<div class="viewcode-block" id="set_folder"><a class="viewcode-back" href="../../utils.html#utils.files_management.set_folder">[docs]</a><span class="k">def</span> <span class="nf">set_folder</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">pipeline_param</span><span class="p">):</span>
+<div class="viewcode-block" id="set_folder"><a class="viewcode-back" href="../../utils.html#utils.files_management.set_folder">[docs]</a><span class="k">def</span> <span class="nf">set_folder</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create and organize folders for the study.</span>
 
@@ -608,7 +639,7 @@
 <span class="sd">    ----------</span>
 <span class="sd">    out_dir : str</span>
 <span class="sd">        Path to the base output directory.</span>
-<span class="sd">    pipeline_param : dict</span>
+<span class="sd">    args : dict</span>
 <span class="sd">        Dictionary containing pipeline parameters.</span>
 
 <span class="sd">    Returns</span>
@@ -616,20 +647,24 @@
 <span class="sd">    str</span>
 <span class="sd">        Path to the organized study folder.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">folders</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="s2">&quot;models&quot;</span><span class="p">,</span> <span class="s2">&quot;html&quot;</span><span class="p">]</span>
-    <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-    <span class="n">date</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">%m%y_%HH%MM%S&quot;</span><span class="p">)</span>
-    <span class="n">folder_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;study_</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">pipeline_param</span><span class="p">[</span><span class="s1">&#39;labeling_method&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">pipeline_param</span><span class="p">[</span><span class="s1">&#39;fold_method&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="n">out_dir</span> <span class="o">=</span> <span class="n">check_and_create_directory</span><span class="p">(</span><span class="n">out_dir</span><span class="o">+</span><span class="n">folder_name</span><span class="p">)</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\[\[&#39;(.*?)_direct&#39;\]&quot;</span><span class="p">)</span>
+    <span class="n">pipeline_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">pipeline</span><span class="p">:</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="n">pipeline_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_direct&quot;</span><span class="p">)</span>
+
+    <span class="n">folders</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="s2">&quot;models&quot;</span><span class="p">,</span> <span class="s2">&quot;html&quot;</span><span class="p">]</span>
+
     <span class="k">for</span> <span class="n">folder</span> <span class="ow">in</span> <span class="n">folders</span><span class="p">:</span>
-        <span class="n">check_and_create_directory</span><span class="p">(</span><span class="n">out_dir</span><span class="o">+</span><span class="sa">f</span><span class="s2">&quot;/</span><span class="si">{</span><span class="n">folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">check_and_create_directory</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">folder</span><span class="p">))</span>
 
-    <span class="n">models</span><span class="o">=</span> <span class="n">pipeline_param</span><span class="p">[</span><span class="s2">&quot;pipeline_names&quot;</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">models_folder</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
-        <span class="n">check_and_create_directory</span><span class="p">(</span><span class="n">out_dir</span><span class="o">+</span><span class="sa">f</span><span class="s2">&quot;/models/</span><span class="si">{</span><span class="n">models_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">models_folder</span> <span class="ow">in</span> <span class="n">pipeline_names</span><span class="p">:</span>
+        <span class="n">check_and_create_directory</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="s2">&quot;models&quot;</span><span class="p">,</span> <span class="n">models_folder</span><span class="p">))</span>
 
-    <span class="n">check_and_create_directory</span><span class="p">(</span><span class="n">out_dir</span><span class="o">+</span><span class="sa">f</span><span class="s2">&quot;/results&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">out_dir</span><span class="o">+</span><span class="s2">&quot;/&quot;</span></div>
+    <span class="n">check_and_create_directory</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="s2">&quot;results&quot;</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span> <span class="n">pipeline_names</span></div>
 
 
 <div class="viewcode-block" id="check_and_create_directory"><a class="viewcode-back" href="../../utils.html#utils.files_management.check_and_create_directory">[docs]</a><span class="k">def</span> <span class="nf">check_and_create_directory</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
@@ -656,66 +691,31 @@
         <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">outfile</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 </pre></div>
 
-            <div class="clearer"></div>
+           </div>
           </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, cortesmc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-        </div>
-      </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
-      <div class="clearer"></div>
-    </div>
-    <div class="relbar-bottom">
-        
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> &nbsp; &nbsp;</li>
-    <li><a href="../../index.html">wet_snow_detection 0.0.1 documentation</a> &#187;</li>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">utils.files_management</a></li> 
-      </ul>
-    </div>
-    </div>
-
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, Andres.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
-    </div>
-    <!-- cloud_sptheme 1.4 -->
-  </body>
+</body>
 </html>

@@ -4,6 +4,22 @@ utils package
 Submodules
 ----------
 
+utils.SlidingWindowTransformer module
+-------------------------------------
+
+.. automodule:: utils.SlidingWindowTransformer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+utils.balance\_management module
+--------------------------------
+
+.. automodule:: utils.balance_management
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 utils.dataset\_load module
 --------------------------
 

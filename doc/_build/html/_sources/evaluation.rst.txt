@@ -4,6 +4,22 @@ evaluation package
 Submodules
 ----------
 
+evaluation.generate\_model\_test module
+---------------------------------------
+
+.. automodule:: evaluation.generate_model_test
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+evaluation.generate\_results module
+-----------------------------------
+
+.. automodule:: evaluation.generate_results
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 evaluation.learning\_models module
 ----------------------------------
 

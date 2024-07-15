@@ -21,7 +21,7 @@ fixed_args:
         "--shuffle_data": true
         
         # Balance the data
-        "--balance_data": false
+        "--balance_data": true
         
         # Import necessary libraries and modules
         "--import_list": 
@@ -130,6 +130,6 @@ varying_args:
             #       - n_neighbors: 50
             # #        - n_jobs: -1   
                  
-        - options:
-            # Random seed for reproducibility
-            "--seed": 42
+        # - options:
+        #     # Random seed for reproducibility
+        #     "--seed": 42

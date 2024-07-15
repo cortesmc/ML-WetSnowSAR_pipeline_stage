@@ -4,10 +4,10 @@ estimators package
 Submodules
 ----------
 
-estimators.band\_selector module
---------------------------------
+estimators.band\_transform module
+---------------------------------
 
-.. automodule:: estimators.band_selector
+.. automodule:: estimators.band_transform
    :members:
    :undoc-members:
    :show-inheritance:

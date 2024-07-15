@@ -1,11 +1,25 @@
+"""
+BalanceManagement
+=================
+
+This module provides functionalities for balancing classes within folds using
+various resampling methods, as well as creating balanced sub-folds for binary
+or multi-label classification.
+
+Other balancing methods can be added by creating a new function and adding the option to the balance_classes function with a new name.
+The new balancing method must take a list of tuples and return a new list of tuples with training and test indices.
+
+Author: cortesmc   
+Date: 07/2024
+"""
+
 import numpy as np
-from sklearn.model_selection import KFold
 from imblearn.over_sampling import RandomOverSampler, SMOTE
 from imblearn.under_sampling import RandomUnderSampler
 import itertools
 import random
 
-def balance_classes(folds, targets, method='oversample', seed=42):
+def balance_classes(folds, targets, method='oversample', rng=42):
     """
     Balance the classes within each fold using the specified method.
 
@@ -13,17 +27,22 @@ def balance_classes(folds, targets, method='oversample', seed=42):
     ----------
     folds : list of tuples
         A list containing train and test indices for each fold.
-    targets : numpy.ndarray
+    targets : np.ndarray
         Target labels.
-    method : str, optional (default='oversample')
-        The resampling method to use ('oversample', 'undersample', 'smote').
-    seed : int, optional (default=42)
-        Seed for random number generator.
+    method : str, optional
+        The resampling method to use ('oversample', 'undersample', 'smote'). Default is 'oversample'.
+    rng : int, optional
+        rng for random number generator. Default is 42.
 
     Returns
     -------
     list of tuples
         A list containing balanced train and test indices for each fold.
+    
+    Raises
+    ------
+    ValueError
+        If the specified resampling method is not recognized.
     """
     balanced_folds = []
 
@@ -31,17 +50,17 @@ def balance_classes(folds, targets, method='oversample', seed=42):
         train_targets = targets[train_indices]
         
         if method == 'oversample':
-            sampler = RandomOverSampler(random_state=seed)
+            sampler = RandomOverSampler(random_state=rng)
             balanced_train_indices, _ = sampler.fit_resample(np.array(train_indices).reshape(-1, 1), train_targets)
             balanced_train_indices = balanced_train_indices.flatten()
         
         elif method == 'undersample':
-            sampler = RandomUnderSampler(random_state=seed)
+            sampler = RandomUnderSampler(random_state=rng)
             balanced_train_indices, _ = sampler.fit_resample(np.array(train_indices).reshape(-1, 1), train_targets)
             balanced_train_indices = balanced_train_indices.flatten()
         
         elif method == 'smote':
-            sampler = SMOTE(random_state=seed)
+            sampler = SMOTE(random_state=rng)
             balanced_train_indices, _ = sampler.fit_resample(np.array(train_indices).reshape(-1, 1), train_targets)
             balanced_train_indices = balanced_train_indices.flatten()
         
@@ -53,7 +72,7 @@ def balance_classes(folds, targets, method='oversample', seed=42):
     return balanced_folds
 
 
-def bFold(folds, targets, seed=42):
+def bFold(folds, targets, rng=42):
     """
     Create balanced sub-folds for binary or multi-label classification within each main fold.
     
@@ -61,17 +80,16 @@ def bFold(folds, targets, seed=42):
     ----------
     folds : list of tuples
         A list containing train and test indices for each fold.
-    targets : numpy.ndarray
+    targets : np.ndarray
         Target labels.
-    seed : int, optional (default=42)
-        Seed for random number generator.
+    rng : int, optional
+        rng for random number generator. Default is 42.
 
     Returns
     -------
     list of tuples
         A list containing balanced train and test indices for each sub-fold.
     """
-    rng = np.random.default_rng(seed)
     sub_folds = []
 
     for train_indices, test_indices in folds:
@@ -103,7 +121,7 @@ def bFold(folds, targets, seed=42):
     
     return sub_folds
 
-def bFold_multiclass(folds, targets, seed=42):
+def bFold_multiclass(folds, targets, rng=42):
     """
     Create balanced sub-folds for multi-label classification within each main fold.
     
@@ -111,17 +129,16 @@ def bFold_multiclass(folds, targets, seed=42):
     ----------
     folds : list of tuples
         A list containing train and test indices for each fold.
-    targets : numpy.ndarray
+    targets : np.ndarray
         Target labels.
-    seed : int, optional (default=42)
-        Seed for random number generator.
+    rng : int, optional
+        rng for random number generator. Default is 42.
 
     Returns
     -------
     list of tuples
         A list containing balanced train and test indices for each sub-fold.
     """
-    rng = np.random.default_rng(seed)
     sub_folds = []
 
     for train_indices, test_indices in folds:
@@ -150,15 +167,56 @@ def bFold_multiclass(folds, targets, seed=42):
 
 
 class BalanceManagement: 
-    def __init__(self, method=None, seed=42):
+    """
+    Class to manage the balancing of classes within folds using different methods.
+
+    Parameters
+    ----------
+    method : str, optional
+        The balancing method to use ('bFold', 'oversample', 'undersample', 'smote'). Default is None.
+    rng : RandomState, optional
+        rng for random number generator. Default is 42.
+
+    Methods
+    -------
+    transform(folds, targets)
+        Balances the provided folds according to the specified method.
+    """
+
+    def __init__(self, method=None, rng=None):
+        """
+        Initializes the BalanceManagement class with the specified method and rng.
+
+        Parameters
+        ----------
+        method : str, optional
+            The balancing method to use ('bFold', 'oversample', 'undersample', 'smote'). Default is None.
+        rng : RandomState, optional
+            rng for random number generator. Default is 42.
+        """
         self.method = method
-        self.seed = seed
+        self.rng = rng
 
     def transform(self, folds, targets):
+        """
+        Balances the provided folds according to the specified method.
+
+        Parameters
+        ----------
+        folds : list of tuples
+            A list containing train and test indices for each fold.
+        targets : np.ndarray
+            Target labels.
+
+        Returns
+        -------
+        list of tuples
+            A list containing balanced train and test indices for each fold.
+        """
         balanced_folds = []
         if self.method == "bFold":
-            balanced_folds = bFold(folds, targets, seed=self.seed)
+            balanced_folds = bFold(folds, targets, rng=self.rng)
         else:
-            balanced_folds = balance_classes(folds, targets, method=self.method, seed=self.seed)
+            balanced_folds = balance_classes(folds, targets, method=self.method, rng=self.rng)
         
         return balanced_folds
