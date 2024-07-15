@@ -80,7 +80,7 @@ class SlidingWindowTransformer(BaseEstimator, TransformerMixin):
 
     def transform(self, X):
         chunks = self.calculate_optimal_chunks(X)
-        chunks = (225,225,9)
+        chunks = (225,225,9) # TODO 
         print(f"chunks : {chunks}")
         dask_image = da.from_array(X, chunks=chunks)
         processed_blocks = dask_image.map_blocks(
