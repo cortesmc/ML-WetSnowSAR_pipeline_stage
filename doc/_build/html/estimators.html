@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="evaluation package" href="evaluation.html" />
-    <link rel="prev" title="pipeline" href="modules.html" /> 
+    <link rel="prev" title="Usage" href="source/usage.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,20 +46,18 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pipeline</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">estimators package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-estimators.band_transform">estimators.band_transform module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-estimators.covariance">estimators.covariance module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-estimators.statistical_descriptor">estimators.statistical_descriptor module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#estimators-textural-features-module">estimators.textural_features module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-estimators">Module contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">estimators package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-estimators.band_transform">estimators.band_transform module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-estimators.covariance">estimators.covariance module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-estimators.statistical_descriptor">estimators.statistical_descriptor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#estimators-textural-features-module">estimators.textural_features module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-estimators">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="evaluation.html">evaluation package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="utils.html">utils package</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="evaluation.html">evaluation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">utils package</a></li>
 </ul>
 
         </div>
@@ -76,7 +74,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">pipeline</a></li>
       <li class="breadcrumb-item active">estimators package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/estimators.rst.txt" rel="nofollow"> View page source</a>
@@ -185,12 +182,15 @@ Each vector is the extraction of the triangular matrix of its associated matrix<
 <dt class="sig sig-object py" id="estimators.covariance.is_pos_def">
 <span class="sig-prename descclassname"><span class="pre">estimators.covariance.</span></span><span class="sig-name descname"><span class="pre">is_pos_def</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/covariance.html#is_pos_def"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.covariance.is_pos_def" title="Permalink to this definition"></a></dt>
 <dd><p>Check if a matrix is positive definite</p>
-<dl class="simple">
-<dt>x<span class="classifier">float</span></dt><dd><p>matrice</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>float</em>) – matrice</p>
 </dd>
-</dl>
-<dl class="simple">
-<dt>bool</dt><dd><p>SPD ou non</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>SPD ou non</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -236,12 +236,15 @@ parameters and not others.</p>
 sub-estimator of a meta-estimator, e.g. used inside a
 <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>. Otherwise it has no effect.</p>
 </div>
-<dl class="simple">
-<dt>sample_weight<span class="classifier">str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED</span></dt><dd><p>Metadata routing for <code class="docutils literal notranslate"><span class="pre">sample_weight</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">score</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sample_weight</strong> (<em>str</em><em>, </em><em>True</em><em>, </em><em>False</em><em>, or </em><em>None</em><em>,                     </em><em>default=sklearn.utils.metadata_routing.UNCHANGED</em>) – Metadata routing for <code class="docutils literal notranslate"><span class="pre">sample_weight</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">score</span></code>.</p>
 </dd>
-</dl>
-<dl class="simple">
-<dt>self<span class="classifier">object</span></dt><dd><p>The updated object.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>self</strong> – The updated object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -281,16 +284,19 @@ This is done by simply computing the mean of the ratio VV with a snow free refer
 <p>In multi-label classification, this is the subset accuracy
 which is a harsh metric since you require for each sample that
 each label set be correctly predicted.</p>
-<dl class="simple">
-<dt>X<span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Test samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Test samples.</p></li>
+<li><p><strong>y</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>,</em><em>) or </em><em>(</em><em>n_samples</em><em>, </em><em>n_outputs</em><em>)</em>) – True labels for <cite>X</cite>.</p></li>
+<li><p><strong>sample_weight</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>,</em><em>)</em><em>, </em><em>default=None</em>) – Sample weights.</p></li>
+</ul>
 </dd>
-<dt>y<span class="classifier">array-like of shape (n_samples,) or (n_samples, n_outputs)</span></dt><dd><p>True labels for <cite>X</cite>.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>score</strong> – Mean accuracy of <code class="docutils literal notranslate"><span class="pre">self.predict(X)</span></code> w.r.t. <cite>y</cite>.</p>
 </dd>
-<dt>sample_weight<span class="classifier">array-like of shape (n_samples,), default=None</span></dt><dd><p>Sample weights.</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>score<span class="classifier">float</span></dt><dd><p>Mean accuracy of <code class="docutils literal notranslate"><span class="pre">self.predict(X)</span></code> w.r.t. <cite>y</cite>.</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
@@ -319,16 +325,19 @@ selected moments of each band.</p>
 <dt class="sig sig-object py" id="estimators.statistical_descriptor.calcul_hist">
 <span class="sig-prename descclassname"><span class="pre">estimators.statistical_descriptor.</span></span><span class="sig-name descname"><span class="pre">calcul_hist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#calcul_hist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.calcul_hist" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the histogram of a list of array or a matrix on the first axis</p>
-<dl class="simple">
-<dt>data<span class="classifier">np.array</span></dt><dd><p>data to compute the histogram</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>np.array</em>) – data to compute the histogram</p></li>
+<li><p><strong>n_bands</strong> (<em>int</em>) – number of bands</p></li>
+<li><p><strong>bin</strong> (<em>int</em>) – number of bins</p></li>
+</ul>
 </dd>
-<dt>n_bands<span class="classifier">int</span></dt><dd><p>number of bands</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>vector of histogram of each band between 0 and 1</p>
 </dd>
-<dt>bin<span class="classifier">int</span></dt><dd><p>number of bins</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>np.array</dt><dd><p>vector of histogram of each band between 0 and 1</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -337,17 +346,21 @@ selected moments of each band.</p>
 <dt class="sig sig-object py" id="estimators.statistical_descriptor.moments_features">
 <span class="sig-prename descclassname"><span class="pre">estimators.statistical_descriptor.</span></span><span class="sig-name descname"><span class="pre">moments_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_stats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mean'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#moments_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.moments_features" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the moments of a list of array or a matrix on the first axis</p>
-<dl class="simple">
-<dt>data<span class="classifier">np.array</span></dt><dd><p>data to compute the moments</p>
-</dd>
-<dt>type_stats<span class="classifier">str, optional</span></dt><dd><p>type of moments to compute. If “std” compute in addition
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>np.array</em>) – data to compute the moments</p></li>
+<li><p><strong>type_stats</strong> (<em>str</em><em>, </em><em>optional</em>) – type of moments to compute. If “std” compute in addition
 the standard deviation, if “skew” compute in addition
 the skewness, if “kurtosis” compute in addition
-the kurtosis, by default “mean”</p>
+the kurtosis, by default “mean”</p></li>
+</ul>
 </dd>
-</dl>
-<dl class="simple">
-<dt>np.array</dt><dd><p>vector of moments</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>vector of moments</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -357,12 +370,15 @@ the kurtosis, by default “mean”</p>
 <span class="sig-prename descclassname"><span class="pre">estimators.statistical_descriptor.</span></span><span class="sig-name descname"><span class="pre">optimal_bins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/estimators/statistical_descriptor.html#optimal_bins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#estimators.statistical_descriptor.optimal_bins" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the optimal number of bins for a histogram
 using the Freedman-Diaconis rule</p>
-<dl class="simple">
-<dt>data<span class="classifier">np.array</span></dt><dd><p>data to compute the optimal number of bins</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>np.array</em>) – data to compute the optimal number of bins</p>
 </dd>
-</dl>
-<dl class="simple">
-<dt>int</dt><dd><p>optimal number of bins</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>optimal number of bins</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
@@ -380,7 +396,7 @@ using the Freedman-Diaconis rule</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-left" title="pipeline" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="source/usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="evaluation.html" class="btn btn-neutral float-right" title="evaluation package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
