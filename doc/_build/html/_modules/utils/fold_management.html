@@ -41,8 +41,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pipeline</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -239,23 +242,6 @@
     <span class="k">return</span> <span class="n">result</span></div>
 
 <div class="viewcode-block" id="FoldManagement"><a class="viewcode-back" href="../../utils.html#utils.fold_management.FoldManagement">[docs]</a><span class="k">class</span> <span class="nc">FoldManagement</span><span class="p">:</span> 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A class to manage the creation of the folds for trainning.</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">    - method : str</span>
-<span class="sd">        The fold method to use.</span>
-<span class="sd">    - shuffle : bool</span>
-<span class="sd">        Gives the user the choice to shuffle the data output and the fold creation.</span>
-<span class="sd">    - rng : int</span>
-<span class="sd">        rng used for the random creation.</span>
-<span class="sd">    - train_aprox_size : float</span>
-<span class="sd">        The balance of that between trinning and test datasets.</span>
-
-<span class="sd">    Methods:</span>
-<span class="sd">    - Split(x, y)</span>
-<span class="sd">        Apply the selected labeling method to the provided metadata.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;kFold&quot;</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">train_aprox_size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>

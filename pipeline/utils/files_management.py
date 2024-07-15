@@ -31,6 +31,20 @@ def dump_pkl(obj, path):
     return 1
 
 def dump_h5(data, file_path):
+    """
+    Dump data to an HDF5 file.
+
+    Parameters
+    ----------
+    data : numpy.ndarray
+        The data to store.
+    file_path : str
+        The path to the HDF5 file.
+    
+    Returns
+    -------
+    None
+    """
     data_dict = {}
     data_dict["data"] = data
     with h5py.File(file_path, 'w') as f:
@@ -44,6 +58,19 @@ def dump_h5(data, file_path):
 
     
 def load_h5(file_path):
+    """
+    Load data from an HDF5 file.
+
+    Parameters
+    ----------
+    file_path : str
+        The path to the HDF5 file.
+
+    Returns
+    -------
+    numpy.ndarray
+        The loaded data.
+    """
     data_dict = {}
     with h5py.File(file_path, 'r') as f:
         for key in f.keys():
@@ -75,17 +102,17 @@ def open_pkl(path):
 
 def open_log_file(path_log):
     """
-    Open log file (.log) to parse it.
+    Open a log file (.log) and return its contents.
 
     Parameters
     ----------
     path_log : str
-        Path to the log file.
+        The path to the log file.
 
     Returns
     -------
     list
-        List of lines in the log file.
+        A list of lines from the log file.
     """
     with open(path_log, "r") as f:
         log = f.readlines()
@@ -94,17 +121,17 @@ def open_log_file(path_log):
 
 def clean_log(log):
     """
-    Clean log file to remove useless information (line number, time, etc.) to make it more readable.
+    Clean a log file to remove extraneous information for better readability.
 
     Parameters
     ----------
     log : list
-        List of lines in the log file.
+        The list of lines from the log file.
 
     Returns
     -------
     list
-        List of lines in the log file without useless information.
+        The cleaned log lines.
     """
     result = []
     for i in range(len(log)):
@@ -147,19 +174,21 @@ def write_report(path_log, path_report, begin_line=0):
 
 def report_metric_from_log(logg, dic, metrics_to_report=["f1_score_weighted"]):
     """
-    Report various metrics from a dictionary containing the scores for each model in a log file.
+    Report metrics from a dictionary of model scores.
 
     Parameters
     ----------
     logg : logging.Logger
-        Logger instance to log the report.
+        Logger instance to log the metrics.
     dic : dict
-        Dictionary containing various metrics for each model.
+        Dictionary containing metrics for each model.
+    metrics_to_report : list, optional
+        List of metrics to report, by default includes 'f1_score_weighted'.
 
     Returns
     -------
     logging.Logger
-        Logger instance with the reported metrics.
+        The logger instance with reported metrics.
     """
     logg.info(f"================== Final report ==================")
     for model_name, model_metrics in dic.items():
@@ -191,29 +220,26 @@ def report_metric_from_log(logg, dic, metrics_to_report=["f1_score_weighted"]):
 
 def report_prediction(logg, y_true, y_pred, le, fold):
     """
-    Compute various classification metrics and report them in a log file.
-    The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).
+    Compute and log various classification metrics.
 
     Parameters
     ----------
     y_true : numpy.ndarray
-        True labels.
+        True labels (categorical or binary).
     y_pred : numpy.ndarray
-        Predicted probabilities.
+        Predicted probabilities or classes.
     le : LabelEncoder
-        LabelEncoder object.
+        LabelEncoder object for inverse transforming labels.
     logg : logging.Logger
-        Logger instance.
+        Logger instance for reporting.
     fold : int
-        Fold number.
+        Fold number for identification.
 
     Returns
     -------
-    logging.Logger
-        Logger instance.
-    dict
-        Dictionary containing various computed metrics.
-    """    
+    tuple
+        (Logger instance, dictionary of computed metrics).
+    """  
     if y_pred.ndim > 1:
         if y_pred.shape[1] > 1:
             y_pred_classes = y_pred.argmax(axis=1)
@@ -275,21 +301,19 @@ def report_prediction(logg, y_true, y_pred, le, fold):
 
 def init_logger(path_log, name):
     """
-    Initialize a logger.
+    Initialize a logger for recording activities.
 
     Parameters
     ----------
     path_log : str
         Path to the log file.
     name : str
-        Name of the logger.
+        Name of the logger instance.
 
     Returns
     -------
-    logging.Logger
-        Logger instance.
-    str
-        Path to the log file.
+    tuple
+        (Logger instance, path to the log file).
     """
     datestr = "%m/%d/%Y-%I:%M:%S %p"
     filename = os.path.join(path_log, f"log_{name}.log")
@@ -313,23 +337,23 @@ def init_logger(path_log, name):
 
 def logger_dataset(logg, x, metadata, targets):
     """
-    Log information about the dataset.
+    Log detailed information about the dataset.
 
     Parameters
     ----------
     logg : logging.Logger
-        Logger instance.
+        Logger instance for reporting.
     x : numpy.ndarray
-        Input data.
+        Input features.
     metadata : dict
-        Metadata dictionary.
+        Metadata containing additional dataset information.
     targets : numpy.ndarray
         Target labels.
 
     Returns
     -------
     logging.Logger
-        Logger instance.
+        Logger instance with dataset information logged.
     """
     logg.info("================== Study information ==================")
 
@@ -376,8 +400,8 @@ def logger_fold(logg, fold_groups, targets, metadata):
 
     Returns
     -------
-    logging.Logger, dict
-        Logger instance and dictionary containing massif information for each fold.
+    tuple
+        (Logger instance, dictionary containing massif information for each fold).
     """
     fold_key = {}
     for kfold, (train_index, test_index) in enumerate(fold_groups):
@@ -405,6 +429,23 @@ def logger_fold(logg, fold_groups, targets, metadata):
     return logg, fold_key
 
 def save_metrics(log_model, fold_metric, model_name):
+    """
+    Log the metrics for each fold of the model.
+
+    Parameters
+    ----------
+    log_model : logging.Logger
+        Logger instance.
+    fold_metric : list of dict
+        List of metrics for each fold.
+    model_name : str
+        Name of the model.
+
+    Returns
+    -------
+    logging.Logger
+        Logger instance.
+    """
     for metrics in fold_metric:
         log_model.info(f"__________________ Fold {str(metrics['fold'])} with {model_name} __________________")
         for metric, value in metrics.items():
@@ -448,31 +489,6 @@ def save_h5(img, label, filename):
         hf.create_dataset(
             "label", np.shape(label), compression="gzip", data=label.astype("S")
         )
-
-
-# def load_h5(filename):
-#     """
-#     Load image and label from a hdf5 file.
-
-#     Parameters
-#     ----------
-#     filename : str
-#         Path to the hdf5 file.
-
-#     Returns
-#     -------
-#     numpy.ndarray
-#         Dataset of images in float32.
-#     numpy.ndarray
-#         Dataset of labels in string.
-#     """
-#     if ".h5" not in filename:
-#         filename += ".h5"
-#     with h5py.File(filename, "r") as hf:
-#         data = np.array(hf["img"][:]).astype(np.float32)
-#         meta = np.array(hf["label"][:]).astype(str)
-#     return data, meta
-
 
 def open_param_set_dir(i_path_param, out_dir):
     """

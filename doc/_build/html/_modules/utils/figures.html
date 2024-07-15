@@ -41,8 +41,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pipeline</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -74,38 +77,45 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">utils.files_management</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">check_and_create_directory</span>
-<span class="p">)</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">utils.files_management</span> <span class="kn">import</span> <span class="n">check_and_create_directory</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-
-<div class="viewcode-block" id="plot_boxplots"><a class="viewcode-back" href="../../utils.html#utils.figures.plot_boxplots">[docs]</a><span class="k">def</span> <span class="nf">plot_boxplots</span><span class="p">(</span><span class="n">metrics_dict</span><span class="p">,</span> <span class="n">metrics_to_plot</span> <span class="o">=</span><span class="p">[],</span> <span class="n">save_dir</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">fold_key</span><span class="o">=</span><span class="p">{},</span> <span class="n">labels_massives</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_boxplots"><a class="viewcode-back" href="../../utils.html#utils.figures.plot_boxplots">[docs]</a><span class="k">def</span> <span class="nf">plot_boxplots</span><span class="p">(</span><span class="n">metrics_dict</span><span class="p">,</span> <span class="n">metrics_to_plot</span><span class="o">=</span><span class="p">[],</span> <span class="n">save_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fold_key</span><span class="o">=</span><span class="p">{},</span> <span class="n">labels_massives</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Create and save boxplots for each metric by model and by fold.</span>
+<span class="sd">    Create and save boxplots for specified metrics by model and by fold.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    metrics_dict : dict</span>
-<span class="sd">        Dictionary containing various computed metrics for multiple models.</span>
+<span class="sd">        A dictionary containing various computed metrics for multiple models.</span>
+<span class="sd">    </span>
+<span class="sd">    metrics_to_plot : list, optional</span>
+<span class="sd">        List of metrics to be plotted. If empty, all metrics are plotted.</span>
+<span class="sd">    </span>
 <span class="sd">    save_dir : str, optional</span>
 <span class="sd">        Directory where the plots will be saved. If None, plots are not saved.</span>
+<span class="sd">    </span>
+<span class="sd">    fold_key : dict, optional</span>
+<span class="sd">        Mapping of fold identifiers to more descriptive names, used if `labels_massives` is True.</span>
+<span class="sd">    </span>
+<span class="sd">    labels_massives : bool, optional</span>
+<span class="sd">        If True, uses descriptive names from `fold_key` for the x-axis labels in fold plots.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">save_dir</span> <span class="o">=</span> <span class="n">save_dir</span><span class="o">+</span><span class="s2">&quot;boxplot&quot;</span>
+    <span class="n">save_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="s2">&quot;boxplot&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">save_dir</span> <span class="k">else</span> <span class="kc">None</span>
     <span class="n">check_and_create_directory</span><span class="p">(</span><span class="n">save_dir</span><span class="p">)</span>
+
     <span class="n">flattened_metrics</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">metrics_list</span> <span class="ow">in</span> <span class="n">metrics_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">for</span> <span class="n">fold_metrics</span> <span class="ow">in</span> <span class="n">metrics_list</span><span class="p">:</span>
             <span class="n">flattened_metrics</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">model_name</span><span class="p">,</span> <span class="o">**</span><span class="n">fold_metrics</span><span class="p">})</span>
-    
+
     <span class="n">metrics_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">flattened_metrics</span><span class="p">)</span>
     <span class="n">columns_to_drop</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;confusion_matrix&#39;</span><span class="p">,</span> <span class="s1">&#39;y_true&#39;</span><span class="p">,</span> <span class="s1">&#39;y_pred&#39;</span><span class="p">,</span> <span class="s1">&#39;f1_score_multiclass&#39;</span><span class="p">]</span>
-    <span class="n">columns_to_drop</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns_to_drop</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">metrics_df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
-    <span class="n">metrics_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">columns_to_drop</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">metrics_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns_to_drop</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">metrics_df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    
     <span class="c1"># Create and save boxplots for each metric by model</span>
     <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">metrics_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">metrics_to_plot</span><span class="p">:</span>
@@ -135,27 +145,27 @@
 
 <div class="viewcode-block" id="plot_roc_curves"><a class="viewcode-back" href="../../utils.html#utils.figures.plot_roc_curves">[docs]</a><span class="k">def</span> <span class="nf">plot_roc_curves</span><span class="p">(</span><span class="n">models_dict</span><span class="p">,</span> <span class="n">save_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generate and save ROC curves for each model in the dictionary.</span>
+<span class="sd">    Generate and save ROC curves for each model in the provided dictionary.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    models_dict : dict</span>
-<span class="sd">        A dictionary where keys are model names and values are lists of dictionaries containing</span>
-<span class="sd">        &#39;y_true&#39; and &#39;y_pred&#39; for each fold.</span>
+<span class="sd">        A dictionary where keys are model names and values are lists of dictionaries</span>
+<span class="sd">        containing &#39;y_true&#39; and &#39;y_pred&#39; for each fold.</span>
+<span class="sd">    </span>
 <span class="sd">    save_dir : str, optional</span>
 <span class="sd">        Directory where the plots will be saved. If None, plots will not be saved.</span>
-
+<span class="sd">    </span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">save_dir</span> <span class="o">=</span> <span class="n">save_dir</span> <span class="o">+</span> <span class="s2">&quot;roc_curve&quot;</span> <span class="k">if</span> <span class="n">save_dir</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">save_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="s2">&quot;roc_curve&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">save_dir</span> <span class="k">else</span> <span class="kc">None</span>
     <span class="n">check_and_create_directory</span><span class="p">(</span><span class="n">save_dir</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">results</span> <span class="ow">in</span> <span class="n">models_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-
             <span class="n">mean_fpr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
             <span class="n">mean_tprs</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="n">mean_aucs</span> <span class="o">=</span> <span class="p">{}</span>
@@ -165,16 +175,13 @@
             <span class="k">for</span> <span class="n">fold_data</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
                 <span class="n">y_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fold_data</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">])</span>
                 <span class="n">y_probas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fold_data</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">])</span>
-
                 <span class="n">classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
-                <span class="n">probas</span> <span class="o">=</span> <span class="n">y_probas</span>
 
-                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">classes</span><span class="p">)):</span>
-                    <span class="n">class_i</span> <span class="o">=</span> <span class="n">classes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">class_i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">classes</span><span class="p">):</span>
                     <span class="k">if</span> <span class="n">class_i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">color_dict</span><span class="p">:</span>
                         <span class="n">color_dict</span><span class="p">[</span><span class="n">class_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-                    <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">probas</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">pos_label</span><span class="o">=</span><span class="n">class_i</span><span class="p">)</span>
+                    <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_probas</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">pos_label</span><span class="o">=</span><span class="n">class_i</span><span class="p">)</span>
                     <span class="n">mean_tpr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">mean_fpr</span><span class="p">,</span> <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
                     <span class="n">mean_tpr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
 
@@ -190,7 +197,8 @@
                 <span class="n">mean_auc</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">mean_fpr</span><span class="p">,</span> <span class="n">mean_tpr</span><span class="p">)</span>
                 <span class="n">mean_aucs</span><span class="p">[</span><span class="n">class_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_auc</span>
 
-                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mean_fpr</span><span class="p">,</span> <span class="n">mean_tpr</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color_dict</span><span class="p">[</span><span class="n">class_i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Class </span><span class="si">{</span><span class="n">class_i</span><span class="si">}</span><span class="s1"> mean ROC (area = </span><span class="si">{</span><span class="n">mean_auc</span><span class="si">:</span><span class="s1">0.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mean_fpr</span><span class="p">,</span> <span class="n">mean_tpr</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color_dict</span><span class="p">[</span><span class="n">class_i</span><span class="p">],</span>
+                         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Class </span><span class="si">{</span><span class="n">class_i</span><span class="si">}</span><span class="s1"> mean ROC (area = </span><span class="si">{</span><span class="n">mean_auc</span><span class="si">:</span><span class="s1">0.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
             <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
@@ -199,14 +207,13 @@
             <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True Positive Rate&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;medium&quot;</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Receiver Operating Characteristic for </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;medium&quot;</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;medium&quot;</span><span class="p">)</span>
-
             <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+            
             <span class="k">if</span> <span class="n">save_dir</span><span class="p">:</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;roc_</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s1">.png&#39;</span><span class="p">))</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An error occurred while plotting ROC curves for model </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
-
 </pre></div>
 
            </div>

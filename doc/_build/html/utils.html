@@ -50,19 +50,28 @@
 <li class="toctree-l2"><a class="reference internal" href="evaluation.html">evaluation package</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">utils package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-utils.SlidingWindowTransformer">utils.SlidingWindowTransformer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utils.SlidingWindowTransformer">utils.SlidingWindowTransformer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#slidingwindowtransformer">SlidingWindowTransformer</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#module-utils.balance_management">utils.balance_management module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#balancemanagement">BalanceManagement</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-utils.dataset_load">utils.dataset_load module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utils.dataset_load">utils.dataset_load module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#datasetloader">DatasetLoader</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#module-utils.dataset_management">utils.dataset_management module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-utils.figures">utils.figures module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-utils.files_management">utils.files_management module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-utils.fold_management">utils.fold_management module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-utils.geo_tools">utils.geo_tools module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-utils.image_processing">utils.image_processing module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-utils.label_management">utils.label_management module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utils.label_management">utils.label_management module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#labelmanagement">LabelManagement</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#module-utils.metrics">utils.metrics module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-utils">Module contents</a></li>
 </ul>
@@ -103,6 +112,9 @@
 </section>
 <section id="module-utils.SlidingWindowTransformer">
 <span id="utils-slidingwindowtransformer-module"></span><h2>utils.SlidingWindowTransformer module<a class="headerlink" href="#module-utils.SlidingWindowTransformer" title="Permalink to this heading"></a></h2>
+<section id="slidingwindowtransformer">
+<h3>SlidingWindowTransformer<a class="headerlink" href="#slidingwindowtransformer" title="Permalink to this heading"></a></h3>
+<p>A transformer that applies a sliding window approach on a 3D array, allowing for block-wise processing using an estimator or a custom function.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="utils.SlidingWindowTransformer.SlidingWindowTransformer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.SlidingWindowTransformer.</span></span><span class="sig-name descname"><span class="pre">SlidingWindowTransformer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_predict_proba</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/SlidingWindowTransformer.html#SlidingWindowTransformer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.SlidingWindowTransformer.SlidingWindowTransformer" title="Permalink to this definition"></a></dt>
@@ -110,25 +122,68 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="utils.SlidingWindowTransformer.SlidingWindowTransformer.calculate_optimal_chunks">
 <span class="sig-name descname"><span class="pre">calculate_optimal_chunks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/SlidingWindowTransformer.html#SlidingWindowTransformer.calculate_optimal_chunks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.SlidingWindowTransformer.SlidingWindowTransformer.calculate_optimal_chunks" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Calculate optimal chunk sizes for Dask processing based on available memory.</p>
+<dl class="simple">
+<dt>X<span class="classifier">np.ndarray</span></dt><dd><p>Input data array.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>tuple</dt><dd><p>Optimal chunk sizes for Dask arrays.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="utils.SlidingWindowTransformer.SlidingWindowTransformer.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/SlidingWindowTransformer.html#SlidingWindowTransformer.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.SlidingWindowTransformer.SlidingWindowTransformer.fit" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Fit the transformer to the data. No fitting process is required.</p>
+<dl class="simple">
+<dt>X<span class="classifier">np.ndarray</span></dt><dd><p>Input data, not used.</p>
+</dd>
+<dt>y<span class="classifier">np.ndarray, optional</span></dt><dd><p>Target data, not used.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>self<span class="classifier">SlidingWindowTransformer</span></dt><dd><p>Returns the instance itself.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="utils.SlidingWindowTransformer.SlidingWindowTransformer.transform">
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/SlidingWindowTransformer.html#SlidingWindowTransformer.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.SlidingWindowTransformer.SlidingWindowTransformer.transform" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Transform the input data using the sliding window approach.</p>
+<dl class="simple">
+<dt>X<span class="classifier">np.ndarray</span></dt><dd><p>Input data to transform.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>np.ndarray</dt><dd><p>Transformed output data after applying the sliding window and predictions.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="utils.SlidingWindowTransformer.SlidingWindowTransformer.transform_block">
 <span class="sig-name descname"><span class="pre">transform_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/SlidingWindowTransformer.html#SlidingWindowTransformer.transform_block"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.SlidingWindowTransformer.SlidingWindowTransformer.transform_block" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Transform a single block of data by applying the sliding window approach.</p>
+<dl class="simple">
+<dt>block<span class="classifier">np.ndarray</span></dt><dd><p>A 3D block of data to be transformed.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>np.ndarray</dt><dd><p>The predictions for each sliding window in the block.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the input block is not 3D.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
+</section>
 </section>
 <section id="module-utils.balance_management">
 <span id="utils-balance-management-module"></span><h2>utils.balance_management module<a class="headerlink" href="#module-utils.balance_management" title="Permalink to this heading"></a></h2>
@@ -139,23 +194,10 @@ various resampling methods, as well as creating balanced sub-folds for binary
 or multi-label classification.</p>
 <p>Other balancing methods can be added by creating a new function and adding the option to the balance_classes function with a new name.
 The new balancing method must take a list of tuples and return a new list of tuples with training and test indices.</p>
-<p>Author: cortesmc   
-Date: 07/2024</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="utils.balance_management.BalanceManagement">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.balance_management.</span></span><span class="sig-name descname"><span class="pre">BalanceManagement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/balance_management.html#BalanceManagement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.balance_management.BalanceManagement" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Class to manage the balancing of classes within folds using different methods.</p>
-<dl class="simple">
-<dt>method<span class="classifier">str, optional</span></dt><dd><p>The balancing method to use (‘bFold’, ‘oversample’, ‘undersample’, ‘smote’). Default is None.</p>
-</dd>
-<dt>rng<span class="classifier">RandomState, optional</span></dt><dd><p>rng for random number generator. Default is 42.</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>transform(folds, targets)</dt><dd><p>Balances the provided folds according to the specified method.</p>
-</dd>
-</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="utils.balance_management.BalanceManagement.transform">
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/balance_management.html#BalanceManagement.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.balance_management.BalanceManagement.transform" title="Permalink to this definition"></a></dt>
@@ -238,6 +280,10 @@ Date: 07/2024</p>
 </section>
 <section id="module-utils.dataset_load">
 <span id="utils-dataset-load-module"></span><h2>utils.dataset_load module<a class="headerlink" href="#module-utils.dataset_load" title="Permalink to this heading"></a></h2>
+<section id="datasetloader">
+<h3>DatasetLoader<a class="headerlink" href="#datasetloader" title="Permalink to this heading"></a></h3>
+<p>This module provides functions for obtaining data from the database file.</p>
+<p>There are also several functions to help manage the main data set.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="utils.dataset_load.DatasetLoader">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.dataset_load.</span></span><span class="sig-name descname"><span class="pre">DatasetLoader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descrp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['date',</span> <span class="pre">'massif',</span> <span class="pre">'aquisition',</span> <span class="pre">'elevation',</span> <span class="pre">'slope',</span> <span class="pre">'orientation',</span> <span class="pre">'tmin',</span> <span class="pre">'tel',</span> <span class="pre">'hsnow']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/dataset_load.html#DatasetLoader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.dataset_load.DatasetLoader" title="Permalink to this definition"></a></dt>
@@ -343,6 +389,7 @@ a metadata part to describe data and two additional fields  (topography and phys
 </dl>
 </dd></dl>
 
+</section>
 </section>
 <section id="module-utils.dataset_management">
 <span id="utils-dataset-management-module"></span><h2>utils.dataset_management module<a class="headerlink" href="#module-utils.dataset_management" title="Permalink to this heading"></a></h2>
@@ -551,22 +598,29 @@ The dictionary must have the following structure::
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.figures.plot_boxplots">
 <span class="sig-prename descclassname"><span class="pre">utils.figures.</span></span><span class="sig-name descname"><span class="pre">plot_boxplots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metrics_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics_to_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fold_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels_massives</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/figures.html#plot_boxplots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.figures.plot_boxplots" title="Permalink to this definition"></a></dt>
-<dd><p>Create and save boxplots for each metric by model and by fold.</p>
+<dd><p>Create and save boxplots for specified metrics by model and by fold.</p>
 <dl class="simple">
-<dt>metrics_dict<span class="classifier">dict</span></dt><dd><p>Dictionary containing various computed metrics for multiple models.</p>
+<dt>metrics_dict<span class="classifier">dict</span></dt><dd><p>A dictionary containing various computed metrics for multiple models.</p>
+</dd>
+<dt>metrics_to_plot<span class="classifier">list, optional</span></dt><dd><p>List of metrics to be plotted. If empty, all metrics are plotted.</p>
 </dd>
 <dt>save_dir<span class="classifier">str, optional</span></dt><dd><p>Directory where the plots will be saved. If None, plots are not saved.</p>
 </dd>
+<dt>fold_key<span class="classifier">dict, optional</span></dt><dd><p>Mapping of fold identifiers to more descriptive names, used if <cite>labels_massives</cite> is True.</p>
+</dd>
+<dt>labels_massives<span class="classifier">bool, optional</span></dt><dd><p>If True, uses descriptive names from <cite>fold_key</cite> for the x-axis labels in fold plots.</p>
+</dd>
 </dl>
+<p>None</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.figures.plot_roc_curves">
 <span class="sig-prename descclassname"><span class="pre">utils.figures.</span></span><span class="sig-name descname"><span class="pre">plot_roc_curves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/figures.html#plot_roc_curves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.figures.plot_roc_curves" title="Permalink to this definition"></a></dt>
-<dd><p>Generate and save ROC curves for each model in the dictionary.</p>
+<dd><p>Generate and save ROC curves for each model in the provided dictionary.</p>
 <dl class="simple">
-<dt>models_dict<span class="classifier">dict</span></dt><dd><p>A dictionary where keys are model names and values are lists of dictionaries containing
-‘y_true’ and ‘y_pred’ for each fold.</p>
+<dt>models_dict<span class="classifier">dict</span></dt><dd><p>A dictionary where keys are model names and values are lists of dictionaries
+containing ‘y_true’ and ‘y_pred’ for each fold.</p>
 </dd>
 <dt>save_dir<span class="classifier">str, optional</span></dt><dd><p>Directory where the plots will be saved. If None, plots will not be saved.</p>
 </dd>
@@ -594,13 +648,13 @@ The dictionary must have the following structure::
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.files_management.clean_log">
 <span class="sig-prename descclassname"><span class="pre">utils.files_management.</span></span><span class="sig-name descname"><span class="pre">clean_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/files_management.html#clean_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.files_management.clean_log" title="Permalink to this definition"></a></dt>
-<dd><p>Clean log file to remove useless information (line number, time, etc.) to make it more readable.</p>
+<dd><p>Clean a log file to remove extraneous information for better readability.</p>
 <dl class="simple">
-<dt>log<span class="classifier">list</span></dt><dd><p>List of lines in the log file.</p>
+<dt>log<span class="classifier">list</span></dt><dd><p>The list of lines from the log file.</p>
 </dd>
 </dl>
 <dl class="simple">
-<dt>list</dt><dd><p>List of lines in the log file without useless information.</p>
+<dt>list</dt><dd><p>The cleaned log lines.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -624,7 +678,15 @@ The dictionary must have the following structure::
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.files_management.dump_h5">
 <span class="sig-prename descclassname"><span class="pre">utils.files_management.</span></span><span class="sig-name descname"><span class="pre">dump_h5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/files_management.html#dump_h5"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.files_management.dump_h5" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Dump data to an HDF5 file.</p>
+<dl class="simple">
+<dt>data<span class="classifier">numpy.ndarray</span></dt><dd><p>The data to store.</p>
+</dd>
+<dt>file_path<span class="classifier">str</span></dt><dd><p>The path to the HDF5 file.</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.files_management.dump_pkl">
@@ -661,17 +723,15 @@ The dictionary must have the following structure::
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.files_management.init_logger">
 <span class="sig-prename descclassname"><span class="pre">utils.files_management.</span></span><span class="sig-name descname"><span class="pre">init_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_log</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/files_management.html#init_logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.files_management.init_logger" title="Permalink to this definition"></a></dt>
-<dd><p>Initialize a logger.</p>
+<dd><p>Initialize a logger for recording activities.</p>
 <dl class="simple">
 <dt>path_log<span class="classifier">str</span></dt><dd><p>Path to the log file.</p>
 </dd>
-<dt>name<span class="classifier">str</span></dt><dd><p>Name of the logger.</p>
+<dt>name<span class="classifier">str</span></dt><dd><p>Name of the logger instance.</p>
 </dd>
 </dl>
 <dl class="simple">
-<dt>logging.Logger</dt><dd><p>Logger instance.</p>
-</dd>
-<dt>str</dt><dd><p>Path to the log file.</p>
+<dt>tuple</dt><dd><p>(Logger instance, path to the log file).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -679,7 +739,16 @@ The dictionary must have the following structure::
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.files_management.load_h5">
 <span class="sig-prename descclassname"><span class="pre">utils.files_management.</span></span><span class="sig-name descname"><span class="pre">load_h5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/files_management.html#load_h5"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.files_management.load_h5" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Load data from an HDF5 file.</p>
+<dl class="simple">
+<dt>file_path<span class="classifier">str</span></dt><dd><p>The path to the HDF5 file.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>numpy.ndarray</dt><dd><p>The loaded data.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.files_management.load_yaml">
@@ -698,19 +767,19 @@ The dictionary must have the following structure::
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.files_management.logger_dataset">
 <span class="sig-prename descclassname"><span class="pre">utils.files_management.</span></span><span class="sig-name descname"><span class="pre">logger_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/files_management.html#logger_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.files_management.logger_dataset" title="Permalink to this definition"></a></dt>
-<dd><p>Log information about the dataset.</p>
+<dd><p>Log detailed information about the dataset.</p>
 <dl class="simple">
-<dt>logg<span class="classifier">logging.Logger</span></dt><dd><p>Logger instance.</p>
+<dt>logg<span class="classifier">logging.Logger</span></dt><dd><p>Logger instance for reporting.</p>
 </dd>
-<dt>x<span class="classifier">numpy.ndarray</span></dt><dd><p>Input data.</p>
+<dt>x<span class="classifier">numpy.ndarray</span></dt><dd><p>Input features.</p>
 </dd>
-<dt>metadata<span class="classifier">dict</span></dt><dd><p>Metadata dictionary.</p>
+<dt>metadata<span class="classifier">dict</span></dt><dd><p>Metadata containing additional dataset information.</p>
 </dd>
 <dt>targets<span class="classifier">numpy.ndarray</span></dt><dd><p>Target labels.</p>
 </dd>
 </dl>
 <dl class="simple">
-<dt>logging.Logger</dt><dd><p>Logger instance.</p>
+<dt>logging.Logger</dt><dd><p>Logger instance with dataset information logged.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -730,7 +799,7 @@ The dictionary must have the following structure::
 </dd>
 </dl>
 <dl class="simple">
-<dt>logging.Logger, dict</dt><dd><p>Logger instance and dictionary containing massif information for each fold.</p>
+<dt>tuple</dt><dd><p>(Logger instance, dictionary containing massif information for each fold).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -738,13 +807,13 @@ The dictionary must have the following structure::
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.files_management.open_log_file">
 <span class="sig-prename descclassname"><span class="pre">utils.files_management.</span></span><span class="sig-name descname"><span class="pre">open_log_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_log</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/files_management.html#open_log_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.files_management.open_log_file" title="Permalink to this definition"></a></dt>
-<dd><p>Open log file (.log) to parse it.</p>
+<dd><p>Open a log file (.log) and return its contents.</p>
 <dl class="simple">
-<dt>path_log<span class="classifier">str</span></dt><dd><p>Path to the log file.</p>
+<dt>path_log<span class="classifier">str</span></dt><dd><p>The path to the log file.</p>
 </dd>
 </dl>
 <dl class="simple">
-<dt>list</dt><dd><p>List of lines in the log file.</p>
+<dt>list</dt><dd><p>A list of lines from the log file.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -783,15 +852,17 @@ The directory is named with the date and time of the execution.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.files_management.report_metric_from_log">
 <span class="sig-prename descclassname"><span class="pre">utils.files_management.</span></span><span class="sig-name descname"><span class="pre">report_metric_from_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics_to_report</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['f1_score_weighted']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/files_management.html#report_metric_from_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.files_management.report_metric_from_log" title="Permalink to this definition"></a></dt>
-<dd><p>Report various metrics from a dictionary containing the scores for each model in a log file.</p>
+<dd><p>Report metrics from a dictionary of model scores.</p>
 <dl class="simple">
-<dt>logg<span class="classifier">logging.Logger</span></dt><dd><p>Logger instance to log the report.</p>
+<dt>logg<span class="classifier">logging.Logger</span></dt><dd><p>Logger instance to log the metrics.</p>
 </dd>
-<dt>dic<span class="classifier">dict</span></dt><dd><p>Dictionary containing various metrics for each model.</p>
+<dt>dic<span class="classifier">dict</span></dt><dd><p>Dictionary containing metrics for each model.</p>
+</dd>
+<dt>metrics_to_report<span class="classifier">list, optional</span></dt><dd><p>List of metrics to report, by default includes ‘f1_score_weighted’.</p>
 </dd>
 </dl>
 <dl class="simple">
-<dt>logging.Logger</dt><dd><p>Logger instance with the reported metrics.</p>
+<dt>logging.Logger</dt><dd><p>The logger instance with reported metrics.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -799,24 +870,21 @@ The directory is named with the date and time of the execution.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.files_management.report_prediction">
 <span class="sig-prename descclassname"><span class="pre">utils.files_management.</span></span><span class="sig-name descname"><span class="pre">report_prediction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">le</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fold</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/files_management.html#report_prediction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.files_management.report_prediction" title="Permalink to this definition"></a></dt>
-<dd><p>Compute various classification metrics and report them in a log file.
-The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).</p>
+<dd><p>Compute and log various classification metrics.</p>
 <dl class="simple">
-<dt>y_true<span class="classifier">numpy.ndarray</span></dt><dd><p>True labels.</p>
+<dt>y_true<span class="classifier">numpy.ndarray</span></dt><dd><p>True labels (categorical or binary).</p>
 </dd>
-<dt>y_pred<span class="classifier">numpy.ndarray</span></dt><dd><p>Predicted probabilities.</p>
+<dt>y_pred<span class="classifier">numpy.ndarray</span></dt><dd><p>Predicted probabilities or classes.</p>
 </dd>
-<dt>le<span class="classifier">LabelEncoder</span></dt><dd><p>LabelEncoder object.</p>
+<dt>le<span class="classifier">LabelEncoder</span></dt><dd><p>LabelEncoder object for inverse transforming labels.</p>
 </dd>
-<dt>logg<span class="classifier">logging.Logger</span></dt><dd><p>Logger instance.</p>
+<dt>logg<span class="classifier">logging.Logger</span></dt><dd><p>Logger instance for reporting.</p>
 </dd>
-<dt>fold<span class="classifier">int</span></dt><dd><p>Fold number.</p>
+<dt>fold<span class="classifier">int</span></dt><dd><p>Fold number for identification.</p>
 </dd>
 </dl>
 <dl class="simple">
-<dt>logging.Logger</dt><dd><p>Logger instance.</p>
-</dd>
-<dt>dict</dt><dd><p>Dictionary containing various computed metrics.</p>
+<dt>tuple</dt><dd><p>(Logger instance, dictionary of computed metrics).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -839,7 +907,20 @@ The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).<
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.files_management.save_metrics">
 <span class="sig-prename descclassname"><span class="pre">utils.files_management.</span></span><span class="sig-name descname"><span class="pre">save_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fold_metric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/files_management.html#save_metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.files_management.save_metrics" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Log the metrics for each fold of the model.</p>
+<dl class="simple">
+<dt>log_model<span class="classifier">logging.Logger</span></dt><dd><p>Logger instance.</p>
+</dd>
+<dt>fold_metric<span class="classifier">list of dict</span></dt><dd><p>List of metrics for each fold.</p>
+</dd>
+<dt>model_name<span class="classifier">str</span></dt><dd><p>Name of the model.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>logging.Logger</dt><dd><p>Logger instance.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.files_management.save_yaml">
@@ -889,34 +970,6 @@ The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).<
 <dt class="sig sig-object py" id="utils.fold_management.FoldManagement">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.fold_management.</span></span><span class="sig-name descname"><span class="pre">FoldManagement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kFold'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_aprox_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/fold_management.html#FoldManagement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.fold_management.FoldManagement" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>A class to manage the creation of the folds for trainning.</p>
-<p>Attributes:
-- method : str</p>
-<blockquote>
-<div><p>The fold method to use.</p>
-</div></blockquote>
-<ul class="simple">
-<li><dl class="simple">
-<dt>shuffle<span class="classifier">bool</span></dt><dd><p>Gives the user the choice to shuffle the data output and the fold creation.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>rng<span class="classifier">int</span></dt><dd><p>rng used for the random creation.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>train_aprox_size<span class="classifier">float</span></dt><dd><p>The balance of that between trinning and test datasets.</p>
-</dd>
-</dl>
-</li>
-</ul>
-<p>Methods:
-- Split(x, y)</p>
-<blockquote>
-<div><p>Apply the selected labeling method to the provided metadata.</p>
-</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="utils.fold_management.FoldManagement.split">
 <span class="sig-name descname"><span class="pre">split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/fold_management.html#FoldManagement.split"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.fold_management.FoldManagement.split" title="Permalink to this definition"></a></dt>
@@ -1336,25 +1389,21 @@ and replace by np.nan, it should be the minimum value of the image</p>
 </section>
 <section id="module-utils.label_management">
 <span id="utils-label-management-module"></span><h2>utils.label_management module<a class="headerlink" href="#module-utils.label_management" title="Permalink to this heading"></a></h2>
+<section id="labelmanagement">
+<h3>LabelManagement<a class="headerlink" href="#labelmanagement" title="Permalink to this heading"></a></h3>
+<p>This module provides functionalities for labeling data based on specific conditions,
+including methods for single and multi-label classification.</p>
+<p>Other labeling methods can be added by creating a new function and adding the option to the transform function with a new name.
+The new labeling method method must take the dictionary with the metadata and return a new list of the labels.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="utils.label_management.LabelManagement">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.label_management.</span></span><span class="sig-name descname"><span class="pre">LabelManagement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/label_management.html#LabelManagement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.label_management.LabelManagement" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>A class to manage labeling methods.</p>
-<p>Attributes:
-- method : str</p>
-<blockquote>
-<div><p>The labeling method to use.</p>
-</div></blockquote>
-<p>Methods:
-- transform(metadata)</p>
-<blockquote>
-<div><p>Apply the selected labeling method to the provided metadata.</p>
-</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="utils.label_management.LabelManagement.get_encoder">
 <span class="sig-name descname"><span class="pre">get_encoder</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils/label_management.html#LabelManagement.get_encoder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.label_management.LabelManagement.get_encoder" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Return the LabelEncoder instance.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="utils.label_management.LabelManagement.transform">
@@ -1408,9 +1457,9 @@ and replace by np.nan, it should be the minimum value of the image</p>
 - labels : ndarray</p>
 <blockquote>
 <div><p>An array of labels where:
-1 indicates Condition A is met,
-2 indicates Condition B is met,
-3 indicates Condition C is met.</p>
+- “wet” indicates Condition A is met,
+- “kinda_wet” indicates Condition B is met,
+- “not_wet” indicates neither condition is met.</p>
 </div></blockquote>
 <p>Raises:
 - ValueError</p>
@@ -1419,6 +1468,7 @@ and replace by np.nan, it should be the minimum value of the image</p>
 </div></blockquote>
 </dd></dl>
 
+</section>
 </section>
 <section id="module-utils.metrics">
 <span id="utils-metrics-module"></span><h2>utils.metrics module<a class="headerlink" href="#module-utils.metrics" title="Permalink to this heading"></a></h2>

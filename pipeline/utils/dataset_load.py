@@ -1,3 +1,11 @@
+"""
+DatasetLoader
+=================
+
+This module provides functions for obtaining data from the database file. 
+
+There are also several functions to help manage the main data set.
+ """
 import pandas as pd
 import numpy as np
 import h5py

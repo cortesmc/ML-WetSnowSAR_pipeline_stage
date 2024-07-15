@@ -1,3 +1,13 @@
+"""
+LabelManagement
+=================
+
+This module provides functionalities for labeling data based on specific conditions,
+including methods for single and multi-label classification.
+
+Other labeling methods can be added by creating a new function and adding the option to the transform function with a new name.
+The new labeling method method must take the dictionary with the metadata and return a new list of the labels.
+"""
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
 
@@ -38,9 +48,9 @@ def crocus_method_three_labels(metadata):
     Returns:
     - labels : ndarray
         An array of labels where:
-        1 indicates Condition A is met,
-        2 indicates Condition B is met,
-        3 indicates Condition C is met.
+        - "wet" indicates Condition A is met,
+        - "kinda_wet" indicates Condition B is met,
+        - "not_wet" indicates neither condition is met.
 
     Raises:
     - ValueError
@@ -65,18 +75,6 @@ def crocus_method_three_labels(metadata):
 
 
 class LabelManagement:
-    """
-    A class to manage labeling methods.
-
-    Attributes:
-    - method : str
-        The labeling method to use.
-
-    Methods:
-    - transform(metadata)
-        Apply the selected labeling method to the provided metadata.
-    """
-
     def __init__(self, method):
         """
         Initialize the label_management class with a specified method.
@@ -118,4 +116,5 @@ class LabelManagement:
         return labels_encoded
 
     def get_encoder(self):
+        """Return the LabelEncoder instance."""
         return self.encoder

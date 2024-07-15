@@ -169,23 +169,6 @@ def combination_method(dict_massives, train_size=0.8, proximity_value=1, shuffle
     return result
 
 class FoldManagement: 
-    """
-    A class to manage the creation of the folds for trainning.
-
-    Attributes:
-    - method : str
-        The fold method to use.
-    - shuffle : bool
-        Gives the user the choice to shuffle the data output and the fold creation.
-    - rng : int
-        rng used for the random creation.
-    - train_aprox_size : float
-        The balance of that between trinning and test datasets.
-
-    Methods:
-    - Split(x, y)
-        Apply the selected labeling method to the provided metadata.
-    """
 
     def __init__(self, method="kFold", shuffle=False, rng=None, train_aprox_size=0.8):
         self.method = method

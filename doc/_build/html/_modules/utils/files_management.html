@@ -41,8 +41,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pipeline</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -101,6 +104,20 @@
     <span class="k">return</span> <span class="mi">1</span></div>
 
 <div class="viewcode-block" id="dump_h5"><a class="viewcode-back" href="../../utils.html#utils.files_management.dump_h5">[docs]</a><span class="k">def</span> <span class="nf">dump_h5</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Dump data to an HDF5 file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : numpy.ndarray</span>
+<span class="sd">        The data to store.</span>
+<span class="sd">    file_path : str</span>
+<span class="sd">        The path to the HDF5 file.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">data_dict</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
     <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -114,6 +131,19 @@
 
     
 <div class="viewcode-block" id="load_h5"><a class="viewcode-back" href="../../utils.html#utils.files_management.load_h5">[docs]</a><span class="k">def</span> <span class="nf">load_h5</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load data from an HDF5 file.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_path : str</span>
+<span class="sd">        The path to the HDF5 file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    numpy.ndarray</span>
+<span class="sd">        The loaded data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -145,17 +175,17 @@
 
 <div class="viewcode-block" id="open_log_file"><a class="viewcode-back" href="../../utils.html#utils.files_management.open_log_file">[docs]</a><span class="k">def</span> <span class="nf">open_log_file</span><span class="p">(</span><span class="n">path_log</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Open log file (.log) to parse it.</span>
+<span class="sd">    Open a log file (.log) and return its contents.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    path_log : str</span>
-<span class="sd">        Path to the log file.</span>
+<span class="sd">        The path to the log file.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    list</span>
-<span class="sd">        List of lines in the log file.</span>
+<span class="sd">        A list of lines from the log file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_log</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">log</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
@@ -164,17 +194,17 @@
 
 <div class="viewcode-block" id="clean_log"><a class="viewcode-back" href="../../utils.html#utils.files_management.clean_log">[docs]</a><span class="k">def</span> <span class="nf">clean_log</span><span class="p">(</span><span class="n">log</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Clean log file to remove useless information (line number, time, etc.) to make it more readable.</span>
+<span class="sd">    Clean a log file to remove extraneous information for better readability.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    log : list</span>
-<span class="sd">        List of lines in the log file.</span>
+<span class="sd">        The list of lines from the log file.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    list</span>
-<span class="sd">        List of lines in the log file without useless information.</span>
+<span class="sd">        The cleaned log lines.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">log</span><span class="p">)):</span>
@@ -217,19 +247,21 @@
 
 <div class="viewcode-block" id="report_metric_from_log"><a class="viewcode-back" href="../../utils.html#utils.files_management.report_metric_from_log">[docs]</a><span class="k">def</span> <span class="nf">report_metric_from_log</span><span class="p">(</span><span class="n">logg</span><span class="p">,</span> <span class="n">dic</span><span class="p">,</span> <span class="n">metrics_to_report</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;f1_score_weighted&quot;</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Report various metrics from a dictionary containing the scores for each model in a log file.</span>
+<span class="sd">    Report metrics from a dictionary of model scores.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    logg : logging.Logger</span>
-<span class="sd">        Logger instance to log the report.</span>
+<span class="sd">        Logger instance to log the metrics.</span>
 <span class="sd">    dic : dict</span>
-<span class="sd">        Dictionary containing various metrics for each model.</span>
+<span class="sd">        Dictionary containing metrics for each model.</span>
+<span class="sd">    metrics_to_report : list, optional</span>
+<span class="sd">        List of metrics to report, by default includes &#39;f1_score_weighted&#39;.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    logging.Logger</span>
-<span class="sd">        Logger instance with the reported metrics.</span>
+<span class="sd">        The logger instance with reported metrics.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logg</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;================== Final report ==================&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">model_metrics</span> <span class="ow">in</span> <span class="n">dic</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -261,29 +293,26 @@
 
 <div class="viewcode-block" id="report_prediction"><a class="viewcode-back" href="../../utils.html#utils.files_management.report_prediction">[docs]</a><span class="k">def</span> <span class="nf">report_prediction</span><span class="p">(</span><span class="n">logg</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">le</span><span class="p">,</span> <span class="n">fold</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Compute various classification metrics and report them in a log file.</span>
-<span class="sd">    The y_true and y_pred must be categorical (one hot encoded) or binary (0 or 1).</span>
+<span class="sd">    Compute and log various classification metrics.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    y_true : numpy.ndarray</span>
-<span class="sd">        True labels.</span>
+<span class="sd">        True labels (categorical or binary).</span>
 <span class="sd">    y_pred : numpy.ndarray</span>
-<span class="sd">        Predicted probabilities.</span>
+<span class="sd">        Predicted probabilities or classes.</span>
 <span class="sd">    le : LabelEncoder</span>
-<span class="sd">        LabelEncoder object.</span>
+<span class="sd">        LabelEncoder object for inverse transforming labels.</span>
 <span class="sd">    logg : logging.Logger</span>
-<span class="sd">        Logger instance.</span>
+<span class="sd">        Logger instance for reporting.</span>
 <span class="sd">    fold : int</span>
-<span class="sd">        Fold number.</span>
+<span class="sd">        Fold number for identification.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    logging.Logger</span>
-<span class="sd">        Logger instance.</span>
-<span class="sd">    dict</span>
-<span class="sd">        Dictionary containing various computed metrics.</span>
-<span class="sd">    &quot;&quot;&quot;</span>    
+<span class="sd">    tuple</span>
+<span class="sd">        (Logger instance, dictionary of computed metrics).</span>
+<span class="sd">    &quot;&quot;&quot;</span>  
     <span class="k">if</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">y_pred_classes</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -345,21 +374,19 @@
 
 <div class="viewcode-block" id="init_logger"><a class="viewcode-back" href="../../utils.html#utils.files_management.init_logger">[docs]</a><span class="k">def</span> <span class="nf">init_logger</span><span class="p">(</span><span class="n">path_log</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Initialize a logger.</span>
+<span class="sd">    Initialize a logger for recording activities.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    path_log : str</span>
 <span class="sd">        Path to the log file.</span>
 <span class="sd">    name : str</span>
-<span class="sd">        Name of the logger.</span>
+<span class="sd">        Name of the logger instance.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    logging.Logger</span>
-<span class="sd">        Logger instance.</span>
-<span class="sd">    str</span>
-<span class="sd">        Path to the log file.</span>
+<span class="sd">    tuple</span>
+<span class="sd">        (Logger instance, path to the log file).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">datestr</span> <span class="o">=</span> <span class="s2">&quot;%m/</span><span class="si">%d</span><span class="s2">/%Y-%I:%M:%S %p&quot;</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_log</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;log_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.log&quot;</span><span class="p">)</span>
@@ -383,23 +410,23 @@
 
 <div class="viewcode-block" id="logger_dataset"><a class="viewcode-back" href="../../utils.html#utils.files_management.logger_dataset">[docs]</a><span class="k">def</span> <span class="nf">logger_dataset</span><span class="p">(</span><span class="n">logg</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Log information about the dataset.</span>
+<span class="sd">    Log detailed information about the dataset.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    logg : logging.Logger</span>
-<span class="sd">        Logger instance.</span>
+<span class="sd">        Logger instance for reporting.</span>
 <span class="sd">    x : numpy.ndarray</span>
-<span class="sd">        Input data.</span>
+<span class="sd">        Input features.</span>
 <span class="sd">    metadata : dict</span>
-<span class="sd">        Metadata dictionary.</span>
+<span class="sd">        Metadata containing additional dataset information.</span>
 <span class="sd">    targets : numpy.ndarray</span>
 <span class="sd">        Target labels.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    logging.Logger</span>
-<span class="sd">        Logger instance.</span>
+<span class="sd">        Logger instance with dataset information logged.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logg</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;================== Study information ==================&quot;</span><span class="p">)</span>
 
@@ -446,8 +473,8 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    logging.Logger, dict</span>
-<span class="sd">        Logger instance and dictionary containing massif information for each fold.</span>
+<span class="sd">    tuple</span>
+<span class="sd">        (Logger instance, dictionary containing massif information for each fold).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">fold_key</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">kfold</span><span class="p">,</span> <span class="p">(</span><span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fold_groups</span><span class="p">):</span>
@@ -475,6 +502,23 @@
     <span class="k">return</span> <span class="n">logg</span><span class="p">,</span> <span class="n">fold_key</span></div>
 
 <div class="viewcode-block" id="save_metrics"><a class="viewcode-back" href="../../utils.html#utils.files_management.save_metrics">[docs]</a><span class="k">def</span> <span class="nf">save_metrics</span><span class="p">(</span><span class="n">log_model</span><span class="p">,</span> <span class="n">fold_metric</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Log the metrics for each fold of the model.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    log_model : logging.Logger</span>
+<span class="sd">        Logger instance.</span>
+<span class="sd">    fold_metric : list of dict</span>
+<span class="sd">        List of metrics for each fold.</span>
+<span class="sd">    model_name : str</span>
+<span class="sd">        Name of the model.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    logging.Logger</span>
+<span class="sd">        Logger instance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">fold_metric</span><span class="p">:</span>
         <span class="n">log_model</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;__________________ Fold </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;fold&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> with </span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2"> __________________&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">metric</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">metrics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -518,31 +562,6 @@
         <span class="n">hf</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
             <span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">label</span><span class="p">),</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">label</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">)</span>
         <span class="p">)</span></div>
-
-
-<span class="c1"># def load_h5(filename):</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
-<span class="c1">#     Load image and label from a hdf5 file.</span>
-
-<span class="c1">#     Parameters</span>
-<span class="c1">#     ----------</span>
-<span class="c1">#     filename : str</span>
-<span class="c1">#         Path to the hdf5 file.</span>
-
-<span class="c1">#     Returns</span>
-<span class="c1">#     -------</span>
-<span class="c1">#     numpy.ndarray</span>
-<span class="c1">#         Dataset of images in float32.</span>
-<span class="c1">#     numpy.ndarray</span>
-<span class="c1">#         Dataset of labels in string.</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
-<span class="c1">#     if &quot;.h5&quot; not in filename:</span>
-<span class="c1">#         filename += &quot;.h5&quot;</span>
-<span class="c1">#     with h5py.File(filename, &quot;r&quot;) as hf:</span>
-<span class="c1">#         data = np.array(hf[&quot;img&quot;][:]).astype(np.float32)</span>
-<span class="c1">#         meta = np.array(hf[&quot;label&quot;][:]).astype(str)</span>
-<span class="c1">#     return data, meta</span>
-
 
 <div class="viewcode-block" id="open_param_set_dir"><a class="viewcode-back" href="../../utils.html#utils.files_management.open_param_set_dir">[docs]</a><span class="k">def</span> <span class="nf">open_param_set_dir</span><span class="p">(</span><span class="n">i_path_param</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>

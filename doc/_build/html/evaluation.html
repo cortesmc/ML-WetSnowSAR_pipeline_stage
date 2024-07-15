@@ -132,17 +132,52 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="evaluation.learning_models.fit_predict_fold">
 <span class="sig-prename descclassname"><span class="pre">evaluation.learning_models.</span></span><span class="sig-name descname"><span class="pre">fit_predict_fold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_train_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kfold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_log_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evaluation/learning_models.html#fit_predict_fold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evaluation.learning_models.fit_predict_fold" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Fit the pipeline on the training set and predict probabilities on the test set for a single fold.</p>
+<p>Parameters:
+- pipeline: The machine learning pipeline to be used.
+- X_train_k, y_train_k: Training data and labels for the fold.
+- X_test_k, y_test_k: Test data and labels for the fold.
+- log_model: Logger for model-related messages.
+- label_encoder: Label encoder for transforming labels.
+- kfold: The current fold index.
+- pipeline_name: Name of the pipeline.
+- save_dir: Directory to save the trained model.
+- error_log_path: Path to log errors.</p>
+<p>Returns:
+- fold_metric: Metrics for the current fold.
+- y_prob: Predicted probabilities for the test set.
+- y_test_k: True labels for the test set.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="evaluation.learning_models.log_error_details">
 <span class="sig-prename descclassname"><span class="pre">evaluation.learning_models.</span></span><span class="sig-name descname"><span class="pre">log_error_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_log_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evaluation/learning_models.html#log_error_details"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evaluation.learning_models.log_error_details" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Log error details to a specified error log file.</p>
+<p>Parameters:
+- pipeline_id: Identifier for the pipeline where the error occurred.
+- error_message: The error message to log.
+- error_log_path: Path to the log file for errors.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="evaluation.learning_models.predict_dataset">
 <span class="sig-prename descclassname"><span class="pre">evaluation.learning_models.</span></span><span class="sig-name descname"><span class="pre">predict_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fold_groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_log_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evaluation/learning_models.html#predict_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evaluation.learning_models.predict_dataset" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Predict on the dataset using specified pipelines and folds.</p>
+<p>Parameters:
+- x: Feature data.
+- targets: Target labels.
+- fold_groups: Groups of training/testing indices for cross-validation.
+- pipeline_names: Names of the pipelines to evaluate.
+- output_dir: Directory to save results.
+- args: Command-line arguments.
+- label_encoder: Label encoder for targets.
+- error_log_path: Path to log errors.
+- rng: Random number generator for reproducibility.
+- save: Whether to save the metrics to disk.</p>
+<p>Returns:
+- metrics: Dictionary of metrics for each pipeline.
+- y_est_save: Dictionary of true and estimated labels.</p>
+</dd></dl>
 
 </section>
 <section id="module-evaluation">

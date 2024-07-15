@@ -8,9 +8,6 @@ or multi-label classification.
 
 Other balancing methods can be added by creating a new function and adding the option to the balance_classes function with a new name.
 The new balancing method must take a list of tuples and return a new list of tuples with training and test indices.
-
-Author: cortesmc   
-Date: 07/2024
 """
 
 import numpy as np
@@ -167,22 +164,6 @@ def bFold_multiclass(folds, targets, rng=42):
 
 
 class BalanceManagement: 
-    """
-    Class to manage the balancing of classes within folds using different methods.
-
-    Parameters
-    ----------
-    method : str, optional
-        The balancing method to use ('bFold', 'oversample', 'undersample', 'smote'). Default is None.
-    rng : RandomState, optional
-        rng for random number generator. Default is 42.
-
-    Methods
-    -------
-    transform(folds, targets)
-        Balances the provided folds according to the specified method.
-    """
-
     def __init__(self, method=None, rng=None):
         """
         Initializes the BalanceManagement class with the specified method and rng.

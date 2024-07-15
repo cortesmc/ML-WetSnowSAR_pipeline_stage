@@ -148,8 +148,8 @@ if __name__ == "__main__":
         # Uncomment the following lines if the transformation and dumping are required
         for index, image in enumerate(images) : 
             transformer = SlidingWindowTransformer(estimator=model, window_size=15, padding=False, use_predict_proba=True)
-            result_2d = transformer.transform(image)
-            dump_pkl(result_2d, os.path.join(new_file, f"map_{index}.pkl"))
+            # result_2d = transformer.transform(image)
+            # dump_pkl(result_2d, os.path.join(new_file, f"map_{index}.pkl"))
 
     except Exception as e:
         error_message = f"An unexpected error occurred: {str(e)}"
