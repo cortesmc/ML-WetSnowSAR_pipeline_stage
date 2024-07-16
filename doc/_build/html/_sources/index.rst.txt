@@ -27,13 +27,14 @@ Key Features
 
 Getting Started
 ---------------
-Check out the :doc:`usage` section for further information, including how to :ref:`install <installation>` the project.
+Check out the :doc:`installation` section for further information, including how to :ref:`install <installation>` the project.
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :caption: Contents:
-   
+
    ./source/usage
+   ./source/installation
    estimators
    evaluation
    utils
@@ -42,5 +43,4 @@ Indices and Tables
 ------------------
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
