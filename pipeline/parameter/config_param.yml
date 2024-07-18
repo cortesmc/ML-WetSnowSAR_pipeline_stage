@@ -15,7 +15,7 @@ fixed_args:
         "--balancing_method": "undersample"
         
         # Filter request based on date and elevation criteria
-        "--request": "(date.dt.month == 3 and date.dt.day == 1) and ((elevation > 1000) and (elevation < 2000))"
+        "--request": "'(date.dt.month == 3 and date.dt.day == 1) and ((elevation > 1000) and (elevation < 2000))'"
         
         # Shuffle the data before processing, shuffle uses the seed to reproduce the results
         "--shuffle_data": true

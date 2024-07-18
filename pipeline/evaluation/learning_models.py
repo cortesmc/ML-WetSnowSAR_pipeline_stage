@@ -100,18 +100,19 @@ def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, l
     metrics = {}
     f_tqdm = open(os.path.join(args.storage_path, 'progress.txt'), 'w')
     f_tqdm.write('tqdm\n')
-    
+
     # Loop over each pipeline and process it
     for count, pipeline_name in enumerate(tqdm(pipeline_names, file=f_tqdm)):
-        save_dir = os.path.join(output_dir, f"models/{pipeline_name}/")
-        log_model, _ = init_logger(save_dir, f"{pipeline_name}_results")
-
-        log_model.info(f"================== Fitting model {pipeline_name} ==================")
-
-        y_est_save[pipeline_name] = {"y_true": [], "y_est": []}
-        fold_metrics = []
-
         try:
+            save_dir = os.path.join(output_dir, f"models/{pipeline_name}/")
+            check_and_create_directory(save_dir)
+            log_model, _ = init_logger(save_dir, f"{pipeline_name}_results")
+
+            log_model.info(f"================== Fitting model {pipeline_name} ==================")
+
+            y_est_save[pipeline_name] = {"y_true": [], "y_est": []}
+            fold_metrics = []
+
             # Wrap fit and predict for parallel processing
             def fit_predict_fold_wrap(fold, train_index, test_index, rng):
                 X_train_k, y_train_k = x[train_index], targets[train_index]
@@ -130,9 +131,9 @@ def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, l
                 )
 
             # Parallel processing for each fold
-            results = Parallel(n_jobs=-1)(
-                delayed(fit_predict_fold_wrap)(kfold, train_index, test_index, rng)
-                for kfold, (train_index, test_index) in enumerate(fold_groups)
+            results = Parallel(n_jobs=1)(
+                delayed(fit_predict_fold_wrap)(fold, train_index, test_index, rng)
+                for fold, (train_index, test_index) in enumerate(fold_groups)
             )
 
             # Collect results from all folds
@@ -287,6 +288,6 @@ if __name__ == "__main__":
         print("================== End of the study ==================")
     except Exception as e:
         # Log any unexpected errors
-        error_message = f"An unexpected error occurred: {str(e)}"
+        error_message = f"An unexpected error occurred: {e}"
         print(error_message)
         log_errors.error(error_message)
