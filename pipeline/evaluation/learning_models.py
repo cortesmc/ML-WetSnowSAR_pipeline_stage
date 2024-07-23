@@ -112,6 +112,8 @@ def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, l
 
             y_est_save[pipeline_name] = {"y_true": [], "y_est": []}
             fold_metrics = []
+            print(f"pipeline : {args.pipeline}")
+            print(f"list of imports  : {args.import_list}")
 
             # Wrap fit and predict for parallel processing
             def fit_predict_fold_wrap(fold, train_index, test_index, rng):
@@ -131,7 +133,7 @@ def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, l
                 )
 
             # Parallel processing for each fold
-            results = Parallel(n_jobs=1)(
+            results = Parallel(n_jobs=-1)(
                 delayed(fit_predict_fold_wrap)(fold, train_index, test_index, rng)
                 for fold, (train_index, test_index) in enumerate(fold_groups)
             )
@@ -188,7 +190,7 @@ if __name__ == "__main__":
     parser.add_argument('--metrics_to_report', type=str, nargs='+', action='extend', required=True, help='List of metrics to report')
     parser.add_argument('--seed', type=int, required=True, help='Random seed')
     args = parser.parse_args()
-    
+
     try:
         # Extract arguments for later use
         data_path = args.data_path
@@ -205,14 +207,33 @@ if __name__ == "__main__":
     except KeyError as e:
         print("KeyError: %s undefined" % e)
 
+    pipelines = []
+    pipe = args.pipeline[0]
+    for item in args.pipeline[1:]:
+        if item.startswith('[[') and item.endswith('],'):
+            pipelines.append(pipe)
+            pipe = item
+        else : 
+            pipe = pipe +item
+
+    # list_import = []
+    # import_item = args.import_list[0]
+    # for item in args.import_list[1:]:
+    #     if item.startswith('from') :
+    #         list_import.append(import_item)
+    #         import_item = item
+    #     else : 
+    #         import_item = import_item + " " + item
+
+    args.pipeline = pipelines 
+    # args.import_list = list_import
+
     # Set random seed for reproducibility
     rng = np.random.RandomState(seed=seed)
     np.random.seed(seed=seed)
-    
     try:
         # Set up storage paths and initialize logging
         storage_path, pipeline_names = set_folder(storage_path, args=args)
-
         log_dataset, _ = init_logger(storage_path, "dataset_info")
         log_results, _ = init_logger(storage_path + "results", "results")
         log_errors, error_log_path = init_logger(storage_path + "results", "errors")
@@ -286,6 +307,7 @@ if __name__ == "__main__":
         log_results = report_metric_from_log(log_results, metrics, metrics_to_report)
 
         print("================== End of the study ==================")
+
     except Exception as e:
         # Log any unexpected errors
         error_message = f"An unexpected error occurred: {e}"

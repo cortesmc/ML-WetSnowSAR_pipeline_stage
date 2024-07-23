@@ -593,12 +593,7 @@ def set_folder(out_dir, args):
     str
         Path to the organized study folder.
     """
-    pattern = re.compile(r"\[\['(.*?)_direct'\]")
-    pipeline_names = []
-    for item in args.pipeline:
-        match = pattern.search(item)
-        if match:
-            pipeline_names.append(match.group(1) + "_direct")
+    pipeline_names = [s.split('[')[2].split(']')[0] for s in args.pipeline if s.startswith('[[')]
 
     folders = ["results", "models", "html"]
 
