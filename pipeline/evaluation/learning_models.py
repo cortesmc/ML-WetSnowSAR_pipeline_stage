@@ -258,7 +258,7 @@ if __name__ == "__main__":
         )
 
         # Request specific data based on criteria
-        x, y = dataset_loader.request_data(request)
+        # x, y = dataset_loader.request_data(request)
         
         # Manage labels according to the specified labeling method
         labels_manager = LabelManagement(method=labeling_method)

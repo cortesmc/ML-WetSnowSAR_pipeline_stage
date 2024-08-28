@@ -594,8 +594,8 @@ def set_folder(out_dir, args):
         Path to the organized study folder.
     """
     pipeline_names = [s.split('[')[2].split(']')[0] for s in args.pipeline if s.startswith('[[')]
-
-    folders = ["results", "models", "html"]
+    print(pipeline_names)
+    folders = ["results", "models"]
 
     for folder in folders:
         check_and_create_directory(os.path.join(out_dir, folder))
