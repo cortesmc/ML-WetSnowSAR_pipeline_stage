@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; Stage Wet Snow Benchmarking 0.5 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+  <title>Creating an Experiment with Qanat &mdash; Stage Wet Snow Benchmarking 0.5 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
   
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=db78e746"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="estimators package" href="../estimators.html" />
-    <link rel="prev" title="Parameters files" href="usage_files/parameter_files.html" /> 
+    <link rel="prev" title="Config_param Configuration" href="usage_files/parameter_files/config_param.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,12 +47,8 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#creating-an-experiment-with-qanat">Creating an Experiment with Qanat</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#running-actions-with-qanat">Running Actions with Qanat</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Creating an Experiment with Qanat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#running-actions-with-qanat">Running Actions with Qanat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../estimators.html">estimators package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../evaluation.html">evaluation package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils.html">utils package</a></li>
@@ -72,7 +68,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Installation</li>
+      <li class="breadcrumb-item active">Creating an Experiment with Qanat</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/installation.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -82,26 +78,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="installation">
-<span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
-<p>This guide explains how to install Qanat and deploy an experiment using it.</p>
-<section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
-<p>Before you can deploy an experiment, you need to have Qanat installed. Follow the installation instructions here: <a class="reference external" href="https://ammarmian.github.io/qanat/installation.html">Qanat Installation</a>.</p>
-</section>
-<section id="creating-an-experiment-with-qanat">
-<h2>Creating an Experiment with Qanat<a class="headerlink" href="#creating-an-experiment-with-qanat" title="Permalink to this heading"></a></h2>
+  <section id="creating-an-experiment-with-qanat">
+<h1>Creating an Experiment with Qanat<a class="headerlink" href="#creating-an-experiment-with-qanat" title="Link to this heading"></a></h1>
 <ol class="arabic">
 <li><p><strong>Initialize Qanat in the Pipeline Folder</strong>:</p>
 <p>Open the terminal in your <strong>pipeline folder</strong> and run the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qanat</span> <span class="n">init</span> <span class="o">.</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qanat<span class="w"> </span>init<span class="w"> </span>.
 </pre></div>
 </div>
 </li>
 <li><p><strong>Initialize the Results Folder</strong>:</p>
 <p>Upon running the initialization command, you’ll see the following prompt:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[14:21:20] INFO Initializing Qanat repository. init.py:27
-Where do you want to store the results? (./results): ./results
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span><span class="m">14</span>:21:20<span class="o">]</span><span class="w"> </span>INFO<span class="w"> </span>Initializing<span class="w"> </span>Qanat<span class="w"> </span>repository.<span class="w"> </span>init.py:27
+Where<span class="w"> </span><span class="k">do</span><span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>store<span class="w"> </span>the<span class="w"> </span>results?<span class="w"> </span><span class="o">(</span>./results<span class="o">)</span>:<span class="w"> </span>./results
 </pre></div>
 </div>
 <p>Specify the desired path for storing the results.</p>
@@ -110,24 +99,24 @@ Where do you want to store the results? (./results): ./results
 <ul>
 <li><p><strong>Creating with Bash</strong>:</p>
 <p>Once Qanat is initialized in the pipeline folder, create a new experiment by running:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qanat</span> <span class="n">experiment</span> <span class="n">new</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qanat<span class="w"> </span>experiment<span class="w"> </span>new
 </pre></div>
 </div>
 <p>You will be prompted to provide the following information. The critical values include the path and executable. You can freely choose the other variables:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Name: &lt;name_experiment&gt;
-Description: &lt;description_experiment&gt;
-Path: evaluation
-Executable: evaluation/learning_models.py
-Execute command of the experiment (/usr/bin/bash): python
-Tags: [&#39;ML&#39;, &#39;benchmarking&#39;]
-Datasets: []
-Do you want to add this experiment? [y/n]: y
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Name:<span class="w"> </span>&lt;name_experiment&gt;
+Description:<span class="w"> </span>&lt;description_experiment&gt;
+Path:<span class="w"> </span>evaluation
+Executable:<span class="w"> </span>evaluation/learning_models.py
+Execute<span class="w"> </span><span class="nb">command</span><span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>experiment<span class="w"> </span><span class="o">(</span>/usr/bin/bash<span class="o">)</span>:<span class="w"> </span>python
+Tags:<span class="w"> </span><span class="o">[</span><span class="s1">&#39;ML&#39;</span>,<span class="w"> </span><span class="s1">&#39;benchmarking&#39;</span><span class="o">]</span>
+Datasets:<span class="w"> </span><span class="o">[]</span>
+Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>add<span class="w"> </span>this<span class="w"> </span>experiment?<span class="w"> </span><span class="o">[</span>y/n<span class="o">]</span>:<span class="w"> </span>y
 </pre></div>
 </div>
 </li>
 <li><p><strong>Creating from YAML</strong>:</p>
 <p>You can also create an experiment directly with the correct paths using the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qanat</span> <span class="n">experiment</span> <span class="n">new</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">parameter</span><span class="o">/</span><span class="n">qanat_experiment</span><span class="o">.</span><span class="n">yml</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qanat<span class="w"> </span>experiment<span class="w"> </span>new<span class="w"> </span>-f<span class="w"> </span>./parameter/qanat_experiment.yml
 </pre></div>
 </div>
 </li>
@@ -137,12 +126,12 @@ Do you want to add this experiment? [y/n]: y
 <p>Once the experiment is created, configure your <cite>parameter_file.yml</cite> with all necessary values and deploy the experiment:</p>
 <ul>
 <li><p><strong>Testing the Groups</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qanat</span> <span class="n">experiment</span> <span class="n">run</span> <span class="o">&lt;</span><span class="n">experiment_name</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">param_file</span> <span class="s2">&quot;./parameter/config_param.yml&quot;</span> <span class="o">--</span><span class="n">dry_run</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qanat<span class="w"> </span>experiment<span class="w"> </span>run<span class="w"> </span>&lt;experiment_name&gt;<span class="w"> </span>--param_file<span class="w"> </span><span class="s2">&quot;./parameter/config_param.yml&quot;</span><span class="w"> </span>--dry_run
 </pre></div>
 </div>
 </li>
 <li><p><strong>Running the Experiment</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qanat</span> <span class="n">experiment</span> <span class="n">run</span> <span class="o">&lt;</span><span class="n">experiment_name</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">param_file</span> <span class="s2">&quot;./parameter/config_param.yml&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qanat<span class="w"> </span>experiment<span class="w"> </span>run<span class="w"> </span>&lt;experiment_name&gt;<span class="w"> </span>--param_file<span class="w"> </span><span class="s2">&quot;./parameter/config_param.yml&quot;</span>
 </pre></div>
 </div>
 </li>
@@ -151,63 +140,54 @@ Do you want to add this experiment? [y/n]: y
 </ol>
 </section>
 <section id="running-actions-with-qanat">
-<h2>Running Actions with Qanat<a class="headerlink" href="#running-actions-with-qanat" title="Permalink to this heading"></a></h2>
+<h1>Running Actions with Qanat<a class="headerlink" href="#running-actions-with-qanat" title="Link to this heading"></a></h1>
 <p>Before running actions, they must be created.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If the experiment was created using a YAML file, it already includes the actions, which are ready for use. You can verify this by running:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qanat</span> <span class="n">experiment</span> <span class="n">status</span> <span class="o">&lt;</span><span class="n">name_experiment</span><span class="o">&gt;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qanat<span class="w"> </span>experiment<span class="w"> </span>status<span class="w"> </span>&lt;name_experiment&gt;
 </pre></div>
 </div>
 <p>This should display two actions:
 * results: Retrieves all results from all the groups</p>
 </div>
 <p>To add or create a new action for the experiment, follow these steps:</p>
-<ol class="arabic simple">
-<li><p><strong>Update the Experiment</strong>:</p></li>
-</ol>
-<blockquote>
-<div><dl class="simple">
-<dt>::</dt><dd><p>qanat experiment update &lt;experiment_name&gt;</p>
-</dd>
-</dl>
-</div></blockquote>
-<ol class="arabic simple" start="2">
+<ol class="arabic">
+<li><p><strong>Update the Experiment</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qanat<span class="w"> </span>experiment<span class="w"> </span>update<span class="w"> </span>&lt;experiment_name&gt;
+</pre></div>
+</div>
+</li>
 <li><p><strong>Select the option for Action and choose ‘add’</strong>.</p></li>
 <li><p><strong>Provide a name and a description</strong>.</p></li>
-<li><p><strong>Specify the executable for the action (path from project root)</strong>:</p></li>
-</ol>
-<blockquote>
-<div><dl class="simple">
-<dt>::</dt><dd><p>⚙ Executable of the action (path from project root): evaluation/generate_results.py</p>
-</dd>
-</dl>
-</div></blockquote>
-<ol class="arabic simple" start="5">
+<li><p><strong>Specify the executable for the action (path from project root)</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>⚙<span class="w"> </span>Executable<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>action<span class="w"> </span><span class="o">(</span>path<span class="w"> </span>from<span class="w"> </span>project<span class="w"> </span>root<span class="o">)</span>:<span class="w"> </span>evaluation/generate_results.py
+</pre></div>
+</div>
+</li>
 <li><p><strong>Set the executable to</strong>: python.</p></li>
 <li><p><strong>Add the experiment</strong>.</p></li>
 </ol>
 <p>To use the actions, you need to have run the experiment at least once. Qanat generates new files named <cite>run_N°</cite>, where N° is the index of the run. To apply an action to a specific run, use the run index as follows:</p>
 <ul>
 <li><p>For the action <cite>get_results</cite>, which consolidates all the results from multiple groups into a single file named <cite>final_results</cite>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qanat</span> <span class="n">experiment</span> <span class="n">action</span> <span class="n">pipeline</span> <span class="o">&lt;</span><span class="n">action_name</span><span class="o">&gt;</span> <span class="n">n_run</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qanat<span class="w"> </span>experiment<span class="w"> </span>action<span class="w"> </span>pipeline<span class="w"> </span>&lt;action_name&gt;<span class="w"> </span>n_run
 </pre></div>
 </div>
 </li>
 <li><p>For the action <cite>generate_maps</cite>, which generates estimated maps for comparison with the data from Grand-Rousses or another assigned massif:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qanat</span> <span class="n">experiment</span> <span class="n">action</span> <span class="n">pipeline</span> <span class="n">generate_maps</span> <span class="n">n_run</span> <span class="o">--</span><span class="n">config_file</span> <span class="o">&lt;</span><span class="n">path_to_config_file</span><span class="o">&gt;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qanat<span class="w"> </span>experiment<span class="w"> </span>action<span class="w"> </span>pipeline<span class="w"> </span>generate_maps<span class="w"> </span>n_run<span class="w"> </span>--config_file<span class="w"> </span>&lt;path_to_config_file&gt;
 </pre></div>
 </div>
 </li>
 </ul>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="usage_files/parameter_files.html" class="btn btn-neutral float-left" title="Parameters files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage_files/parameter_files/config_param.html" class="btn btn-neutral float-left" title="Config_param Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../estimators.html" class="btn btn-neutral float-right" title="estimators package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

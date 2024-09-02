@@ -2,7 +2,7 @@
 
 Running an Experiment
 =====================
-
+First you need the framework to be totally installed, for that you can see on :ref:`installation`.
 Once the framework and Qanat are initialized, everything is ready to start working.
 
 1. **Setting the Parameters**: 
