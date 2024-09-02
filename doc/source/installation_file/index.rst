@@ -1,7 +1,7 @@
 
 .. _installation:
 
-installation
+Installation
 ============
 
 Creating an Experiment with Qanat

@@ -1,5 +1,12 @@
+
+.. _installation:
+
+installation
+============
+
 Creating an Experiment with Qanat
 ---------------------------------
+
 1. **Initialize Qanat in the Pipeline Folder**:
   
    Open the terminal in your **pipeline folder** and run the following command:
@@ -66,7 +73,7 @@ Creating an Experiment with Qanat
 
         qanat experiment run <experiment_name> --param_file "./parameter/config_param.yml"
 
-Running Actions with Qanat
+Create an actions with Qanat
 --------------------------
 Before running actions, they must be created.
 

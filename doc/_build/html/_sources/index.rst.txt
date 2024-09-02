@@ -14,6 +14,7 @@ Project References
 - **Base Project**: `ML-WetSnowSAR <https://github.com/Matthieu-Gallet/ML-WetSnowSAR>`__
 - **Thesis Project by**: Matthieu Gallet
 - **Developped by**: Carlos Cortes and Matthieu Gallet
+- **Enseignant chargé du suivi du stagiaire** : Trouve Emmanuel
 
 Introduction
 ------------
@@ -27,20 +28,20 @@ Key Features
 
 Getting Started
 ---------------
-Check out the :doc:`installation` section for further information, including how to :ref:`install <installation>` the project.
+Check out the installation section for further information, including how to :ref:`installation` the project.
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 3
    :caption: Contents:
 
-   ./source/usage
-   ./source/installation
+   ./source/usage_files/index
+   ./source/installation_file/index.rst
    estimators
    evaluation
-   utils
+   utils.
 
-Indices and Tables
-------------------
-
+Indices and tables
+==================
 * :ref:`genindex`
+* :ref:`modindex`
 * :ref:`search`

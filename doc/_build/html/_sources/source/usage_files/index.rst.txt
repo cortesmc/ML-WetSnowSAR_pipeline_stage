@@ -57,7 +57,7 @@ This framework is a versatile tool for studying and comparing different machine 
 .. toctree::
    :maxdepth: 2
 
-   ./usage_files/run_exp 
-   ./usage_files/parameter_files/index
-   ./usage_files/templates
+   ./run_exp 
+   ./parameter_files/index
+   ./templates
 

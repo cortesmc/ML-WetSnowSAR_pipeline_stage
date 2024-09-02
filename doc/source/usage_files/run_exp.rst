@@ -1,5 +1,3 @@
-.. _run_experiment:
-
 Running an Experiment
 =====================
 First you need the framework to be totally installed, for that you can see on :ref:`installation`.
@@ -15,7 +13,7 @@ Once the framework and Qanat are initialized, everything is ready to start worki
    .. note::
       `fixed_args` are applied uniformly across all groups, whereas `varying_args` allow you to introduce variability within each group. This approach enables Qanat to create and run multiple experiments efficiently.
       
-      For examples of templates, please refer to the **Templates** section (TODO: Add link).
+      For examples of templates, please refer to the :ref:`templates`.
 
    .. warning::
       Currently, the pipeline supports the creation of groups with different *seeds* and *ML models* only. 
