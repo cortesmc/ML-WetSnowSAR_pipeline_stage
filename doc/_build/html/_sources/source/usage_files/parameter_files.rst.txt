@@ -1,0 +1,11 @@
+.. _parameter_files:
+
+Parameters files 
+================
+The differents parameter files that come with the pipeline: 
+
+.. toctree::
+   :maxdepth: 2
+   :caption: parameter_files:
+    ./parameter_files/config_param
+    ./parameter_files/qanat_experiment
