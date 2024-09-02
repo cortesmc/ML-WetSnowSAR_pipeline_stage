@@ -1,0 +1,59 @@
+Functioning
+===========
+
+This document explains the logic that follows the framework and how it integrates with *Qanat*. 
+
+Overview
+--------
+
+The primary objective of using `Qanat` is to streamline the process of grouping data when deploying the framework and tracking the development of the study in real-time. `Qanat` simplifies the generation of multiple runs and facilitates the deployment of the framework on various job systems.
+
+Key Benefits
+------------
+
+- **Simplified Grouping:** `Qanat` helps in organizing data into manageable groups for efficient processing and analysis.
+- **Real-Time Tracking:** It provides mechanisms to monitor the progress of the study in real-time.
+- **Flexible Function Application:** `Qanat` allows for the creation and application of new functions to the results, enabling customized data treatments and generation of new results.
+
+Framework Operation
+-------------------
+
+How the Framework Works
+^^^^^^^^^^^^^^^^^^^^^^^
+
+1. **Data Preparation:**
+   - Data is loaded and preprocessed according to specified methods for shuffling, labeling, and balancing.
+   - The dataset is split into training and testing sets based on the cross-validation strategy defined.
+
+2. **Pipeline Configuration:**
+   - Different machine learning pipelines are configured and applied to the data.
+   - The pipelines are parsed and initialized according to the configurations provided in the command-line arguments.
+
+3. **Parallel Processing:**
+   - The framework uses parallel processing to fit and predict across multiple folds of the data.
+   - Each fold is processed independently to fit the model and predict probabilities.
+
+4. **Logging and Error Handling:**
+   - The framework logs training and prediction metrics, including time taken for each operation.
+   - Errors encountered during the process are logged and detailed information is recorded for debugging.
+
+5. **Metrics and Results:**
+   - Metrics for each fold are collected and aggregated.
+   - The results, including predictions and metrics, are saved and can be visualized using generated plots.
+
+6. **Visualization:**
+   - Metrics and results are used to create plots, such as boxplots and ROC curves, to visualize performance.
+
+Execution Flow
+^^^^^^^^^^^^^^
+1. **Initialization:**
+   - The script initializes logging, sets up storage paths, and prepares the dataset.
+   
+2. **Model Training and Prediction:**
+   - Models are trained on the training set and evaluated on the test set using cross-validation.
+   - The trained models and results are saved for further analysis.
+
+3. **Post-Processing:**
+   - Final metrics are reported and visualized to provide insights into the performance of the models.
+
+In summary, `Qanat` enhances the framework by facilitating data management, real-time monitoring, and flexible result analysis. This integration allows for efficient execution of machine learning workflows and thorough evaluation of model performance.

@@ -12,7 +12,7 @@ This framework is a versatile tool for studying and comparing different machine 
 - **Flexible Dataset Handling**: Adapt to various datasets, labels, and balancing methods.
 - **Customizable Visualization**: Create and modify plots for result analysis.
 
-.. image:: ./images/PL_structure.png
+.. image:: ../images/PL_structure.png
    :align: center
 
 .. raw:: html

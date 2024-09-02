@@ -36,9 +36,10 @@ Check out the installation section for further information, including how to :re
 
    ./source/usage_files/index
    ./source/installation_file/index.rst
+   ./source/functioning/index
    estimators
    evaluation
-   utils.
+   utils
 
 Indices and tables
 ==================
