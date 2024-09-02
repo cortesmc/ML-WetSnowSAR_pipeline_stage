@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Running an experiment &mdash; Stage Wet Snow Benchmarking 0.5 documentation</title>
+  <title>Running an Experiment &mdash; Stage Wet Snow Benchmarking 0.5 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
 
@@ -47,8 +47,11 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="usage.html">Usage</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Running an experiment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#todo">TODO</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Running an Experiment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#deploying-an-experiment-inside-a-container">Deploying an Experiment Inside a Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deploying-an-experiment-through-a-job-system">Deploying an Experiment Through a Job System</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
@@ -72,7 +75,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="usage.html">Usage</a></li>
-      <li class="breadcrumb-item active">Running an experiment</li>
+      <li class="breadcrumb-item active">Running an Experiment</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/source/run_exp.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -83,19 +86,64 @@
            <div itemprop="articleBody">
              
   <section id="running-an-experiment">
-<span id="run-experiment"></span><h1>Running an experiment<a class="headerlink" href="#running-an-experiment" title="Permalink to this heading"></a></h1>
-<p>Once the framework and qanat is initialized everything is ready to start working.</p>
-<p>1. First we need to set the parameters, we use a specifique type of template (–param_file) that qanat uses to facilitate the group of different groups.
-there are two main parts to it:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>fixed_args</p></li>
-<li><p>varying_args</p></li>
+<span id="run-experiment"></span><h1>Running an Experiment<a class="headerlink" href="#running-an-experiment" title="Permalink to this heading"></a></h1>
+<p>Once the framework and Qanat are initialized, everything is ready to start working.</p>
+<ol class="arabic">
+<li><p><strong>Setting the Parameters</strong>:</p>
+<p>The first step is to set the parameters using a specific template (<cite>–param_file</cite>) that Qanat uses to manage different groups. The template is divided into two main parts:</p>
+<ul class="simple">
+<li><p><strong>fixed_args</strong>: These are the arguments that remain consistent across all groups.</p></li>
+<li><p><strong>varying_args</strong>: These are the variables that change for each group.</p></li>
 </ul>
-</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><cite>fixed_args</cite> are applied uniformly across all groups, whereas <cite>varying_args</cite> allow you to introduce variability within each group. This approach enables Qanat to create and run multiple experiments efficiently.</p>
+<p>For examples of templates, please refer to the <strong>Templates</strong> section (TODO: Add link).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Currently, the pipeline supports the creation of groups with different <em>seeds</em> and <em>ML models</em> only.
+When creating different groups, be mindful that the results may not be directly comparable across these groups.</p>
+</div>
+</li>
+<li><p><strong>Deploying the Experiment</strong>:</p>
+<p>Once your Qanat experiment is created and your <cite>parameter_file.yml</cite> is configured with all necessary values, you can deploy the experiment as follows:</p>
+<ul>
+<li><p><strong>Testing the Groups</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qanat</span> <span class="n">experiment</span> <span class="n">run</span> <span class="o">&lt;</span><span class="n">experiment_name</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">param_file</span> <span class="s2">&quot;./parameter/config_param.yml&quot;</span> <span class="o">--</span><span class="n">dry_run</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Running the Experiment</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qanat</span> <span class="n">experiment</span> <span class="n">run</span> <span class="o">&lt;</span><span class="n">experiment_name</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">param_file</span> <span class="s2">&quot;./parameter/config_param.yml&quot;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<section id="deploying-an-experiment-inside-a-container">
+<h2>Deploying an Experiment Inside a Container<a class="headerlink" href="#deploying-an-experiment-inside-a-container" title="Permalink to this heading"></a></h2>
+<p>To deploy the experiment inside a container, use the <cite>–container</cite> option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qanat</span> <span class="n">experiment</span> <span class="n">run</span> <span class="o">&lt;</span><span class="n">experiment_name</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">POSITIONAL</span> <span class="n">ARGUMENTS</span><span class="p">]</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">--</span><span class="n">container</span> <span class="o">&lt;</span><span class="n">container_path</span><span class="o">.</span><span class="n">sif</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">--</span><span class="n">gpu</span> <span class="kc">True</span><span class="o">|</span><span class="kc">False</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For more details, refer to the Qanat documentation: <a class="reference external" href="https://ammarmian.github.io/qanat/usage/running/container.html">Running inside a container</a>.</p>
+</div>
 </section>
-<section id="todo">
-<h1>TODO<a class="headerlink" href="#todo" title="Permalink to this heading"></a></h1>
+<section id="deploying-an-experiment-through-a-job-system">
+<h2>Deploying an Experiment Through a Job System<a class="headerlink" href="#deploying-an-experiment-through-a-job-system" title="Permalink to this heading"></a></h2>
+<p>To deploy the experiment through a job system, use the <cite>–runner</cite> option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qanat</span> <span class="n">experiment</span> <span class="n">run</span> <span class="o">&lt;</span><span class="n">experiment_name</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">runner</span> <span class="n">local</span><span class="o">|</span><span class="n">htcondor</span><span class="o">|</span><span class="n">slurm</span> <span class="p">[</span><span class="n">POSITIONAL</span> <span class="n">ARGUMENTS</span><span class="p">]</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">submit_template</span> <span class="n">yourtemplate</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For more details, refer to the Qanat documentation: <a class="reference external" href="https://ammarmian.github.io/qanat/usage/running/runner.html">Running through a job system</a>.</p>
+</div>
+</section>
 </section>
 
 
