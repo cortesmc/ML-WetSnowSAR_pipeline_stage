@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SnowMark Introduction &mdash; Stage Wet Snow Benchmarking 1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
 
   
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=db78e746"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -93,20 +93,20 @@
            <div itemprop="articleBody">
              
   <section id="snowmark-introduction">
-<span id="introduction"></span><h1>SnowMark Introduction<a class="headerlink" href="#snowmark-introduction" title="Permalink to this heading"></a></h1>
+<span id="introduction"></span><h1>SnowMark Introduction<a class="headerlink" href="#snowmark-introduction" title="Link to this heading"></a></h1>
 <section id="why-we-use-snowmark">
-<h2>Why We Use SnowMark<a class="headerlink" href="#why-we-use-snowmark" title="Permalink to this heading"></a></h2>
+<h2>Why We Use SnowMark<a class="headerlink" href="#why-we-use-snowmark" title="Link to this heading"></a></h2>
 <section id="overview">
-<h3>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h3>
+<h3>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h3>
 <p>Welcome to the documentation for the Wet Snow Detection framework for benchmarking machine learning models: <em>SnowMark</em>. This document provides a comprehensive introduction to the project, detailing its key features, operation, and usage guidelines to help users effectively utilize the framework.</p>
 </section>
 <section id="id1">
-<h3>Introduction<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h3>Introduction<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <p>SnowMark is designed to streamline the creation of pipelines for benchmarking various machine learning models in the detection of wet snow. It leverages advanced technologies for data management, job processing, and experiment management to ensure efficient and reproducible results across multiple runs.</p>
 <p>The framework allows users to generate multiple runs of training and testing using different machine learning models based on the <cite>scikit-learn</cite> (sklearn) library. By standardizing metrics, SnowMark simplifies the process of benchmarking and comparing models, making it easier to identify the most effective solutions.</p>
 </section>
 <section id="key-features">
-<h3>Key Features<a class="headerlink" href="#key-features" title="Permalink to this heading"></a></h3>
+<h3>Key Features<a class="headerlink" href="#key-features" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Benchmarking</strong>: Enables the deployment of multiple experiments with various ML models on the same dataset. This facilitates easy benchmarking and comparison to determine the most effective model for wet snow detection.</p></li>
 <li><p><strong>Customization</strong>: Offers extensive options for selecting balancing methods, labeling strategies, and more. Users can create diverse tests with different data configurations and experimental setups, tailoring the framework to specific research needs.</p></li>
@@ -115,7 +115,7 @@
 </ul>
 </section>
 <section id="framework-functioning">
-<h3>Framework Functioning<a class="headerlink" href="#framework-functioning" title="Permalink to this heading"></a></h3>
+<h3>Framework Functioning<a class="headerlink" href="#framework-functioning" title="Link to this heading"></a></h3>
 <p>The following sections outline the operation of the SnowMark framework, detailing its core processes and features.</p>
 <img alt="../../_images/snowmark_simple_structure.png" class="align-center" src="../../_images/snowmark_simple_structure.png" />
 <ol class="arabic simple">
@@ -137,7 +137,7 @@
 </ol>
 </section>
 <section id="execution-flow">
-<h3>Execution Flow<a class="headerlink" href="#execution-flow" title="Permalink to this heading"></a></h3>
+<h3>Execution Flow<a class="headerlink" href="#execution-flow" title="Link to this heading"></a></h3>
 <p>The framework follows a systematic execution flow to ensure organized and reproducible experiments:</p>
 <ol class="arabic simple">
 <li><p><strong>Initialization:</strong>
@@ -151,11 +151,11 @@
 </section>
 </section>
 <section id="why-we-use-qanat">
-<h2>Why We Use Qanat<a class="headerlink" href="#why-we-use-qanat" title="Permalink to this heading"></a></h2>
+<h2>Why We Use Qanat<a class="headerlink" href="#why-we-use-qanat" title="Link to this heading"></a></h2>
 <p>SnowMark has been developed with the goal of providing users with maximum flexibility when deploying experiments. However, as the number of experiments increases, managing and organizing the results becomes more complex. This is where <cite>Qanat</cite> comes into play.</p>
 <p>Qanat is a minimal CLI-based experiment tracking tool designed to run, monitor, and analyze command-line programs. In the context of SnowMark, Qanat enhances the user experience by providing additional flexibility to deploy multiple experiments simultaneously and efficiently manage the use of containers and job systems.</p>
 <section id="qanat-s-structure-and-functionality">
-<h3>Qanat’s Structure and Functionality<a class="headerlink" href="#qanat-s-structure-and-functionality" title="Permalink to this heading"></a></h3>
+<h3>Qanat’s Structure and Functionality<a class="headerlink" href="#qanat-s-structure-and-functionality" title="Link to this heading"></a></h3>
 <img alt="../../_images/qanat_system.png" class="align-center" src="../../_images/qanat_system.png" />
 <p>Qanat operates through console command lines, allowing users to set parameters and deploy experiments seamlessly. Once configured, Qanat creates a set of SnowMark pipelines, each with user-defined parameters. It then manages either multi-processing or single-processing for all the pipelines under study.</p>
 <p>Qanat also handles the storage and organization of all experiment data over time. Users can access these records via the Qanat console, providing them with the necessary information to compare different studies effectively. This structured approach ensures that results are not only reproducible but also easily accessible for ongoing research and analysis.</p>
