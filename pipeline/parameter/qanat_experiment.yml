@@ -1,7 +1,7 @@
 name: pipeline
 description: Pipeline pour la validation et Benchmarking de Modèles de Machine Learning pour la Caractérisation de la Neige Humide par Imagerie.
 path: evaluation
-executable: evaluation/learning_models.py
+executable: evaluation/SnowMark.py
 executable_command: python
 actions:
   - results:

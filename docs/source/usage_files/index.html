@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage &mdash; Stage Wet Snow Benchmarking 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Running an Experiment" href="run_exp.html" />
+    <link rel="prev" title="Requirements python" href="../installation_file/req_python.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Stage Wet Snow Benchmarking
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">SnowMark Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation_file/index.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="run_exp.html">Running an Experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_exp.html#running-an-action">Running an action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter_files.html">Parameters files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter_files.html#config-param-configuration">Config_param Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Examples of Configuration Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saved_info.html">Saved Information of a Run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saved_imgs.html">Saved Images and Results of a Run</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../estimators.html">estimators package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../evaluation.html">evaluation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html">utils package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Stage Wet Snow Benchmarking</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/usage_files/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h1>
+<p>This framework is a versatile tool for studying and comparing different machine learning models with a focus on adaptability. Its modular design allows users to easily customize and extend functionality.</p>
+<img alt="../../_images/PL_structure.png" class="align-center" src="../../_images/PL_structure.png" />
+<h2>Main Components</h2><ol class="arabic">
+<li><p><strong>`dataset_load`</strong>
+- <strong>Purpose</strong>: Manages the loading and preprocessing of datasets to prepare them for modeling. This module ensures that datasets are in a suitable format and structure for analysis.
+- <strong>Key Features</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Supports Various Data Formats</strong>: Handles common formats such as CSV, JSON, and Excel, allowing flexibility in data sources.</p></li>
+<li><p><strong>Initial Data Preparation</strong>: Includes functionalities for data cleaning, normalization, and transformation to handle missing values and ensure consistent data quality.</p></li>
+<li><p><strong>Integration with External Libraries</strong>: Compatible with libraries like Pandas for data manipulation and Scikit-learn for dataset handling.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Adaptability</strong>: The module is designed to be easily extendable to accommodate new data sources and preprocessing requirements. Users can add custom data loaders and transformation functions to fit specific needs.</p></li>
+</ul>
+</li>
+<li><p><strong>`label_management`</strong>
+- <strong>Purpose</strong>: Generates and manages labels for the dataset based on user-defined conditions, crucial for supervised learning tasks.
+- <strong>Key Features</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Supports Binary and Multi-Class Labeling</strong>: Provides mechanisms for creating labels for binary classification, multi-class classification, and multi-label classification problems.</p></li>
+<li><p><strong>Label Encoding</strong>: Integrates with Scikit-learn’s encoding methods to convert categorical labels into numeric formats suitable for model training.</p></li>
+<li><p><strong>Custom Label Generation</strong>: Users can define custom rules and conditions for generating labels, allowing for flexible experimental designs.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Adaptability</strong>: Easily adjustable to various datasets and experimental goals. Users can define new labeling schemes and encoding strategies as needed.</p></li>
+</ul>
+</li>
+<li><p><strong>`fold_management`</strong>
+- <strong>Purpose</strong>: Manages the splitting of data into training and testing sets using various cross-validation strategies to ensure robust model evaluation.
+- <strong>Key Features</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>K-Fold Cross-Validation</strong>: Implements K-Fold cross-validation to evaluate model performance by dividing the dataset into K subsets and rotating which subset is used for testing.</p></li>
+<li><p><strong>Simple Splits</strong>: Provides methods for straightforward data splits based on a specified proportion of training and testing data.</p></li>
+<li><p><strong>Metadata-Based Combinations</strong>: Uses metadata to create more sophisticated train-test splits, including stratified and combination-based approaches.</p></li>
+<li><p><strong>Customizable Fold Generation</strong>: Allows users to define custom strategies for data splitting based on their experimental needs.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Adaptability</strong>: Flexible to different data structures and experimental requirements. Users can customize splitting strategies and incorporate additional metadata as needed.</p></li>
+</ul>
+</li>
+<li><p><strong>`balance_management`</strong>
+- <strong>Purpose</strong>: Handles techniques for balancing datasets, particularly for cases where there is class imbalance, to ensure fair model training and evaluation.
+- <strong>Key Features</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Oversampling</strong>: Implements techniques like Random Oversampling and SMOTE (Synthetic Minority Over-sampling Technique) to increase the number of instances in minority classes.</p></li>
+<li><p><strong>Undersampling</strong>: Applies methods to reduce the number of instances in majority classes to achieve a more balanced dataset.</p></li>
+<li><p><strong>Class Balance Metrics</strong>: Provides metrics to evaluate the balance of classes before and after resampling.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Adaptability</strong>: Easily switch between different balancing strategies to fit various dataset characteristics and experimental goals. Users can also integrate new resampling methods as needed.</p></li>
+</ul>
+</li>
+<li><p><strong>`figures`</strong>
+- <strong>Purpose</strong>: Focuses on visualizing results to facilitate the analysis and interpretation of model performance.
+- <strong>Key Features</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Customizable Plots</strong>: Generates a range of plots, including boxplots for metric distributions and ROC (Receiver Operating Characteristic) curves for model performance evaluation.</p></li>
+<li><p><strong>Performance Analysis</strong>: Provides visual tools to compare model performance across different metrics and folds, helping to identify strengths and weaknesses.</p></li>
+<li><p><strong>Plot Customization</strong>: Users can customize plot aesthetics, titles, and labels to suit their analysis needs.</p></li>
+<li><p><strong>Saving and Managing Plots</strong>: Allows for saving plots in specified directories for easy access and further analysis.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Adaptability</strong>: Facilitates the addition of new types of plots and visualizations. Users can define new plotting functions to support different analysis requirements and save them in designated directories.</p></li>
+</ul>
+</li>
+</ol>
+<p>Running the module <cite>SnowMark.py</cite> from the console can be quite complex due to the number of parameters required. Here is an example of how the command might look:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>evaluation/learning_models.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data_path<span class="w"> </span>&lt;data_path&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--fold_method<span class="w"> </span>&lt;fold_method&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--labeling_method<span class="w"> </span>&lt;labeling_method&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--balancing_method<span class="w"> </span>&lt;balancing_method&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--request<span class="w"> </span>&lt;request_condition&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--shuffle_data<span class="w"> </span>&lt;shuffle_data_boolean&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--balance_data<span class="w"> </span>&lt;balance_data_boolean&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--import_list<span class="w"> </span>&lt;import_statement1&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--import_list<span class="w"> </span>&lt;import_statement2&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pipeline<span class="w"> </span>&lt;pipeline_step1&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pipeline<span class="w"> </span>&lt;pipeline_step2&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pipeline<span class="w"> </span>&lt;pipeline_step3&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--metrics_to_report<span class="w"> </span>&lt;metric1&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--metrics_to_report<span class="w"> </span>&lt;metric2&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--metrics_to_report<span class="w"> </span>&lt;metric3&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--metrics_to_report<span class="w"> </span>&lt;metric4&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--seed<span class="w"> </span>&lt;seed_value&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--storage_path<span class="w"> </span>&lt;storage_path&gt;
+</pre></div>
+</div>
+<p>This way we can only deploy one esperiment at a time or  we can create a bash file to deploy multiple but it complexifies the results navigation.</p>
+<p>To simplify this process, you can use Qanat. Qanat allows you to specify all parameters in a single YAML file. It then generates the appropriate command and deploys all the experiments for you.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="run_exp.html">Running an Experiment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_exp.html#running-an-action">Running an action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameter_files.html">Parameters files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameter_files.html#config-param-configuration">Config_param Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html">Examples of Configuration Templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="saved_info.html">Saved Information of a Run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="saved_imgs.html">Saved Images and Results of a Run</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../installation_file/req_python.html" class="btn btn-neutral float-left" title="Requirements python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="run_exp.html" class="btn btn-neutral float-right" title="Running an Experiment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, cortesmc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

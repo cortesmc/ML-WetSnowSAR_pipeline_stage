@@ -1,3 +1,30 @@
+"""
+This script processes and analyzes model metrics stored in a specified directory.
+
+The script performs the following tasks:
+1. Parses command-line arguments to obtain the storage path.
+2. Identifies the structure of the storage directory to locate necessary files.
+3. Loads pipeline parameters from a YAML file and retrieves fold keys.
+4. Iterates through directories to collect metrics for different models.
+5. Aggregates the metrics and generates plots (boxplots, ROC curves) for various performance indicators.
+6. Saves the final metrics and plots in the specified output directory.
+
+Modules and functions used:
+- argparse: For parsing command-line arguments.
+- os: For interacting with the operating system (file paths, directories).
+- numpy: For numerical operations.
+- utils.files_management: Custom utilities for file management.
+- utils.figures: Custom utilities for generating figures and plots.
+
+Usage:
+    python script_name.py --storage_path /path/to/storage
+
+Arguments:
+    --storage_path: Path to the directory where model results and metrics are stored.
+
+Output:
+    The script generates and saves plots of performance metrics and logs the results in the specified directory.
+"""
 import sys
 import os
 import argparse
