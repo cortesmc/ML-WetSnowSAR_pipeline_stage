@@ -1,6 +1,6 @@
 Running an Experiment
 =====================
-First you need the framework to be totally installed, for that you can see on :ref:`installation`.
+To run an experiment on SnowMark with Qanat, first you need the framework to be totally installed, for that you can see on :ref:`installation`.
 Once the framework and Qanat are initialized, everything is ready to start working.
 
 1. **Setting the Parameters**: 

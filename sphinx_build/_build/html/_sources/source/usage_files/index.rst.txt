@@ -102,7 +102,7 @@ Running `SnowMark.py` from the console can be complex due to the number of requi
      --storage_path <storage_path>
 
 To simplify this process, you can use **Qanat**. Qanat allows you to specify all parameters in a single YAML file. It then generates the appropriate command and launches all the experiments for you.
-
+Here are all the different steps to run the pipeline through Qanat with some exemples of templates that you can use. 
 .. toctree::
    :maxdepth: 1
 
