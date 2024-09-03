@@ -1,10 +1,10 @@
-========================
+==========================
 Config_param Configuration
-========================
+==========================
 The YAML file used for setting up an experiment is divided into two main sections: `fixed_args` and `varying_args`. Each section plays a specific role in defining the parameters and configurations for the experiment. This structured approach allows for efficient management of multiple experiments by specifying consistent parameters and introducing variability as needed.
 
 Configuration Overview
------------------------
+----------------------
 
 Here is the YAML configuration used for defining the experiment parameters:
 
@@ -120,7 +120,7 @@ Here is the YAML configuration used for defining the experiment parameters:
                 "--seed": 42
 
 Explanation of Fields
-----------------------
+---------------------
 
 fixed_args
 ^^^^^^^^^^
@@ -156,7 +156,7 @@ fixed_args
   A list of metrics that will be included in the final evaluation report. These metrics help assess the performance of the models used in the experiment.
 
 varying_args
-^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 - **groups**:  
   This section allows you to define different experimental setups by varying certain parameters, such as the random seed. Each group represents a distinct configuration of the experiment.

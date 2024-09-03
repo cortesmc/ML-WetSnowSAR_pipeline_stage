@@ -4,7 +4,7 @@ Saved Images and Results of a Run
 This section provides an overview of the saved images and results generated from a run. These visuals and metrics help in analyzing the performance of the models across different folds and configurations.
 
 Model-Specific Results
------------------------
+----------------------
 For each model, results are saved across all folds, allowing for detailed analysis of its performance. Below is an example of such a detailed result set for a single model.
 
 .. image:: ../images/results/model_results.png

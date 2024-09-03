@@ -1,13 +1,13 @@
 .. _templates:
 
 Examples of Configuration Templates
-=====================
+=====================================
 
 Below are examples of templates for the config_param.yml file.
 
 
 Single Experiment with Uniform Seeds
---------------------------------------
+------------------------------------
 This YAML configuration is designed for a single run with all models using the same seed.
 
 .. code-block:: yaml

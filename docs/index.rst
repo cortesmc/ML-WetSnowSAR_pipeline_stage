@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to the Wet Snow Detection Documentation!
-===============================================
+================================================
 .. image:: ./source/images/listic_logo.png
    :scale: 100%
    :align: center

@@ -7,7 +7,7 @@ Before creating a Qanat experiment, you need to be sure to follow the `Qanat ins
 Here is a list of all the libraries needed and an example of a container that can be built with Apptainer: 
 
 Requirements python
---------------------------
+-------------------
 .. toctree::
    :maxdepth: 2
 
@@ -83,7 +83,7 @@ Creating an Experiment with Qanat
         qanat experiment run <experiment_name> --param_file "./parameter/config_param.yml"
 
 Create an actions with Qanat
---------------------------
+----------------------------
 Before running actions, they must be created.
 
 .. note::

@@ -1,10 +1,10 @@
 Experiment Configuration
-=========================
+========================
 
 This section explains the structure and purpose of the YAML configuration used to create an experiment pipeline.
 
 Configuration Overview
------------------------
+----------------------
 
 Here is the YAML configuration used for the creation of the experiment:
 
@@ -23,7 +23,7 @@ Here is the YAML configuration used for the creation of the experiment:
           description: Retrieves all the results and regenerate all the images and results.
 
 Explanation of Fields
-----------------------
+---------------------
 
 - **name**: ``pipeline``  
   The name of the pipeline or experiment. This should be a unique identifier for the experiment and it is used to run the experiment.
