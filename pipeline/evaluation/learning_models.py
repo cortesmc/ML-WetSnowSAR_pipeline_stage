@@ -216,17 +216,7 @@ if __name__ == "__main__":
         else : 
             pipe = pipe +item
 
-    # list_import = []
-    # import_item = args.import_list[0]
-    # for item in args.import_list[1:]:
-    #     if item.startswith('from') :
-    #         list_import.append(import_item)
-    #         import_item = item
-    #     else : 
-    #         import_item = import_item + " " + item
-
     args.pipeline = pipelines 
-    # args.import_list = list_import
 
     # Set random seed for reproducibility
     rng = np.random.RandomState(seed=seed)
@@ -258,7 +248,7 @@ if __name__ == "__main__":
         )
 
         # Request specific data based on criteria
-        # x, y = dataset_loader.request_data(request)
+        x, y = dataset_loader.request_data(request)
         
         # Manage labels according to the specified labeling method
         labels_manager = LabelManagement(method=labeling_method)

@@ -45,7 +45,6 @@ fixed_args:
             - - "Hist_SAR"
             - - "KNeighborsClassifier"
               - n_neighbors: 50
-        #        - n_jobs: -1
           # RandomForestClassifier pipeline
           - - - "RandomForest_direct"
             - - "BandSelector"
@@ -57,7 +56,6 @@ fixed_args:
             - - "RandomForestClassifier"
               - n_estimators: 200
               - criterion: "entropy"
-        #        - n_jobs: -1
           # MLPClassifier pipeline
           - - - "MLP_direct"
             - - "BandSelector"
@@ -68,17 +66,6 @@ fixed_args:
             - - "Hist_SAR"
             - - "MLPClassifier"
               - alpha: 0.01
-          # # SVC with RBF kernel pipeline
-          # - - - "SVMrbf_direct"
-          #   - - "BandSelector"
-          #     - bands: [0,1,2,3,4,5,6,7,8]
-          #   - - "BandTransformer"
-          #     - bands : [0,1,2,3]
-          #     - transformations : [] 
-          #   - - "Hist_SAR"
-          #   - - "SVC"
-          #     - kernel: "rbf"
-          #     - probability: true
           # LogisticRegression pipeline
           - - - "LogisticR_direct"
             - - "BandSelector"
@@ -117,19 +104,3 @@ varying_args:
         - options:
             # Random seed for reproducibility
             "--seed": 50
-            # "--pipeline":
-            # # KNeighborsClassifier pipeline
-            #   - - - "KNN_direct"
-            #     - - "BandSelector"
-            #       - bands: [0,1,2,3,4,5,6,7,8]
-            #     - - "BandTransformer"
-            #       - bands : [0,1,2,3]
-            #       - transformations : [] 
-            #     - - "Hist_SAR"
-            #     - - "KNeighborsClassifier"
-            #       - n_neighbors: 50
-            # #        - n_jobs: -1   
-                 
-        # - options:
-        #     # Random seed for reproducibility
-        #     "--seed": 42
