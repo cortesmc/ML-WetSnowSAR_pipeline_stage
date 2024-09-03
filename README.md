@@ -1,65 +1,25 @@
-## Projet de création d'un pipeline
+# Wet Snow Detection
 
-Projet basé sur le projet : [ML-WetSnowSAR](https://github.com/Matthieu-Gallet/ML-WetSnowSAR)      
-Projet de thésard Matthieu Gallet.
+Welcome to the Wet Snow Detection Documentation!
+================================================
 
-Notion du projet : [Stage LISTIC 2024](https://www.notion.so/Stage-LISTIC-2024-58c77ade8f224b1688b7884a6151fe54?pvs=4)
+![Listic Logo](./docs/source/images/listic_logo.png)
 
-## How to Deploy an Experiment with Qanat
+## Project References
 
-1. Install Qanat:
-Follow the installation instructions: Qanat installation: [Qanat installation](https://ammarmian.github.io/qanat/installation.html)     
+- **Base Project**: [ML-WetSnowSAR](https://github.com/Matthieu-Gallet/ML-WetSnowSAR)
+- **Thesis Project by**: Matthieu Gallet
+- **Developed by**: Carlos Cortes and Matthieu Gallet
+- **Enseignant chargé du suivi du stagiaire**: Trouve Emmanuel
 
-2. Open the terminal in the **pipeline folder** and initialize Qanat by running:
-```
-qanat init .
-```
+## Introduction
 
+This framework is designed to facilitate the creation of pipelines for benchmarking various machine learning models in the detection of wet snow. It leverages different technologies for data management, job processing, and experiment management.
 
-3. Initial
-ize the Results Folder:
-You will see the following prompt:
+## Key Features
 
-``` 
-[14:21:20] INFO     Initializing Qanat repertory.                     init.py:27
-Where do you want to store the results? (./results): ./results 
-```
+- **Experiment Management**: Utilizes [Qanat](https://ammarmian.github.io/qanat/) for managing experiments locally or on dedicated servers.
+- **Benchmarking**: Deploy multiple experiments with various ML models to obtain results on the same dataset, allowing easy benchmarking and comparison.
+- **Customization**: Offers multiple options for selecting balancing methods, labeling methods, and more. Users can create diverse tests, comparing models with different data, seeds, and data selection methods.
 
-4. Create a New Experiment:    
-
-* Create with Bash:    
-Once Qanat is initialized in the pipeline folder, create a new experiment:
-```
-qanat experiment new
-```
-Use the following information. The important values to use are the same path and executable. Feel free to choose the rest of the variables:
-```
-Name: pipeline
-Description: pipeline
-Path: evaluation
-Executable: evaluation/learning_models.py
-Execute command of the experiment (/usr/bin/bash): python
-Tags: ['ML', 'benchmarking']
-Datasets: []
-Do you want to add this experiment? [y/n]: y 
-```         
-* Create from YAML:
-Using the following bash command, an experiment will be created directly with the correct paths:
-
-```
-qanat experiment new -f ./parameter/qanat_experiment.yml
-```
-5. Run the Experiment:
-Once the experiment is created, set your parameter_file.yml with all the values and deploy the experiment:         
-* For testing the groups:
-```
-qanat experiment run <experiment_name> --param_file "./parameter/config_param.yml" --dry_run
-```
-* For running the experiment:
-```
-qanat experiment run <experiment_name> --param_file "./parameter/config_param.yml"
-``` 
-
-## Pipeline Structure
-
-![Pipeline Structure](./md_suivi/docs/PL_structure.svg)
+For detailed information on usage, configuration, and more, please refer to the [Wet Snow Detection Framework Documentation](https://cortesmc.github.io/ML-WetSnowSAR_pipeline_stage/index.html).
