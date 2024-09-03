@@ -3,15 +3,6 @@ evaluation package
 
 Submodules
 ----------
-
-evaluation.generate\_model\_test module
----------------------------------------
-
-.. automodule:: evaluation.generate_model_test
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 evaluation.generate\_results module
 -----------------------------------
 
@@ -20,10 +11,10 @@ evaluation.generate\_results module
    :undoc-members:
    :show-inheritance:
 
-evaluation.learning\_models module
+evaluation.SnowMark module
 ----------------------------------
 
-.. automodule:: evaluation.learning_models
+.. automodule:: evaluation.SnowMark
    :members:
    :undoc-members:
    :show-inheritance:
