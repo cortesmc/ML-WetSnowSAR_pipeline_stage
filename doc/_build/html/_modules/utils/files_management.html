@@ -678,7 +678,7 @@
         <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
             <span class="n">pipeline_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_direct&quot;</span><span class="p">)</span>
 
-    <span class="n">folders</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="s2">&quot;models&quot;</span><span class="p">,</span> <span class="s2">&quot;html&quot;</span><span class="p">]</span>
+    <span class="n">folders</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="s2">&quot;models&quot;</span><span class="p">]</span>
 
     <span class="k">for</span> <span class="n">folder</span> <span class="ow">in</span> <span class="n">folders</span><span class="p">:</span>
         <span class="n">check_and_create_directory</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">folder</span><span class="p">))</span>

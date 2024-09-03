@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saved Images and Results of a Run &mdash; Stage Wet Snow Benchmarking 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="estimators package" href="../../estimators.html" />
+    <link rel="prev" title="Saved Information of a Run" href="saved_info.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Stage Wet Snow Benchmarking
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage_files/index.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation_file/index.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Functioning</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#key-benefits">Key Benefits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#framework-operation">Framework Operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#saved-information-of-a-run">Saved information of a run</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#exemples-of-saved-results">Exemples of saved results</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Saved Images and Results of a Run</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#model-specific-results">Model-Specific Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#final-aggregated-results">Final Aggregated Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boxplots-for-performance-comparison">Boxplots for Performance Comparison</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roc-curves">ROC Curves</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../estimators.html">estimators package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../evaluation.html">evaluation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html">utils package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Stage Wet Snow Benchmarking</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Functioning</a></li>
+      <li class="breadcrumb-item active">Saved Images and Results of a Run</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/functioning/saved_imgs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="saved-images-and-results-of-a-run">
+<h1>Saved Images and Results of a Run<a class="headerlink" href="#saved-images-and-results-of-a-run" title="Permalink to this heading"></a></h1>
+<p>This section provides an overview of the saved images and results generated from a run. These visuals and metrics help in analyzing the performance of the models across different folds and configurations.</p>
+<section id="model-specific-results">
+<h2>Model-Specific Results<a class="headerlink" href="#model-specific-results" title="Permalink to this heading"></a></h2>
+<p>For each model, results are saved across all folds, allowing for detailed analysis of its performance. Below is an example of such a detailed result set for a single model.</p>
+<a class="reference internal image-reference" href="../../_images/model_results.png"><img alt="Detailed results of a model across all folds" class="align-center" src="../../_images/model_results.png" style="width: 925.0px; height: 526.5px;" /></a>
+</section>
+<section id="final-aggregated-results">
+<h2>Final Aggregated Results<a class="headerlink" href="#final-aggregated-results" title="Permalink to this heading"></a></h2>
+<p>The final results aggregate the performance of all models, providing a comprehensive overview that averages the outcomes across all folds.</p>
+<a class="reference internal image-reference" href="../../_images/results.png"><img alt="Aggregated results of all models, averaged across folds" class="align-center" src="../../_images/results.png" style="width: 925.0px; height: 526.5px;" /></a>
+</section>
+<section id="boxplots-for-performance-comparison">
+<h2>Boxplots for Performance Comparison<a class="headerlink" href="#boxplots-for-performance-comparison" title="Permalink to this heading"></a></h2>
+<p>Boxplots are an effective way to visualize the variability in model performance. The results can be grouped either by fold or by model to provide different insights:</p>
+<ul>
+<li><p><strong>By Fold:</strong> This grouping highlights the performance variability across different folds, helping to understand how each fold impacts the model’s performance.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../_images/boxplot_f1_score_macro_by_fold.png"><img alt="Boxplot of F1 scores grouped by fold" class="align-center" src="../../_images/boxplot_f1_score_macro_by_fold.png" style="width: 500.0px; height: 300.0px;" /></a>
+</div></blockquote>
+</li>
+<li><p><strong>By Model:</strong> This grouping allows for comparing the performance of different models, giving insights into which model performs best on average across folds.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../_images/boxplot_f1_score_macro_by_model.png"><img alt="Boxplot of F1 scores grouped by model" class="align-center" src="../../_images/boxplot_f1_score_macro_by_model.png" style="width: 500.0px; height: 300.0px;" /></a>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="roc-curves">
+<h2>ROC Curves<a class="headerlink" href="#roc-curves" title="Permalink to this heading"></a></h2>
+<p>ROC (Receiver Operating Characteristic) curves are particularly useful in evaluating models in multi-class or multi-label classification tasks. They illustrate the trade-off between the true positive rate and false positive rate across different thresholds.</p>
+<a class="reference internal image-reference" href="../../_images/roc_KNN_direct.png"><img alt="ROC curve for a KNN model in a multi-label classification task" class="align-center" src="../../_images/roc_KNN_direct.png" style="width: 500.0px; height: 400.0px;" /></a>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="saved_info.html" class="btn btn-neutral float-left" title="Saved Information of a Run" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../estimators.html" class="btn btn-neutral float-right" title="estimators package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, cortesmc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

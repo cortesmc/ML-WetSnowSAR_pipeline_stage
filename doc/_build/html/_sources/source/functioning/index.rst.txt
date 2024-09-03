@@ -51,12 +51,21 @@ Execution Flow
    
 2. **Model Training and Prediction:**
    - Models are trained on the training set and evaluated on the test set using cross-validation.
-   - The trained models and results are saved for further analysis in pickle format. While this format may encounter compatibility issues across different versions, it remains the most flexible option for storing diverse types of information.
+   - The trained models are saved in joblib format and results are saved for further analysis in pickle format. While this format may encounter compatibility issues across different versions, it remains the most flexible option for storing diverse types of information.
 
 3. **Post-Processing:**
    - Final metrics are reported and visualized to provide insights into the performance of the models.
 
+Saved information of a run
+--------------------------
+.. toctree::
+   :maxdepth: 2
 
-Results saved
--------------
+   ./saved_info
 
+Exemples of saved results
+-------------------------
+.. toctree::
+   :maxdepth: 2
+
+   ./saved_imgs

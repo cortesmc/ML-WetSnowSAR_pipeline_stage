@@ -600,7 +600,7 @@ def set_folder(out_dir, args):
         if match:
             pipeline_names.append(match.group(1) + "_direct")
 
-    folders = ["results", "models", "html"]
+    folders = ["results", "models"]
 
     for folder in folders:
         check_and_create_directory(os.path.join(out_dir, folder))
