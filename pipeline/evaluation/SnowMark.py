@@ -30,21 +30,39 @@ def fit_predict_fold(pipeline, X_train_k, y_train_k, X_test_k, y_test_k, log_mod
     """
     Fit the pipeline on the training set and predict probabilities on the test set for a single fold.
 
-    Parameters:
-    - pipeline: The machine learning pipeline to be used.
-    - X_train_k, y_train_k: Training data and labels for the fold.
-    - X_test_k, y_test_k: Test data and labels for the fold.
-    - log_model: Logger for model-related messages.
-    - label_encoder: Label encoder for transforming labels.
-    - kfold: The current fold index.
-    - pipeline_name: Name of the pipeline.
-    - save_dir: Directory to save the trained model.
-    - error_log_path: Path to log errors.
+    Parameters
+    ----------
+    pipeline : Pipeline object
+        The machine learning pipeline to be used.
+    X_train_k : array-like
+        Training data for the current fold.
+    y_train_k : array-like
+        Training labels for the current fold.
+    X_test_k : array-like
+        Test data for the current fold.
+    y_test_k : array-like
+        Test labels for the current fold.
+    log_model : Logger object
+        Logger for model-related messages.
+    label_encoder : LabelEncoder object
+        Label encoder for transforming labels.
+    kfold : int
+        The current fold index.
+    pipeline_name : str
+        Name of the pipeline.
+    save_dir : str
+        Directory to save the trained model.
+    error_log_path : str
+        Path to log errors.
 
-    Returns:
-    - fold_metric: Metrics for the current fold.
-    - y_prob: Predicted probabilities for the test set.
-    - y_test_k: True labels for the test set.
+    Returns
+    -------
+    fold_metric : dict
+        Metrics for the current fold.
+    y_prob : array-like
+        Predicted probabilities for the test set.
+    y_test_k : array-like
+        True labels for the test set.
     """
     pipeline_id = f"{pipeline_name}_kfold_{kfold}"
     try:
@@ -80,21 +98,35 @@ def predict_dataset(x, targets, fold_groups, pipeline_names, output_dir, args, l
     """
     Predict on the dataset using specified pipelines and folds.
 
-    Parameters:
-    - x: Feature data.
-    - targets: Target labels.
-    - fold_groups: Groups of training/testing indices for cross-validation.
-    - pipeline_names: Names of the pipelines to evaluate.
-    - output_dir: Directory to save results.
-    - args: Command-line arguments.
-    - label_encoder: Label encoder for targets.
-    - error_log_path: Path to log errors.
-    - rng: Random number generator for reproducibility.
-    - save: Whether to save the metrics to disk.
+    Parameters
+    ----------
+    x : array-like
+        Feature data.
+    targets : array-like
+        Target labels.
+    fold_groups : list of tuples
+        Groups of training/testing indices for cross-validation.
+    pipeline_names : list of str
+        Names of the pipelines to evaluate.
+    output_dir : str
+        Directory to save results.
+    args : Namespace
+        Command-line arguments.
+    label_encoder : LabelEncoder object
+        Label encoder for targets.
+    error_log_path : str
+        Path to log errors.
+    rng : RandomState object
+        Random number generator for reproducibility.
+    save : bool, optional
+        Whether to save the metrics to disk (default is True).
 
-    Returns:
-    - metrics: Dictionary of metrics for each pipeline.
-    - y_est_save: Dictionary of true and estimated labels.
+    Returns
+    -------
+    metrics : dict
+        Dictionary of metrics for each pipeline.
+    y_est_save : dict
+        Dictionary of true and estimated labels.
     """
     y_est_save = {}
     metrics = {}
@@ -161,10 +193,14 @@ def log_error_details(pipeline_id, error_message, error_log_path):
     """
     Log error details to a specified error log file.
 
-    Parameters:
-    - pipeline_id: Identifier for the pipeline where the error occurred.
-    - error_message: The error message to log.
-    - error_log_path: Path to the log file for errors.
+    Parameters
+    ----------
+    pipeline_id : str
+        Identifier for the pipeline where the error occurred.
+    error_message : str
+        The error message to log.
+    error_log_path : str
+        Path to the log file for errors.
     """
     with open(error_log_path, "a") as log_file:
         log_file.write(f"{pipeline_id}: {error_message}\n")

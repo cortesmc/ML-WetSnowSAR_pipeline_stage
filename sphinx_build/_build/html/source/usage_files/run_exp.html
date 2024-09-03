@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Running an Experiment &mdash; Stage Wet Snow Benchmarking 1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
 
   
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=db78e746"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -93,7 +93,7 @@
            <div itemprop="articleBody">
              
   <section id="running-an-experiment">
-<h1>Running an Experiment<a class="headerlink" href="#running-an-experiment" title="Permalink to this heading"></a></h1>
+<h1>Running an Experiment<a class="headerlink" href="#running-an-experiment" title="Link to this heading"></a></h1>
 <p>First you need the framework to be totally installed, for that you can see on <a class="reference internal" href="../installation_file/index.html#installation"><span class="std std-ref">Installation</span></a>.
 Once the framework and Qanat are initialized, everything is ready to start working.</p>
 <ol class="arabic">
@@ -131,7 +131,7 @@ When creating different groups, be mindful that the results may not be directly 
 </li>
 </ol>
 <section id="deploying-an-experiment-inside-a-container">
-<h2>Deploying an Experiment Inside a Container<a class="headerlink" href="#deploying-an-experiment-inside-a-container" title="Permalink to this heading"></a></h2>
+<h2>Deploying an Experiment Inside a Container<a class="headerlink" href="#deploying-an-experiment-inside-a-container" title="Link to this heading"></a></h2>
 <p>To deploy the experiment inside a container, use the <cite>–container</cite> option:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qanat</span> <span class="n">experiment</span> <span class="n">run</span> <span class="o">&lt;</span><span class="n">experiment_name</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">POSITIONAL</span> <span class="n">ARGUMENTS</span><span class="p">]</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">--</span><span class="n">container</span> <span class="o">&lt;</span><span class="n">container_path</span><span class="o">.</span><span class="n">sif</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">--</span><span class="n">gpu</span> <span class="kc">True</span><span class="o">|</span><span class="kc">False</span><span class="p">]</span>
 </pre></div>
@@ -142,7 +142,7 @@ When creating different groups, be mindful that the results may not be directly 
 </div>
 </section>
 <section id="deploying-an-experiment-through-a-job-system">
-<h2>Deploying an Experiment Through a Job System<a class="headerlink" href="#deploying-an-experiment-through-a-job-system" title="Permalink to this heading"></a></h2>
+<h2>Deploying an Experiment Through a Job System<a class="headerlink" href="#deploying-an-experiment-through-a-job-system" title="Link to this heading"></a></h2>
 <p>To deploy the experiment through a job system, use the <cite>–runner</cite> option:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">qanat</span> <span class="n">experiment</span> <span class="n">run</span> <span class="o">&lt;</span><span class="n">experiment_name</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">runner</span> <span class="n">local</span><span class="o">|</span><span class="n">htcondor</span><span class="o">|</span><span class="n">slurm</span> <span class="p">[</span><span class="n">POSITIONAL</span> <span class="n">ARGUMENTS</span><span class="p">]</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">submit_template</span> <span class="n">yourtemplate</span><span class="p">]</span>
 </pre></div>
@@ -154,7 +154,7 @@ When creating different groups, be mindful that the results may not be directly 
 </section>
 </section>
 <section id="running-an-action">
-<h1>Running an action<a class="headerlink" href="#running-an-action" title="Permalink to this heading"></a></h1>
+<h1>Running an action<a class="headerlink" href="#running-an-action" title="Link to this heading"></a></h1>
 <p>To use the actions, you need to have run the experiment at least once. Qanat generates new files named run_N°, where N° is the index of the run. To apply an action to a specific run, use the run index as follows:
 For the action get_results, which consolidates all the results from multiple groups into a single file named final_results:</p>
 <blockquote>

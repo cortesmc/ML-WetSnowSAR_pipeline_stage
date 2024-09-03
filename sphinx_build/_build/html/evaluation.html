@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>evaluation package &mdash; Stage Wet Snow Benchmarking 1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
   
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=db78e746"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -52,8 +52,8 @@
 <li class="toctree-l1"><a class="reference internal" href="estimators.html">estimators package</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">evaluation package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-evaluation.generate_results">evaluation.generate_results module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-evaluation.SnowMark">evaluation.SnowMark module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#evaluation-generate-results-module">evaluation.generate_results module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#evaluation-snowmark-module">evaluation.SnowMark module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-evaluation">Module contents</a></li>
 </ul>
 </li>
@@ -85,95 +85,18 @@
            <div itemprop="articleBody">
              
   <section id="evaluation-package">
-<h1>evaluation package<a class="headerlink" href="#evaluation-package" title="Permalink to this heading"></a></h1>
+<h1>evaluation package<a class="headerlink" href="#evaluation-package" title="Link to this heading"></a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="module-evaluation.generate_results">
-<span id="evaluation-generate-results-module"></span><h2>evaluation.generate_results module<a class="headerlink" href="#module-evaluation.generate_results" title="Permalink to this heading"></a></h2>
-<p>This script processes and analyzes model metrics stored in a specified directory.</p>
-<p>The script performs the following tasks:
-1. Parses command-line arguments to obtain the storage path.
-2. Identifies the structure of the storage directory to locate necessary files.
-3. Loads pipeline parameters from a YAML file and retrieves fold keys.
-4. Iterates through directories to collect metrics for different models.
-5. Aggregates the metrics and generates plots (boxplots, ROC curves) for various performance indicators.
-6. Saves the final metrics and plots in the specified output directory.</p>
-<p>Modules and functions used:
-- argparse: For parsing command-line arguments.
-- os: For interacting with the operating system (file paths, directories).
-- numpy: For numerical operations.
-- utils.files_management: Custom utilities for file management.
-- utils.figures: Custom utilities for generating figures and plots.</p>
-<dl class="simple">
-<dt>Usage:</dt><dd><p>python script_name.py –storage_path /path/to/storage</p>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">param –storage_path<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Path to the directory where model results and metrics are stored.</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>Output:</dt><dd><p>The script generates and saves plots of performance metrics and logs the results in the specified directory.</p>
-</dd>
-</dl>
+<section id="evaluation-generate-results-module">
+<h2>evaluation.generate_results module<a class="headerlink" href="#evaluation-generate-results-module" title="Link to this heading"></a></h2>
 </section>
-<section id="module-evaluation.SnowMark">
-<span id="evaluation-snowmark-module"></span><h2>evaluation.SnowMark module<a class="headerlink" href="#module-evaluation.SnowMark" title="Permalink to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="evaluation.SnowMark.fit_predict_fold">
-<span class="sig-prename descclassname"><span class="pre">evaluation.SnowMark.</span></span><span class="sig-name descname"><span class="pre">fit_predict_fold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_train_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_test_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kfold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_log_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evaluation/SnowMark.html#fit_predict_fold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evaluation.SnowMark.fit_predict_fold" title="Permalink to this definition"></a></dt>
-<dd><p>Fit the pipeline on the training set and predict probabilities on the test set for a single fold.</p>
-<p>Parameters:
-- pipeline: The machine learning pipeline to be used.
-- X_train_k, y_train_k: Training data and labels for the fold.
-- X_test_k, y_test_k: Test data and labels for the fold.
-- log_model: Logger for model-related messages.
-- label_encoder: Label encoder for transforming labels.
-- kfold: The current fold index.
-- pipeline_name: Name of the pipeline.
-- save_dir: Directory to save the trained model.
-- error_log_path: Path to log errors.</p>
-<p>Returns:
-- fold_metric: Metrics for the current fold.
-- y_prob: Predicted probabilities for the test set.
-- y_test_k: True labels for the test set.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="evaluation.SnowMark.log_error_details">
-<span class="sig-prename descclassname"><span class="pre">evaluation.SnowMark.</span></span><span class="sig-name descname"><span class="pre">log_error_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_log_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evaluation/SnowMark.html#log_error_details"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evaluation.SnowMark.log_error_details" title="Permalink to this definition"></a></dt>
-<dd><p>Log error details to a specified error log file.</p>
-<p>Parameters:
-- pipeline_id: Identifier for the pipeline where the error occurred.
-- error_message: The error message to log.
-- error_log_path: Path to the log file for errors.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="evaluation.SnowMark.predict_dataset">
-<span class="sig-prename descclassname"><span class="pre">evaluation.SnowMark.</span></span><span class="sig-name descname"><span class="pre">predict_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fold_groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_log_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/evaluation/SnowMark.html#predict_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#evaluation.SnowMark.predict_dataset" title="Permalink to this definition"></a></dt>
-<dd><p>Predict on the dataset using specified pipelines and folds.</p>
-<p>Parameters:
-- x: Feature data.
-- targets: Target labels.
-- fold_groups: Groups of training/testing indices for cross-validation.
-- pipeline_names: Names of the pipelines to evaluate.
-- output_dir: Directory to save results.
-- args: Command-line arguments.
-- label_encoder: Label encoder for targets.
-- error_log_path: Path to log errors.
-- rng: Random number generator for reproducibility.
-- save: Whether to save the metrics to disk.</p>
-<p>Returns:
-- metrics: Dictionary of metrics for each pipeline.
-- y_est_save: Dictionary of true and estimated labels.</p>
-</dd></dl>
-
+<section id="evaluation-snowmark-module">
+<h2>evaluation.SnowMark module<a class="headerlink" href="#evaluation-snowmark-module" title="Link to this heading"></a></h2>
 </section>
 <section id="module-evaluation">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-evaluation" title="Permalink to this heading"></a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-evaluation" title="Link to this heading"></a></h2>
 </section>
 </section>
 
