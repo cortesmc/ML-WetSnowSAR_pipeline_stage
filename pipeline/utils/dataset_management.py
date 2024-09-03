@@ -239,12 +239,11 @@ def parse_pipeline(args, idx, rng=None):
     """
     for import_lib in args.import_list:
         exec(import_lib, globals())
-    print(str(args.pipeline[idx]))
+    
     pipe = ast.literal_eval(str(args.pipeline[idx]))
     steps = []
 
     for step in pipe[1:]:
-        print(step)
         name_method = step[0]
         params = step[1] if len(step) > 1 else {}
         estimator = globals()[name_method](**params)

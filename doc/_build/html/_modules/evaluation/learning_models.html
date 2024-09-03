@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>evaluation.learning_models &mdash; Stage Wet Snow Benchmarking 0.5 documentation</title>
+  <title>evaluation.learning_models &mdash; Stage Wet Snow Benchmarking 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
 
@@ -43,8 +43,9 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../source/usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../source/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/usage_files/index.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/installation_file/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/functioning/index.html">Functioning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../estimators.html">estimators package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../evaluation.html">evaluation package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../utils.html">utils package</a></li>
@@ -177,21 +178,18 @@
     <span class="n">metrics</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">f_tqdm</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">storage_path</span><span class="p">,</span> <span class="s1">&#39;progress.txt&#39;</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
     <span class="n">f_tqdm</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;tqdm</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-
+    
     <span class="c1"># Loop over each pipeline and process it</span>
     <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">pipeline_name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tqdm</span><span class="p">(</span><span class="n">pipeline_names</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">f_tqdm</span><span class="p">)):</span>
+        <span class="n">save_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;models/</span><span class="si">{</span><span class="n">pipeline_name</span><span class="si">}</span><span class="s2">/&quot;</span><span class="p">)</span>
+        <span class="n">log_model</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">init_logger</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pipeline_name</span><span class="si">}</span><span class="s2">_results&quot;</span><span class="p">)</span>
+
+        <span class="n">log_model</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;================== Fitting model </span><span class="si">{</span><span class="n">pipeline_name</span><span class="si">}</span><span class="s2"> ==================&quot;</span><span class="p">)</span>
+
+        <span class="n">y_est_save</span><span class="p">[</span><span class="n">pipeline_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;y_true&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;y_est&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+        <span class="n">fold_metrics</span> <span class="o">=</span> <span class="p">[]</span>
+
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">save_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;models/</span><span class="si">{</span><span class="n">pipeline_name</span><span class="si">}</span><span class="s2">/&quot;</span><span class="p">)</span>
-            <span class="n">check_and_create_directory</span><span class="p">(</span><span class="n">save_dir</span><span class="p">)</span>
-            <span class="n">log_model</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">init_logger</span><span class="p">(</span><span class="n">save_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pipeline_name</span><span class="si">}</span><span class="s2">_results&quot;</span><span class="p">)</span>
-
-            <span class="n">log_model</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;================== Fitting model </span><span class="si">{</span><span class="n">pipeline_name</span><span class="si">}</span><span class="s2"> ==================&quot;</span><span class="p">)</span>
-
-            <span class="n">y_est_save</span><span class="p">[</span><span class="n">pipeline_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;y_true&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;y_est&quot;</span><span class="p">:</span> <span class="p">[]}</span>
-            <span class="n">fold_metrics</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pipeline : </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">pipeline</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;list of imports  : </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">import_list</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
             <span class="c1"># Wrap fit and predict for parallel processing</span>
             <span class="k">def</span> <span class="nf">fit_predict_fold_wrap</span><span class="p">(</span><span class="n">fold</span><span class="p">,</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
                 <span class="n">X_train_k</span><span class="p">,</span> <span class="n">y_train_k</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">targets</span><span class="p">[</span><span class="n">train_index</span><span class="p">]</span>
@@ -211,8 +209,8 @@
 
             <span class="c1"># Parallel processing for each fold</span>
             <span class="n">results</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)(</span>
-                <span class="n">delayed</span><span class="p">(</span><span class="n">fit_predict_fold_wrap</span><span class="p">)(</span><span class="n">fold</span><span class="p">,</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">fold</span><span class="p">,</span> <span class="p">(</span><span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fold_groups</span><span class="p">)</span>
+                <span class="n">delayed</span><span class="p">(</span><span class="n">fit_predict_fold_wrap</span><span class="p">)(</span><span class="n">kfold</span><span class="p">,</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">kfold</span><span class="p">,</span> <span class="p">(</span><span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fold_groups</span><span class="p">)</span>
             <span class="p">)</span>
 
             <span class="c1"># Collect results from all folds</span>
@@ -267,7 +265,7 @@
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--metrics_to_report&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;extend&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;List of metrics to report&#39;</span><span class="p">)</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--seed&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Random seed&#39;</span><span class="p">)</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
-
+    
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Extract arguments for later use</span>
         <span class="n">data_path</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">data_path</span>
@@ -284,33 +282,14 @@
     <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;KeyError: </span><span class="si">%s</span><span class="s2"> undefined&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 
-    <span class="n">pipelines</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">pipe</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">pipeline</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">pipeline</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-        <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;[[&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">item</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;],&#39;</span><span class="p">):</span>
-            <span class="n">pipelines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pipe</span><span class="p">)</span>
-            <span class="n">pipe</span> <span class="o">=</span> <span class="n">item</span>
-        <span class="k">else</span> <span class="p">:</span> 
-            <span class="n">pipe</span> <span class="o">=</span> <span class="n">pipe</span> <span class="o">+</span><span class="n">item</span>
-
-    <span class="c1"># list_import = []</span>
-    <span class="c1"># import_item = args.import_list[0]</span>
-    <span class="c1"># for item in args.import_list[1:]:</span>
-    <span class="c1">#     if item.startswith(&#39;from&#39;) :</span>
-    <span class="c1">#         list_import.append(import_item)</span>
-    <span class="c1">#         import_item = item</span>
-    <span class="c1">#     else : </span>
-    <span class="c1">#         import_item = import_item + &quot; &quot; + item</span>
-
-    <span class="n">args</span><span class="o">.</span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">pipelines</span> 
-    <span class="c1"># args.import_list = list_import</span>
-
     <span class="c1"># Set random seed for reproducibility</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+    
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Set up storage paths and initialize logging</span>
         <span class="n">storage_path</span><span class="p">,</span> <span class="n">pipeline_names</span> <span class="o">=</span> <span class="n">set_folder</span><span class="p">(</span><span class="n">storage_path</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+
         <span class="n">log_dataset</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">init_logger</span><span class="p">(</span><span class="n">storage_path</span><span class="p">,</span> <span class="s2">&quot;dataset_info&quot;</span><span class="p">)</span>
         <span class="n">log_results</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">init_logger</span><span class="p">(</span><span class="n">storage_path</span> <span class="o">+</span> <span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="s2">&quot;results&quot;</span><span class="p">)</span>
         <span class="n">log_errors</span><span class="p">,</span> <span class="n">error_log_path</span> <span class="o">=</span> <span class="n">init_logger</span><span class="p">(</span><span class="n">storage_path</span> <span class="o">+</span> <span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="s2">&quot;errors&quot;</span><span class="p">)</span>
@@ -335,7 +314,7 @@
         <span class="p">)</span>
 
         <span class="c1"># Request specific data based on criteria</span>
-        <span class="c1"># x, y = dataset_loader.request_data(request)</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">dataset_loader</span><span class="o">.</span><span class="n">request_data</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         
         <span class="c1"># Manage labels according to the specified labeling method</span>
         <span class="n">labels_manager</span> <span class="o">=</span> <span class="n">LabelManagement</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">labeling_method</span><span class="p">)</span>
@@ -384,10 +363,9 @@
         <span class="n">log_results</span> <span class="o">=</span> <span class="n">report_metric_from_log</span><span class="p">(</span><span class="n">log_results</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">metrics_to_report</span><span class="p">)</span>
 
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;================== End of the study ==================&quot;</span><span class="p">)</span>
-
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="c1"># Log any unexpected errors</span>
-        <span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;An unexpected error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;An unexpected error occurred: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
         <span class="n">log_errors</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
 </pre></div>

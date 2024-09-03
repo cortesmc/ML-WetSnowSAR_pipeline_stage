@@ -8,4 +8,4 @@ actions:
       name: results
       executable: evaluation/generate_results.py
       executable_command: python
-      description: Retrieves all the results and regenerate all the images and results.
+      description: Get all results
