@@ -51,9 +51,11 @@ Execution Flow
    
 2. **Model Training and Prediction:**
    - Models are trained on the training set and evaluated on the test set using cross-validation.
-   - The trained models and results are saved for further analysis.
+   - The trained models and results are saved for further analysis in pickle format. While this format may encounter compatibility issues across different versions, it remains the most flexible option for storing diverse types of information.
 
 3. **Post-Processing:**
    - Final metrics are reported and visualized to provide insights into the performance of the models.
 
-In summary, `Qanat` enhances the framework by facilitating data management, real-time monitoring, and flexible result analysis. This integration allows for efficient execution of machine learning workflows and thorough evaluation of model performance.
+
+Results saved
+^^^^^^^^^^^^^

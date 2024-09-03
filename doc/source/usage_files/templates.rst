@@ -328,6 +328,7 @@ This YAML configuration enables two runs with the same seed but separates the mo
 
             - options:
             # Configuration for each pipeline
+            "--pipeline":
               # LogisticRegression pipeline
               - - - "LogisticR_direct"
                 - - "BandSelector"

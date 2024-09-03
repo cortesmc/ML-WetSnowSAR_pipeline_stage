@@ -1,8 +1,17 @@
-
 .. _installation:
 
 Installation
 ============
+Before creating a Qanat experiment, you need to be sure to follow the `Qanat installation <https://ammarmian.github.io/qanat/installation.html>`_ on your Python environment and have all the different libraries installed or have an Apptainer/Singularity container.
+
+Here is a list of all the libraries needed and an example of a container that can be built with Apptainer: 
+
+Requirements python
+--------------------------
+.. toctree::
+   :maxdepth: 2
+
+   ./req_python
 
 Creating an Experiment with Qanat
 ---------------------------------
@@ -109,17 +118,3 @@ To add or create a new action for the experiment, follow these steps:
 5. **Set the executable to**: python.
 
 6. **Add the experiment**.
-
-To use the actions, you need to have run the experiment at least once. Qanat generates new files named `run_N°`, where N° is the index of the run. To apply an action to a specific run, use the run index as follows:
-
-- For the action `get_results`, which consolidates all the results from multiple groups into a single file named `final_results`:
-
-  .. code-block:: bash
-
-      qanat experiment action pipeline <action_name> n_run
-
-- For the action `generate_maps`, which generates estimated maps for comparison with the data from Grand-Rousses or another assigned massif:
-
-  .. code-block:: bash
-
-      qanat experiment action pipeline generate_maps n_run --config_file <path_to_config_file>

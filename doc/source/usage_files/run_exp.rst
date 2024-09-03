@@ -50,3 +50,15 @@ To deploy the experiment through a job system, use the `--runner` option:
 
 .. note::
    For more details, refer to the Qanat documentation: `Running through a job system <https://ammarmian.github.io/qanat/usage/running/runner.html>`__.
+
+Running an action
+=================
+
+
+To use the actions, you need to have run the experiment at least once. Qanat generates new files named run_N°, where N° is the index of the run. To apply an action to a specific run, use the run index as follows:
+For the action get_results, which consolidates all the results from multiple groups into a single file named final_results:
+  .. code-block:: bash
+
+      qanat experiment action pipeline <action_name> n_run
+
+The get_results action will automatically regroup all the results, taking into consideration whether there is a single group or multiple groups. It then generates plots and creates a final results file where it averages all the results from models with the same name.

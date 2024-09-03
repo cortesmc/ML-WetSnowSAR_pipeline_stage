@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Config_param Configuration &mdash; Stage Wet Snow Benchmarking 1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=db78e746"></script>
-        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -95,10 +95,10 @@
            <div itemprop="articleBody">
              
   <section id="config-param-configuration">
-<h1>Config_param Configuration<a class="headerlink" href="#config-param-configuration" title="Link to this heading"></a></h1>
+<h1>Config_param Configuration<a class="headerlink" href="#config-param-configuration" title="Permalink to this heading"></a></h1>
 <p>The YAML file used for setting up an experiment is divided into two main sections: <cite>fixed_args</cite> and <cite>varying_args</cite>. Each section plays a specific role in defining the parameters and configurations for the experiment. This structured approach allows for efficient management of multiple experiments by specifying consistent parameters and introducing variability as needed.</p>
 <section id="configuration-overview">
-<h2>Configuration Overview<a class="headerlink" href="#configuration-overview" title="Link to this heading"></a></h2>
+<h2>Configuration Overview<a class="headerlink" href="#configuration-overview" title="Permalink to this heading"></a></h2>
 <p>Here is the YAML configuration used for defining the experiment parameters:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">fixed_args</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">options</span><span class="p">:</span>
@@ -212,9 +212,9 @@
 </div>
 </section>
 <section id="explanation-of-fields">
-<h2>Explanation of Fields<a class="headerlink" href="#explanation-of-fields" title="Link to this heading"></a></h2>
+<h2>Explanation of Fields<a class="headerlink" href="#explanation-of-fields" title="Permalink to this heading"></a></h2>
 <section id="fixed-args">
-<h3>fixed_args<a class="headerlink" href="#fixed-args" title="Link to this heading"></a></h3>
+<h3>fixed_args<a class="headerlink" href="#fixed-args" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>–data_path</strong>: <code class="docutils literal notranslate"><span class="pre">&quot;./data/dataset/dataset_AD_08200821_14Mas3Top3Phy_W15_corrected_V2.h5&quot;</span></code>
 The file path to the dataset used in the experiment. Ensure this path is accurate and the dataset file exists at the specified location.</p></li>
@@ -239,7 +239,7 @@ A list of metrics that will be included in the final evaluation report. These me
 </ul>
 </section>
 <section id="varying-args">
-<h3>varying_args<a class="headerlink" href="#varying-args" title="Link to this heading"></a></h3>
+<h3>varying_args<a class="headerlink" href="#varying-args" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>groups</strong>:
 This section allows you to define different experimental setups by varying certain parameters, such as the random seed. Each group represents a distinct configuration of the experiment.</p>
@@ -263,7 +263,7 @@ Specifies the random seed for reproducibility. Different seeds can be used to ex
 </section>
 </section>
 <section id="usage-notes">
-<h2>Usage Notes<a class="headerlink" href="#usage-notes" title="Link to this heading"></a></h2>
+<h2>Usage Notes<a class="headerlink" href="#usage-notes" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Verify that all paths specified in the configuration file are correct and point to existing files or directories.</p></li>
 <li><p>Ensure that the Python environment has all the necessary libraries and modules as listed in <cite>–import_list</cite>.</p></li>

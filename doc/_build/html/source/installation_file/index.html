@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Installation &mdash; Stage Wet Snow Benchmarking 1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=db78e746"></script>
-        <script src="../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Functioning" href="../functioning/index.html" />
+    <link rel="next" title="Requirements python" href="req_python.html" />
     <link rel="prev" title="Examples of Configuration Templates" href="../usage_files/templates.html" /> 
 </head>
 
@@ -48,6 +48,12 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../usage_files/index.html">Usage</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements-python">Requirements python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="req_python.html">Requirements python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="req_python.html#using-apptainer-singularity">Using Apptainer/Singularity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="req_python.html#how-to-use-the-container">How to Use the Container</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#creating-an-experiment-with-qanat">Creating an Experiment with Qanat</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-an-actions-with-qanat">Create an actions with Qanat</a></li>
 </ul>
@@ -83,9 +89,21 @@
            <div itemprop="articleBody">
              
   <section id="installation">
-<span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<p>Before creating a Qanat experiment, you need to be sure to follow the <a class="reference external" href="https://ammarmian.github.io/qanat/installation.html">Qanat installation</a> on your Python environment and have all the different libraries installed or have an Apptainer/Singularity container.</p>
+<p>Here is a list of all the libraries needed and an example of a container that can be built with Apptainer:</p>
+<section id="requirements-python">
+<h2>Requirements python<a class="headerlink" href="#requirements-python" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="req_python.html">Requirements python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="req_python.html#using-apptainer-singularity">Using Apptainer/Singularity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="req_python.html#how-to-use-the-container">How to Use the Container</a></li>
+</ul>
+</div>
+</section>
 <section id="creating-an-experiment-with-qanat">
-<h2>Creating an Experiment with Qanat<a class="headerlink" href="#creating-an-experiment-with-qanat" title="Link to this heading"></a></h2>
+<h2>Creating an Experiment with Qanat<a class="headerlink" href="#creating-an-experiment-with-qanat" title="Permalink to this heading"></a></h2>
 <ol class="arabic">
 <li><p><strong>Initialize Qanat in the Pipeline Folder</strong>:</p>
 <p>Open the terminal in your <strong>pipeline folder</strong> and run the following command:</p>
@@ -146,7 +164,7 @@ Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span
 </ol>
 </section>
 <section id="create-an-actions-with-qanat">
-<h2>Create an actions with Qanat<a class="headerlink" href="#create-an-actions-with-qanat" title="Link to this heading"></a></h2>
+<h2>Create an actions with Qanat<a class="headerlink" href="#create-an-actions-with-qanat" title="Permalink to this heading"></a></h2>
 <p>Before running actions, they must be created.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -174,19 +192,6 @@ Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span
 <li><p><strong>Set the executable to</strong>: python.</p></li>
 <li><p><strong>Add the experiment</strong>.</p></li>
 </ol>
-<p>To use the actions, you need to have run the experiment at least once. Qanat generates new files named <cite>run_N°</cite>, where N° is the index of the run. To apply an action to a specific run, use the run index as follows:</p>
-<ul>
-<li><p>For the action <cite>get_results</cite>, which consolidates all the results from multiple groups into a single file named <cite>final_results</cite>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qanat<span class="w"> </span>experiment<span class="w"> </span>action<span class="w"> </span>pipeline<span class="w"> </span>&lt;action_name&gt;<span class="w"> </span>n_run
-</pre></div>
-</div>
-</li>
-<li><p>For the action <cite>generate_maps</cite>, which generates estimated maps for comparison with the data from Grand-Rousses or another assigned massif:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qanat<span class="w"> </span>experiment<span class="w"> </span>action<span class="w"> </span>pipeline<span class="w"> </span>generate_maps<span class="w"> </span>n_run<span class="w"> </span>--config_file<span class="w"> </span>&lt;path_to_config_file&gt;
-</pre></div>
-</div>
-</li>
-</ul>
 </section>
 </section>
 
@@ -195,7 +200,7 @@ Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../usage_files/templates.html" class="btn btn-neutral float-left" title="Examples of Configuration Templates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../functioning/index.html" class="btn btn-neutral float-right" title="Functioning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="req_python.html" class="btn btn-neutral float-right" title="Requirements python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Functioning &mdash; Stage Wet Snow Benchmarking 1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=db78e746"></script>
-        <script src="../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -54,6 +54,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#framework-operation">Framework Operation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#how-the-framework-works">How the Framework Works</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#execution-flow">Execution Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results-saved">Results saved</a></li>
 </ul>
 </li>
 </ul>
@@ -88,14 +89,14 @@
            <div itemprop="articleBody">
              
   <section id="functioning">
-<h1>Functioning<a class="headerlink" href="#functioning" title="Link to this heading"></a></h1>
+<h1>Functioning<a class="headerlink" href="#functioning" title="Permalink to this heading"></a></h1>
 <p>This document explains the logic that follows the framework and how it integrates with <em>Qanat</em>.</p>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <p>The primary objective of using <cite>Qanat</cite> is to streamline the process of grouping data when deploying the framework and tracking the development of the study in real-time. <cite>Qanat</cite> simplifies the generation of multiple runs and facilitates the deployment of the framework on various job systems.</p>
 </section>
 <section id="key-benefits">
-<h2>Key Benefits<a class="headerlink" href="#key-benefits" title="Link to this heading"></a></h2>
+<h2>Key Benefits<a class="headerlink" href="#key-benefits" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>Simplified Grouping:</strong> <cite>Qanat</cite> helps in organizing data into manageable groups for efficient processing and analysis.</p></li>
 <li><p><strong>Real-Time Tracking:</strong> It provides mechanisms to monitor the progress of the study in real-time.</p></li>
@@ -103,9 +104,9 @@
 </ul>
 </section>
 <section id="framework-operation">
-<h2>Framework Operation<a class="headerlink" href="#framework-operation" title="Link to this heading"></a></h2>
+<h2>Framework Operation<a class="headerlink" href="#framework-operation" title="Permalink to this heading"></a></h2>
 <section id="how-the-framework-works">
-<h3>How the Framework Works<a class="headerlink" href="#how-the-framework-works" title="Link to this heading"></a></h3>
+<h3>How the Framework Works<a class="headerlink" href="#how-the-framework-works" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p><strong>Data Preparation:</strong>
 - Data is loaded and preprocessed according to specified methods for shuffling, labeling, and balancing.
@@ -127,17 +128,19 @@
 </ol>
 </section>
 <section id="execution-flow">
-<h3>Execution Flow<a class="headerlink" href="#execution-flow" title="Link to this heading"></a></h3>
+<h3>Execution Flow<a class="headerlink" href="#execution-flow" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p><strong>Initialization:</strong>
 - The script initializes logging, sets up storage paths, and prepares the dataset.</p></li>
 <li><p><strong>Model Training and Prediction:</strong>
 - Models are trained on the training set and evaluated on the test set using cross-validation.
-- The trained models and results are saved for further analysis.</p></li>
+- The trained models and results are saved for further analysis in pickle format. While this format may encounter compatibility issues across different versions, it remains the most flexible option for storing diverse types of information.</p></li>
 <li><p><strong>Post-Processing:</strong>
 - Final metrics are reported and visualized to provide insights into the performance of the models.</p></li>
 </ol>
-<p>In summary, <cite>Qanat</cite> enhances the framework by facilitating data management, real-time monitoring, and flexible result analysis. This integration allows for efficient execution of machine learning workflows and thorough evaluation of model performance.</p>
+</section>
+<section id="results-saved">
+<h3>Results saved<a class="headerlink" href="#results-saved" title="Permalink to this heading"></a></h3>
 </section>
 </section>
 </section>

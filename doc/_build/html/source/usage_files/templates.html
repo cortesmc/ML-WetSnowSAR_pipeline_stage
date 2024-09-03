@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Examples of Configuration Templates &mdash; Stage Wet Snow Benchmarking 1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=db78e746"></script>
-        <script src="../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -48,6 +48,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Usage</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="run_exp.html">Running an Experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_exp.html#running-an-action">Running an action</a></li>
 <li class="toctree-l2"><a class="reference internal" href="parameter_files/index.html">Parameters files</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Examples of Configuration Templates</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#single-experiment-with-uniform-seeds">Single Experiment with Uniform Seeds</a></li>
@@ -91,10 +92,10 @@
            <div itemprop="articleBody">
              
   <section id="examples-of-configuration-templates">
-<span id="templates"></span><h1>Examples of Configuration Templates<a class="headerlink" href="#examples-of-configuration-templates" title="Link to this heading"></a></h1>
+<span id="templates"></span><h1>Examples of Configuration Templates<a class="headerlink" href="#examples-of-configuration-templates" title="Permalink to this heading"></a></h1>
 <p>Below are examples of templates for the config_param.yml file.</p>
 <section id="single-experiment-with-uniform-seeds">
-<h2>Single Experiment with Uniform Seeds<a class="headerlink" href="#single-experiment-with-uniform-seeds" title="Link to this heading"></a></h2>
+<h2>Single Experiment with Uniform Seeds<a class="headerlink" href="#single-experiment-with-uniform-seeds" title="Permalink to this heading"></a></h2>
 <p>This YAML configuration is designed for a single run with all models using the same seed.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">fixed_args</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">options</span><span class="p">:</span>
@@ -204,7 +205,7 @@
 </div>
 </section>
 <section id="two-experiments-with-different-seeds">
-<h2>Two Experiments with Different Seeds<a class="headerlink" href="#two-experiments-with-different-seeds" title="Link to this heading"></a></h2>
+<h2>Two Experiments with Different Seeds<a class="headerlink" href="#two-experiments-with-different-seeds" title="Permalink to this heading"></a></h2>
 <p>This YAML configuration supports two runs for all models, each using different seeds.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">fixed_args</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">options</span><span class="p">:</span>
@@ -317,7 +318,7 @@
 </div>
 </section>
 <section id="two-experiments-with-uniform-seeds-but-separate-models">
-<h2>Two Experiments with Uniform Seeds but Separate Models<a class="headerlink" href="#two-experiments-with-uniform-seeds-but-separate-models" title="Link to this heading"></a></h2>
+<h2>Two Experiments with Uniform Seeds but Separate Models<a class="headerlink" href="#two-experiments-with-uniform-seeds-but-separate-models" title="Permalink to this heading"></a></h2>
 <p>This YAML configuration enables two runs with the same seed but separates the models. This approach is useful for parallel processing. If you wish to compare models using only one seed, you can separate the testing and then gather the results through an action.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">fixed_args</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">options</span><span class="p">:</span>
@@ -407,6 +408,7 @@
 
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">options</span><span class="p">:</span>
 <span class="w">        </span><span class="c1"># Configuration for each pipeline</span>
+<span class="w">        </span><span class="s">&quot;--pipeline&quot;</span><span class="p p-Indicator">:</span>
 <span class="w">          </span><span class="c1"># LogisticRegression pipeline</span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;LogisticR_direct&quot;</span>
 <span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;BandSelector&quot;</span>
@@ -430,7 +432,7 @@
 </div>
 </section>
 <section id="multiple-experiments-with-varied-seeds-across-all-models">
-<h2>Multiple Experiments with Varied Seeds Across All Models<a class="headerlink" href="#multiple-experiments-with-varied-seeds-across-all-models" title="Link to this heading"></a></h2>
+<h2>Multiple Experiments with Varied Seeds Across All Models<a class="headerlink" href="#multiple-experiments-with-varied-seeds-across-all-models" title="Permalink to this heading"></a></h2>
 <p>This YAML configuration generates 10 runs with all models, allowing you to test model variability. It utilizes the range function to generate a series of float values.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">fixed_args</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">options</span><span class="p">:</span>
