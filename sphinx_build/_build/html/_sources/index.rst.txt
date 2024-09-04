@@ -5,9 +5,10 @@
 
 Welcome to the SnowMark Documentation!
 ======================================
-.. image:: ./source/images/listic_logo.png
-   :scale: 100%
-   :align: center
+
+.. figure:: /source/images/logo_SnowMark.svg
+   :align: left
+   :width: 50%
 
 Project References
 ------------------
