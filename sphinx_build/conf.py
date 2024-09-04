@@ -12,7 +12,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../pipeline'))
+sys.path.insert(0, os.path.abspath('../code'))
 
 
 # -- Project information -----------------------------------------------------
@@ -54,7 +54,10 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # a list of builtin themes.
 #
 html_theme = 'sphinx_rtd_theme'
-
+html_theme_options = {
+    'collapse_navigation': False,
+    'sticky_navigation': True,
+}
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".

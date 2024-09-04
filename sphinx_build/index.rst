@@ -29,7 +29,7 @@ Getting Started
 Check out the installation section for further information, including how to :ref:`installation` the project.
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :caption: Contents:
 
    ./source/intro/index

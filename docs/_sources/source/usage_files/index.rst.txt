@@ -105,7 +105,8 @@ To simplify this process, you can use **Qanat**. Qanat allows you to specify all
 Here are all the different steps to run the pipeline through Qanat with some exemples of templates that you can use. 
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 3
+   :caption: Contents:
 
    ./run_exp 
    ./parameter_files

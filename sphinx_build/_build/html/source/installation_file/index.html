@@ -46,7 +46,21 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">SnowMark Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">SnowMark Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#why-we-use-snowmark">Why We Use SnowMark</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../intro/index.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/index.html#id1">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/index.html#key-features">Key Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/index.html#framework-functioning">Framework Functioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/index.html#execution-flow">Execution Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/index.html#why-we-use-qanat">Why We Use Qanat</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../intro/index.html#qanat-s-structure-and-functionality">Qanat’s Structure and Functionality</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#requirements-python">Requirements python</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="req_python.html">Requirements python</a></li>
@@ -58,10 +72,260 @@
 <li class="toctree-l2"><a class="reference internal" href="#create-an-actions-with-qanat">Create an actions with Qanat</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../usage_files/index.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../estimators.html">estimators package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../evaluation.html">evaluation package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../utils.html">utils package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage_files/index.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../usage_files/run_exp.html">Running an Experiment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/run_exp.html#deploying-an-experiment-inside-a-container">Deploying an Experiment Inside a Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/run_exp.html#deploying-an-experiment-through-a-job-system">Deploying an Experiment Through a Job System</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usage_files/run_exp.html#running-an-action">Running an action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../usage_files/parameter_files.html">Parameters files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../usage_files/parameter_files.html#config-param-configuration">Config_param Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/parameter_files.html#configuration-overview">Configuration Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/parameter_files.html#explanation-of-fields">Explanation of Fields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../usage_files/parameter_files.html#fixed-args">fixed_args</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../usage_files/parameter_files.html#varying-args">varying_args</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/parameter_files.html#usage-notes">Usage Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/parameter_files.html#id1">Configuration Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/parameter_files.html#id2">Explanation of Fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/parameter_files.html#actions">Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/parameter_files.html#id3">Usage Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usage_files/templates.html">Examples of Configuration Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/templates.html#single-experiment-with-uniform-seeds">Single Experiment with Uniform Seeds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/templates.html#two-experiments-with-different-seeds">Two Experiments with Different Seeds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/templates.html#two-experiments-with-uniform-seeds-but-separate-models">Two Experiments with Uniform Seeds but Separate Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/templates.html#multiple-experiments-with-varied-seeds-across-all-models">Multiple Experiments with Varied Seeds Across All Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usage_files/saved_info.html">Saved Information of a Run</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/saved_info.html#folder-structure">Folder Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/saved_info.html#models-directory-models">Models Directory (<cite>models/</cite>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/saved_info.html#results-directory-results">Results Directory (<cite>results/</cite>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/saved_info.html#final-results-directory-results-final">Final Results Directory (<cite>results_final/</cite>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/saved_info.html#other-logs-and-output-files">Other Logs and Output Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/saved_info.html#example-folder-structure">Example Folder Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../usage_files/saved_imgs.html">Saved Images and Results of a Run</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/saved_imgs.html#model-specific-results">Model-Specific Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/saved_imgs.html#final-aggregated-results">Final Aggregated Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/saved_imgs.html#boxplots-for-performance-comparison">Boxplots for Performance Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage_files/saved_imgs.html#roc-curves">ROC Curves</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../estimators.html">estimators package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../estimators.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../estimators.html#module-estimators.band_transform">estimators.band_transform module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../estimators.html#estimators.band_transform.BandSelector"><code class="docutils literal notranslate"><span class="pre">BandSelector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.band_transform.BandSelector.fit"><code class="docutils literal notranslate"><span class="pre">BandSelector.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.band_transform.BandSelector.transform"><code class="docutils literal notranslate"><span class="pre">BandSelector.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../estimators.html#estimators.band_transform.BandTransformer"><code class="docutils literal notranslate"><span class="pre">BandTransformer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.band_transform.BandTransformer.fit"><code class="docutils literal notranslate"><span class="pre">BandTransformer.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.band_transform.BandTransformer.transform"><code class="docutils literal notranslate"><span class="pre">BandTransformer.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../estimators.html#module-estimators.covariance">estimators.covariance module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../estimators.html#estimators.covariance.Covariance_MultiScale"><code class="docutils literal notranslate"><span class="pre">Covariance_MultiScale</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.covariance.Covariance_MultiScale.fit"><code class="docutils literal notranslate"><span class="pre">Covariance_MultiScale.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.covariance.Covariance_MultiScale.transform"><code class="docutils literal notranslate"><span class="pre">Covariance_MultiScale.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../estimators.html#estimators.covariance.Vector_CovarianceEuclid"><code class="docutils literal notranslate"><span class="pre">Vector_CovarianceEuclid</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.covariance.Vector_CovarianceEuclid.fit"><code class="docutils literal notranslate"><span class="pre">Vector_CovarianceEuclid.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.covariance.Vector_CovarianceEuclid.transform"><code class="docutils literal notranslate"><span class="pre">Vector_CovarianceEuclid.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../estimators.html#estimators.covariance.Vector_Euclid"><code class="docutils literal notranslate"><span class="pre">Vector_Euclid</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.covariance.Vector_Euclid.fit"><code class="docutils literal notranslate"><span class="pre">Vector_Euclid.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.covariance.Vector_Euclid.transform"><code class="docutils literal notranslate"><span class="pre">Vector_Euclid.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../estimators.html#estimators.covariance.is_pos_def"><code class="docutils literal notranslate"><span class="pre">is_pos_def()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../estimators.html#module-estimators.statistical_descriptor">estimators.statistical_descriptor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../estimators.html#estimators.statistical_descriptor.Hist_SAR"><code class="docutils literal notranslate"><span class="pre">Hist_SAR</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.statistical_descriptor.Hist_SAR.fit"><code class="docutils literal notranslate"><span class="pre">Hist_SAR.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.statistical_descriptor.Hist_SAR.set_score_request"><code class="docutils literal notranslate"><span class="pre">Hist_SAR.set_score_request()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.statistical_descriptor.Hist_SAR.transform"><code class="docutils literal notranslate"><span class="pre">Hist_SAR.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../estimators.html#estimators.statistical_descriptor.Nagler_WS"><code class="docutils literal notranslate"><span class="pre">Nagler_WS</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.statistical_descriptor.Nagler_WS.fit"><code class="docutils literal notranslate"><span class="pre">Nagler_WS.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.statistical_descriptor.Nagler_WS.predict"><code class="docutils literal notranslate"><span class="pre">Nagler_WS.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.statistical_descriptor.Nagler_WS.predict_proba"><code class="docutils literal notranslate"><span class="pre">Nagler_WS.predict_proba()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.statistical_descriptor.Nagler_WS.score"><code class="docutils literal notranslate"><span class="pre">Nagler_WS.score()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../estimators.html#estimators.statistical_descriptor.Stats_SAR"><code class="docutils literal notranslate"><span class="pre">Stats_SAR</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.statistical_descriptor.Stats_SAR.fit"><code class="docutils literal notranslate"><span class="pre">Stats_SAR.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../estimators.html#estimators.statistical_descriptor.Stats_SAR.transform"><code class="docutils literal notranslate"><span class="pre">Stats_SAR.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../estimators.html#estimators.statistical_descriptor.calcul_hist"><code class="docutils literal notranslate"><span class="pre">calcul_hist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../estimators.html#estimators.statistical_descriptor.moments_features"><code class="docutils literal notranslate"><span class="pre">moments_features()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../estimators.html#estimators.statistical_descriptor.optimal_bins"><code class="docutils literal notranslate"><span class="pre">optimal_bins()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../estimators.html#estimators-textural-features-module">estimators.textural_features module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../estimators.html#module-estimators">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../evaluation.html">evaluation package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../evaluation.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../evaluation.html#module-evaluation.generate_results">evaluation.generate_results module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../evaluation.html#module-evaluation.SnowMark">evaluation.SnowMark module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../evaluation.html#evaluation.SnowMark.fit_predict_fold"><code class="docutils literal notranslate"><span class="pre">fit_predict_fold()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../evaluation.html#evaluation.SnowMark.log_error_details"><code class="docutils literal notranslate"><span class="pre">log_error_details()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../evaluation.html#evaluation.SnowMark.predict_dataset"><code class="docutils literal notranslate"><span class="pre">predict_dataset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../evaluation.html#module-evaluation">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html">utils package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html#module-utils.SlidingWindowTransformer">utils.SlidingWindowTransformer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#slidingwindowtransformer">SlidingWindowTransformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.SlidingWindowTransformer.SlidingWindowTransformer"><code class="docutils literal notranslate"><span class="pre">SlidingWindowTransformer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.SlidingWindowTransformer.SlidingWindowTransformer.calculate_optimal_chunks"><code class="docutils literal notranslate"><span class="pre">SlidingWindowTransformer.calculate_optimal_chunks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.SlidingWindowTransformer.SlidingWindowTransformer.fit"><code class="docutils literal notranslate"><span class="pre">SlidingWindowTransformer.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.SlidingWindowTransformer.SlidingWindowTransformer.transform"><code class="docutils literal notranslate"><span class="pre">SlidingWindowTransformer.transform()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.SlidingWindowTransformer.SlidingWindowTransformer.transform_block"><code class="docutils literal notranslate"><span class="pre">SlidingWindowTransformer.transform_block()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html#module-utils.balance_management">utils.balance_management module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#balancemanagement">BalanceManagement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.balance_management.BalanceManagement"><code class="docutils literal notranslate"><span class="pre">BalanceManagement</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.balance_management.BalanceManagement.transform"><code class="docutils literal notranslate"><span class="pre">BalanceManagement.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.balance_management.bFold"><code class="docutils literal notranslate"><span class="pre">bFold()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.balance_management.bFold_multiclass"><code class="docutils literal notranslate"><span class="pre">bFold_multiclass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.balance_management.balance_classes"><code class="docutils literal notranslate"><span class="pre">balance_classes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html#module-utils.dataset_load">utils.dataset_load module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#datasetloader">DatasetLoader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.dataset_load.DatasetLoader"><code class="docutils literal notranslate"><span class="pre">DatasetLoader</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.dataset_load.DatasetLoader.check_data"><code class="docutils literal notranslate"><span class="pre">DatasetLoader.check_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.dataset_load.DatasetLoader.init_info"><code class="docutils literal notranslate"><span class="pre">DatasetLoader.init_info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.dataset_load.DatasetLoader.load_data"><code class="docutils literal notranslate"><span class="pre">DatasetLoader.load_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.dataset_load.DatasetLoader.request_data"><code class="docutils literal notranslate"><span class="pre">DatasetLoader.request_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.dataset_load.load_data_h5"><code class="docutils literal notranslate"><span class="pre">load_data_h5()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.dataset_load.load_info_h5"><code class="docutils literal notranslate"><span class="pre">load_info_h5()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.dataset_load.save_h5_II"><code class="docutils literal notranslate"><span class="pre">save_h5_II()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.dataset_load.shuffle_data"><code class="docutils literal notranslate"><span class="pre">shuffle_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html#module-utils.dataset_management">utils.dataset_management module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.dataset_management.BFold"><code class="docutils literal notranslate"><span class="pre">BFold</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.dataset_management.BFold.n_splits"><code class="docutils literal notranslate"><span class="pre">BFold.n_splits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.dataset_management.BFold.get_n_splits"><code class="docutils literal notranslate"><span class="pre">BFold.get_n_splits()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.dataset_management.BFold.split"><code class="docutils literal notranslate"><span class="pre">BFold.split()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.dataset_management.balance_dataset"><code class="docutils literal notranslate"><span class="pre">balance_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.dataset_management.balance_dataset_with_imblearn"><code class="docutils literal notranslate"><span class="pre">balance_dataset_with_imblearn()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.dataset_management.load_test"><code class="docutils literal notranslate"><span class="pre">load_test()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.dataset_management.load_train"><code class="docutils literal notranslate"><span class="pre">load_train()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.dataset_management.parse_pipeline"><code class="docutils literal notranslate"><span class="pre">parse_pipeline()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.dataset_management.random_shuffle"><code class="docutils literal notranslate"><span class="pre">random_shuffle()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html#module-utils.figures">utils.figures module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.figures.plot_boxplots"><code class="docutils literal notranslate"><span class="pre">plot_boxplots()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.figures.plot_roc_curves"><code class="docutils literal notranslate"><span class="pre">plot_roc_curves()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html#module-utils.files_management">utils.files_management module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.check_and_create_directory"><code class="docutils literal notranslate"><span class="pre">check_and_create_directory()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.clean_log"><code class="docutils literal notranslate"><span class="pre">clean_log()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.compresser_en_zip"><code class="docutils literal notranslate"><span class="pre">compresser_en_zip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.dump_h5"><code class="docutils literal notranslate"><span class="pre">dump_h5()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.dump_pkl"><code class="docutils literal notranslate"><span class="pre">dump_pkl()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.extract_zip"><code class="docutils literal notranslate"><span class="pre">extract_zip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.init_logger"><code class="docutils literal notranslate"><span class="pre">init_logger()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.load_h5"><code class="docutils literal notranslate"><span class="pre">load_h5()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.load_yaml"><code class="docutils literal notranslate"><span class="pre">load_yaml()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.logger_dataset"><code class="docutils literal notranslate"><span class="pre">logger_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.logger_fold"><code class="docutils literal notranslate"><span class="pre">logger_fold()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.open_log_file"><code class="docutils literal notranslate"><span class="pre">open_log_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.open_param_set_dir"><code class="docutils literal notranslate"><span class="pre">open_param_set_dir()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.open_pkl"><code class="docutils literal notranslate"><span class="pre">open_pkl()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.report_metric_from_log"><code class="docutils literal notranslate"><span class="pre">report_metric_from_log()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.report_prediction"><code class="docutils literal notranslate"><span class="pre">report_prediction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.save_h5"><code class="docutils literal notranslate"><span class="pre">save_h5()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.save_metrics"><code class="docutils literal notranslate"><span class="pre">save_metrics()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.save_yaml"><code class="docutils literal notranslate"><span class="pre">save_yaml()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.set_folder"><code class="docutils literal notranslate"><span class="pre">set_folder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.files_management.write_report"><code class="docutils literal notranslate"><span class="pre">write_report()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html#module-utils.fold_management">utils.fold_management module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.fold_management.FoldManagement"><code class="docutils literal notranslate"><span class="pre">FoldManagement</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.fold_management.FoldManagement.split"><code class="docutils literal notranslate"><span class="pre">FoldManagement.split()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.fold_management.KFold_method"><code class="docutils literal notranslate"><span class="pre">KFold_method()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.fold_management.combination_method"><code class="docutils literal notranslate"><span class="pre">combination_method()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.fold_management.fold_massive_method"><code class="docutils literal notranslate"><span class="pre">fold_massive_method()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.fold_management.simple_split"><code class="docutils literal notranslate"><span class="pre">simple_split()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html#utils-geo-tools-module">utils.geo_tools module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html#module-utils.image_processing">utils.image_processing module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.image_processing.Patch_extractor"><code class="docutils literal notranslate"><span class="pre">Patch_extractor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.image_processing.Patch_extractor.window_size"><code class="docutils literal notranslate"><span class="pre">Patch_extractor.window_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.image_processing.Patch_extractor.channel"><code class="docutils literal notranslate"><span class="pre">Patch_extractor.channel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.image_processing.Patch_extractor.padding"><code class="docutils literal notranslate"><span class="pre">Patch_extractor.padding</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.image_processing.Patch_extractor.positions_"><code class="docutils literal notranslate"><span class="pre">Patch_extractor.positions_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.image_processing.Patch_extractor.patches"><code class="docutils literal notranslate"><span class="pre">Patch_extractor.patches</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.image_processing.Patch_extractor.image_size"><code class="docutils literal notranslate"><span class="pre">Patch_extractor.image_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.image_processing.Patch_extractor.extract"><code class="docutils literal notranslate"><span class="pre">Patch_extractor.extract()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.image_processing.Patch_extractor.reconstruct"><code class="docutils literal notranslate"><span class="pre">Patch_extractor.reconstruct()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.image_processing.create_position_matrix"><code class="docutils literal notranslate"><span class="pre">create_position_matrix()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.image_processing.pad_image"><code class="docutils literal notranslate"><span class="pre">pad_image()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.image_processing.reconstruct_image_from_data"><code class="docutils literal notranslate"><span class="pre">reconstruct_image_from_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.image_processing.scale_data"><code class="docutils literal notranslate"><span class="pre">scale_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html#module-utils.label_management">utils.label_management module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#labelmanagement">LabelManagement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.label_management.LabelManagement"><code class="docutils literal notranslate"><span class="pre">LabelManagement</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.label_management.LabelManagement.get_encoder"><code class="docutils literal notranslate"><span class="pre">LabelManagement.get_encoder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../utils.html#utils.label_management.LabelManagement.transform"><code class="docutils literal notranslate"><span class="pre">LabelManagement.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.label_management.crocus_method"><code class="docutils literal notranslate"><span class="pre">crocus_method()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.label_management.crocus_method_three_labels"><code class="docutils literal notranslate"><span class="pre">crocus_method_three_labels()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html#module-utils.metrics">utils.metrics module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.metrics.BAROC"><code class="docutils literal notranslate"><span class="pre">BAROC()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.metrics.BF1ROC"><code class="docutils literal notranslate"><span class="pre">BF1ROC()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../utils.html#utils.metrics.FRCROC"><code class="docutils literal notranslate"><span class="pre">FRCROC()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html#module-utils">Module contents</a></li>
+</ul>
+</li>
 </ul>
 
         </div>

@@ -1,0 +1,6 @@
+.qanat
+.cache
+results
+./evaluation/container_ML.sif
+data
+!pipeline/data/__init__.txt
