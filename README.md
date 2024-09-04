@@ -1,11 +1,9 @@
-# Wet Snow Detection
-
-Welcome to the Wet Snow Detection Documentation!
+Welcome to the SnowMark git repository!
 ================================================
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
     <img src="./sphinx_build/source/images/logo_SnowMark.svg" alt="SnowMark logo" style="width: 20%; height: auto;">
-    <img src="./sphinx_build/source/images/listic_logo.png" alt="Listic Logo" style="width: 20%; height: auto;">
+    <img src="./sphinx_build/source/images/listic_logo.png" alt="Listic Logo" style="width: 30%; height: auto;">
 </div>
 
 ## Project References
